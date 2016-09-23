@@ -6,10 +6,11 @@ This is an example integration between The Things Network and Azure IoT Hub. Thi
 
 ### Prerequisites
 
-1. Nodejs [download here](https://nodejs.org/en/). Version 4.5 should be fine
-2. Azure account
-3. TTN account
-4. Device Explorer [download here](https://github.com/Azure/azure-iot-sdks/blob/master/tools/DeviceExplorer/doc/how_to_use_device_explorer.md)
+1. A running TTN node connected to the TTN network
+2. Nodejs [download here](https://nodejs.org/en/). Version 4.5 should be fine
+3. Azure account
+4. TTN account
+5. Device Explorer [download here](https://github.com/Azure/azure-iot-sdks/blob/master/tools/DeviceExplorer/doc/how_to_use_device_explorer.md)
 
 
 ## Create an Azure IoT Hub
@@ -115,6 +116,8 @@ Uplink { devEUI: '0004A30B001B442B',
   message: '{"lux":1010,"water":19.72,"deviceId":"0004A30B001B442B","time":"2016-06-14T16:19:37.546601639Z"}' }
 ...
 ```
+
+*Note: the message consists of valid Json telemetry.*
 
 Keep the bridge running till the end of the workshop.  
 
