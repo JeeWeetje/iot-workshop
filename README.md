@@ -29,18 +29,18 @@ Creating an IoT Hub takes some time. Meanwhile we will create the bridge.
 
 ## Create a bridge
 
-Follow these steps to create the integration bridge between The Things Network and Azure IoT Hub.
+Follow these steps to create the integration bridge between The Things Network and Azure IoT Hub. NPM will be used to create a folder structure and imstall packages.
 
-1. In a new folder, run `npm init` to initialize a new WebJob using Node.js. Use `server.js` as entry point
+1. In a new folder, run `npm init` to initialize a new WebJob using Node.js. Accept the initial values, only use `server.js` as entry point
 2. Run `npm install --save ttn-azure-iothub` to install this package
 3. Create a new file `server.js`
 
-This server file will be created below but we need some secrets. We will have to collect the unique keys of the TTN app and the Azure IoT Hub first.
+This server.js file will be written below but we need some secrets first. We have to collect unique keys of the TTN app and the Azure IoT Hub.
 
 
 ### TTN App secrets
 
-This integration requires TTN portal AppEUI and App Access Key.
+The integration requires TTN portal AppEUI and App Access Key.
 
 1. Log into the [TTN applications portal](https://staging.thethingsnetwork.org/applications). You will be asked to provide TTN credentials if needed.
 2. A list of application will be shown. Navigato to the application provided for this workshop
@@ -53,7 +53,7 @@ These are the secrets needed from TTN.
 
 ### Azure IoT Hub secrets
 
-This integration requires an Azure IoT Hub Shared access policy key name with `Registry, Write and Device connect` permissions. In this example, we use the **iothubowner** policy which has these permissions enabled by default.
+The integration requires an Azure IoT Hub Shared access policy key name with `Registry, Write and Device connect` permissions. In this example, we use the **iothubowner** policy which has these permissions enabled by default.
 
 1. Check the Azure portal notifications. The IoT Hub should be created by now.
 2. On the left, select `Resource groups`
@@ -119,7 +119,7 @@ Uplink { devEUI: '0004A30B001B442B',
 Keep the bridge running till the end of the workshop.  
 
 
-## Check the arrival of the telemetry
+## Check the arrival of the telemetry in Azure
 
 We can check the arrival of the messages in the Azure IoT Hub.
 
