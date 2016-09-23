@@ -20,7 +20,7 @@ Follow these steps to create an Azure IoT Hub.
 2. On the left, a number of common Azure services is shown. Select `More Services` to open a list with all available services. Filter it with `Iot Hub`
 3. Select `Iot Hub` and a new blade will be shown. Select `Add` and you will be asked to enter the information needed to create an IoT Hub
 4. Enter a unique IoT Hub name eg. `TechDays42ih`. A green sign will be shown if the name is unique
-5. Create a unique Resource Group eg. `TechDays42rg`
+5. Enter a unique Resource Group eg. `TechDays42rg`
 6. Select `West Europe` for the location
 7. Press `Create` and the portal will start creating the service. Once it is created, a notification is shown. In the right upper corner, a bell represents the list of all notifications shown
 
@@ -42,22 +42,27 @@ This server file will be created below but we need some secrets. We will have to
 
 This integration requires TTN portal AppEUI and App Access Key.
 
-*TODO* - new ttn portal pictures????
+1. Log into the [TTN applications portal](https://staging.thethingsnetwork.org/applications). You will be asked to provide TTN credentials if needed.
+2. A list of application will be shown. Navigato to the application provided for this workshop
+3. Under Application Info, click 'learn how to get data from this app' to get the application data.
+4. the `App EUI` and the `Access Keys` are shown. Remember these App EUI and access keys
+
 
 These are the secrets needed from TTN.
 
 
 ### Azure IoT Hub secrets
 
-This integration requires am Azure IoT Hub Shared access policy key name with `Registry, Write and Device connect` permissions. In this example, we use the **iothubowner** policy which has these permissions enabled by default.
+This integration requires an Azure IoT Hub Shared access policy key name with `Registry, Write and Device connect` permissions. In this example, we use the **iothubowner** policy which has these permissions enabled by default.
 
 1. Check the Azure portal notifications. The IoT Hub should be created by now.
 2. On the left, select `Resource groups`
 3. Select the ResourceGroup `TechDays42rg`. It will open a new blade with all resources.
 4. Select the IoT Hub `TechDays42ih` It will open a new blade with the IoT Hub.
 5. The IoTHub has not received any messages yet. Check the general settings for `Shared access policies`
-6. Navigate to the 'iothubowner' policy and remember the primary key.
-7. Also remember the name of the IoT Hub eg 'TechDays42ih'
+6. Navigate to the `iothubowner` policy and remember the primary key.
+7. In the last step op this tutorial, the 'Connection string-primary key' is needed. Remember this connection string
+8. Also remember the `name` of the IoT Hub eg `TechDays42ih`
 
 These are the secrets needed from Azure.
 
@@ -118,13 +123,21 @@ Keep the bridge running till the end of the workshop.
 
 We can check the arrival of the messages in the Azure IoT Hub.
 
-1. Go to the Azure Portal. Navigate to the 'iothubowner' policy and this time remember the primary connection string
-2. Install the Device Manager. Start the device manager.
-3. On the Configuration Tab, insert the IoT Hub Connection String and the name of the IoT Hub (as Protocol Gateway Hostname)
-4. Press 'Update'
-5. On the Management tab, your device should already be visible. It is registered by the bridge
-6. On the Data tab, Select your 'Device ID' and press 'Monitor'.
+1. Install the Device Manager. Start the device manager.
+2. On the Configuration Tab, insert the IoT Hub `Connection String-primary key` and the `name` of the IoT Hub (as Protocol Gateway Hostname)
+3. Press `Update`
+4. On the Management tab, your device should already be available. It was registered by the bridge when the very first telemetry arrived
+5. On the Data tab, Select your `Device ID` and press `Monitor`.
+
+```
+Receiving events...
+09/23/16 21:43:47> Device: [DeviceOne], Data:[{"water":10.0,"light":712}]
+09/23/16 21:43:51> Device: [DeviceOne], Data:[{"water":15.0,"light":711}]
+09/23/16 21:43:53> Device: [DeviceOne], Data:[{"water":14.0,"light":290}]
+```
 
 The messages should be visible here too. These messages are now available in Azure.
 
 You are now ready to process your data in an Azure Stream Analytics job.
+
+
