@@ -70,7 +70,7 @@ These are the secrets needed from Azure.
 
 ### Create server.js
 
-Create a file named server.js in the new folder.
+Edit the file named server.js in the new folder.
 
 ```js
 'use strict';
