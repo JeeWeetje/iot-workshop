@@ -9,6 +9,7 @@ This is an example integration between The Things Network and Azure IoT Hub. Thi
 1. Nodejs [download here](https://nodejs.org/en/). Version 4.5 should be fine
 2. Azure account
 3. TTN account
+4. Device Explorer [download here](https://github.com/Azure/azure-iot-sdks/blob/master/tools/DeviceExplorer/doc/how_to_use_device_explorer.md)
 
 ## Create an Azure IoT Hub
 
@@ -93,7 +94,8 @@ bridge.on('uplink', data => {
 
 ## Start the bridge
 
-4. Run `npm start` to verify that the bridge works in the new folder. This is example output:
+Run `npm start` to verify that the bridge works in the new folder. This is example output:
+
 ```
 TTN connected
 0004A30B001B442B: Handling uplink
@@ -104,6 +106,20 @@ Uplink { devEUI: '0004A30B001B442B',
   message: '{"lux":1010,"water":19.72,"deviceId":"0004A30B001B442B","time":"2016-06-14T16:19:37.546601639Z"}' }
 ...
 ```
-    
+
+Keep the bridge running till the end of the workshop.    
+
+## Check the arrival of the telemetry
+
+We can check the arrival of the messages in the Azure IoT Hub:
+
+1. Go to the Azure Portal. Navigate to the 'iothubowner' policy and this time remember the primary connection string
+2. Install the Device Manager. Start the device manager.
+3. On the Configuration Tab, insert the IoT Hub Connection String and the name of the IoT Hub (as Protocol Gateway Hostname)
+4. Press 'Update'
+5. On the Management tab, your device should already be visible. It is registered by the bridge
+6. On the Data tab, Select your 'Device ID' and press 'Monitor'.
+
+The messages should be visible here too. These messages are now available in Azure.
 
 You are now ready to process your data in an Azure Stream Analytics job.
