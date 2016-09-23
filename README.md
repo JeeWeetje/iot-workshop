@@ -25,7 +25,7 @@ Follow these steps to create an Azure IoT Hub.
 Creating an IoT Hub takes some time. Meanwhile we will create the bridge.
 
 
-### Create a bridge
+## Create a bridge
 
 Follow these steps to create the integration bridge between The Things Network and Azure IoT Hub.
 
@@ -36,7 +36,7 @@ Follow these steps to create the integration bridge between The Things Network a
 This server file will be created below but we need some secrets. We will have to collect the unique keys of the TTN app and the Azure IoT Hub first.
 
 
-## TTN App secrets
+### TTN App secrets
 
 This integration requires the AppEUI and App Access Key from the TTN portal.
 
@@ -44,7 +44,7 @@ TODO - new portal????
 
 These are the secrets needed from TTN.
 
-## Azure IoT Hub secrets
+### Azure IoT Hub secrets
 
 This integration requires an shared access policy key name with Registry write and Device connect permissions. In this example, we use the **iothubowner** policy which has these permissions enabled by default.
 
@@ -58,7 +58,7 @@ This integration requires an shared access policy key name with Registry write a
 
 These are the secrets needed from Azure.
 
-## Create server.js
+### Create server.js
 
 Create a file named server.js in the new folder.
 
