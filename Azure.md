@@ -46,7 +46,6 @@ Follow these steps to create an Azure Stream Analytics Job which takes messages 
 
 Creating an Azure Stream analytics job will take some time. Input is already known, the already existing IoT Hub, So let's create the service to send the output to, an azure Event Hub.
 
-
 ## Create an Azure Event Hub
 
 Follow these steps to create an Azure Event Hub which can pass large amounts of (transformed) messages to other services.
@@ -78,16 +77,35 @@ Follow these steps to create an Azure Event Hub which can pass large amounts of 
     ![alt tag](img/azure-namespace-pricingtier.png)
 
 12. Select `Create` again and the portal will start creating the namespace. Once it is created, a notification is shown
-13. Creating an namespace will take some time. We wait a moment so we can complete this step. Navigate back to the resource group (repeate step 1 and 2) and check the namespace creation.
+13. Creating an namespace will take some time, but we want to complete this step
+14. Navigate back to the resource group (repeate step 1 and 2) and check the namespace creation
+15. If the namespace is listed, select it. Otherwise, refresh the list a few times
+16. You are now in the namespace blade. It should be shown like this (otherwise, refresh a few times):
 
+    ![alt tag](img/azure-namespace.png)
 
+17. At the top, select `Add Event Hub`
 
+    ![alt tag](img/azure-namespace-add.png)
 
+18. A dialog for a new namespace is shown. Enter a unique name eg. `Techdays42eh`. A green sign will be shown if the name is unique
+19. Select `Create` again and the portal will start creating the namespace. Once it is created, a notification is shown
 
+The Event Hub is now created. But before we leave this namespace, we need some secrets for later usage.
 
+## Azure Event Hub secrets
 
+Below we will access the Event Hub from Azure Functions. At this moment the Azure functions are not able to autmatically connect to an Event Hub.
 
+1. Within the namespace blade, select the general setting `Share access policies`
+2. select the `RootManageSharedAccessKey` policy
 
+    ![alt tag](img/azure-eventhub-policy.png)
+
+3. Remember the `Connection String-Primary Key`
+4. Remember the `name` of the Event Hub
+
+*Note: The Event Hub itself has Shared access policies too. We do not need to remember those, just the policy of the namespace.*
 
 ## Connecting the Azure Stream Analytics input
 
