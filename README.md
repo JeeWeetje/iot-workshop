@@ -71,12 +71,20 @@ The integration requires an Azure IoT Hub Shared access policy key name with `Re
 
 1. Check the Azure portal notifications. The IoT Hub should be created by now.
 2. On the left, select `Resource groups`
+
+![alt tag](img/azure-resource-groups.png)
+
 3. Select the ResourceGroup `TechDays42rg`. It will open a new blade with all resources.
 4. Select the IoT Hub `TechDays42ih` It will open a new blade with the IoT Hub.
 5. The IoTHub has not received any messages yet. Check the general settings for `Shared access policies`
-6. Navigate to the `iothubowner` policy and remember the primary key.
-7. In the last step op this tutorial, the 'Connection string-primary key' is needed. Remember this connection string
-8. Also remember the `name` of the IoT Hub eg `TechDays42ih`
+
+![alt tag](img/azure-iot-hub-initial.png)
+
+6. Remember the `name` of the IoT Hub eg `TechDays42ih`
+7. Navigate to the `iothubowner` policy and remember the primary key
+8. In the last step op this tutorial, the 'Connection string-primary key' is needed. Remember this connection string
+
+![alt tag](img/azure-iothubowner-policy.png)
 
 These are the secrets needed from Azure.
 
