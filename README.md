@@ -85,7 +85,7 @@ The integration requires an Azure IoT Hub Shared access policy key name with `Re
 
     ![alt tag](img/azure-notifications.png)
 
-2. On the left, select `Resource groups`
+2. On the left, select `Resource groups`. A List of resource groups is shown
 
     ![alt tag](img/azure-resource-groups.png)
 
