@@ -90,7 +90,7 @@ The integration requires an Azure IoT Hub Shared access policy key name with `Re
     ![alt tag](img/azure-resource-groups.png)
 
 3. Select the ResourceGroup `TechDays42rg`. It will open a new blade with all resources
-4. Select the IoT Hub `TechDays42ih` It will open a new blade with the IoT Hub
+4. Select the IoT Hub `TechDays42ih`. It will open a new blade with the IoT Hub
 5. The IoTHub has not received any messages yet. Check the general settings for `Shared access policies`
 
     ![alt tag](img/azure-iot-hub-initial.png)
@@ -162,11 +162,11 @@ Keep the bridge running till the end of the workshop.
 
 We can check the arrival of the messages in the Azure IoT Hub.
 
-1. Install the Device Explorer. Start the Device Explorer.
+1. Install the Device Explorer. Start the Device Explorer
 2. On the Configuration Tab, insert the IoT Hub `Connection String-primary key` and the `name` of the IoT Hub (as Protocol Gateway Hostname)
 3. Press `Update`
 4. On the Management tab, your device should already be available. It was registered by the bridge when the very first telemetry arrived
-5. On the Data tab, Select your `Device ID` and press `Monitor`.
+5. On the Data tab, Select your `Device ID` and press `Monitor`
 
 ```
 Receiving events...
