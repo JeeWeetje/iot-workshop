@@ -182,6 +182,6 @@ Receiving events...
 
 The messages are shown here too. These messages are now available in Azure.
 
-You are now ready to process your data in an Azure Stream Analytics job.
+You are now ready to process your data in an Azure Stream Analytics job. [Continue to create an Azure Stream Analytics job](Azure.md)
 
 
