@@ -49,7 +49,7 @@ Follow these steps to create the integration bridge between The Things Network a
 
 1. Install NodeJs
 2. Create a new folder
-3. In this new folder, run `npm init` to initialize a new WebJob using Node.js. Accept the initial values, only use `server.js` as entry point
+3. In this new folder, run `npm init` to initialize a new WebJob using Node.js. Some values will be presented to be changed; accept the initial values, only use `server.js` as entry point
 4. Run `npm install --save ttn-azure-iothub` to install this package
 5. Create a new file named `server.js`
 
@@ -81,7 +81,7 @@ These are the secrets needed from TTN.
 
 The integration requires an Azure IoT Hub Shared access policy key name with `Registry, Write and Device connect` permissions. In this example, we use the **iothubowner** policy which has these permissions enabled by default.
 
-1. Check the Azure portal notifications. The IoT Hub should be created by now.
+1. Check the Azure portal. The Resource group and the IoT Hub should be created by now
 
     ![alt tag](img/azure-notifications.png)
 
@@ -89,8 +89,8 @@ The integration requires an Azure IoT Hub Shared access policy key name with `Re
 
     ![alt tag](img/azure-resource-groups.png)
 
-3. Select the ResourceGroup `TechDays42rg`. It will open a new blade with all resources.
-4. Select the IoT Hub `TechDays42ih` It will open a new blade with the IoT Hub.
+3. Select the ResourceGroup `TechDays42rg`. It will open a new blade with all resources
+4. Select the IoT Hub `TechDays42ih` It will open a new blade with the IoT Hub
 5. The IoTHub has not received any messages yet. Check the general settings for `Shared access policies`
 
     ![alt tag](img/azure-iot-hub-initial.png)
