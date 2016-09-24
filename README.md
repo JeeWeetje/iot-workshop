@@ -172,7 +172,7 @@ Receiving events...
 09/23/16 21:43:53> Device: [DeviceOne], Data:[{"water":14.0,"light":290}]
 ```
 
-The messages should be visible here too. These messages are now available in Azure.
+The messages are shown here too. These messages are now available in Azure.
 
 You are now ready to process your data in an Azure Stream Analytics job.
 
