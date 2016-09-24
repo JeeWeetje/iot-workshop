@@ -24,7 +24,7 @@ Follow these steps to create an Azure Stream Analytics Job which takes messages 
     ![alt tag](img/azure-resource-groups.png)
 
 3. Select the ResourceGroup `TechDays42rg`. It will open a new blade with all resources in this group
-4. Press Select `Add`. A list with available services appears
+4. Select `Add`. A list with available services appears
 
     ![alt tag](img/azure-portal-add.png)
 
@@ -55,7 +55,7 @@ Follow these steps to create an Azure Event Hub which can pass large amounts of 
     ![alt tag](img/azure-resource-groups.png)
 
 2. Select the ResourceGroup `TechDays42rg`. It will open a new blade with all resources in this group
-3. Press Select `Add`. A list with available services appears
+3. Select `Add`. A list with available services appears
 
     ![alt tag](img/azure-portal-add.png)
 
@@ -109,7 +109,41 @@ Below we will access the Event Hub from Azure Functions. At this moment the Azur
 
 ### Connecting the Azure Stream Analytics input
 
+As shown above, the Azure Stream Analytics will connect the IoT Hub and the Event Hub. Both are created now. Follow these steps to define the input, the output and the query of Azure Stream Analytics.
 
+1. On the left, select `Resource groups`. A List of resource groups is shown
+
+    ![alt tag](img/azure-resource-groups.png)
+
+2. Select the ResourceGroup `TechDays42rg`. It will open a new blade with all resources in this group
+3. Select the Azure Stream Analytics `TechDays42sa`. At this moment there are no Inputs or Outputs.
+
+    ![alt tag](img/azure-stream-analytics-empty.png)
+
+4. Select `Inputs`
+5. Select `Add`. A dialog to add a new input is shown
+
+    ![alt tag](img/azure-portal-add.png)
+
+6. Enter `hubinput` as Input alias
+7. Select `IoT Hub` as Source. Because we have only one IoT Hub in our account, all other fields are automatically filled in with the right IoT Hub, `TechDays42rg`
+
+    ![alt tag](img/azure-stream-analytics-add-input.png)
+
+8. Select `Create`
+9. The input will be created and the connection to the hub is tested automatically. 
+10. Select `Outputs`
+11. Select `Add`. A dialog to add a new output is shown
+
+    ![alt tag](img/azure-portal-add.png)
+
+12. Enter `huboutput` as Output alias
+13. The `Event Hub` is alreadt selected as Source and all other fields are automatically filled in with the right Event Hub, `TechDays42eh`
+
+    ![alt tag](img/azure-stream-analytics-add-output.png)
+
+14. Select `Create`
+15. The Output will be created and the connection to the hub is tested automatically. 
 
 ## Create an Azure Function
 
