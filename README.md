@@ -63,16 +63,16 @@ The integration requires TTN portal AppEUI and App Access Key.
 1. Log into the [TTN applications portal](https://staging.thethingsnetwork.org/applications). You will be asked to provide TTN credentials if needed
 2. Your list of applications will be shown
 
-![alt tag](img/ttn-application-list.png)
+    ![alt tag](img/ttn-application-list.png)
 
 3. Navigate to the application provided for this workshop
 4. Under Application Info, click 'learn how to get data from this app' to get the application data
 
-![alt tag](img/ttn-application.png)
+    ![alt tag](img/ttn-application.png)
 
 5. the `App EUI` and the `Access Keys` are shown. Remember these App EUI and access keys
 
-![alt tag](img/ttn-application-cred.png)
+    ![alt tag](img/ttn-application-cred.png)
 
 These are the secrets needed from TTN.
 
@@ -84,19 +84,19 @@ The integration requires an Azure IoT Hub Shared access policy key name with `Re
 1. Check the Azure portal notifications. The IoT Hub should be created by now.
 2. On the left, select `Resource groups`
 
-![alt tag](img/azure-resource-groups.png)
+    ![alt tag](img/azure-resource-groups.png)
 
 3. Select the ResourceGroup `TechDays42rg`. It will open a new blade with all resources.
 4. Select the IoT Hub `TechDays42ih` It will open a new blade with the IoT Hub.
 5. The IoTHub has not received any messages yet. Check the general settings for `Shared access policies`
 
-![alt tag](img/azure-iot-hub-initial.png)
+    ![alt tag](img/azure-iot-hub-initial.png)
 
 6. Remember the `name` of the IoT Hub eg. `TechDays42ih`
 7. Navigate to the `iothubowner` policy and remember the primary key
 8. In the last step op this tutorial, the 'Connection string-primary key' is needed. Remember this connection string
 
-![alt tag](img/azure-iothubowner-policy.png)
+    ![alt tag](img/azure-iothubowner-policy.png)
 
 These are the secrets needed from Azure.
 
