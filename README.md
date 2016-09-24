@@ -17,8 +17,8 @@ This is an example integration between The Things Network and Azure IoT Hub. Thi
 
 Follow these steps to create an Azure IoT Hub.
 
-1. Log into the [Azure portal](https://portal.azure.com/). You will be asked to provide Azure credentials if needed.
-2. On the left, a number of common Azure services is shown. Select `More Services` to open a list with all available services. 
+1. Log into the [Azure portal](https://portal.azure.com/). You will be asked to provide Azure credentials if needed
+2. On the left, a number of common Azure services is shown. Select `More Services` to open a list with all available services
 
 ![alt tag](img/azure-more-services.png)
 
@@ -37,6 +37,8 @@ Follow these steps to create an Azure IoT Hub.
 ![alt tag](img/azure-new-iot-hub-scaled.png)
 
 8. Press `Create` and the portal will start creating the service. Once it is created, a notification is shown. In the right upper corner, a bell represents the list of all notifications shown
+
+![alt tag](img/azure-notifications.png)
 
 Creating an IoT Hub takes some time. Meanwhile we will create the bridge.
 
@@ -90,7 +92,7 @@ The integration requires an Azure IoT Hub Shared access policy key name with `Re
 
 ![alt tag](img/azure-iot-hub-initial.png)
 
-6. Remember the `name` of the IoT Hub eg `TechDays42ih`
+6. Remember the `name` of the IoT Hub eg. `TechDays42ih`
 7. Navigate to the `iothubowner` policy and remember the primary key
 8. In the last step op this tutorial, the 'Connection string-primary key' is needed. Remember this connection string
 
