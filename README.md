@@ -7,7 +7,7 @@ This is an example integration between The Things Network and Azure IoT Hub. Thi
 ### Prerequisites
 
 1. A running TTN node connected to the TTN network
-2. Nodejs [download here](https://nodejs.org/en/). _(Version 4.5 should be fine)_
+2. NodeJs [download here](https://nodejs.org/en/). _(Version 4.5 should be fine)_
 3. Azure account [create here](https://azure.microsoft.com/en-us/free/) _(Azure passes will be present for those who have no Azure account)_
 4. TTN account [create here](https://account.thethingsnetwork.org/register)
 5. Device Explorer [download here](https://github.com/Azure/azure-iot-sdks/blob/master/tools/DeviceExplorer/doc/how_to_use_device_explorer.md)
@@ -45,11 +45,13 @@ Creating an IoT Hub takes some time. Meanwhile we will create the bridge.
 
 Follow these steps to create the integration bridge between The Things Network and Azure IoT Hub. NPM will be used to create a folder structure and imstall packages.
 
-1. In a new folder, run `npm init` to initialize a new WebJob using Node.js. Accept the initial values, only use `server.js` as entry point
-2. Run `npm install --save ttn-azure-iothub` to install this package
-3. Create a new file `server.js`
+1. Install NodeJs
+2. Create a new folder
+3. In this new folder, run `npm init` to initialize a new WebJob using Node.js. Accept the initial values, only use `server.js` as entry point
+4. Run `npm install --save ttn-azure-iothub` to install this package
+5. Create a new file named `server.js`
 
-This server.js file will be written below but we need some secrets first. We have to collect unique keys of the TTN app and the Azure IoT Hub.
+This server.js file will be edited below but we need some secrets first. We have to collect unique keys of the TTN app and the Azure IoT Hub first.
 
 
 ### TTN App secrets
@@ -89,7 +91,7 @@ The integration requires an Azure IoT Hub Shared access policy key name with `Re
 These are the secrets needed from Azure.
 
 
-### Create server.js
+### Edit server.js
 
 Edit the file named server.js in the new folder.
 
@@ -147,7 +149,7 @@ Keep the bridge running till the end of the workshop.
 
 We can check the arrival of the messages in the Azure IoT Hub.
 
-1. Install the Device Manager. Start the device manager.
+1. Install the Device Explorer. Start the Device Explorer.
 2. On the Configuration Tab, insert the IoT Hub `Connection String-primary key` and the `name` of the IoT Hub (as Protocol Gateway Hostname)
 3. Press `Update`
 4. On the Management tab, your device should already be available. It was registered by the bridge when the very first telemetry arrived
