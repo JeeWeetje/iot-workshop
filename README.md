@@ -184,4 +184,4 @@ The messages are shown here too. These messages are now available in Azure.
 
 You are now ready to process your data in an Azure Stream Analytics job. [Continue to create an Azure Stream Analytics job](Azure.md)
 
-
+    ![alt tag](img/logos/microsoft.jpg)    ![alt tag](img/logos/ttn.svg)    ![alt tag](img/logos/atos.png)
