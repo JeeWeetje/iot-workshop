@@ -58,11 +58,19 @@ This server.js file will be edited below but we need some secrets first. We have
 
 The integration requires TTN portal AppEUI and App Access Key.
 
-1. Log into the [TTN applications portal](https://staging.thethingsnetwork.org/applications). You will be asked to provide TTN credentials if needed.
-2. A list of application will be shown. Navigato to the application provided for this workshop
-3. Under Application Info, click 'learn how to get data from this app' to get the application data.
-4. the `App EUI` and the `Access Keys` are shown. Remember these App EUI and access keys
+1. Log into the [TTN applications portal](https://staging.thethingsnetwork.org/applications). You will be asked to provide TTN credentials if needed
+2. Your list of applications will be shown
 
+![alt tag](img/ttn-application-list.png)
+
+3. Navigate to the application provided for this workshop
+4. Under Application Info, click 'learn how to get data from this app' to get the application data
+
+![alt tag](img/ttn-application.png)
+
+5. the `App EUI` and the `Access Keys` are shown. Remember these App EUI and access keys
+
+![alt tag](img/ttn-application-cred.png)
 
 These are the secrets needed from TTN.
 
