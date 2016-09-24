@@ -89,7 +89,7 @@ The integration requires an Azure IoT Hub Shared access policy key name with `Re
 
     ![alt tag](img/azure-resource-groups.png)
 
-3. Select the ResourceGroup `TechDays42rg`. It will open a new blade with all resources
+3. Select the ResourceGroup `TechDays42rg`. It will open a new blade with all resources in this group
 4. Select the IoT Hub `TechDays42ih`. It will open a new blade with the IoT Hub
 5. The IoTHub has not received any messages yet. Check the general settings for `Shared access policies`
 
