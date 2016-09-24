@@ -12,9 +12,9 @@ This is an example of how uplink messages from The Things Network can be handled
 4. A running TTN bridge on your PC and connected to an IoT Hub
 5. A running Device Explorer, connected to the IoT Hub, showing the telemetry comming in
 
-## Create Azure Stream Analytics Job
+## Create Azure Stream Analytics job
 
-Follow these steps to create an Azure Stream Analytics Job which takes messages from your IoT Hub. These jobs can handle great amounts of messages and handled with a SQL-like query language. Stream Analytics Jobs are great for time window related queries.
+Follow these steps to create an Azure Stream Analytics job which takes messages from your IoT Hub. These jobs can handle great amounts of messages and handled with a SQL-like query language. Stream Analytics Jobs are great for time window related queries.
 
 *Note: in this workshop we will not dive too deep into Stream Analytics. See for [more information](https://azure.microsoft.com/en-us/documentation/articles/stream-analytics-real-time-event-processing-reference-architecture/).*
 
@@ -36,7 +36,7 @@ Follow these steps to create an Azure Stream Analytics Job which takes messages 
 
     ![alt tag](img/azure-stream-analytics-intro.png)
 
-7. A dialog for a new Stream Analytics is shown. Enter a unique name eg. `TechDays42sa`. A green sign will be shown if the name is unique
+7. A dialog for a new Stream Analytics job is shown. Enter a unique name eg. `TechDays42sa`. A green sign will be shown if the name is unique
 8. The Resource Group eg. `TechDays42rg` is already filled in
 9. Select `West Europe` for the location
 
@@ -107,16 +107,16 @@ Below we will access the Event Hub from Azure Functions. At this moment the Azur
 
 *Note: The Event Hub itself has Shared access policies too. We do not need to remember those, just the policy of the namespace.*
 
-### Connecting the Azure Stream Analytics input
+### Connecting the hubs to Azure Stream Analytics job input and output
 
-As shown above, the Azure Stream Analytics will connect the IoT Hub and the Event Hub. Both are created now. Follow these steps to define the input, the output and the query of Azure Stream Analytics.
+As shown above, the Azure Stream Analytics job will connect the IoT Hub and the Event Hub. Both are created now. Follow these steps to define the input and the output of Azure Stream Analytics.
 
 1. On the left, select `Resource groups`. A List of resource groups is shown
 
     ![alt tag](img/azure-resource-groups.png)
 
 2. Select the ResourceGroup `TechDays42rg`. It will open a new blade with all resources in this group
-3. Select the Azure Stream Analytics `TechDays42sa`. At this moment there are no Inputs or Outputs.
+3. Select the Azure Stream Analytics job `TechDays42sa`. At this moment there are no Inputs or Outputs.
 
     ![alt tag](img/azure-stream-analytics-empty.png)
 
@@ -144,6 +144,55 @@ As shown above, the Azure Stream Analytics will connect the IoT Hub and the Even
 
 14. Select `Create`
 15. The Output will be created and the connection to the hub is tested automatically. 
+
+The input and output are now defined. Let's add the Azure Stream Analytics job query.
+
+### Write the Azure Stream Analytics job query
+
+Follow these steps to write the query of Azure Stream Analytics job.
+
+1. Select `Query`
+2. A new blade is shown. Here you can write your SQL-like Azure Stream Analytics job query
+
+    ![alt tag](img/azure-stream-analytics-query-initial.png)
+
+3. Write the following query
+
+```sql
+SELECT
+    CAST(water as float) as water,
+    CAST(light as float) as lumen
+INTO
+    huboutput 
+FROM
+    hubinput
+```
+
+4. Press `Save`. Confirm if needed
+
+    ![alt tag](img/azure-portal-save.png)
+
+5. Close the blade or select `TechDays42sa` in the bread crumps in the top of the page
+
+    ![alt tag](img/azure-portal-close.png)
+
+6. Now the Azure Stream Analytics job has both inputs, outputs and a query
+
+    ![alt tag](img/azure-stream-analytics-job-topology.png)
+
+7. Select `Start` 
+
+    ![alt tag](img/azure-portal-start.png)
+
+8. An Azure Stream Analytics job can start with telemetry from the past (if you want te rerun historical telemetry still stored in the input) or just new telemetry. Select `Now` 
+
+    ![alt tag](img/azure-stream-analytics-start.png)
+
+9. Select `Start` 
+
+Starting an Azure Stream Analytics job will take some time. After starting, all telemetry from the IoT Hub will be passed on to the Event Hub. And that telemetry will each time trigger an Azure Function.
+
+*Note: This is the simplest example of Stream Analytics usage. More indept usage is available [here](https://azure.microsoft.com/en-us/documentation/articles/stream-analytics-real-time-event-processing-reference-architecture/).*
 
 ## Create an Azure Function
 
