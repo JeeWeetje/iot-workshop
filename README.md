@@ -49,7 +49,12 @@ Follow these steps to create the integration bridge between The Things Network a
 
 1. Install NodeJs
 2. Create a new folder
-3. In this new folder, run `npm init` to initialize a new WebJob using Node.js. Some values will be presented to be changed; accept the initial values, only use `server.js` as entry point
+3. In this new folder, run `npm init` to initialize a new WebJob using Node.js. Some values will be presented to be changed; accept the initial values, only use `server.js` instead of `index.js` as entry point
+   
+   ![alt tag](img/npm-init.png)
+   
+   Accept the changes to be written in a json file with yes (default option).
+
 4. Run `npm install --save ttn-azure-iothub` to install this package
 5. Create a new file named `server.js`
 
