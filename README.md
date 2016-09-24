@@ -82,6 +82,9 @@ These are the secrets needed from TTN.
 The integration requires an Azure IoT Hub Shared access policy key name with `Registry, Write and Device connect` permissions. In this example, we use the **iothubowner** policy which has these permissions enabled by default.
 
 1. Check the Azure portal notifications. The IoT Hub should be created by now.
+
+    ![alt tag](img/azure-notifications.png)
+
 2. On the left, select `Resource groups`
 
     ![alt tag](img/azure-resource-groups.png)
