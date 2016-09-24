@@ -49,7 +49,7 @@ Follow these steps to create the integration bridge between The Things Network a
 
 1. Install NodeJs
 2. Create a new folder
-3. In this new folder, run `npm init` to initialize a new WebJob using Node.js. Some values will be presented to be changed; accept the initial values, only use `server.js` instead of `index.js` as entry point
+3. In this new folder, run `npm init` to initialize a new WebJob using Node.js. Some values will be presented to be changed; accept the initial values, only use `server.js` instead of _index.js_ as entry point
    
    ![alt tag](img/npm-init.png)
    
@@ -184,8 +184,7 @@ The messages are shown here too. These messages are now available in Azure.
 
 You are now ready to process your data in an Azure Stream Analytics job. Continue to [create an Azure Stream Analytics job](Azure.md)
 
-<div><img src="img/logos/microsoft-ttn-atos.png" style="text-align: center;" /></div>
-![alt tag](img/logos/microsoft-ttn-atos.png)
+![Workshop provided by Microsoft, The Things Network and Atos](img/logos/microsoft-ttn-atos.png)
 
         
         
