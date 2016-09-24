@@ -70,7 +70,7 @@ The integration requires TTN portal AppEUI and App Access Key.
 
     ![alt tag](img/ttn-application.png)
 
-5. the `App EUI` and the `Access Keys` are shown. Remember these App EUI and access keys
+5. the `App EUI` and the `Access Keys` are shown. **Remember** these App EUI and access keys
 
     ![alt tag](img/ttn-application-cred.png)
 
@@ -95,9 +95,9 @@ The integration requires an Azure IoT Hub Shared access policy key name with `Re
 
     ![alt tag](img/azure-iot-hub-initial.png)
 
-6. Remember the `name` of the IoT Hub eg. `TechDays42ih`
-7. Navigate to the `iothubowner` policy and remember the primary key
-8. In the last step op this tutorial, the 'Connection string-primary key' is needed. Remember this connection string
+6. **Remember** the `name` of the IoT Hub eg. `TechDays42ih`
+7. Navigate to the `iothubowner` policy and **remember** the primary key
+8. In the last step op this tutorial, the 'Connection string-primary key' is needed. Remember this `Connection String-Primary Key`
 
     ![alt tag](img/azure-iothubowner-policy.png)
 

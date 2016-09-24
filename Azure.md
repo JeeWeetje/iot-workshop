@@ -102,12 +102,12 @@ Below we will access the Event Hub from Azure Functions. At this moment the Azur
 
     ![alt tag](img/azure-eventhub-policy.png)
 
-3. Remember the `Connection String-Primary Key`
-4. Remember the `name` of the Event Hub
+3. **Remember** the `Connection String-Primary Key`
+4. **Remember** the `name` of the Event Hub eg. `TechDays42eh`
 
 *Note: The Event Hub itself has Shared access policies too. We do not need to remember those, just the policy of the namespace.*
 
-## Connecting the Azure Stream Analytics input
+### Connecting the Azure Stream Analytics input
 
 
 
