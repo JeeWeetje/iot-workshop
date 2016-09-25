@@ -166,7 +166,9 @@ Follow these steps to write the query of Azure Stream Analytics job.
     ```sql
     SELECT
         CAST(water as float) as water,
-        CAST(light as float) as lumen
+        CAST(light as float) as lumen,
+        EventProcessedUtcTime,
+        IoTHub.ConnectionDeviceId
     INTO
         huboutput 
     FROM
@@ -326,13 +328,15 @@ This completes the Azure function and trigger.
 By now, the full chain of Azure services is set up. Telemetry from The Things Network is passed by the bridge to the Azure IoT Hub. Azure Stream Analytics passes 'the telemetry to the Azure Function using an Azure Event Hub. So by now, the telemetry will start arriving in the 'Logs' panel.
 
 ```
-2016-09-25T12:30:26.576 Function started (Id=9a22c084-8116-4eed-954f-e484f52d4ce4)
-2016-09-25T12:30:26.576 My first TechDays C# Event Hub trigger function processed a message: {"water":19.0,"lumen":913.0}
-2016-09-25T12:30:26.576 Function completed (Success, Id=9a22c084-8116-4eed-954f-e484f52d4ce4)
-2016-09-25T12:30:39.125 Function started (Id=3afa8eb2-2737-4c8d-869e-910d746c4a1e)
-2016-09-25T12:30:39.125 My first TechDays C# Event Hub trigger function processed a message: {"water":14.0,"lumen":148.0}
-2016-09-25T12:30:39.125 Function completed (Success, Id=3afa8eb2-2737-4c8d-869e-910d746c4a1e)
+2016-09-25T14:58:56.659 Function started (Id=44cf8082-b355-47a1-a220-260e23679eb7)
+2016-09-25T14:58:56.659 My First C# Event Hub trigger function processed a message: {"water":16.0,"lumen":481.0,"eventprocessedutctime":"2016-09-25T14:58:52.1818540Z","connectiondeviceid":"DeviceOne"}
+2016-09-25T14:58:56.659 Function completed (Success, Id=44cf8082-b355-47a1-a220-260e23679eb7)
+2016-09-25T14:59:12.157 Function started (Id=8e617e92-6492-439a-8d2d-d324694a55a4)
+2016-09-25T14:59:12.157 My First C# Event Hub trigger function processed a message: {"water":23.0,"lumen":801.0,"eventprocessedutctime":"2016-09-25T14:59:08.1899979Z","connectiondeviceid":"DeviceOne"}
+2016-09-25T14:59:12.157 Function completed (Success, Id=8e617e92-6492-439a-8d2d-d324694a55a4)
 ```
+
+Notice that we have full control over telemetry. We know which device has sent data at what time. This is great for charts or commands.
 
 This completes this part workshop, handling telemetry in Azure.
 
