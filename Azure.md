@@ -1,8 +1,8 @@
 # Handling The Things Network telemetry in Azure
 
-This is an example of how uplink messages from The Things Network can be handled in Azure. In this workshop you will pass telemetry to Azure Stream Analytics and Azure Functions. To connect Azure Stream Analytics with Azure Functions, you will add an Azure Event Hub too.
+This is an example of how uplink messages from The Things Network can be handled in Azure. In this workshop we will pass telemetry of your device to Azure Functions. To connect to Azure Functions, you will add an Azure Stream Analytics job and Azure Event Hub too.
 
-*Note: This workshop has an open end. It provides a solid solution on how to handled telemetry programmatically in Azure. From there on it's up to you to add more Azure services.*
+*Note: This workshop has an open ending. It provides a solid solution on how to handled telemetry programmatically in Azure. From there on it's up to you to add more Azure services.*
 
 ### Prerequisites
 
@@ -159,15 +159,15 @@ Follow these steps to write the query of Azure Stream Analytics job.
 
 3. Write the following query
 
-```sql
-SELECT
-    CAST(water as float) as water,
-    CAST(light as float) as lumen
-INTO
-    huboutput 
-FROM
-    hubinput
-```
+    ```sql
+    SELECT
+        CAST(water as float) as water,
+        CAST(light as float) as lumen
+    INTO
+        huboutput 
+    FROM
+        hubinput
+    ```
 
 4. Press `Save`. Confirm if needed
 
