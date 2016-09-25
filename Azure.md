@@ -18,7 +18,7 @@ To connect to Azure Functions, you will add an Azure Stream Analytics job and Az
 
 ## Create Azure Stream Analytics job
 
-Follow these steps to create an Azure Stream Analytics job which takes messages from your IoT Hub. These jobs can handle great amounts of messages, executing a SQL-like query. Stream Analytics Jobs are great for time window related queries.
+Follow these steps to create an Azure Stream Analytics job which takes messages from your IoT Hub. These jobs can handle great amounts of messages, executing an SQL-like query. Stream Analytics Jobs are great for time window related queries.
 
 *Note: in this workshop we will not dive too deep into Stream Analytics. See for [more information](https://azure.microsoft.com/en-us/documentation/articles/stream-analytics-real-time-event-processing-reference-architecture/).*
 
