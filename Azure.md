@@ -235,7 +235,7 @@ Follow these steps to create an Azure Function App. An Azure function is actuall
 13. The Pricing tier will be left unaltered
 12. Select `Ok`
 13. Our new App Service plan is now added to the Azure Function App
-14. We also want to give the Storage Account a meaningful name. In this storage the function source code etc. will be stored
+14. We also want to give the Storage Account a more meaningful name. In this storage account, the function source code etc. will be stored
 15. Open de Storage Account blade and select `Create New`
 
     ![alt tag](img/azure-storage-account-create.png)
@@ -259,7 +259,7 @@ The portal will start creating the Function app. Once it is created, a notificat
 
 Follow these steps to create an Azure Function, triggered by the Event Hub, inside the Azure Function App. 
 
-1. On the left, select `All resources`. A list of all resources is shown
+1. On the left, select `All resources`. A list of all resources is shown. If the Function App is not shown yet, refresh the list
 
     ![alt tag](img/azure-portal-all-resources.png)
 
