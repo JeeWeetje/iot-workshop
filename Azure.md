@@ -289,21 +289,21 @@ Follow these steps to create an Azure Function, triggered by the Event Hub, insi
 15. The function and trigger are saved. The develop blad is shown. In the middle, you will see the function in the 'Code' panel. The 'Logs' panel works like a trace log. 
 16. Change the code a bit, change the string in the log.Info() call eg.
 
-```
-using System;
-
-public static void Run(string myEventHubMessage, TraceWriter log)
-{
-    log.Info($"My first TechDays C# Event Hub trigger function processed a message: {myEventHubMessage}");
-}
-```
+    ```
+    using System;
+    
+    public static void Run(string myEventHubMessage, TraceWriter log)
+    {
+        log.Info($"My first TechDays C# Event Hub trigger function processed a message: {myEventHubMessage}");
+    }
+    ```
 
 17. Select `Save`. In the 'Logs' panel the outcome om the compilation is shown
 
-```
-2016-09-25T12:23:35.380 Script for function 'TechDaysEventHubTriggerFunction' changed. Reloading.
-2016-09-25T12:23:35.427 Compilation succeeded.
-```
+    ```
+    2016-09-25T12:23:35.380 Script for function 'TechDaysEventHubTriggerFunction' changed. Reloading.
+    2016-09-25T12:23:35.427 Compilation succeeded.
+    ```
 
 This completes the Azure function and trigger.
 
