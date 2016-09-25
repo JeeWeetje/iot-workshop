@@ -59,37 +59,38 @@ Follow these steps to create an Azure Event Hub which can pass large amounts of 
 
     ![alt tag](img/azure-portal-add.png)
 
-4. Filter it with `Stream Analytics` and select `Event Hubs`
+4. Filter it with `Event Hubs` and select `Event Hubs`
 
     ![alt tag](img/azure-filter-event-hub.png)
 
 5. An introduction will be shown. Select `Create`
 6. Event Hub live within namespaces. So first a new namespace has to be created
-7. A dialog for a new namespace is shown. Enter a unique name eg. `TechDays42ns`. A green sign will be shown if the name is unique
-8. The Resource Group eg. `TechDays42rg` is already filled in
-9. Select `West Europe` for the location
+7. A dialog for a new namespace is shown
+8. Enter a unique name eg. `TechDays42ns`. A green sign will be shown if the name is unique
+9. The Resource Group eg. `TechDays42rg` is already filled in
+10. Select `West Europe` for the location
 
     ![alt tag](img/azure-create-eventhub-namespace.png)
 
-10. Select `Create`
-11. The creation will fail for now, the pricing tier is not entered yet. Click the pricing tier selection. A "Choose your pricing tier" section will be shown. Select the Basic tier and press `select`
+11. Select `Create`
+12. The creation will fail for now, the pricing tier is not entered yet. Click the pricing tier selection. A "Choose your pricing tier" section will be shown. Select the Basic tier and press `select`
 
     ![alt tag](img/azure-namespace-pricingtier.png)
 
-12. Select `Create` again and the portal will start creating the namespace. Once it is created, a notification is shown
-13. Creating an namespace will take some time, but we want to complete this step
-14. Navigate back to the resource group (repeate step 1 and 2) and check the namespace creation
-15. If the namespace is listed, select it. Otherwise, refresh the list a few times
-16. You are now in the namespace blade. It should be shown like this (otherwise, refresh a few times):
+13. Select `Create` again and the portal will start creating the namespace. Once it is created, a notification is shown
+14. Creating an namespace will take some time, but we want to complete this step
+15. Navigate back to the resource group (repeate step 1 and 2) and check the namespace creation
+16. If the namespace is listed, select it. Otherwise, refresh the list a few times
+17. You are now in the namespace blade. It should be shown like this (otherwise, refresh a few times):
 
     ![alt tag](img/azure-namespace.png)
 
-17. At the top, select `Add Event Hub`
+18. At the top, select `Add Event Hub`
 
     ![alt tag](img/azure-namespace-add.png)
 
-18. A dialog for a new namespace is shown. Enter a unique name eg. `Techdays42eh`. A green sign will be shown if the name is unique
-19. Select `Create` again and the portal will start creating the namespace. Once it is created, a notification is shown
+19. A dialog for a new namespace is shown. Enter a unique name eg. `Techdays42eh`. A green sign will be shown if the name is unique
+20. Select `Create` again and the portal will start creating the namespace. Once it is created, a notification is shown
 
 The Event Hub is now created. But before we leave this namespace, we need some secrets for later usage.
 
@@ -199,6 +200,46 @@ Starting an Azure Stream Analytics job will take some time. After starting, all 
 
 Follow these steps to create an Azure Function. An Azure function is actually a real function, a couple of lines of code, which is triggered by certain events and can output the result of the code to other services. Azure Functions run 'serverless': you just write and upload your code and only pay for the number of times it is executed, the compute time and the amount of memory used. Our Azure Function created will be triggered by a new event in the Event Hub.
 
+1. On the left, select `Resource groups`. A List of resource groups is shown
+
+    ![alt tag](img/azure-resource-groups.png)
+
+2. Select the ResourceGroup `TechDays42rg`. It will open a new blade with all resources in this group
+3. Select `Add`. A list with available services appears
+
+    ![alt tag](img/azure-portal-add.png)
+
+4. Filter it with `Function App` and select `Function App`
+
+    ![alt tag](img/azure-filter-function-app.png)
+
+5. An introduction will be shown. Select `Create` and you will be asked to enter the information needed to create an Azure Function
+6. Enter a unique App name eg. `TechDays42fa`. A green sign will be shown if the name is unique
+7. The Resource Group eg. `TechDays42rg` is already filled in
+8. An App Service plan is the container for your app. The already created App Service Plan will probably not fit our needs. We create a new one
+9. Open de App Service plan blade and select `Create New`
+
+    ![alt tag](img/azure-asp-create.png)
+
+10. Enter a unique App name eg. `TechDays42asp`. A green sign will be shown if the name is unique
+11. Select `West Europe` for the location
+
+    ![alt tag](img/azure-asp-new.png)
+
+12. Select `Ok`
+13. Our new App Service plan is now added to the Azure Functiopn App
+14. We also want to give the Storage Account a meaningful name. In this storage the function source code etc. will be stored
+15. Open de Storage Account blade and select `Create New`
+
+    ![alt tag](img/azure-storage-account-create.png)
+
+10. Enter a unique App name eg. `TechDays42storage`. A green sign will be shown if the name is unique
+11. Select `West Europe` for the location
+
+    ![alt tag](img/azure-asp-new.png)
+
+12. Select `Ok`
+13. Our new Storage Account is now added to the Azure Function App
 
 
 

@@ -31,7 +31,7 @@ Follow these steps to create an Azure IoT Hub.
     ![alt tag](img/azure-portal-add.png)
 
 5. Enter a unique IoT Hub name eg. `TechDays42ih`. A green sign will be shown if the name is unique
-6. Enter a unique Resource Group eg. `TechDays42rg`
+6. Enter a unique Resource Group eg. `TechDays42rg`. A green sign will be shown if the name is unique
 7. Select `West Europe` for the location
 
     ![alt tag](img/azure-new-iot-hub-scaled.png)
