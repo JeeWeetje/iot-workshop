@@ -19,7 +19,7 @@ Follow these steps to create an Azure Stream Analytics job which takes messages 
 *Note: in this workshop we will not dive too deep into Stream Analytics. See for [more information](https://azure.microsoft.com/en-us/documentation/articles/stream-analytics-real-time-event-processing-reference-architecture/).*
 
 1. Log into the [Azure portal](https://portal.azure.com/). You will be asked to provide Azure credentials if needed
-2. On the left, select `Resource groups`. A List of resource groups is shown
+2. On the left, select `Resource groups`. A list of resource groups is shown
 
     ![alt tag](img/azure-resource-groups.png)
 
@@ -50,7 +50,7 @@ Creating an Azure Stream analytics job will take some time. Input is already kno
 
 Follow these steps to create an Azure Event Hub which can pass large amounts of (transformed) messages to other services.
 
-1. On the left, select `Resource groups`. A List of resource groups is shown
+1. On the left, select `Resource groups`. A list of resource groups is shown
 
     ![alt tag](img/azure-resource-groups.png)
 
@@ -112,7 +112,7 @@ Below we will access the Event Hub from Azure Functions. At this moment the Azur
 
 As shown above, the Azure Stream Analytics job will connect the IoT Hub and the Event Hub. Both are created now. Follow these steps to define the input and the output of Azure Stream Analytics.
 
-1. On the left, select `Resource groups`. A List of resource groups is shown
+1. On the left, select `Resource groups`. A list of resource groups is shown
 
     ![alt tag](img/azure-resource-groups.png)
 
@@ -200,7 +200,7 @@ Starting an Azure Stream Analytics job will take some time. After starting, all 
 
 Follow these steps to create an Azure Function. An Azure function is actually a real function, a couple of lines of code, which is triggered by certain events and can output the result of the code to other services. Azure Functions run 'serverless': you just write and upload your code and only pay for the number of times it is executed, the compute time and the amount of memory used. Our Azure Function created will be triggered by a new event in the Event Hub.
 
-1. On the left, select `Resource groups`. A List of resource groups is shown
+1. On the left, select `Resource groups`. A list of resource groups is shown
 
     ![alt tag](img/azure-resource-groups.png)
 
@@ -233,13 +233,51 @@ Follow these steps to create an Azure Function. An Azure function is actually a 
 
     ![alt tag](img/azure-storage-account-create.png)
 
-10. Enter a unique App name eg. `TechDays42storage`. A green sign will be shown if the name is unique
-11. Select `West Europe` for the location
+16. Enter a unique App name eg. `techdays42storage`. A green sign will be shown if the name is unique *Note: Storage account names must be all lower case!.*
+17. Select `West Europe` for the location
 
-    ![alt tag](img/azure-asp-new.png)
+    ![alt tag](img/azure-storage-account-new.png)
 
-12. Select `Ok`
-13. Our new Storage Account is now added to the Azure Function App
+18. Select `Ok`
+19. Our new Storage Account is now added to the Azure Function App
+
+    ![alt tag](img/azure-function-app-create.png)
+
+20. Select `Create` and the portal will start creating the Function app. Once it is created, a notification is shown
+21. On the left, select `All resources`. A list of all resources is shown
+
+    ![alt tag](img/azure-portal-all-resources.png)
+
+22. Select the `TechDays42fa`. The Function app resource will be shown in a new blade. *Note: Function App is quit new in the Azure portal and the interface frequently updated. Check the Function app settings if you want to know the current version.*
+23. In the new blade you are invited to get started quickly with a premade function. We will not do that :-)
+24. On the left, select `New Function`
+
+    ![alt tag](img/azure-function-app-new-function.png)
+
+25. Azure Functions are triggered by events in Azure. At this moment there are 50+ C#, Python, Powershell, Bash and Node triggers. Select the `Empty - C#` where we will define the trigger ourself
+
+    ![alt tag](img/azure-function-app-emptytrigger.png)
+
+26. At the bottom you have to fill in the name of the function. Change `EmptyCSharp1` into `TechDaysEventHubTriggerFunction`
+27. Select `Create`
+
+    ![alt tag](img/azure-portal-create.png)
+
+28. A new blad is shown. In the middle, you can write the code and save it. The 'Logs' panel works like a trace log. This Function is really empty, there is no code yet and the Run method has no parameters. But First we select a trigger
+29. Select `Integrate`
+
+    ![alt tag](img/azure-function-app-integrate.png)
+
+30. And you will have to pass the remembered name of the Event Hub eg. `TechDays42eh`
+28. 
+
+
+
+
+
+
+
+
 
 
 
