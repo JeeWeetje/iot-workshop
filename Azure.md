@@ -280,10 +280,14 @@ Follow these steps to create an Azure Function, triggered by the Event Hub, insi
 12. Select `OK`
 13. The Connection string is now entered in the right field
 
+    ![alt tag](img/azure-function-app-eventhubtrigger-new.png)
+
+14. Select `Create`
+
     ![alt tag](img/azure-portal-create.png)
 
-14. Select `Create`. The function and trigger are saved. The develop blad is shown. In the middle, you will see the function in the 'Code' panel. The 'Logs' panel works like a trace log. 
-15. Change the code a bit, change the string in the log.Info() call eg.
+15. The function and trigger are saved. The develop blad is shown. In the middle, you will see the function in the 'Code' panel. The 'Logs' panel works like a trace log. 
+16. Change the code a bit, change the string in the log.Info() call eg.
 
 ```
 using System;
@@ -294,18 +298,18 @@ public static void Run(string myEventHubMessage, TraceWriter log)
 }
 ```
 
-16. Select `Save`. In the 'Logs' panel the outcome om the compilation is shown
-
+17. Select `Save`. In the 'Logs' panel the outcome om the compilation is shown
 
 ```
 2016-09-25T12:23:35.380 Script for function 'TechDaysEventHubTriggerFunction' changed. Reloading.
 2016-09-25T12:23:35.427 Compilation succeeded.
 ```
 
+This completes the Azure function and trigger.
+
 ## Receiving telemetry in the Azure Function
 
 By now, the full chain is set up. Telemetry from The Things Network is passed by the bridge to the Azure IoT Hub. Azure Stream Analytics passes 'the telemetry to the Azure Function using an Azure Event Hub. So by now, the telemetry will start arriving in the 'Logs' panel.
-
 
 ```
 2016-09-25T12:30:26.576 Function started (Id=9a22c084-8116-4eed-954f-e484f52d4ce4)
