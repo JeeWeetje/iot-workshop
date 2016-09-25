@@ -270,7 +270,7 @@ Follow these steps to create an Azure Function, triggered by the Event Hub, insi
     ![alt tag](img/azure-function-app-update.png)
 
 5. In the new blade you are invited to get started quickly with a premade function (it opens with the Quickstart tab). We will not do that :-)
-6. On the left, select `New Function` 
+6. INstead, on the left, select `New Function` 
 
     ![alt tag](img/azure-function-app-new-function.png)
 
@@ -278,15 +278,15 @@ Follow these steps to create an Azure Function, triggered by the Event Hub, insi
 
     ![alt tag](img/azure-function-app-eventhubtrigger.png)
 
-8. At the bottom you have to fill in the name of the function. Change `EventHubTriggerCSharp1` into `TechDaysEventHubTriggerFunction`
-9. In the file Event Hubname you will have to pass the *remembered* name of the Event Hub eg. `techdays42eh` *Note: in lower case.*
-10. The Event Hub connection can be entered by pressing the `new` link
-11. In the new blade, press `Add a connection string`
+8. At the bottom you have to fill in the field 'Name your function'. Change `EventHubTriggerCSharp1` into `TechDaysEventHubTriggerFunction`
+9. In the field 'Event Hub name' you will have to pass the *remembered* name of the Event Hub eg. `techdays42eh` *Note: in lower case*
+10. The 'Event Hub connection'field can be filled by pressing the `new` link
+11. A blade with an empty list of connection strings will be shown. Press `Add a connection string`
 
     ![alt tag](img/azure-function-app-add-connectionstring.png)
 
-12. In a new blade, enter the connection name eg. `RootManageSharedAccessKey`. A green sign will be shown if the name is correct
-13. In the Connection string filed you will have to pass the *remembered* `Connection String-Primary Key` of the Event Hub namespace connection string. A green sign will be shown if the name is correct
+12. In a new blade, enter some name in the 'Connection name' field eg. `RootManageSharedAccessKey`. A green sign will be shown if the name is correct
+13. In the 'Connection string' field you will have to pass the *remembered* `Connection String-Primary Key` of the Event Hub namespace connection string. A green sign will be shown if the name is correct
 
     ![alt tag](img/azure-function-app-connectionstring.png)
 
@@ -300,9 +300,9 @@ Follow these steps to create an Azure Function, triggered by the Event Hub, insi
     ![alt tag](img/azure-portal-create.png)
 
 17. The function and trigger are saved. The develop blad is shown. In the middle, you will see the function in the 'Code' panel. The 'Logs' panel works like a trace log. 
-18. Change the code a bit, change the string in the log.Info() call eg.
+18. Update the code a bit, change the string in the log.Info() call eg.
 
-    ```
+    ```csharp
     using System;
     
     public static void Run(string myEventHubMessage, TraceWriter log)
@@ -311,7 +311,8 @@ Follow these steps to create an Azure Function, triggered by the Event Hub, insi
     }
     ```
 
-19. Select `Save`. In the 'Logs' panel the outcome om the compilation is shown
+20. Select `Save`. The changed C# code will be recompiled immediately
+19. In the 'Logs' panel the outcome of the compilation is shown
 
     ```
     2016-09-25T12:23:35.380 Script for function 'TechDaysEventHubTriggerFunction' changed. Reloading.
@@ -322,7 +323,7 @@ This completes the Azure function and trigger.
 
 ## Receiving telemetry in the Azure Function
 
-By now, the full chain is set up. Telemetry from The Things Network is passed by the bridge to the Azure IoT Hub. Azure Stream Analytics passes 'the telemetry to the Azure Function using an Azure Event Hub. So by now, the telemetry will start arriving in the 'Logs' panel.
+By now, the full chain of Azure services is set up. Telemetry from The Things Network is passed by the bridge to the Azure IoT Hub. Azure Stream Analytics passes 'the telemetry to the Azure Function using an Azure Event Hub. So by now, the telemetry will start arriving in the 'Logs' panel.
 
 ```
 2016-09-25T12:30:26.576 Function started (Id=9a22c084-8116-4eed-954f-e484f52d4ce4)
@@ -333,7 +334,7 @@ By now, the full chain is set up. Telemetry from The Things Network is passed by
 2016-09-25T12:30:39.125 Function completed (Success, Id=3afa8eb2-2737-4c8d-869e-910d746c4a1e)
 ```
 
-This completes this part workshop, handling telemetry in Azure. 
+This completes this part workshop, handling telemetry in Azure.
 
 You are now ready to do something exciting with this telemetry. One example is available at [Getting started with Flow](Flow.md)
 
