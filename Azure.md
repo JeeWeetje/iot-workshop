@@ -18,7 +18,7 @@ To connect to Azure Functions, you will add an Azure Stream Analytics job and Az
 
 ## Create Azure Stream Analytics job
 
-Follow these steps to create an Azure Stream Analytics job which takes messages from your IoT Hub. These jobs can handle great amounts of messages and handled with a SQL-like query language. Stream Analytics Jobs are great for time window related queries.
+Follow these steps to create an Azure Stream Analytics job which takes messages from your IoT Hub. These jobs can handle great amounts of messages, executing a SQL-like query. Stream Analytics Jobs are great for time window related queries.
 
 *Note: in this workshop we will not dive too deep into Stream Analytics. See for [more information](https://azure.microsoft.com/en-us/documentation/articles/stream-analytics-real-time-event-processing-reference-architecture/).*
 
@@ -48,11 +48,11 @@ Follow these steps to create an Azure Stream Analytics job which takes messages 
 
 10. Select `Create` and the portal will start creating the service. Once it is created, a notification is shown
 
-Creating an Azure Stream analytics job will take some time. Input is already known, the already existing IoT Hub, So let's create the service to send the output to, an azure Event Hub.
+Creating an Azure Stream analytics job will take some time. Input is already known, the already existing IoT Hub; so let's create the service to send the output to, an azure Event Hub.
 
 ## Create an Azure Event Hub
 
-Follow these steps to create an Azure Event Hub which can pass large amounts of (transformed) messages to other services.
+Follow these steps to create an Azure Event Hub which passes large amounts of events to other services.
 
 1. On the left, select `Resource groups`. A list of resource groups is shown
 
@@ -68,24 +68,24 @@ Follow these steps to create an Azure Event Hub which can pass large amounts of 
     ![alt tag](img/azure-filter-event-hub.png)
 
 5. An introduction will be shown. Select `Create`
-6. Event Hub live within namespaces. So first a new namespace has to be created
-7. A dialog for a new namespace is shown
-8. Enter a unique name eg. `TechDays42ns`. A green sign will be shown if the name is unique
+6. Event Hubs live within namespaces. So first a new namespace must be created
+7. A dialog for the new namespace is shown
+8. Enter a unique namespace name eg. `TechDays42ns`. A green sign will be shown if the name is unique
 9. The Resource Group eg. `TechDays42rg` is already filled in
 10. Select `West Europe` for the location
 
     ![alt tag](img/azure-create-eventhub-namespace.png)
 
 11. Select `Create`
-12. The creation will fail for now, the pricing tier is not entered yet. Click the pricing tier selection. A "Choose your pricing tier" section will be shown. Select the Basic tier and press `select`
+12. The creation will *fail* for now because the pricing tier is not entered yet. Click the `pricing tier` selection. A 'Choose your pricing tier' section will be shown. Select the Basic or Standard tier and press `select`
 
     ![alt tag](img/azure-namespace-pricingtier.png)
 
 13. Select `Create` again and the portal will start creating the namespace. Once it is created, a notification is shown
-14. Creating an namespace will take some time, but we want to complete this step
-15. Navigate back to the resource group (repeate step 1 and 2) and check the namespace creation
-16. If the namespace is listed, select it. Otherwise, refresh the list a few times
-17. You are now in the namespace blade. It should be shown like this (otherwise, refresh a few times):
+14. Creating a namespace will take some time, but we want to complete this step
+15. So navigate back to the resource group (repeate step 1 and 2) and check the namespace creation in the resource group
+16. If the namespace becomes listed, select it. Otherwise, refresh the list a few times
+17. You are now in the namespace blade. It should be shown like this, with all information available (otherwise, refresh a few times):
 
     ![alt tag](img/azure-namespace.png)
 
@@ -93,14 +93,14 @@ Follow these steps to create an Azure Event Hub which can pass large amounts of 
 
     ![alt tag](img/azure-namespace-add.png)
 
-19. A dialog for a new Event Hub is shown. Enter a unique name eg. `TechDays42eh`. A green sign will be shown if the name is unique *Note: the name will automatically revert to lower case!.*
+19. A dialog for a new Event Hub is shown. Enter a unique name eg. `TechDays42eh`. A green sign will be shown if the name is unique *Note: the name will automatically revert to lower case!*
 20. Select `Create` again and the portal will start creating the namespace. Once it is created, a notification is shown
 
 The Event Hub is now created. But before we leave this namespace, we need some secrets for later usage.
 
 ## Azure Event Hub secrets
 
-Below we will access the Event Hub from Azure Functions. At this moment the Azure functions are not able to autmatically connect to an Event Hub.
+A few steps below we will create an Azure Functions triggered by an Event Hub. At this moment, in the editor of the Azure portal, the Azure functions can not autmatically connect to an Event Hub. We need some secrets to do it by hand.
 
 1. Within the namespace blade, select the general setting `Share access policies`
 2. select the `RootManageSharedAccessKey` policy
@@ -108,9 +108,9 @@ Below we will access the Event Hub from Azure Functions. At this moment the Azur
     ![alt tag](img/azure-eventhub-policy.png)
 
 3. **Remember** the Connection string `Connection String-Primary Key`
-4. **Remember** the `name` of the Event Hub eg. `techdays42eh` *Note: in lower case.*
+4. **Remember** the `name` of the Event Hub eg. `techdays42eh` *Note: in lower case*
 
-*Note: The Event Hub itself has Shared access policies too. We do not need to remember those, just the policy of the namespace!.*
+*Note: The Event Hub itself has Shared access policies too. We do not need to remember those, just the one of the policy of the namespace!.*
 
 ### Connecting the hubs to Azure Stream Analytics job input and output
 
