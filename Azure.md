@@ -263,39 +263,44 @@ Follow these steps to create an Azure Function, triggered by the Event Hub, insi
 
     ![alt tag](img/azure-portal-all-resources.png)
 
-2. Select the `TechDays42fa`. The Function app resource will be shown in a new blade. *Note: Function App is quit new in the Azure portal and the interface frequently updated. Check the Function app settings if you want to know the current version.*
-3. In the new blade you are invited to get started quickly with a premade function. We will not do that :-)
-4. On the left, select `New Function`
+2. Select the `TechDays42fa`. The Function app resource will be shown in a new blade
+3. Function Apps are quit new in the Azure portal and the interface is frequently updated. Check the Function app settings if you want to know the current version.
+4. If you are requested to update the Function App, select `Update`
+
+    ![alt tag](img/azure-function-app-update.png)
+
+5. In the new blade you are invited to get started quickly with a premade function (it opens with the Quickstart tab). We will not do that :-)
+6. On the left, select `New Function` 
 
     ![alt tag](img/azure-function-app-new-function.png)
 
-5. Azure Functions are triggered by events in Azure. At this moment there are 50+ C#, Python, Powershell, Bash and Node triggers. Select the `EventHubTrigger - C#`
+7. Azure Functions are triggered by events in Azure. At this moment there are 50+ C#, Python, Powershell, Bash and Node triggers. Select the `EventHubTrigger - C#`
 
     ![alt tag](img/azure-function-app-eventhubtrigger.png)
 
-6. At the bottom you have to fill in the name of the function. Change `EventHubTriggerCSharp1` into `TechDaysEventHubTriggerFunction`
-7. In the file Event Hubname you will have to pass the *remembered* name of the Event Hub eg. `techdays42eh` *Note: in lower case.*
-8. The Event Hub connection can be entered by pressing the `new` link
-9. In the new blade, press `Add a connection string`
+8. At the bottom you have to fill in the name of the function. Change `EventHubTriggerCSharp1` into `TechDaysEventHubTriggerFunction`
+9. In the file Event Hubname you will have to pass the *remembered* name of the Event Hub eg. `techdays42eh` *Note: in lower case.*
+10. The Event Hub connection can be entered by pressing the `new` link
+11. In the new blade, press `Add a connection string`
 
     ![alt tag](img/azure-function-app-add-connectionstring.png)
 
-10. In a new blade, enter the connection name eg. `RootManageSharedAccessKey`. A green sign will be shown if the name is correct
-11. In the Connection string filed you will have to pass the *remembered* `Connection String-Primary Key` of the Event Hub namespace connection string. A green sign will be shown if the name is correct
+12. In a new blade, enter the connection name eg. `RootManageSharedAccessKey`. A green sign will be shown if the name is correct
+13. In the Connection string filed you will have to pass the *remembered* `Connection String-Primary Key` of the Event Hub namespace connection string. A green sign will be shown if the name is correct
 
     ![alt tag](img/azure-function-app-connectionstring.png)
 
-12. Select `OK`
-13. The Connection string is now entered in the right field
+14. Select `OK`
+15. The Connection string is now entered in the right field
 
     ![alt tag](img/azure-function-app-eventhubtrigger-new.png)
 
-14. Select `Create`
+16. Select `Create`
 
     ![alt tag](img/azure-portal-create.png)
 
-15. The function and trigger are saved. The develop blad is shown. In the middle, you will see the function in the 'Code' panel. The 'Logs' panel works like a trace log. 
-16. Change the code a bit, change the string in the log.Info() call eg.
+17. The function and trigger are saved. The develop blad is shown. In the middle, you will see the function in the 'Code' panel. The 'Logs' panel works like a trace log. 
+18. Change the code a bit, change the string in the log.Info() call eg.
 
     ```
     using System;
@@ -306,7 +311,7 @@ Follow these steps to create an Azure Function, triggered by the Event Hub, insi
     }
     ```
 
-17. Select `Save`. In the 'Logs' panel the outcome om the compilation is shown
+19. Select `Save`. In the 'Logs' panel the outcome om the compilation is shown
 
     ```
     2016-09-25T12:23:35.380 Script for function 'TechDaysEventHubTriggerFunction' changed. Reloading.
