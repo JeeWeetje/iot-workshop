@@ -311,14 +311,14 @@ This completes the Azure function and trigger.
 
 By now, the full chain is set up. Telemetry from The Things Network is passed by the bridge to the Azure IoT Hub. Azure Stream Analytics passes 'the telemetry to the Azure Function using an Azure Event Hub. So by now, the telemetry will start arriving in the 'Logs' panel.
 
-```
-2016-09-25T12:30:26.576 Function started (Id=9a22c084-8116-4eed-954f-e484f52d4ce4)
-2016-09-25T12:30:26.576 My first TechDays C# Event Hub trigger function processed a message: {"water":19.0,"lumen":913.0}
-2016-09-25T12:30:26.576 Function completed (Success, Id=9a22c084-8116-4eed-954f-e484f52d4ce4)
-2016-09-25T12:30:39.125 Function started (Id=3afa8eb2-2737-4c8d-869e-910d746c4a1e)
-2016-09-25T12:30:39.125 My first TechDays C# Event Hub trigger function processed a message: {"water":14.0,"lumen":148.0}
-2016-09-25T12:30:39.125 Function completed (Success, Id=3afa8eb2-2737-4c8d-869e-910d746c4a1e)
-```
+    ```
+    2016-09-25T12:30:26.576 Function started (Id=9a22c084-8116-4eed-954f-e484f52d4ce4)
+    2016-09-25T12:30:26.576 My first TechDays C# Event Hub trigger function processed a message: {"water":19.0,"lumen":913.0}
+    2016-09-25T12:30:26.576 Function completed (Success, Id=9a22c084-8116-4eed-954f-e484f52d4ce4)
+    2016-09-25T12:30:39.125 Function started (Id=3afa8eb2-2737-4c8d-869e-910d746c4a1e)
+    2016-09-25T12:30:39.125 My first TechDays C# Event Hub trigger function processed a message: {"water":14.0,"lumen":148.0}
+    2016-09-25T12:30:39.125 Function completed (Success, Id=3afa8eb2-2737-4c8d-869e-910d746c4a1e)
+    ```
 
 This completes this part workshop, handling telemetry in Azure. 
 
