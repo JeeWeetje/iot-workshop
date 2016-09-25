@@ -182,7 +182,7 @@ Receiving events...
 
 The messages are shown here too. These messages are now available in Azure.
 
-You are now ready to process your data in an Azure Stream Analytics job. Continue to [create an Azure Stream Analytics job](Azure.md)
+You are now ready to process your data in an Azure Stream Analytics job. Continue to [Handling The Things Network telemetry in Azure](Azure.md)
 
 ![Workshop provided by Microsoft, The Things Network and Atos](img/logos/microsoft-ttn-atos.png)
 

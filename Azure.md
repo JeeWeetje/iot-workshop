@@ -89,7 +89,7 @@ Follow these steps to create an Azure Event Hub which can pass large amounts of 
 
     ![alt tag](img/azure-namespace-add.png)
 
-19. A dialog for a new namespace is shown. Enter a unique name eg. `Techdays42eh`. A green sign will be shown if the name is unique
+19. A dialog for a new Event Hub is shown. Enter a unique name eg. `TechDays42eh`. A green sign will be shown if the name is unique *Note: the name will automatically revert to lower case!.*
 20. Select `Create` again and the portal will start creating the namespace. Once it is created, a notification is shown
 
 The Event Hub is now created. But before we leave this namespace, we need some secrets for later usage.
@@ -103,10 +103,10 @@ Below we will access the Event Hub from Azure Functions. At this moment the Azur
 
     ![alt tag](img/azure-eventhub-policy.png)
 
-3. **Remember** the `Connection String-Primary Key`
-4. **Remember** the `name` of the Event Hub eg. `TechDays42eh`
+3. **Remember** the Connection string `Connection String-Primary Key`
+4. **Remember** the `name` of the Event Hub eg. `techdays42eh` *Note: in lower case.*
 
-*Note: The Event Hub itself has Shared access policies too. We do not need to remember those, just the policy of the namespace.*
+*Note: The Event Hub itself has Shared access policies too. We do not need to remember those, just the policy of the namespace!.*
 
 ### Connecting the hubs to Azure Stream Analytics job input and output
 
@@ -139,7 +139,7 @@ As shown above, the Azure Stream Analytics job will connect the IoT Hub and the 
     ![alt tag](img/azure-portal-add.png)
 
 12. Enter `huboutput` as Output alias
-13. The `Event Hub` is alreadt selected as Source and all other fields are automatically filled in with the right Event Hub, `TechDays42eh`
+13. The `Event Hub` is alreadt selected as Source and all other fields are automatically filled in with the right Event Hub, `techdays42eh` *Note: in lower case.*
 
     ![alt tag](img/azure-stream-analytics-add-output.png)
 
@@ -195,10 +195,9 @@ Starting an Azure Stream Analytics job will take some time. After starting, all 
 
 *Note: This is the simplest example of Stream Analytics usage. More indept usage is described [here](https://azure.microsoft.com/en-us/documentation/articles/stream-analytics-real-time-event-processing-reference-architecture/).*
 
-## Create an Azure Function
+## Create an Azure Function App 
 
-
-Follow these steps to create an Azure Function. An Azure function is actually a real function, a couple of lines of code, which is triggered by certain events and can output the result of the code to other services. Azure Functions run 'serverless': you just write and upload your code and only pay for the number of times it is executed, the compute time and the amount of memory used. Our Azure Function created will be triggered by a new event in the Event Hub.
+Follow these steps to create an Azure Function App. An Azure function is actually a real function, a couple of lines of code, which is triggered by certain events and can output the result of the code to other services. Azure Functions run 'serverless': you just write and upload your code and only pay for the number of times it is executed, the compute time and the amount of memory used. Our Azure Function created will be triggered by a new event in the Event Hub. The Azure Function app is the container of Azure Functions.
 
 1. On the left, select `Resource groups`. A list of resource groups is shown
 
@@ -243,42 +242,80 @@ Follow these steps to create an Azure Function. An Azure function is actually a 
 
     ![alt tag](img/azure-function-app-create.png)
 
-20. Select `Create` and the portal will start creating the Function app. Once it is created, a notification is shown
-21. On the left, select `All resources`. A list of all resources is shown
+20. Select `Create` 
+
+The portal will start creating the Function app. Once it is created, a notification is shown.
+
+
+## Create an Azure Function triggered by Event Hub
+
+Follow these steps to create an Azure Function, triggered by the Event Hub, inside the Azure Function App. 
+
+1. On the left, select `All resources`. A list of all resources is shown
 
     ![alt tag](img/azure-portal-all-resources.png)
 
-22. Select the `TechDays42fa`. The Function app resource will be shown in a new blade. *Note: Function App is quit new in the Azure portal and the interface frequently updated. Check the Function app settings if you want to know the current version.*
-23. In the new blade you are invited to get started quickly with a premade function. We will not do that :-)
-24. On the left, select `New Function`
+2. Select the `TechDays42fa`. The Function app resource will be shown in a new blade. *Note: Function App is quit new in the Azure portal and the interface frequently updated. Check the Function app settings if you want to know the current version.*
+3. In the new blade you are invited to get started quickly with a premade function. We will not do that :-)
+4. On the left, select `New Function`
 
     ![alt tag](img/azure-function-app-new-function.png)
 
-25. Azure Functions are triggered by events in Azure. At this moment there are 50+ C#, Python, Powershell, Bash and Node triggers. Select the `Empty - C#` where we will define the trigger ourself
+5. Azure Functions are triggered by events in Azure. At this moment there are 50+ C#, Python, Powershell, Bash and Node triggers. Select the `EventHubTrigger - C#`
 
-    ![alt tag](img/azure-function-app-emptytrigger.png)
+    ![alt tag](img/azure-function-app-eventhubtrigger.png)
 
-26. At the bottom you have to fill in the name of the function. Change `EmptyCSharp1` into `TechDaysEventHubTriggerFunction`
-27. Select `Create`
+6. At the bottom you have to fill in the name of the function. Change `EventHubTriggerCSharp1` into `TechDaysEventHubTriggerFunction`
+7. In the file Event Hubname you will have to pass the *remembered* name of the Event Hub eg. `techdays42eh` *Note: in lower case.*
+8. The Event Hub connection can be entered by pressing the `new` link
+9. In the new blade, press `Add a connection string`
+
+    ![alt tag](img/azure-function-app-add-connectionstring.png)
+
+10. In a new blade, enter the connection name eg. `RootManageSharedAccessKey`. A green sign will be shown if the name is correct
+11. In the Connection string filed you will have to pass the *remembered* `Connection String-Primary Key` of the Event Hub namespace connection string. A green sign will be shown if the name is correct
+
+    ![alt tag](img/azure-function-app-connectionstring.png)
+
+12. Select `OK`
+13. The Connection string is now entered in the right field
 
     ![alt tag](img/azure-portal-create.png)
 
-28. A new blad is shown. In the middle, you can write the code and save it. The 'Logs' panel works like a trace log. This Function is really empty, there is no code yet and the Run method has no parameters. But First we select a trigger
-29. Select `Integrate`
+14. Select `Create`. The function and trigger are saved. The develop blad is shown. In the middle, you will see the function in the 'Code' panel. The 'Logs' panel works like a trace log. 
+15. Change the code a bit, change the string in the log.Info() call eg.
 
-    ![alt tag](img/azure-function-app-integrate.png)
+```
+using System;
 
-30. And you will have to pass the remembered name of the Event Hub eg. `TechDays42eh`
-28. 
+public static void Run(string myEventHubMessage, TraceWriter log)
+{
+    log.Info($"My first TechDays C# Event Hub trigger function processed a message: {myEventHubMessage}");
+}
+```
 
-
-
-
-
-
-
-
+16. Select `Save`. In the 'Logs' panel the outcome om the compilation is shown
 
 
+```
+2016-09-25T12:23:35.380 Script for function 'TechDaysEventHubTriggerFunction' changed. Reloading.
+2016-09-25T12:23:35.427 Compilation succeeded.
+```
+
+## Receiving telemetry in the Azure Function
+
+By now, the full chain is set up. Telemetry from The Things Network is passed by the bridge to the Azure IoT Hub. Azure Stream Analytics passes 'the telemetry to the Azure Function using an Azure Event Hub. So by now, the telemetry will start arriving in the 'Logs' panel.
 
 
+```
+2016-09-25T12:30:26.576 Function started (Id=9a22c084-8116-4eed-954f-e484f52d4ce4)
+2016-09-25T12:30:26.576 My first TechDays C# Event Hub trigger function processed a message: {"water":19.0,"lumen":913.0}
+2016-09-25T12:30:26.576 Function completed (Success, Id=9a22c084-8116-4eed-954f-e484f52d4ce4)
+2016-09-25T12:30:39.125 Function started (Id=3afa8eb2-2737-4c8d-869e-910d746c4a1e)
+2016-09-25T12:30:39.125 My first TechDays C# Event Hub trigger function processed a message: {"water":14.0,"lumen":148.0}
+2016-09-25T12:30:39.125 Function completed (Success, Id=3afa8eb2-2737-4c8d-869e-910d746c4a1e)
+```
+
+This completes this part workshop, handling telemetry in Azure. 
+
+You are now ready to do something exciting with this telemetry. One example is available at [create an Azure Stream Analytics job](Flow.md)
