@@ -143,7 +143,7 @@ As shown above, the Azure Stream Analytics job will connect the IoT Hub and the 
     ![alt tag](img/azure-portal-add.png)
 
 12. Enter `huboutput` as Output alias
-13. The `Event Hub` is alreadt selected as Source and all other fields are automatically filled in with the right Event Hub, `techdays42eh` *Note: in lower case.*
+13. The `Event Hub` is already selected as Source and all other fields are automatically filled in with the right Event Hub, `techdays42eh` *Note: in lower case*
 
     ![alt tag](img/azure-stream-analytics-add-output.png)
 
@@ -161,7 +161,7 @@ Follow these steps to write the query of Azure Stream Analytics job.
 
     ![alt tag](img/azure-stream-analytics-query-initial.png)
 
-3. Write the following query
+3. Write the following, very simple, query
 
     ```sql
     SELECT
@@ -177,7 +177,7 @@ Follow these steps to write the query of Azure Stream Analytics job.
 
     ![alt tag](img/azure-portal-save.png)
 
-5. Close the blade or select `TechDays42sa` in the bread crumps in the top of the page
+5. Close the blade with the `cross` or select `TechDays42sa` in the bread crumps in the top of the page
 
     ![alt tag](img/azure-portal-close.png)
 
@@ -189,7 +189,7 @@ Follow these steps to write the query of Azure Stream Analytics job.
 
     ![alt tag](img/azure-portal-start.png)
 
-8. An Azure Stream Analytics job can start with telemetry from the past (if you want te rerun historical telemetry still stored in the input) or just new telemetry. Select `Now` 
+8. An Azure Stream Analytics job can start with telemetry from the past (if you want to rerun historical telemetry still stored in the input) or you can start with new telemetry. Select `Now` 
 
     ![alt tag](img/azure-stream-analytics-start.png)
 
@@ -201,7 +201,7 @@ Starting an Azure Stream Analytics job will take some time. After starting, all 
 
 ## Create an Azure Function App 
 
-Follow these steps to create an Azure Function App. An Azure function is actually a real function, a couple of lines of code, which is triggered by certain events and can output the result of the code to other services. Azure Functions run 'serverless': you just write and upload your code and only pay for the number of times it is executed, the compute time and the amount of memory used. Our Azure Function created will be triggered by a new event in the Event Hub. The Azure Function app is the container of Azure Functions.
+Follow these steps to create an Azure Function App. An Azure function is actually a real function, a couple of lines of code, which is triggered by certain events and it can output the result of the code to other services. Azure Functions run 'serverless': you just write and upload your code and only pay for the number of times it is executed, the compute time and the amount of memory used. Our Azure Function will be triggered by a new event in the Event Hub. The Azure Function app is the container of Azure Functions.
 
 1. On the left, select `Resource groups`. A list of resource groups is shown
 
@@ -217,6 +217,9 @@ Follow these steps to create an Azure Function App. An Azure function is actuall
     ![alt tag](img/azure-filter-function-app.png)
 
 5. An introduction will be shown. Select `Create` and you will be asked to enter the information needed to create an Azure Function
+
+    ![alt tag](img/azure-function-app-initial.png)
+
 6. Enter a unique App name eg. `TechDays42fa`. A green sign will be shown if the name is unique
 7. The Resource Group eg. `TechDays42rg` is already filled in
 8. An App Service plan is the container for your app. The already created App Service Plan will probably not fit our needs. We create a new one
@@ -229,8 +232,9 @@ Follow these steps to create an Azure Function App. An Azure function is actuall
 
     ![alt tag](img/azure-asp-new.png)
 
+13. The Pricing tier will be left unaltered
 12. Select `Ok`
-13. Our new App Service plan is now added to the Azure Functiopn App
+13. Our new App Service plan is now added to the Azure Function App
 14. We also want to give the Storage Account a meaningful name. In this storage the function source code etc. will be stored
 15. Open de Storage Account blade and select `Create New`
 
