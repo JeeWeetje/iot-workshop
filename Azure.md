@@ -337,8 +337,6 @@ By now, the full chain of Azure services is set up. Telemetry from The Things Ne
 
 Notice that we have full control over telemetry. We know which device has sent data at what time. This is great for charts or commands.
 
-This completes this part workshop, handling telemetry in Azure.
-
-You are now ready to do something exciting with this telemetry. One example is available at [Getting started with Flow](Flow.md)
+Receiving telemetry in Azure completes this part of the workshop. You are now ready to do something exciting with this telemetry. One example is available at [Getting started with Flow](Flow.md)
 
 ![Workshop provided by Microsoft, The Things Network and Atos](img/logos/microsoft-ttn-atos.png)
