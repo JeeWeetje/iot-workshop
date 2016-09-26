@@ -49,7 +49,7 @@ Follow these steps to create the integration bridge between The Things Network a
 
 1. Install NodeJs
 2. Create a new folder
-3. In this new folder, run `npm init` to initialize a new WebJob using Node.js. Some values will be presented to be changed; accept the initial values, only use `server.js` instead of _index.js_ as entry point
+3. In this new folder, run `npm init` to initialize a new WebJob using Node.js. Some values will be presented to be changed; accept the initial values, only use `server.js` (instead of _index.js_ as entry point, if proposed)
    
    ![alt tag](img/npm-init.png)
    
