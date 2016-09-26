@@ -84,7 +84,7 @@ Follow these steps to create an Azure Event Hub which passes large amounts of ev
 13. Select `Create` again and the portal will start creating the namespace. Once it is created, a notification is shown
 14. Creating a namespace will take some time, but we want to complete this step
 15. So navigate back to the resource group (repeate step 1 and 2) and check the namespace creation in the resource group
-16. If the namespace becomes listed, select it. Otherwise, refresh the list a few times
+16. If the namespace becomes listed, select `TechDays42ns`. Otherwise, refresh the list a few times
 17. You are now in the namespace blade. It should be shown like this, with all information available (otherwise, refresh a few times):
 
     ![alt tag](img/azure-namespace.png)
@@ -179,7 +179,7 @@ Follow these steps to write the query of Azure Stream Analytics job.
 
     ![alt tag](img/azure-portal-save.png)
 
-5. Close the blade with the `cross` or select `TechDays42sa` in the bread crumps in the top of the page
+5. Close the Query blade with the `close icon` or select `TechDays42sa` in the bread crumps in the top of the page
 
     ![alt tag](img/azure-portal-close.png)
 
