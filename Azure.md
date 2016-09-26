@@ -77,7 +77,7 @@ Follow these steps to create an Azure Event Hub which passes large amounts of ev
     ![alt tag](img/azure-create-eventhub-namespace.png)
 
 11. Select `Create`
-12. The creation will *fail* for now because the pricing tier is not entered yet. Click the `pricing tier` selection. A 'Choose your pricing tier' section will be shown. Select the Basic or Standard tier and press `select`
+12. The creation will *fail* IF the pricing tier is not entered yet. If so, click the `pricing tier` selection. A 'Choose your pricing tier' section will be shown. Select the Basic or Standard tier and press `select`
 
     ![alt tag](img/azure-namespace-pricingtier.png)
 
