@@ -71,32 +71,31 @@ Follow these steps to create an Azure Event Hub which passes large amounts of ev
 6. Event Hubs live within namespaces. So first a new namespace must be created
 7. A dialog for the new namespace is shown
 8. Enter a unique namespace name eg. `TechDays42ns`. A green sign will be shown if the name is unique
-9. The Resource Group eg. `TechDays42rg` is already filled in
-10. Select `West Europe` for the location
-
-    ![alt tag](img/azure-create-eventhub-namespace.png)
-
-11. Select `Create`
-12. The creation will *fail* IF the pricing tier is not entered yet. If so, click the `pricing tier` selection. A 'Choose your pricing tier' section will be shown. Select the Basic or Standard tier and press `select`
+9. Select a pricing tier. click the `pricing tier` selection. A 'Choose your pricing tier' section will be shown. Select the `Basic tier` or `Standard tier` and press `select`
 
     ![alt tag](img/azure-namespace-pricingtier.png)
 
-13. Select `Create` again and the portal will start creating the namespace. Once it is created, a notification is shown
-14. Creating a namespace will take some time, but we want to complete this step
-15. So navigate back to the resource group (repeate step 1 and 2) and check the namespace creation in the resource group
-16. If the namespace becomes listed, select `TechDays42ns`. Otherwise, refresh the list a few times
-17. You are now in the namespace blade. It should be shown like this, with all information available (otherwise, refresh a few times):
+10. The Resource Group eg. `TechDays42rg` is already filled in
+11. Select `West Europe` for the location
+
+    ![alt tag](img/azure-create-eventhub-namespace.png)
+
+12. Select `Create` and the portal will start creating the namespace. Once it is created, a notification is shown
+13. Creating a namespace will take some time, but we want to complete this step
+14. So navigate back to the resource group (repeate step 1 and 2) and check the namespace creation in the resource group
+15. If the namespace becomes listed, select `TechDays42ns`. Otherwise, refresh the list a few times
+16. You are now in the namespace blade. It should be shown like this, with all information available (otherwise, refresh a few times):
 
     ![alt tag](img/azure-namespace.png)
 
-18. At the top, select `Add Event Hub`
+17. At the top, select `Add Event Hub`
 
     ![alt tag](img/azure-namespace-add.png)
 
-19. A dialog for a new Event Hub is shown. Enter a unique name eg. `TechDays42eh`. A green sign will be shown if the name is unique *Note: the name will automatically revert to lower case!*
-20. Select `Create` again and the portal will start creating the namespace. Once it is created, a notification is shown
+18. A dialog for a new Event Hub is shown. Enter a unique name eg. `TechDays42eh`. A green sign will be shown if the name is unique *Note: the name will automatically revert to lower case!*
+19. Select `Create` and the portal will start creating the Event Hub. Once it is created, a notification is shown
 
-The Event Hub is now created. But before we leave this namespace, we need some secrets for later usage.
+The Event Hub is now created. But before we leave the namespace it is created in, we need some secrets for later usage.
 
 ## Azure Event Hub secrets
 
