@@ -234,16 +234,15 @@ Follow these steps to create an Azure Function App. An Azure function is actuall
 
     ![alt tag](img/azure-asp-new.png)
 
-13. The Pricing tier will be left unaltered
-12. Select `Ok`
-13. Our new App Service plan is now added to the Azure Function App
-14. We also want to give the Storage Account a more meaningful name. In this storage account, the function source code etc. will be stored
-15. Open de Storage Account blade and select `Create New`
+12. The Pricing tier will be left unaltered
+13. Select `Ok`
+14. Our new App Service plan is now added to the Azure Function App
+15. We also want to give the Storage Account a more meaningful name. In this storage account, the function source code etc. will be stored
+16. Open de Storage Account blade and select `Create New`
 
     ![alt tag](img/azure-storage-account-create.png)
 
-16. Enter a unique App name eg. `techdays42storage`. A green sign will be shown if the name is unique *Note: Storage account names must be all lower case!.*
-17. Select `West Europe` for the location
+17. Enter a unique App name eg. `techdays42storage`. A green sign will be shown if the name is unique *Note: Storage account names must be all lower case!.*
 
     ![alt tag](img/azure-storage-account-new.png)
 
