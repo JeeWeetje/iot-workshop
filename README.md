@@ -53,10 +53,9 @@ Follow these steps to create the integration bridge between The Things Network a
    
    ![alt tag](img/npm-init.png)
    
-   Accept the changes to be written in a json file with yes (default option).
-
-4. Run `npm install --save ttn-azure-iothub` to install this package
-5. Create a new file named `server.js`
+4. Accept the changes to be written in a json file with yes (default option).
+5. Run `npm install --save ttn-azure-iothub` to install this package
+6. Create a new file named `server.js`
 
 This server.js file will be edited below but we need some secrets first. We have to collect unique keys of the TTN app and the Azure IoT Hub first.
 
