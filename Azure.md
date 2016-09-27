@@ -332,10 +332,10 @@ By now, the full chain of Azure services is set up. Telemetry from The Things Ne
 
 ```
 2016-09-25T14:58:56.659 Function started (Id=44cf8082-b355-47a1-a220-260e23679eb7)
-2016-09-25T14:58:56.659 My First C# Event Hub trigger function processed a message: {"water":16,"eventprocessedutctime":"2016-09-25T14:58:52.1818540Z","connectiondeviceid":"DeviceOne"}
+2016-09-25T14:58:56.659 My TechDays trigger function processed this message: {"water":16,"eventprocessedutctime":"2016-09-25T14:58:52.1818540Z","connectiondeviceid":"DeviceOne"}
 2016-09-25T14:58:56.659 Function completed (Success, Id=44cf8082-b355-47a1-a220-260e23679eb7)
 2016-09-25T14:59:12.157 Function started (Id=8e617e92-6492-439a-8d2d-d324694a55a4)
-2016-09-25T14:59:12.157 My First C# Event Hub trigger function processed a message: {"water":23,"eventprocessedutctime":"2016-09-25T14:59:08.1899979Z","connectiondeviceid":"DeviceOne"}
+2016-09-25T14:59:12.157 My TechDays trigger function processed this message: {"water":23,"eventprocessedutctime":"2016-09-25T14:59:08.1899979Z","connectiondeviceid":"DeviceOne"}
 2016-09-25T14:59:12.157 Function completed (Success, Id=8e617e92-6492-439a-8d2d-d324694a55a4)
 ```
 
