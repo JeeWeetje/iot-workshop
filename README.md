@@ -80,6 +80,98 @@ Follow the steps to create an application and register your device.
 6. Check **Disable frame counter checks**
 7. Click **Personalize device** and confirm by clicking **Personalize**
     ![alt tag](img/ttn-device.png)
+8. Keep this page open, you need the device address, network session key and application session key in a minute
+
+
+## Send data from your device
+
+In the Arduino IDE, create a new sketch and paste the following code.
+
+```c
+#include <TheThingsNetwork.h>
+
+// Set your DevAddr
+const byte devAddr[4] = { ... }; //for example: {0x02, 0xDE, 0xAE, 0x00};
+
+// Set your NwkSKey and AppSKey
+const byte nwkSKey[16] = { ... }; //for example: {0x2B, 0x7E, 0x15, 0x16, 0x28, 0xAE, 0xD2, 0xA6, 0xAB, 0xF7, 0x15, 0x88, 0x09, 0xCF, 0x4F, 0x3C};
+const byte appSKey[16] = { ... }; //for example: {0x2B, 0x7E, 0x15, 0x16, 0x28, 0xAE, 0xD2, 0xA6, 0xAB, 0xF7, 0x15, 0x88, 0x09, 0xCF, 0x4F, 0x3C};
+
+TheThingsNetwork ttn;
+
+// Define the pins of your sensors
+#define PIN_PIR 2
+#define PIN_WATER A0
+
+// Setup runs once
+void setup() {
+  // The PIR is a digital input
+  pinMode(PIN_PIR, INPUT);
+
+  Serial.begin(9600);
+  Serial1.begin(57600);
+
+  ttn.init(Serial1, Serial);
+  ttn.reset();
+
+  //the device will configure the LoRa module
+  ttn.personalize(devAddr, nwkSKey, appSKey);
+
+  ttn.showStatus();
+  Serial.println("Setup for The Things Network complete");
+}
+
+// Loop runs indefinitely
+void loop() {
+  // Read sensors
+  uint8_t motion = digitalRead(PIN_PIR);
+  uint16_t water = analogRead(PIN_WATER);
+
+  // Check if there is motion
+  if (motion == HIGH) {
+    // Print the water value
+    Serial.print("Water: ");
+    Serial.println(water);
+
+    // Send data to The Things Network
+    byte buffer[2];
+    buffer[0] = highByte(water);
+    buffer[1] = lowByte(water);
+    ttn.sendBytes(buffer, sizeof(buffer));
+  }
+
+  // Wait 10 seconds
+  delay(10000);
+}
+```
+
+1. Insert your device address in `devAddr`, nework session key in `nwkSkey` and application session key in `appSKey`. You can use the handy `<>` button in the dashboard to copy it quickly as a C-style byte array; exactly what Arduino wants.
+2. In the **Sketch** menu, click **Upload**
+3. Open the **Serial Monitor** again from the **Tools** menu once upload has completed. Your device should now be sending data to The Things Network
+4. In The Things Network dashboard, go to **Data**. You see packets coming in:
+    ![alt tag](img/device-payload-binary.png)
+5. Now, binary payload is not really useful in upstream. Therefore, we have payload functions.
+6. In the application overview, click **Payload Functions**
+7. Add the following **decoder** function to decode the two bytes back to a 16 bit integer called `water`:
+```c
+function Decoder(bytes) {
+  var water = (bytes[0] << 8) | bytes[1];
+  return {
+    water: water
+  };
+}
+```
+8. We want to invert the resistance of the water sensor, so that more water is a higher value. The maximum value of 3v3 analog ADC conersion is `682`, so use the following as the **converter**:
+```
+function Converter(decodedObj) {
+  decodedObj.water = 682 - decodedObj.water;
+  return decodedObj;
+}
+```
+9. Go back to your data overview. Now you should see something like this:
+    ![alt tag](img/device-payload-fields.png)
+
+Now we have clean data ready to be processed in Azure IoT Hub and upstream.
 
 
 ## Create an Azure IoT Hub
