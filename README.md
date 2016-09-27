@@ -2,8 +2,6 @@
 
 This is an example integration between The Things Network and Azure IoT Hub. This integration will be offered as a bridge, which features creating devices in the Azure IoT Hub device registry as well as sending events from uplink messages.
 
-*Note: in this workshop we will build a simple bridge, running on your own computer. See the [full example](https://github.com/TheThingsNetwork/examples/tree/master/integrations/azure) on how to deploy this bridge as a WebJob to Azure.*
-
 ### Prerequisites
 
 1. A running TTN node connected to the TTN network
@@ -54,31 +52,35 @@ Follow these steps to create the integration bridge between The Things Network a
    ![alt tag](img/npm-init.png)
    
 4. Accept the changes to be written in a json file with yes (default option)
-5. Run `npm install --save ttn-azure-iothub@1.0-1` to install this package
+5. Run `npm install --save ttn-azure-iothub@preview` to install this package
 6. Create a new file named `server.js` in the folder you created
 
 This server.js file will be edited below but we need some secrets first. We have to collect unique keys of the TTN app and the Azure IoT Hub first.
 
 
-### TTN App secrets
+### TTN Application
 
-The integration requires TTN portal AppEUI and App Access Key.
+The integration requires an application and device configured in The Things Network.
 
-1. Log into the [TTN applications portal](https://staging.thethingsnetwork.org/applications). You will be asked to provide TTN credentials if needed
-2. Your list of applications will be shown
-
-    ![alt tag](img/ttn-application-list.png)
-
-3. Navigate to the application provided for this workshop
-4. Under Application Info, click 'learn how to get data from this app' to get the application data
+1. Log into the [The Things Network dashboard](https://preview.dashboard.thethingsnetwork.org). You will be asked to provide TTN credentials if needed
+2. Add a new application. Pick a unique Application ID
 
     ![alt tag](img/ttn-application.png)
 
-5. the `App EUI` and the `Access Keys` are shown. **Write down** these App EUI and access keys
+3. Go to **Manage devices** and click **Register device**
+4. Enter a **Device ID** and click **Randomize** to use a random Device EUI
+5. Click **Settings**
+6. Check **Disable frame counter checks**
+7. Click **Personalize device** and confirm by clicking **Personalize**
+
+    ![alt tag](img/ttn-device.png)
+
+8. Go back to your application by clicking its name in the navigation bar
+9. Scroll down to **Access Keys**. **Write down** the access key
 
     ![alt tag](img/ttn-application-cred.png)
 
-These are the secrets needed from TTN.
+These are the secrets needed for getting data from The Things Network.
 
 
 ### Azure IoT Hub secrets
