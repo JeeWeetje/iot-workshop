@@ -5,10 +5,9 @@ This is an example integration between The Things Network and Azure IoT Hub. Thi
 ### Prerequisites
 
 1. A running TTN node connected to the TTN network
-2. NodeJs (https://nodejs.org/en/). _(We prefer Version 6.6)_
-3. Azure account [create here](https://azure.microsoft.com/en-us/free/) _(Azure passes will be present for those who have no Azure account)_
-4. TTN account (https://account.thethingsnetwork.org/)
-5. Device Explorer (https://github.com/Azure/azure-iot-sdks/blob/master/tools/DeviceExplorer/doc/how_to_use_device_explorer.md)
+2. Azure account [create here](https://azure.microsoft.com/en-us/free/) _(Azure passes will be present for those who have no Azure account)_
+3. The Things Network account [create here](https://staging.account.thethingsnetwork.org/) _(The Things Network accounts are available for every participant)_
+4. Device Explorer (https://github.com/Azure/azure-iot-sdks/blob/master/tools/DeviceExplorer/doc/how_to_use_device_explorer.md)
 
 
 ## Create an Azure IoT Hub
@@ -20,11 +19,11 @@ Follow these steps to create an Azure IoT Hub.
 
     ![alt tag](img/azure-more-services.png)
 
-3. Filter it with `Iot Hub`
+3. Filter it with `IoT Hub`
 
     ![alt tag](img/azure-search-iot-hub.png)
 
-4. Select `Iot Hub` and a new blade will be shown. Select `Add` and you will be asked to enter the information needed to create an IoT Hub
+4. Select `IoT Hub` and a new blade will be shown. Select `Add` and you will be asked to enter the information needed to create an IoT Hub
 
     ![alt tag](img/azure-portal-add.png)
 
@@ -38,7 +37,7 @@ Follow these steps to create an Azure IoT Hub.
 
     ![alt tag](img/azure-notifications.png)
 
-Creating an IoT Hub takes some time. Meanwhile we will create the bridge.
+Creating an IoT Hub takes some time. Meanwhile we will connect the device and create the bridge.
 
 
 ## Create a bridge
@@ -46,8 +45,8 @@ Creating an IoT Hub takes some time. Meanwhile we will create the bridge.
 Follow these steps to create the integration bridge between The Things Network and Azure IoT Hub. NPM will be used to create a folder structure and imstall packages.
 
 1. Create a new folder eg. `c:\techdays42`
-2. In a dos-box, navigate to the new folder 
-3. In this new folder, run `npm init` to initialize a new Bridge using Node.js. Some values will be presented to be changed; accept the initial values, only use `server.js` (instead of _index.js_ as entry point, if proposed)
+2. In Command Prompt, navigate to the new folder 
+3. In this new folder, run `npm init` to initialize a new Node.js application. Some values will be presented to be changed; accept the initial values, only use `server.js` (instead of _index.js_ as entry point, if proposed)
    
    ![alt tag](img/npm-init.png)
    
@@ -80,14 +79,14 @@ The integration requires an application and device configured in The Things Netw
 
     ![alt tag](img/ttn-application-cred.png)
 
-These are the secrets needed for getting data from The Things Network.
+The `Application ID` and `Access Key` are required to get data from The Things Network.
 
 
 ### Azure IoT Hub secrets
 
-The integration requires an Azure IoT Hub Shared access policy key name with `Registry, Write and Device connect` permissions. In this example, we use the **iothubowner** policy which has these permissions enabled by default.
+The integration requires an Azure IoT Hub Shared access policy key name with `Registry read, write and Device connect` permissions. In this example, we use the **iothubowner** policy which has these permissions enabled by default.
 
-1. Check the Azure portal. The Resource group and the IoT Hub should be created by now
+1. Check the Azure portal. The resource group and the IoT Hub should be created by now
 
     ![alt tag](img/azure-notifications.png)
 
@@ -95,7 +94,7 @@ The integration requires an Azure IoT Hub Shared access policy key name with `Re
 
     ![alt tag](img/azure-resource-groups.png)
 
-3. Select the ResourceGroup `TechDays42rg`. It will open a new blade with all resources in this group
+3. Select the resource group `TechDays42rg`. It will open a new blade with all resources in this group
 4. Select the IoT Hub `TechDays42ih`. It will open a new blade with the IoT Hub
 5. The IoTHub has not received any messages yet. Check the general settings for `Shared access policies`
 
@@ -103,7 +102,7 @@ The integration requires an Azure IoT Hub Shared access policy key name with `Re
 
 6. **Write down** the `name` of the IoT Hub eg. `TechDays42ih`
 7. Navigate to the `iothubowner` policy and **write down** the primary key
-8. In the last step op this tutorial, the 'Connection string-primary key' is needed. Remember this `Connection String-Primary Key`
+8. In the last step op this tutorial, the 'Connection String-Primary Key' is needed. **Write down** this `Connection String-Primary Key`
 
     ![alt tag](img/azure-iothubowner-policy.png)
 
