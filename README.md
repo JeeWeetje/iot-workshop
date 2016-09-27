@@ -178,9 +178,9 @@ We can check the arrival of the messages in the Azure IoT Hub.
 
 ```
 Receiving events...
-09/23/16 21:43:47> Device: [DeviceOne], Data:[{"water":10.0,"light":712}]
-09/23/16 21:43:51> Device: [DeviceOne], Data:[{"water":15.0,"light":711}]
-09/23/16 21:43:53> Device: [DeviceOne], Data:[{"water":14.0,"light":290}]
+09/23/16 21:43:47> Device: [DeviceOne], Data:[{"water":10}]
+09/23/16 21:43:51> Device: [DeviceOne], Data:[{"water":15}]
+09/23/16 21:43:53> Device: [DeviceOne], Data:[{"water":14}]
 ```
 
 ### Monitoring using Command-line

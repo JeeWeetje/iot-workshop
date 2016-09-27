@@ -8,6 +8,8 @@ To connect to Azure Functions, you will add an Azure Stream Analytics job and Az
 
 *Note: This workshop has an open ending. It provides a solid solution on how to handled telemetry programmatically in Azure. From there on it's up to you to add more Azure services.*
 
+*Note: in this workshop we will create uniquely named Azure resources. Use the suggested names merely as a suggestion.*
+
 ### Prerequisites
 
 1. A running TTN node connected to the TTN network
@@ -106,8 +108,8 @@ A few steps below we will create an Azure Functions triggered by an Event Hub. A
 
     ![alt tag](img/azure-eventhub-policy.png)
 
-3. **Remember** the Connection string `Connection String-Primary Key`
-4. **Remember** the `name` of the Event Hub eg. `techdays42eh` *Note: in lower case*
+3. **Write down** the Connection string `Connection String-Primary Key`
+4. **Write down** the `name` of the Event Hub eg. `techdays42eh` *Note: in lower case*
 
 *Note: The Event Hub itself has Shared access policies too. We do not need to remember those, just the one of the policy of the namespace!.*
 
@@ -164,8 +166,7 @@ Follow these steps to write the query of Azure Stream Analytics job.
 
     ```sql
     SELECT
-        CAST(water as float) as water,
-        CAST(light as float) as lumen,
+        CAST(water as bigint) as waterLevel,
         EventProcessedUtcTime,
         IoTHub.ConnectionDeviceId
     INTO
@@ -279,7 +280,7 @@ Follow these steps to create an Azure Function, triggered by the Event Hub, insi
 
     ![alt tag](img/azure-function-app-eventhubtrigger.png)
 
-9. At the bottom you have to fill in the field 'Name your function'. Change `EventHubTriggerCSharp1` into `TechDaysEventHubTriggerFunction`
+9. At the bottom of the page (use the scrollbar of the page), you have to fill in the field 'Name your function'. Change `EventHubTriggerCSharp1` into `TechDaysEventHubTriggerFunction`
 10. In the field 'Event Hub name' you will have to pass the *remembered* name of the Event Hub eg. `techdays42eh` *Note: in lower case*
 11. The 'Event Hub connection'field can be filled by pressing the `new` link
 12. A blade with an empty list of connection strings will be shown. Press `Add a connection string`
@@ -328,10 +329,10 @@ By now, the full chain of Azure services is set up. Telemetry from The Things Ne
 
 ```
 2016-09-25T14:58:56.659 Function started (Id=44cf8082-b355-47a1-a220-260e23679eb7)
-2016-09-25T14:58:56.659 My First C# Event Hub trigger function processed a message: {"water":16.0,"lumen":481.0,"eventprocessedutctime":"2016-09-25T14:58:52.1818540Z","connectiondeviceid":"DeviceOne"}
+2016-09-25T14:58:56.659 My First C# Event Hub trigger function processed a message: {"water":16,"eventprocessedutctime":"2016-09-25T14:58:52.1818540Z","connectiondeviceid":"DeviceOne"}
 2016-09-25T14:58:56.659 Function completed (Success, Id=44cf8082-b355-47a1-a220-260e23679eb7)
 2016-09-25T14:59:12.157 Function started (Id=8e617e92-6492-439a-8d2d-d324694a55a4)
-2016-09-25T14:59:12.157 My First C# Event Hub trigger function processed a message: {"water":23.0,"lumen":801.0,"eventprocessedutctime":"2016-09-25T14:59:08.1899979Z","connectiondeviceid":"DeviceOne"}
+2016-09-25T14:59:12.157 My First C# Event Hub trigger function processed a message: {"water":23,"eventprocessedutctime":"2016-09-25T14:59:08.1899979Z","connectiondeviceid":"DeviceOne"}
 2016-09-25T14:59:12.157 Function completed (Success, Id=8e617e92-6492-439a-8d2d-d324694a55a4)
 ```
 
