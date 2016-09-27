@@ -74,7 +74,7 @@ The integration requires TTN portal AppEUI and App Access Key.
 
     ![alt tag](img/ttn-application.png)
 
-5. the `App EUI` and the `Access Keys` are shown. **Remember** these App EUI and access keys
+5. the `App EUI` and the `Access Keys` are shown. **Write down** these App EUI and access keys
 
     ![alt tag](img/ttn-application-cred.png)
 
@@ -99,8 +99,8 @@ The integration requires an Azure IoT Hub Shared access policy key name with `Re
 
     ![alt tag](img/azure-iot-hub-initial.png)
 
-6. **Remember** the `name` of the IoT Hub eg. `TechDays42ih`
-7. Navigate to the `iothubowner` policy and **remember** the primary key
+6. **Write down** the `name` of the IoT Hub eg. `TechDays42ih`
+7. Navigate to the `iothubowner` policy and **write down** the primary key
 8. In the last step op this tutorial, the 'Connection string-primary key' is needed. Remember this `Connection String-Primary Key`
 
     ![alt tag](img/azure-iothubowner-policy.png)
@@ -162,11 +162,15 @@ Uplink { devEUI: '0004A30B001B442B',
 Keep the bridge running till the end of the workshop.  
 
 
-## Check the arrival of the telemetry in Azure
+## Monitoring the arrival of the telemetry in Azure
+
+We can check the arrival of the messages in the Azure IoT Hub. This can be done using a UI app named Device Explorer or using a Command-Line tool named Hub Explorer.
+
+### Monitoring using UI
 
 We can check the arrival of the messages in the Azure IoT Hub.
 
-1. Install the Device Explorer. Start the Device Explorer
+1. Start the `Device Explorer`
 2. On the Configuration Tab, insert the IoT Hub `Connection String-primary key` and the `name` of the IoT Hub (as Protocol Gateway Hostname)
 3. Press `Update`
 4. On the Management tab, your device should already be available. It was registered by the bridge when the very first telemetry arrived
@@ -178,6 +182,12 @@ Receiving events...
 09/23/16 21:43:51> Device: [DeviceOne], Data:[{"water":15.0,"light":711}]
 09/23/16 21:43:53> Device: [DeviceOne], Data:[{"water":14.0,"light":290}]
 ```
+
+### Monitoring using Command-line
+
+Via https://github.com/Azure/azure-iot-sdks/tree/master/tools/iothub-explorer
+
+## Conclusion
 
 The messages are shown here too. These messages are now available in Azure.
 
