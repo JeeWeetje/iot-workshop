@@ -7,10 +7,10 @@ This is an example integration between The Things Network and Azure IoT Hub. Thi
 ### Prerequisites
 
 1. A running TTN node connected to the TTN network
-2. NodeJs [download here](https://nodejs.org/en/). _(We prefer Version 6.6)_
+2. NodeJs (https://nodejs.org/en/). _(We prefer Version 6.6)_
 3. Azure account [create here](https://azure.microsoft.com/en-us/free/) _(Azure passes will be present for those who have no Azure account)_
-4. TTN account [create here](https://account.thethingsnetwork.org/register)
-5. Device Explorer [download here](https://github.com/Azure/azure-iot-sdks/blob/master/tools/DeviceExplorer/doc/how_to_use_device_explorer.md)
+4. TTN account (https://account.thethingsnetwork.org/)
+5. Device Explorer (https://github.com/Azure/azure-iot-sdks/blob/master/tools/DeviceExplorer/doc/how_to_use_device_explorer.md)
 
 
 ## Create an Azure IoT Hub
@@ -149,11 +149,11 @@ Run `npm start` to verify that the bridge works in the new folder. This is examp
 ```
 TTN connected
 goat: Handling uplink
-Uplink { devEUI: '0004A30B001B442B',
-  message: '{"water":19,"deviceId":"0004A30B001B442B","time":"2016-06-14T16:19:15.402956092Z"}' }
+Uplink { devEUI: 'goat',
+  message: '{"water":19,"deviceId":"goat","time":"2016-06-14T16:19:15.402956092Z"}' }
 goat: Handling uplink
 Uplink { devEUI: 'goat',
-  message: '{"water":19,"deviceId":"0004A30B001B442B","time":"2016-06-14T16:19:37.546601639Z"}' }
+  message: '{"water":19,"deviceId":"goat","time":"2016-06-14T16:19:37.546601639Z"}' }
 ...
 ```
 
@@ -178,9 +178,9 @@ We can check the arrival of the messages in the Azure IoT Hub.
 
 ```
 Receiving events...
-09/23/16 21:43:47> Device: [DeviceOne], Data:[{"water":10}]
-09/23/16 21:43:51> Device: [DeviceOne], Data:[{"water":15}]
-09/23/16 21:43:53> Device: [DeviceOne], Data:[{"water":14}]
+09/23/16 21:43:47> Device: [goat], Data:[{"water":10}]
+09/23/16 21:43:51> Device: [goat], Data:[{"water":15}]
+09/23/16 21:43:53> Device: [goat], Data:[{"water":14}]
 ```
 
 ### Monitoring using Command-line
