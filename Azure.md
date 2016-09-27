@@ -16,7 +16,7 @@ To connect to Azure Functions, you will add an Azure Stream Analytics job and Az
 2. Azure account [create here](https://azure.microsoft.com/en-us/free/) _(Azure passes will be present for those who have no Azure account)_
 3. An Azure IoT Hub
 4. A running TTN bridge on your PC and connected to an IoT Hub
-5. A running Device Explorer, connected to the IoT Hub, showing the telemetry comming in
+5. A running Device Explorer or Hub Explorer, connected to the IoT Hub, showing the telemetry comming in
 
 ## Create Azure Stream Analytics job
 
