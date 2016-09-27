@@ -193,7 +193,9 @@ We can check the arrival of the messages in the Azure IoT Hub using the IoT Hub 
 
 *Note : See the [full example](https://github.com/Azure/azure-iot-sdks/tree/master/tools/iothub-explorer) for more options of this tool.*
 
-1. To install the latest (pre-release) version of the iothub-explorer tool, run the following command `npm install -g iothub-explorer@latest` in your command-line environment
+1. Create a new folder eg. `c:\iothubexplorer`
+2. In a dos-box, navigate to the new folder 
+1. In this folder, to install the latest (pre-release) version of the iothub-explorer tool, run the following command `npm install -g iothub-explorer@latest` in your command-line environment
 2. Login to the IoT Hub Explorer by supplying your IoT Hub `Connection String-primary key` using the command `iothub-explorer login "your connection string"`
 3. A session with the IoT Hub will start and it will last for approx. one jour:
 
