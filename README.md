@@ -47,16 +47,15 @@ Creating an IoT Hub takes some time. Meanwhile we will create the bridge.
 
 Follow these steps to create the integration bridge between The Things Network and Azure IoT Hub. NPM will be used to create a folder structure and imstall packages.
 
-1. Install NodeJs
-2. Create a new folder eg. `c:\techdays42`
-3. In a dos-box, navigate to the new folder 
-4. In this new folder, run `npm init` to initialize a new Bridge using Node.js. Some values will be presented to be changed; accept the initial values, only use `server.js` (instead of _index.js_ as entry point, if proposed)
+1. Create a new folder eg. `c:\techdays42`
+2. In a dos-box, navigate to the new folder 
+3. In this new folder, run `npm init` to initialize a new Bridge using Node.js. Some values will be presented to be changed; accept the initial values, only use `server.js` (instead of _index.js_ as entry point, if proposed)
    
    ![alt tag](img/npm-init.png)
    
-5. Accept the changes to be written in a json file with yes (default option)
-6. Run `npm install --save ttn-azure-iothub` to install this package
-7. Create a new file named `server.js` in the folder you created
+4. Accept the changes to be written in a json file with yes (default option)
+5. Run `npm install --save ttn-azure-iothub@1.0-1` to install this package
+6. Create a new file named `server.js` in the folder you created
 
 This server.js file will be edited below but we need some secrets first. We have to collect unique keys of the TTN app and the Azure IoT Hub first.
 
