@@ -10,6 +10,78 @@ This is an example integration between The Things Network and Azure IoT Hub. Thi
 4. Device Explorer (https://github.com/Azure/azure-iot-sdks/blob/master/tools/DeviceExplorer/doc/how_to_use_device_explorer.md)
 
 
+## Connect your device
+
+Follow the workshop facilitator connect the sensors. A few important things:
+
+- The passive infrared sensor (PIR) should be connected to the `5v` and digital pin `2`
+- The water sensor should be connected to the `3v3` and analog pin `0` (`A0`)
+
+Your device and sensors should be connected as follows:
+
+   ![alt tag](img/device-overview.JPG)
+
+   ![alt tag](img/device-vcc-gnd.JPG)
+
+
+## Read sensors
+
+Open the Arduino IDE and follow these steps.
+
+1. Connect The Things Uno to your computer
+2. In the **Tools** menu, click **Board** and select **Arduino Leonardo**
+3. In the **Tools** menu, click **Port** and select the serial port of your Arduino Leonardo
+4. Paste the following code in a new sketch:
+```c
+// Define the pins of your sensors
+#define PIN_PIR 2
+#define PIN_WATER A0
+
+// Setup runs once
+void setup() {
+  pinMode(PIN_PIR, INPUT);
+}
+
+// Loops runs indefinitely
+void loop() {
+  // Read the sensors
+  uint8_t motion = digitalRead(PIN_PIR);
+  uint16_t water = analogRead(PIN_WATER);
+
+  // Only print the water value when there is motion
+  if (motion == HIGH) {
+    Serial.print("Water: ");
+    Serial.println(water);
+  }
+
+  // Wait one second
+  delay(1000);
+}
+```
+5. In the **Sketch** menu, click **Upload**
+6. Once the sketch has been uploaded, go to the **Tools** menu and open the **Serial Monitor**
+7. You should see output like this, only new lines when there is motion (your PIR sensor lights up red):
+```
+Water: 572
+Water: 573 
+...
+```
+
+## Create The Things Network application
+
+Follow the steps to create an application and register your device.
+
+1. Log into the [The Things Network dashboard](https://preview.dashboard.thethingsnetwork.org). You will be asked to provide TTN credentials if needed
+2. Add a new application. Pick a unique Application ID
+    ![alt tag](img/ttn-application.png)
+3. Go to **Manage devices** and click **Register device**
+4. Enter a **Device ID** and click **Randomize** to use a random Device EUI
+5. Click **Settings**
+6. Check **Disable frame counter checks**
+7. Click **Personalize device** and confirm by clicking **Personalize**
+    ![alt tag](img/ttn-device.png)
+
+
 ## Create an Azure IoT Hub
 
 Follow these steps to create an Azure IoT Hub.
@@ -61,22 +133,8 @@ This server.js file will be edited below but we need some secrets first. We have
 
 The integration requires an application and device configured in The Things Network.
 
-1. Log into the [The Things Network dashboard](https://preview.dashboard.thethingsnetwork.org). You will be asked to provide TTN credentials if needed
-2. Add a new application. Pick a unique Application ID
-
-    ![alt tag](img/ttn-application.png)
-
-3. Go to **Manage devices** and click **Register device**
-4. Enter a **Device ID** and click **Randomize** to use a random Device EUI
-5. Click **Settings**
-6. Check **Disable frame counter checks**
-7. Click **Personalize device** and confirm by clicking **Personalize**
-
-    ![alt tag](img/ttn-device.png)
-
-8. Go back to your application by clicking its name in the navigation bar
-9. Scroll down to **Access Keys**. **Write down** the access key
-
+1. Go to your application by clicking its name in the navigation bar
+2. Scroll down to **Access Keys**. **Write down** the access key
     ![alt tag](img/ttn-application-cred.png)
 
 The `Application ID` and `Access Key` are required to get data from The Things Network.
