@@ -1,4 +1,4 @@
-# The Things Network Azure IoT Hub Integration
+# The Things Network Azure IoT Hub Integration Bridge
 
 This is an example integration between The Things Network and Azure IoT Hub. This integration will be offered as a bridge, which features creating devices in the Azure IoT Hub device registry as well as sending events from uplink messages.
 
@@ -21,7 +21,7 @@ This is an example integration between The Things Network and Azure IoT Hub. Thi
 Follow these steps to create an Azure IoT Hub.
 
 1. Log into the [Azure portal](https://portal.azure.com/). You will be asked to provide Azure credentials if needed
-2. On the left, a number of common Azure services is shown. Select `More Services` to open a list with all available services
+2. On the left, a number of common Azure services are shown. Select `More Services` to open a list with all available services
 
     ![alt tag](img/azure-more-services.png)
 
@@ -43,12 +43,12 @@ Follow these steps to create an Azure IoT Hub.
 
     ![alt tag](img/azure-notifications.png)
 
-Creating an IoT Hub takes some time. Meanwhile we will create the bridge.
+Creating an IoT Hub takes some time. Meanwhile, we will create the bridge.
 
 
 ## Create a bridge
 
-Follow these steps to create the integration bridge between The Things Network and Azure IoT Hub. NPM will be used to create a folder structure and imstall packages.
+Follow these steps to create the integration bridge between The Things Network and Azure IoT Hub. NPM will be used to create a folder structure and install packages.
 
 1. Create a new folder eg. `c:\techdays42`
 2. In a dos-box, navigate to the new folder 
@@ -63,7 +63,7 @@ Follow these steps to create the integration bridge between The Things Network a
 This server.js file will be edited below but we need some secrets first. We have to collect unique keys of the TTN app and the Azure IoT Hub first.
 
 
-### TTN App secrets
+### Collect TTN App secrets
 
 The integration requires TTN portal AppEUI and App Access Key.
 
@@ -77,14 +77,14 @@ The integration requires TTN portal AppEUI and App Access Key.
 
     ![alt tag](img/ttn-application.png)
 
-5. the `App EUI` and the `Access Keys` are shown. **Write down** these App EUI and access keys
+5. the `App EUI` and the `Access Keys` are shown. **Write down** both the App EUI and access keys
 
     ![alt tag](img/ttn-application-cred.png)
 
-These are the secrets needed from TTN.
+These are the secrets needed from the TTN app.
 
 
-### Azure IoT Hub secrets
+### Collect Azure IoT Hub secrets
 
 The integration requires an Azure IoT Hub Shared access policy key name with `Registry, Write and Device connect` permissions. In this example, we use the **iothubowner** policy which has these permissions enabled by default.
 
@@ -104,16 +104,16 @@ The integration requires an Azure IoT Hub Shared access policy key name with `Re
 
 6. **Write down** the `name` of the IoT Hub eg. `TechDays42ih`
 7. Navigate to the `iothubowner` policy and **write down** the primary key
-8. In the last step op this tutorial, the 'Connection string-primary key' is needed. Remember this `Connection String-Primary Key`
+8. In the last step op this Bridge tutorial, the 'Connection string-primary key' is needed. **write down** this `Connection String-Primary Key`
 
     ![alt tag](img/azure-iothubowner-policy.png)
 
-These are the secrets needed from Azure.
+These are the secrets needed from the Azure IoT Hub.
 
 
 ### Edit server.js
 
-Edit the file named server.js in the new folder.
+Edit the file named server.js in the new folder. `Fill in` the secrets and `save` the file.
 
 ```js
 'use strict';
@@ -144,6 +144,7 @@ bridge.on('uplink', data => {
 });
 ```
 
+This is the most basic example of a bridge between TTN and Azure. 
 
 ## Start the bridge
 
@@ -162,21 +163,21 @@ Uplink { devEUI: 'goat',
 
 *Note: the message consists of valid Json telemetry.*
 
-Keep the bridge running till the end of the workshop.  
+*Note: Keep the bridge running untill the end of the complete workshop.*  
 
 
 ## Monitoring the arrival of the telemetry in Azure
 
-We can check the arrival of the messages in the Azure IoT Hub. This can be done using a UI app named Device Explorer or using a Command-Line tool named Hub Explorer.
+We can check the arrival of messages in the Azure IoT Hub. This can be done using a UI app named Device Explorer or using a Command-Line tool named IoT Hub Explorer. `Choose one` 
 
 ### Monitoring using UI
 
-We can check the arrival of the messages in the Azure IoT Hub using the Device Explorer. This tool is UI based, please check the installation requirements. 
+We can check the arrival of the messages in the Azure IoT Hub using the Device Explorer. This tool is UI based, please check the installation requirements.
 
 1. Start the `Device Explorer`
 2. On the Configuration Tab, insert the IoT Hub `Connection String-primary key` and the `name` of the IoT Hub (as Protocol Gateway Hostname)
 3. Press `Update`
-4. On the Management tab, your device should already be available. It was registered by the bridge when the very first telemetry arrived
+4. On the Management tab, your device should already be available. It was registered by the bridge the very first time, telemetry arrived
 5. On the Data tab, Select your `Device ID` and press `Monitor`
 
 ```
