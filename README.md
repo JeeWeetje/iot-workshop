@@ -4,14 +4,16 @@ This is an example integration between The Things Network and Azure IoT Hub. Thi
 
 *Note: in this workshop we will build a simple bridge, running on your own computer. See the [full example](https://github.com/TheThingsNetwork/examples/tree/master/integrations/azure) on how to deploy this bridge as a WebJob to Azure.*
 
+*Note: in this workshop we will create uniquely named Azure resources. Use the suggested names merely as a suggestion.*
+
 ### Prerequisites
 
 1. A running TTN node connected to the TTN network
 2. NodeJs (https://nodejs.org/en/). _(We prefer Version 6.6)_
 3. Azure account [create here](https://azure.microsoft.com/en-us/free/) _(Azure passes will be present for those who have no Azure account)_
 4. TTN account (https://account.thethingsnetwork.org/)
-5. Device Explorer _(UI based)_ (https://github.com/Azure/azure-iot-sdks/blob/master/tools/DeviceExplorer/doc/how_to_use_device_explorer.md)
-6. IoT Hub Explorer _(Command-Line based)_ (https://github.com/Azure/azure-iot-sdks/tree/master/tools/iothub-explorer)
+5. Device Explorer _(for UI based usage)_ (https://github.com/Azure/azure-iot-sdks/blob/master/tools/DeviceExplorer/)
+6. IoT Hub Explorer _(for Command-Line based usage)_ (https://github.com/Azure/azure-iot-sdks/tree/master/tools/iothub-explorer)
 
 
 ## Create an Azure IoT Hub
