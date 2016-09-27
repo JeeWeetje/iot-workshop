@@ -148,12 +148,12 @@ Run `npm start` to verify that the bridge works in the new folder. This is examp
 
 ```
 TTN connected
-0004A30B001B442B: Handling uplink
+goat: Handling uplink
 Uplink { devEUI: '0004A30B001B442B',
-  message: '{"lux":1000,"water":19.82,"deviceId":"0004A30B001B442B","time":"2016-06-14T16:19:15.402956092Z"}' }
-0004A30B001B442B: Handling uplink
-Uplink { devEUI: '0004A30B001B442B',
-  message: '{"lux":1010,"water":19.72,"deviceId":"0004A30B001B442B","time":"2016-06-14T16:19:37.546601639Z"}' }
+  message: '{"water":19,"deviceId":"0004A30B001B442B","time":"2016-06-14T16:19:15.402956092Z"}' }
+goat: Handling uplink
+Uplink { devEUI: 'goat',
+  message: '{"water":19,"deviceId":"0004A30B001B442B","time":"2016-06-14T16:19:37.546601639Z"}' }
 ...
 ```
 
