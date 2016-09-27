@@ -16,7 +16,7 @@ To connect to Azure Functions, you will add an Azure Stream Analytics job and Az
 2. Azure account [create here](https://azure.microsoft.com/en-us/free/) _(Azure passes will be present for those who have no Azure account)_
 3. An Azure IoT Hub
 4. A running TTN bridge on your PC and connected to an IoT Hub
-5. A running Device Explorer or Hub Explorer, connected to the IoT Hub, showing the telemetry comming in
+5. A running Device Explorer or IoT Hub Explorer, connected to the IoT Hub, showing the telemetry comming in
 
 ## Create Azure Stream Analytics job
 
@@ -328,7 +328,7 @@ This completes the Azure function and trigger.
 
 ## Receiving telemetry in the Azure Function
 
-By now, the full chain of Azure services is set up. Telemetry from The Things Network is passed by the bridge to the Azure IoT Hub. Azure Stream Analytics passes 'the telemetry to the Azure Function using an Azure Event Hub. So by now, the telemetry will start arriving in the 'Logs' panel.
+By now, the full chain of Azure services is set up. Telemetry from The Things Network is passed by the bridge to the Azure IoT Hub (as seen in one of the two explorers). Azure Stream Analytics passes 'the telemetry to the Azure Function using an Azure Event Hub. So by now, the telemetry will start arriving in the 'Logs' panel.
 
 ```
 2016-09-25T14:58:56.659 Function started (Id=44cf8082-b355-47a1-a220-260e23679eb7)
