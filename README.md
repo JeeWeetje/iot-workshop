@@ -10,7 +10,8 @@ This is an example integration between The Things Network and Azure IoT Hub. Thi
 2. NodeJs (https://nodejs.org/en/). _(We prefer Version 6.6)_
 3. Azure account [create here](https://azure.microsoft.com/en-us/free/) _(Azure passes will be present for those who have no Azure account)_
 4. TTN account (https://account.thethingsnetwork.org/)
-5. Device Explorer (https://github.com/Azure/azure-iot-sdks/blob/master/tools/DeviceExplorer/doc/how_to_use_device_explorer.md)
+5. Device Explorer _(UI based)_ (https://github.com/Azure/azure-iot-sdks/blob/master/tools/DeviceExplorer/doc/how_to_use_device_explorer.md)
+6. IoT Hub Explorer _(Command-Line based)_ (https://github.com/Azure/azure-iot-sdks/tree/master/tools/iothub-explorer)
 
 
 ## Create an Azure IoT Hub
@@ -168,7 +169,7 @@ We can check the arrival of the messages in the Azure IoT Hub. This can be done 
 
 ### Monitoring using UI
 
-We can check the arrival of the messages in the Azure IoT Hub.
+We can check the arrival of the messages in the Azure IoT Hub using the Device Explorer. This tool is UI based, please check the installation requirements. 
 
 1. Start the `Device Explorer`
 2. On the Configuration Tab, insert the IoT Hub `Connection String-primary key` and the `name` of the IoT Hub (as Protocol Gateway Hostname)
@@ -185,7 +186,27 @@ Receiving events...
 
 ### Monitoring using Command-line
 
-Via https://github.com/Azure/azure-iot-sdks/tree/master/tools/iothub-explorer
+We can check the arrival of the messages in the Azure IoT Hub using the IoT Hub Explorer. This tool is Command-Line based, please check the installation requirements. 
+
+*Note : See the [full example](https://github.com/TheThingsNetwork/examples/tree/master/integrations/azure) for more options of this tool.*
+
+1. To install the latest (pre-release) version of the iothub-explorer tool, run the following command `npm install -g iothub-explorer@latest` in your command-line environment
+2. Login to the IoT Hub Explorer by supplying your IoT Hub `Connection String-primary key` using the command `iothub-explorer login "your connection string"`
+3. A session with the IoT Hub will start and it will last for approx. one jour:
+
+```
+Session started, expires Tue Sep 27 2016 18:35:37 GMT+0200 (W. Europe Daylight Time)
+```
+
+4. To monitor the device-to-cloud messages from a device, use the following command and fill in your `Connection String-primary key` and device name in `iothub-explorer "your connection string" monitor-events goat`
+
+```
+Monitoring events from device goat
+Event received:
+{
+  "water": 12
+}
+```
 
 ## Conclusion
 
