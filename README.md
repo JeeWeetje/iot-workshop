@@ -4,7 +4,7 @@ This is an example integration between The Things Network and Azure IoT Hub. Thi
 
 *Note: in this workshop we will build a simple bridge, running on your own computer. See the [full example](https://github.com/TheThingsNetwork/examples/tree/master/integrations/azure) on how to deploy this bridge as a WebJob to Azure.*
 
-*Note: in this workshop we will create uniquely named Azure resources. Use the suggested names merely as a suggestion.*
+*Note: in this workshop we will create uniquely named Azure resources. The suggested names could be reserved already.*
 
 ### Prerequisites
 
@@ -98,15 +98,19 @@ The integration requires an Azure IoT Hub Shared access policy key name with `Re
 
 3. Select the ResourceGroup `TechDays42rg`. It will open a new blade with all resources in this group
 4. Select the IoT Hub `TechDays42ih`. It will open a new blade with the IoT Hub
-5. The IoTHub has not received any messages yet. Check the general settings for `Shared access policies`
 
     ![alt tag](img/azure-iot-hub-initial.png)
 
+5. The IoTHub has not received any messages yet. Check the general settings for `Shared access policies`
+
+    ![alt tag](img/azure-iot-hub-share-access-policy.png)
+
 6. **Write down** the `name` of the IoT Hub eg. `TechDays42ih`
 7. Navigate to the `iothubowner` policy and **write down** the primary key
-8. In the last step op this Bridge tutorial, the 'Connection string-primary key' is needed. **write down** this `Connection String-Primary Key`
 
     ![alt tag](img/azure-iothubowner-policy.png)
+
+8. In the last step op this Bridge tutorial, the 'Connection string-primary key' is needed. **write down** this `Connection String-Primary Key` too
 
 These are the secrets needed from the Azure IoT Hub.
 
