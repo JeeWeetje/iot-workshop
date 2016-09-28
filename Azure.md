@@ -85,7 +85,10 @@ Follow these steps to create an Azure Event Hub which passes large amounts of ev
 12. Select `Create` and the portal will start creating the namespace. Once it is created, a notification is shown
 13. Creating a namespace will take some time, but we want to complete this step
 14. So navigate back to the resource group (repeat step 1 and 2) and check the namespace creation in the resource group
-15. If the namespace becomes listed, select `TechDays42ns`. Otherwise, refresh the list a few times
+15. If the namespace becomes listed, select `TechDays42ns`. Otherwise, 'refresh' the list a few times
+
+    ![alt tag](img/azure-portal-refresh.png)
+
 16. You are now in the namespace blade. It should be shown like this, with all information available (otherwise, refresh a few times):
 
     ![alt tag](img/azure-namespace.png)
@@ -265,47 +268,51 @@ Follow these steps to create an Azure Function, triggered by the Event Hub, insi
     ![alt tag](img/azure-resource-groups.png)
 
 2. Select the ResourceGroup `TechDays42rg`. It will open a new blade with all resources in this group
-3. Select the `TechDays42fa`. If the Function App is not shown yet, refresh the list. The Function app resource will be shown in a new blade
-4. Function Apps are quite new in the Azure portal and the interface is still frequently updated. Check the Function app settings if you want to know the current version.
-5. If you are requested to update the Function App, select `Update`
+3. Select the Azure Function App `TechDays42fa`
+4. If the Function App is not shown yet, `refresh` the list. The Function app resource will be shown in a new blade
+
+    ![alt tag](img/azure-portal-refresh.png)
+
+5. Function Apps are quite new in the Azure portal and the interface is still frequently updated. Check the Function app settings if you want to know the current version.
+6. If you are requested to update the Function App, select `Update`
 
     ![alt tag](img/azure-function-app-update.png)
 
-6. Select `Quickstart`
+7. Select `Quickstart`
 
     ![alt tag](img/azure-function-app-quickstart.png)
 
-7. You will be invited to get started quickly with a premade function. We will create our own custom function. Select at the bottom `Or create your own custom function`
+8. You will be invited to get started quickly with a premade function. We will create our own custom function. Select at the bottom `Or create your own custom function`
 
     ![alt tag](img/azure-function-app-custom-function.png)
 
-8. Azure Functions are triggered by events in Azure. A list of possible triggers is shown. At this moment there are 50+ C#, Python, Powershell, Bash and Node triggers. Select the `EventHubTrigger - C#`
+9. Azure Functions are triggered by events in Azure. A list of possible triggers is shown. At this moment there are 50+ C#, Python, Powershell, Bash and Node triggers. Select the `EventHubTrigger - C#`
 
     ![alt tag](img/azure-function-app-eventhubtrigger.png)
 
-9. At the bottom of the page (use the scrollbar of the page), you have to fill in the field 'Name your function'. Change `EventHubTriggerCSharp1` into `TechDaysEventHubTriggerFunction`
-10. In the field 'Event Hub name' you will have to pass the *remembered* name of the Event Hub eg. `techdays42eh` *Note: in lower case*
-11. The 'Event Hub connection' field can be filled by pressing the `new` link
-12. A blade with an empty list of connection strings will be shown. Press `Add a connection string`
+10. At the bottom of the page (use the scrollbar of the page), you have to fill in the field 'Name your function'. Change `EventHubTriggerCSharp1` into `TechDaysEventHubTriggerFunction`
+11. In the field 'Event Hub name' you will have to pass the *remembered* name of the Event Hub eg. `techdays42eh` *Note: in lower case*
+12. The 'Event Hub connection' field can be filled by pressing the `new` link
+13. A blade with an empty list of connection strings will be shown. Press `Add a connection string`
 
     ![alt tag](img/azure-function-app-add-connectionstring.png)
 
-13. In a new blade, enter some name in the 'Connection name' field eg. `RootManageSharedAccessKey`. A green sign will be shown if the name is correct
-14. In the 'Connection string' field you will have to pass the *remembered* `Connection String-Primary Key` of the Event Hub namespace connection string. A green sign will be shown if the name is correct
+14. In a new blade, enter some name in the 'Connection name' field eg. `RootManageSharedAccessKey`. A green sign will be shown if the name is correct
+15. In the 'Connection string' field you will have to pass the *remembered* `Connection String-Primary Key` of the Event Hub namespace connection string. A green sign will be shown if the name is correct
 
     ![alt tag](img/azure-function-app-connectionstring.png)
 
-15. Select `OK`
-16. The Connection string is now entered in the right field
+16. Select `OK`
+17. The Connection string is now entered in the right field
 
     ![alt tag](img/azure-function-app-eventhubtrigger-new.png)
 
-17. Select `Create`
+18. Select `Create`
 
     ![alt tag](img/azure-portal-create.png)
 
-18. The function and trigger are saved. The develop page is shown. In the middle, you will see the function in the 'Code' panel. The 'Logs' panel works like a trace log. 
-19. Update the code a bit, change the string in the log.Info() call eg.
+19. The function and trigger are saved. The develop page is shown. In the middle, you will see the function in the 'Code' panel. The 'Logs' panel works like a trace log. 
+20. Update the code a bit, change the string in the log.Info() call eg.
 
     ```csharp
     using System;
@@ -316,8 +323,8 @@ Follow these steps to create an Azure Function, triggered by the Event Hub, insi
     }
     ```
 
-20. Select `Save`. The changed C# code will be recompiled immediately
-21. In the 'Logs' panel the outcome of the compilation is shown
+21. Select `Save`. The changed C# code will be recompiled immediately
+22. In the 'Logs' panel, just below 'Code', `verify the outcome` of the compilation
 
     ```
     2016-09-25T12:23:35.380 Script for function 'TechDaysEventHubTriggerFunction' changed. Reloading.
