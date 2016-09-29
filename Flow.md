@@ -52,7 +52,7 @@ Follow these steps to create an endpoint in Microsoft Flow to send telemetry dat
 
 8. Then select the `Request` step. This is an incoming API call that could use actions in a Logic App or other API to trigger this flow. *Note: We will call this API from Azure Functions later on.*
 
-    ![alt tag](img/flow-input-request.png)
+    ![alt tag](img/flow-input-request2.png)
 
 9. We will post a Json object to the Request step. Enter this 'Request Body JSON Schema' to transform this Json object to an entity. This way, Microsoft Flow can handle the fields in the message.
 
