@@ -1,8 +1,10 @@
-# Pushing telemetry messages to Slack
+# Pushing telemetry messages to Microsoft Flow and beyond
 
-This is an example of how messages from Azure Functions can be passed to an external service, eg. Slack, using Microsoft Flow. 
+This is an example of how messages from Azure Functions can be passed to an external service, eg. Mail, using Microsoft Flow. 
 
 Microsoft Flow is a brand new SaaS offering, available today in preview, for automating workflows across the growing number of applications and SaaS services that business users rely on. How much time do we spend sifting through streams of messages for the few notifications that matter? How much manual labor is spent transferring information from one place to another, or entering data into tracking systems? Too often these tasks are done manually, or not done at all.
+
+We will pass the telemetry to an email address provided by you.
 
 ![alt tag](img/arch/flow-overview.png)
 
@@ -21,4 +23,10 @@ Microsoft Flow is a brand new SaaS offering, available today in preview, for aut
 
 Follow these steps to create an endpoint in Microsoft Flow to send telemetry data to. From there we can use the data in an "If Then Else" flow.
 
-1. 
+*Note: If you have no account yet, please sign up first (You can sign up for free using the button at the top of the page).*
+
+1. Log into the [Microsoft flow portal](https://portal.azure.com/). You will be asked to provide Azure credentials if needed
+
+![alt tag](img/flow-introduction.png)
+
+2. 
