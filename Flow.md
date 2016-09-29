@@ -80,7 +80,7 @@ Follow these steps to create an endpoint in Microsoft Flow to send telemetry dat
     }
     ```
 
-11. This step is ready. After the creation of this flow the enpoint will be provided.
+11. This step is ready. After the creation of this flow the enpoint will be provided
 12. Select `New step`
 
     ![alt tag](img/flow-portal-new-step.png)
@@ -97,8 +97,8 @@ Follow these steps to create an endpoint in Microsoft Flow to send telemetry dat
 
     ![alt tag](img/flow-portal-condition-fields.png)
 
-16. Select the `level` field.
-17. Because we want to be warned when the level is less then a certain value, select `is less then` operator.
+16. Select the `level` field
+17. Because we want to be warned when the level is less then a certain value, select `is less then` operator
 
     ![alt tag](img/flow-portal-condition-less-then.png)
 
@@ -114,7 +114,7 @@ Follow these steps to create an endpoint in Microsoft Flow to send telemetry dat
 
     ![alt tag](img/flow-condition-true-add-mail.png)
 
-21. Create a connection for Mail. `Accept` the SendGrid terms and privacy policy *Note: SendGrid is a third party email provider.*
+21. Create a connection for Mail. `Accept` the SendGrid terms and privacy policy *Note: SendGrid is a third party email provider*
 
     ![alt tag](img/flow-condition-true-mail-step.png)
 
@@ -132,11 +132,11 @@ Follow these steps to create an endpoint in Microsoft Flow to send telemetry dat
 
     ![alt tag](img/flow-portal-flow-creation-done.png)
 
-Although the flow is created and almost active we still need to do one thing more. By this time , the endpoint of the Request step will be created. 
+Although the flow is created and almost active we still need to do one thing more. By this time , the endpoint of the Request step is already created. 
 
 ## Getting the API endpoint of the Request step
 
-Before we can pass telemetry to this flow, we need to have the API endpoint of the Request step
+Before we can pass telemetry to this flow, we need to have the API endpoint of the Request step.
 
 1. Select `My flows`
 
@@ -160,7 +160,7 @@ Before we can pass telemetry to this flow, we need to have the API endpoint of t
 
     ![alt tag](img/flow-portal-close.png)
 
-Now we have the url of the endpoint. We will call it inside the Azure Function
+Now we have the url of the endpoint. We will call it inside the Azure Function.
 
 ## Altering the azure function for Microsoft Flow access
 
