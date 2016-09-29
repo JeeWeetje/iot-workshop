@@ -50,11 +50,15 @@ Follow these steps to create an endpoint in Microsoft Flow to send telemetry dat
 
     ![alt tag](img/flow-input-more-with-name.png)
 
-8. Then select the `Request` step. This is an incoming API call that could use actions in a Logic App or other API to trigger this flow. *Note: We will call this API from Azure Functions later on.*
+8. `Scroll down` until a step called 'Request' is shown
+
+    ![alt tag](img/flow-request-step-init.png)
+
+9. Then select the `Request` step. This is an incoming API call that could use actions in a Logic App or other API to trigger this flow. *Note: We will call this API from Azure Functions later on.*
 
     ![alt tag](img/flow-input-request2.png)
 
-9. We will post a Json object to the Request step. Enter this 'Request Body JSON Schema' to transform this Json object to an entity. This way, Microsoft Flow can handle the fields in the message.
+10. We will post a Json object to the Request step. Enter this 'Request Body JSON Schema' to transform this Json object to an entity. This way, Microsoft Flow can handle the fields in the message.
 
     ```json
     {
@@ -76,55 +80,55 @@ Follow these steps to create an endpoint in Microsoft Flow to send telemetry dat
     }
     ```
 
-10. This step is ready. After the creation of this flow the enpoint will be provided.
-11. Select `New step`
+11. This step is ready. After the creation of this flow the enpoint will be provided.
+12. Select `New step`
 
     ![alt tag](img/flow-portal-new-step.png)
 
-12. In this flow we will mail conditionally. So select `Add a condition`
+13. In this flow we will mail conditionally. So select `Add a condition`
 
     ![alt tag](img/flow-portal-add-a-condition.png)
 
-13. This is the hart of the Flow. We have to provide a condition (like 'Level is higher then 15'). And if it's true, a certain step will be executed. Otherwise, the other step will be executed *Note: The latter is optional.*
+14. This is the hart of the Flow. We have to provide a condition (like 'Level is higher then 15'). And if it's true, a certain step will be executed. Otherwise, the other step will be executed *Note: The latter is optional.*
 
     ![alt tag](img/flow-portal-condition-init.png)
 
-14. Enter the left field with 'Choose a value'. The previous Request step can output an entity with fields like 'deviceId', 'time' and 'level'. So here you can compare one of the field with another value. 
+15. Enter the left field with 'Choose a value'. The previous Request step can output an entity with fields like 'deviceId', 'time' and 'level'. So here you can compare one of the field with another value. 
 
     ![alt tag](img/flow-portal-condition-fields.png)
 
-15. Select the `level` field.
-16. Because we want to be warned when the level is less then a certain value, select `is less then` operator.
+16. Select the `level` field.
+17. Because we want to be warned when the level is less then a certain value, select `is less then` operator.
 
     ![alt tag](img/flow-portal-condition-less-then.png)
 
-17. Finally, enter `42` in the right field
+18. Finally, enter `42` in the right field
 
     ![alt tag](img/flow-portal-condition-less-then-42.png)
 
-18. We have created a condition. Let's act to it. In the left, Change 'IF YES, DO NOTHING' into doing something by selecting `Add an Action`
+19. We have created a condition. Let's act to it. In the left, Change 'IF YES, DO NOTHING' into doing something by selecting `Add an Action`
 
     ![alt tag](img/flow-condition-true-add-action.png)
 
-19. Select the `Mail - Send email` step
+20. Select the `Mail - Send email` step
 
     ![alt tag](img/flow-condition-true-add-mail.png)
 
-20. Create a connection for Mail. `Accept` the SendGrid terms and privacy policy *Note: SendGrid is a third party email provider.*
+21. Create a connection for Mail. `Accept` the SendGrid terms and privacy policy *Note: SendGrid is a third party email provider.*
 
     ![alt tag](img/flow-condition-true-mail-step.png)
 
-21. Enter `your own email address` in the 'To' field 
-22. Enter `Check the level of device ` plus the entity field 'deviceId' in the 'Subject' field 
-23. Enter `Hurry up, the level just got below ` plus the entity field 'level' in the 'Email body' field 
+22. Enter `your own email address` in the 'To' field 
+23. Enter `Check the level of device ` plus the entity field 'deviceId' in the 'Subject' field 
+24. Enter `Hurry up, the level just got below ` plus the entity field 'level' in the 'Email body' field 
 
     ![alt tag](img/flow-condition-true-mail-step-filled-in.png)
 
-24. This Mail step is ready, the flow is ready. Select `Create flow`
+25. This Mail step is ready, the flow is ready. Select `Create flow`
 
     ![alt tag](img/flow-portal-create-flow.png)
 
-25. The flow is now being created. We have to wait a moment to get it starting up. Select `Done`
+26. The flow is now being created. We have to wait a moment to get it starting up. Select `Done`
 
     ![alt tag](img/flow-portal-flow-creation-done.png)
 
