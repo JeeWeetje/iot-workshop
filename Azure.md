@@ -24,7 +24,7 @@ Follow these steps to create an Azure Stream Analytics job which takes messages 
 
 *Note: in this workshop we will not dive too deep into Stream Analytics. See for [more information](https://azure.microsoft.com/en-us/documentation/articles/stream-analytics-real-time-event-processing-reference-architecture/).*
 
-1. Log into the [Azure portal](https://portal.azure.com/). You will be asked to provide Azure credentials if needed
+1. `Log into` the [Azure portal](https://portal.azure.com/). You will be asked to provide Azure credentials if needed
 2. On the left, select `Resource groups`. A list of resource groups is shown
 
     ![alt tag](img/azure-resource-groups.png)
