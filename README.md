@@ -1,4 +1,5 @@
-# The Things Network Azure IoT Hub Integration Bridge
+# The Things Network & Azure IoT in unison
+## The Things Network Azure IoT Hub Integration Bridge
 
 This is an example integration between The Things Network and Azure IoT Hub. This integration will be offered as a bridge, which features creating devices in the Azure IoT Hub device registry as well as sending events from uplink messages.
 
@@ -6,19 +7,23 @@ This is an example integration between The Things Network and Azure IoT Hub. Thi
 
 ### Prerequisites
 
-1. A running TTN node connected to the TTN network
-2. NodeJs (https://nodejs.org/en/). _(We prefer Version 6.6)_
-3. Azure account [create here](https://azure.microsoft.com/en-us/free/) _(Azure passes will be present for those who have no Azure account)_
-4. TTN account (https://account.thethingsnetwork.org/)
-5. [Device Explorer](https://github.com/Azure/azure-iot-sdks/blob/master/tools/DeviceExplorer/) _(for UI based usage)_ 
-6. [IoT Hub Explorer](https://github.com/Azure/azure-iot-sdks/tree/master/tools/iothub-explorer) _(for Command-Line based usage)_ 
+1. A The Things Uno, a Grove - Water Sensor, a Grove - PIR Motion Sensor, wiring
+2. Arduino IDE [http://arduino.cc](http://arduino.cc)
+3. Node.js [https://nodejs.org/en/](https://nodejs.org/en/). _(We prefer Version 6.6)_
+4. Azure account [create here](https://azure.microsoft.com/en-us/free/) _([Azure passes](https://www.microsoftazurepass.com/howto) will be present for those who have no Azure account)_
+5. TTN account [https://account.thethingsnetwork.org/](https://account.thethingsnetwork.org/)
+6. [IoT Hub Explorer](https://github.com/Azure/azure-iot-sdks/tree/master/tools/iothub-explorer) _(for Command-Line interface  based usage)_ or [Device Explorer](https://github.com/Azure/azure-iot-sdks/blob/master/tools/DeviceExplorer/) _(for GUI based usage)_  
 
 ## Connect your device
 
 Follow the workshop facilitator connect the sensors. A few important things:
 
-- The passive infrared sensor (PIR) should be connected to the `5v` and digital pin `2`
-- The water sensor should be connected to the `3v3` and analog pin `0` (`A0`)
+- The passive infrared sensor (PIR) VCC pin is connected to the `5v` pin on the The Things Uno
+- The passive infrared sensor (PIR) SIG pin is connected to the digital pin `2` (third pin in the pin header) on the The Things Uno
+- The passive infrared sensor (PIR) GND pin is connected to one of the `GND` pins on the The Things Uno
+- The water sensor VCC pin is connected to the `3v3` pin on the The Things Uno 
+- The water sensor SIG pin is connected to the analog pin `A0` on the The Things Network Uno
+- The water sensor GND pin is connected to one of the `GND` pins on the The Things Uno
 
 Your device and sensors should be connected as follows:
 
@@ -26,49 +31,52 @@ Your device and sensors should be connected as follows:
 
    ![alt tag](img/device-vcc-gnd.JPG)
 
-
 ## Read sensors
 
 Open the Arduino IDE and follow these steps.
 
-1. Connect The Things Uno to your computer
+1. Connect The Things Uno via the micro USB cable to your computer
 2. In the **Tools** menu, click **Board** and select **Arduino Leonardo**
-3. In the **Tools** menu, click **Port** and select the serial port of your Arduino Leonardo
+3. In the **Tools** menu, click **Port** and select the serial port of your **COMx (Arduino Leonardo)**
 4. Paste the following code in a new sketch:
-```c
-// Define the pins of your sensors
-#define PIN_PIR 2
-#define PIN_WATER A0
 
-// Setup runs once
-void setup() {
-  pinMode(PIN_PIR, INPUT);
-}
+    ```c
+    // Define the pins of your sensors
+    #define PIN_PIR 2
+    #define PIN_WATER A0
 
-// Loops runs indefinitely
-void loop() {
-  // Read the sensors
-  uint8_t motion = digitalRead(PIN_PIR);
-  uint16_t water = analogRead(PIN_WATER);
+    // Setup runs once
+    void setup() {
+      pinMode(PIN_PIR, INPUT);
+    }
 
-  // Only print the water value when there is motion
-  if (motion == HIGH) {
-    Serial.print("Water: ");
-    Serial.println(water);
-  }
+    // Loops runs indefinitely
+    void loop() {
+      // Read the sensors
+      uint8_t motion = digitalRead(PIN_PIR);
+      uint16_t waterLevel = analogRead(PIN_WATER);
 
-  // Wait one second
-  delay(1000);
-}
-```
-5. In the **Sketch** menu, click **Upload**
-6. Once the sketch has been uploaded, go to the **Tools** menu and open the **Serial Monitor**
-7. You should see output like this, only new lines when there is motion (your PIR sensor lights up red):
-```
-Water: 572
-Water: 573 
-...
-```
+      // Only print the water value when there is motion
+      if (motion == HIGH) {
+        Serial.print("Water level: ");
+        Serial.println(waterLevel);
+      }
+
+      // Wait one second
+      delay(1000);
+    }
+    ```
+
+5. In the **Sketch** menu, click **Verify/Compile**
+6. In the **Sketch** menu, click **Upload**
+7. Once the sketch has been uploaded, go to the **Tools** menu and open the **Serial Monitor**
+8. You should see output like this, only new lines when there is motion (your PIR sensor lights up red):
+
+    ```
+    Water level: 572
+    Water level: 573 
+    ...
+    ```
 
 ## Create The Things Network application
 
@@ -76,106 +84,117 @@ Follow the steps to create an application and register your device.
 
 1. Log into the [The Things Network dashboard](https://preview.dashboard.thethingsnetwork.org). You will be asked to provide TTN credentials if needed
 2. Add a new application. Pick a unique Application ID
+
     ![alt tag](img/ttn-application.png)
+
 3. Go to **Manage devices** and click **Register device**
 4. Enter a **Device ID** and click **Randomize** to use a random Device EUI
 5. Click **Settings**
 6. Check **Disable frame counter checks**
 7. Click **Personalize device** and confirm by clicking **Personalize**
-    ![alt tag](img/ttn-device.png)
-8. Keep this page open, you need the device address, network session key and application session key in a minute
 
+    ![alt tag](img/ttn-device.png)
+
+8. Keep this page open, you need the device address, network session key and application session key in a minute
 
 ## Send data from your device
 
-In the Arduino IDE, create a new sketch and paste the following code.
+The sensor data is read, now it is time to send the sensor data to The Things Network. 
 
-```c
-#include <TheThingsNetwork.h>
+1. In the Arduino IDE, from the **File** menu, choose **New** to create a new sketch and paste the following code:
 
-// Set your DevAddr
-const byte devAddr[4] = { ... }; //for example: {0x02, 0xDE, 0xAE, 0x00};
+    ```c
+    #include <TheThingsNetwork.h>
 
-// Set your NwkSKey and AppSKey
-const byte nwkSKey[16] = { ... }; //for example: {0x2B, 0x7E, 0x15, 0x16, 0x28, 0xAE, 0xD2, 0xA6, 0xAB, 0xF7, 0x15, 0x88, 0x09, 0xCF, 0x4F, 0x3C};
-const byte appSKey[16] = { ... }; //for example: {0x2B, 0x7E, 0x15, 0x16, 0x28, 0xAE, 0xD2, 0xA6, 0xAB, 0xF7, 0x15, 0x88, 0x09, 0xCF, 0x4F, 0x3C};
+    // Set your DevAddr
+    const byte devAddr[4] = { ... }; //for example: {0x02, 0xDE, 0xAE, 0x00};
 
-TheThingsNetwork ttn;
+    // Set your NwkSKey and AppSKey
+    const byte nwkSKey[16] = { ... }; //for example: {0x2B, 0x7E, 0x15, 0x16, 0x28, 0xAE, 0xD2, 0xA6, 0xAB, 0xF7, 0x15, 0x88, 0x09, 0xCF, 0x4F, 0x3C};
+    const byte appSKey[16] = { ... }; //for example: {0x2B, 0x7E, 0x15, 0x16, 0x28, 0xAE, 0xD2, 0xA6, 0xAB, 0xF7, 0x15, 0x88, 0x09, 0xCF, 0x4F, 0x3C};
 
-// Define the pins of your sensors
-#define PIN_PIR 2
-#define PIN_WATER A0
+    TheThingsNetwork ttn;
 
-// Setup runs once
-void setup() {
-  // The PIR is a digital input
-  pinMode(PIN_PIR, INPUT);
+    // Define the pins of your sensors
+    #define PIN_PIR 2
+    #define PIN_WATER A0
 
-  Serial.begin(9600);
-  Serial1.begin(57600);
+    // Setup runs once
+    void setup() {
+      // The PIR is a digital input
+      pinMode(PIN_PIR, INPUT);
 
-  ttn.init(Serial1, Serial);
-  ttn.reset();
+      Serial.begin(9600);
+      Serial1.begin(57600);
 
-  //the device will configure the LoRa module
-  ttn.personalize(devAddr, nwkSKey, appSKey);
+      ttn.init(Serial1, Serial);
+      ttn.reset();
 
-  ttn.showStatus();
-  Serial.println("Setup for The Things Network complete");
-}
+      //the device will configure the LoRa module
+      ttn.personalize(devAddr, nwkSKey, appSKey);
 
-// Loop runs indefinitely
-void loop() {
-  // Read sensors
-  uint8_t motion = digitalRead(PIN_PIR);
-  uint16_t water = analogRead(PIN_WATER);
+      ttn.showStatus();
+      Serial.println("Setup for The Things Network complete");
+    }
 
-  // Check if there is motion
-  if (motion == HIGH) {
-    // Print the water value
-    Serial.print("Water: ");
-    Serial.println(water);
+    // Loop runs indefinitely
+    void loop() {
+      // Read sensors
+      uint8_t motion = digitalRead(PIN_PIR);
+      uint16_t water = analogRead(PIN_WATER);
 
-    // Send data to The Things Network
-    byte buffer[2];
-    buffer[0] = highByte(water);
-    buffer[1] = lowByte(water);
-    ttn.sendBytes(buffer, sizeof(buffer));
-  }
+      // Check if there is motion
+      if (motion == HIGH) {
+        // Print the water value
+        Serial.print("Water: ");
+        Serial.println(water);
 
-  // Wait 10 seconds
-  delay(10000);
-}
-```
+        // Send data to The Things Network
+        byte buffer[2];
+        buffer[0] = highByte(water);
+        buffer[1] = lowByte(water);
+        ttn.sendBytes(buffer, sizeof(buffer));
+      }
 
-1. Insert your device address in `devAddr`, nework session key in `nwkSkey` and application session key in `appSKey`. You can use the handy `<>` button in the dashboard to copy it quickly as a C-style byte array; exactly what Arduino wants.
-2. In the **Sketch** menu, click **Upload**
-3. Open the **Serial Monitor** again from the **Tools** menu once upload has completed. Your device should now be sending data to The Things Network
-4. In The Things Network dashboard, go to **Data**. You see packets coming in:
+      // Wait 10 seconds
+      delay(10000);
+    }
+    ```
+
+2. Insert your device address in `devAddr`, nework session key in `nwkSkey` and application session key in `appSKey`. You can use the handy `<>` button in the dashboard to copy it quickly as a C-style byte array; exactly what Arduino wants.
+3. In the **Sketch** menu, click **Upload**
+4. Open the **Serial Monitor** again from the **Tools** menu once upload has completed. Your device should now be sending data to The Things Network
+5. In The Things Network dashboard, go to **Data**. You see packets coming in:
+    
     ![alt tag](img/device-payload-binary.png)
-5. Now, binary payload is not really useful in upstream. Therefore, we have payload functions.
-6. In the application overview, click **Payload Functions**
-7. Add the following **decoder** function to decode the two bytes back to a 16 bit integer called `water`:
-```c
-function Decoder(bytes) {
-  var water = (bytes[0] << 8) | bytes[1];
-  return {
-    water: water
-  };
-}
-```
-8. We want to invert the resistance of the water sensor, so that more water is a higher value. The maximum value of 3v3 analog ADC conersion is `682`, so use the following as the **converter**:
-```
-function Converter(decodedObj) {
-  decodedObj.water = 682 - decodedObj.water;
-  return decodedObj;
-}
-```
-9. Go back to your data overview. Now you should see something like this:
+
+6. Now, binary payload is not really useful in upstream. Therefore, we have payload functions.
+7. In the application overview, click **Payload Functions**
+8. Add the following **decoder** function to decode the two bytes back to a 16 bit integer called `water`:
+
+    ```c
+    function Decoder(bytes) {
+      var water = (bytes[0] << 8) | bytes[1];
+      return {
+        water: water
+      };
+    }
+    ```
+
+9. We want to invert the resistance of the water sensor, so that more water is a higher value. The maximum value of 3v3 analog ADC conersion is `682`, so use the following as the **converter**:
+    
+    ```
+    function Converter(decodedObj) {
+      decodedObj.water = 682 - decodedObj.water;
+      return decodedObj;
+    }
+    ```
+
+10. Go back to your data overview. Now you should see something like this:
+
     ![alt tag](img/device-payload-fields.png)
 
 Now we have clean data ready to be processed in Azure IoT Hub and upstream.
-
 
 ## Create an Azure IoT Hub
 
