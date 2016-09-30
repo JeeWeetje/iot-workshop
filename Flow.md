@@ -15,7 +15,7 @@ We will pass the telemetry to an email address provided by you.
 1. An Azure Function written in C# to recieve telemetry from The Things Network
 2. Telemetry arriving at the Azure Function
 3. Azure account [create here](https://azure.microsoft.com/en-us/free/) _(Azure passes will be present for those who have no Azure account)_
-4. A Microsoft account for Microsoft Flow
+4. A Microsoft account for Microsoft Flow [signup here](https://flow.microsoft.com/)
 5. A Slack account _(optional)_
 6. A Twitter account _(optional)_
 
