@@ -106,7 +106,7 @@ The Event Hub is now created. But before we leave the namespace it is created in
 
 A few steps below we will create an Azure Functions triggered by an Event Hub. At this moment, in the editor of the Azure portal, the Azure functions can not automatically connect to an Event Hub. We need some secrets to do it by hand.
 
-1. Within the namespace blade, select the general setting `Share access policies`
+1. Within the namespace blade, select the general setting `Shared access policies`
 2. select the `RootManageSharedAccessKey` policy
 
     ![alt tag](img/azure-eventhub-policy.png)
