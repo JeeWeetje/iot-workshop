@@ -12,10 +12,10 @@ On top of that there will be a team of experts present to help out and have an i
 Technologies covered are: `Arduino`, `LoRaWAN`, `TTN Technology`, `Azure IoT Hub`, `Azure Event Hubs`, `Azure Stream Analytics` and `Azure Functions`.
 
 ## Team of experts
-- Valery Jakobs, Technical Evangelist at Microsoft 
-- Johan Stokking; architect & co-founder at The Things Network
-- Sander van de Velde; Microsoft Consultant at Atos
-- Jan Willem Groenenberg; Microsoft Consultant at Atos
+- Valery Jacobs, Technical Evangelist at Microsoft [ ![Twitter](img/social/twitter.png) ](https://twitter.com/valeryjacobs)
+- Johan Stokking; architect & co-founder at The Things Network [ ![Twitter](img/social/twitter.png) ](https://twitter.com/johanstokking)
+- Sander van de Velde; Microsoft Consultant at Atos [ ![Twitter](img/social/twitter.png) ](https://twitter.com/svelde)
+- Jan Willem Groenenberg; Microsoft Consultant at Atos [ ![Twitter](img/social/twitter.png) ](https://twitter.com/jeeweetje)
 
 ## Workshop schedule at Microsoft TechDays 2016
 | StartTime | EndTime | Room |
