@@ -38,4 +38,6 @@ Follow these steps to deploy an Azure WebJob using Node.js that runs the integra
 [06/14/2016 16:28:29 > 996af8: INFO]   message: '{"lux":1000,"temperature":19.82,"deviceId":"0004A30B001B442B","time":"2016-06-14T16:28:28.908965124Z"}' }
 ```
 
-You have now deployed the whole upstream to the Azure cloud.
+You have now deployed the whole upstream to the Azure cloud. You have succesfully acomplished all available steps of this workshop.
+
+![Workshop provided by Microsoft, The Things Network and Atos](img/logos/microsoft-ttn-atos.png)
