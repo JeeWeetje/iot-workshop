@@ -1,4 +1,5 @@
-# Handling The Things Network telemetry in Azure
+# The Things Network & Azure IoT in unison
+## Handling The Things Network telemetry in Azure
 
 This is an example of how uplink messages from The Things Network can be handled in Azure. In this workshop we will pass telemetry of your device to Azure Functions. 
 
@@ -19,6 +20,8 @@ Before connecting to Azure Functions, you will first add an Azure Stream Analyti
 5. A running Device Explorer or IoT Hub Explorer, connected to the IoT Hub, showing the telemetry coming in
 
 ## Create Azure Stream Analytics job
+
+![alt tag](img/msft/Picture10-stream-data-to-an-event-hub.png)
 
 Follow these steps to create an Azure Stream Analytics job which takes messages from your IoT Hub. These jobs can handle great amounts of messages, executing an SQL-like query. Stream Analytics Jobs are great for time window related queries.
 
