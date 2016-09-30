@@ -169,9 +169,9 @@ Follow these steps to write the query of Azure Stream Analytics job.
 
     ```sql
     SELECT
-        CAST(water as bigint) as level,
-        EventProcessedUtcTime,
-        IoTHub.ConnectionDeviceId
+        CAST(level as bigint) as level,
+        EventProcessedUtcTime as time,
+        IoTHub.ConnectionDeviceId as deviceId
     INTO
         huboutput 
     FROM

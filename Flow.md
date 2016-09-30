@@ -52,13 +52,14 @@ Follow these steps to create an endpoint in Microsoft Flow to send telemetry dat
 
 8. `Scroll down` until a step called 'Request' is shown
 
-    ![alt tag](img/flow-request-step-init.png)
-
-9. Then select the `Request` step. This is an incoming API call that could use actions in a Logic App or other API to trigger this flow. *Note: We will call this API from Azure Functions later on*
-
     ![alt tag](img/flow-input-request2.png)
 
-10. We will post a Json object to the Request step. Enter this 'Request Body JSON Schema' to transform this Json object to an entity. This way, Microsoft Flow can handle the fields in the message
+9. Then select the `Request` step
+
+    ![alt tag](img/flow-request-step-init.png)
+
+10. This is an incoming API call and we will use Azure Functions to trigger this flow. The URL will be generated after save. *Note: We will call this API from Azure Functions later on*
+11. We will post a Json object to the Request step. Flow can not handle this object directly. Therefor, enter this 'Request Body JSON Schema' to transform this Json object into an entity. This way, Microsoft Flow can handle the fields in the message
 
     ```json
     {
@@ -80,55 +81,55 @@ Follow these steps to create an endpoint in Microsoft Flow to send telemetry dat
     }
     ```
 
-    After the creation of this flow the enpoint will be provided
-11. Select `New step`
+12. The URL endpoint will be provided after the creation of this flow. So we leave it empty for now. The Request step is ready now
+13. Select `New step`
 
     ![alt tag](img/flow-portal-new-step.png)
 
-12. In this flow we will mail conditionally. So select `Add a condition`
+14. In this flow we will mail conditionally. So select `Add a condition` to add that condition
 
     ![alt tag](img/flow-portal-add-a-condition.png)
 
-13. This is the hart of the Flow. We have to provide a condition (like 'Level is higher then 15'). And if it's true, a certain step will be executed. Otherwise, the other step will be executed *Note: The first or the latter are optional*
+14. This is the hart of the Flow. We have to provide a condition (like 'Level is higher then 15'). And if it's true, a certain step will be executed. Otherwise, the other step will be executed. *Note: The first or the latter are optional*
 
     ![alt tag](img/flow-portal-condition-init.png)
 
-14. Enter the left field with 'Choose a value'. The previous Request step can output an entity with fields like 'deviceId', 'time' and 'level'. So here you can compare one of the field with another value
+15. Enter the left field with 'Choose a value'. The previous Request step will output an entity with fields like 'deviceId', 'time' and 'level'. So here you can compare one of the fields with another value
 
     ![alt tag](img/flow-portal-condition-fields.png)
 
-15. Select the `level` field
-16. Because we want to be warned when the level is less then a certain value, select `is less then` operator
+16. Select the `level` field
+17. Because we want to be warned when the level is less then a certain value, select `is less then` operator
 
     ![alt tag](img/flow-portal-condition-less-then.png)
 
-17. Finally, enter `42` in the right field
+18. Finally, enter `42` in the right field
 
     ![alt tag](img/flow-portal-condition-less-then-42.png)
 
-18. We have created a condition. Let's act to it. In the left, Change 'IF YES, DO NOTHING' into doing something by selecting `Add an Action`
+19. We have created a condition. Let's act to it. In the left, Change the 'IF YES, DO NOTHING' block into 'IF YES' by selecting `Add an Action`
 
     ![alt tag](img/flow-condition-true-add-action.png)
 
-19. Select the `Mail - Send email` step
+20. Select the `Mail - Send email` step
 
     ![alt tag](img/flow-condition-true-add-mail.png)
 
-20. Create a connection for Mail. `Accept` the SendGrid terms and privacy policy *Note: SendGrid is a third party email provider*
+21. Create a connection for Mail. `Accept` the SendGrid terms and privacy policy *Note: SendGrid is a third party email provider*
 
     ![alt tag](img/flow-condition-true-mail-step.png)
 
-21. Enter `your own email address` in the 'To' field 
-22. Enter `Check the level of device ` plus the entity field 'deviceId' in the 'Subject' field 
-23. Enter `Hurry up, the level just got below ` plus the entity field 'level' in the 'Email body' field 
+22. Enter `your own email address` in the 'To' field 
+23. Enter `Check the level of device ` plus the entity field 'deviceId' in the 'Subject' field 
+24. Enter `Hurry up, the level just got below ` plus the entity field 'level' in the 'Email body' field 
 
     ![alt tag](img/flow-condition-true-mail-step-filled-in.png)
 
-24. This Mail step is ready, the flow is ready. Select `Create flow`
+25. This Mail step is ready, ans so the flow is ready. Select `Create flow`
 
     ![alt tag](img/flow-portal-create-flow.png)
 
-25. The flow is now being created. We have to wait a moment to get it starting up. Select `Done`
+26. The flow is now being created. We have to wait a moment to get it starting up. Select `Done`
 
     ![alt tag](img/flow-portal-flow-creation-done.png)
 
@@ -164,7 +165,7 @@ Now we have the url of the endpoint. We will call it inside the Azure Function.
 
 ## Altering the azure function for Microsoft Flow access
 
-Bla.
+At this moment, the Azure Function is still showing the telemetry as a message in the logging. Let's make the Azure function more meaningful. Let's 'talk' to Microsoft Flow  
 
 1. On the left, select `Resource groups`. A list of resource groups is shown
 
@@ -172,10 +173,8 @@ Bla.
 
 2. Select the ResourceGroup `TechDays42rg`. It will open a new blade with all resources in this group
 3. Select the Azure Function App `TechDays42fa`
-4. 
-5. The develop page is shown. In the middle, you will see the function in the 'Code' panel
-6. Replace 'the code'
-
+4. The develop page is shown. In the middle, you will see the function in the 'Code' panel
+5. Replace 'the code'
 
     ```csharp
     using System;
@@ -199,15 +198,16 @@ Bla.
     }
     ```
 
-21. Select `Save`. The changed C# code will be recompiled immediately
-22. In the 'Logs' panel, just below 'Code', `verify the outcome` of the compilation
+6. And replace '[PASTE THE REQUEST URL HERE]' with the *remembered* `HTTP POST URL`
+7. Select `Save`. The changed C# code will be recompiled immediately
+8. In the 'Logs' panel, just below 'Code', `verify the outcome` of the compilation
 
     ```
     2016-09-25T12:23:35.380 Script for function 'TechDaysEventHubTriggerFunction' changed. Reloading.
     2016-09-25T12:23:35.427 Compilation succeeded.
     ```
 
-23. When telemetry arrives, the log shows how the message is picked up by Microsoft Flow
+9. When telemetry arrives, the log shows how the message is picked up by Microsoft Flow
 
     ```
     2016-09-30T08:29:04.325 Function started (Id=dbd7a0c4-3710-464d-a6fe-bc32d5a856c8)
@@ -215,3 +215,47 @@ Bla.
     2016-09-30T08:29:05.252 Microsoft Flow accepts the message: True
     2016-09-30T08:29:05.252 Function completed (Success, Id=dbd7a0c4-3710-464d-a6fe-bc32d5a856c8)
     ```
+
+Now the Azure Function is passing the telemetry towards your Microsoft Flow.
+
+## Receiving mail from your device
+
+Microsoft Flow is passing the telemetry to the email address you provided. 
+
+1. Microsoft flow provides a list of runs. We can check how our flow is doing
+2. Go to the Microsoft flow portal
+3. Select `My flows`
+
+    ![alt tag](img/flow-portal-my-flows.png)
+
+4. All your flows will appear here. The flow we created will be shown
+
+    ![alt tag](img/flow-my-flows-list.png)
+
+5. Select the run list of the flow by selecting `the i` (for Information) icon
+
+    ![alt tag](img/flow-portal-run-list.png)
+
+6. By now, one or more runs must be listed
+
+    ![alt tag](img/flow-mail-runs-list.png)
+
+7. Select a row and `click' on it
+8. The flow will be shown. Green ticks will mark which steps are executed. In this example, the telemetry is received, the condition is checked but the 'IF NO, DO NOTHING' block is executed (the 'IF YES' block has no green tick)
+
+    ![alt tag](img/flow-mail-sent-mail-false-condition.png)
+
+9. But is the condition is right, the level is too low, both steps will have a green tick
+
+    ![alt tag](img/flow-mail-sent-mail-true-condition.png)
+
+10. Finally, open an email client and check your mail. Did you receive any mail?
+11. The mail is only sent conditionally when the level is too low. You will receive an email message like this
+
+    ![alt tag](img/flow-mail-inbox-message.png)
+
+Now we get email from a TTN device. You are free to play with flow. You can alter the condition or you can add more steps to sent the telemetry to. 
+
+This concludes this part of the workshop. Thank you for checking this out!
+
+![Workshop provided by Microsoft, The Things Network and Atos](img/logos/microsoft-ttn-atos.png)
