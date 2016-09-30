@@ -209,6 +209,8 @@ Starting an Azure Stream Analytics job will take some time. After starting, all 
 
 ## Create an Azure Function App 
 
+![alt tag](img/msft/Picture11handle-event-using-azure-functions.png)
+
 Follow these steps to create an Azure Function App. An Azure function is actually a real function, a couple of lines of code, which is triggered by certain events and it can output the result of the code to other services. Azure Functions run 'serverless': you just write and upload your code and only pay for the number of times it is executed, the compute time and the amount of memory used. Our Azure Function will be triggered by a new event in the Event Hub. The Azure Function app is the container of Azure Functions.
 
 1. On the left, select `Resource groups`. A list of resource groups is shown
