@@ -16,8 +16,6 @@ We will pass the telemetry to an email address provided by you.
 2. Telemetry arriving at the Azure Function
 3. Azure account [create here](https://azure.microsoft.com/en-us/free/) _(Azure passes will be present for those who have no Azure account)_
 4. A Microsoft account for Microsoft Flow [signup here](https://flow.microsoft.com/)
-5. A Slack account _(optional)_
-6. A Twitter account _(optional)_
 
 ## Create an endpoint in Microsoft Flow
 
@@ -189,7 +187,7 @@ At this moment, the Azure Function is still showing the telemetry as a message i
 
         var response = client.PostAsync(
                         "[PASTE THE REQUEST URL HERE]",
-                        new StringContent(myEventHubMessage, //JsonConvert.SerializeObject(request).ToString(),
+                        new StringContent(myEventHubMessage, 
                                           Encoding.UTF8,
                                           "application/json")
                                           ).Result;
@@ -198,7 +196,7 @@ At this moment, the Azure Function is still showing the telemetry as a message i
     }
     ```
 
-6. And replace '[PASTE THE REQUEST URL HERE]' with the *remembered* `HTTP POST URL`
+6. And `replace` '[PASTE THE REQUEST URL HERE]' with the *remembered* `HTTP POST URL`
 7. Select `Save`. The changed C# code will be recompiled immediately
 8. In the 'Logs' panel, just below 'Code', `verify the outcome` of the compilation
 
