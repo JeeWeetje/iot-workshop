@@ -1,8 +1,6 @@
 # The Things Network & Azure IoT in unison
 ## Microsoft TechDays 2016 - Workshop IoT
 
-![alt tag](img/logos/techdays2016-logo.png)
-
 This workshop is all about you getting your hands on some amazing pieces of technology. First you will be introduced to The Things Network (the first ever, community powered, global IoT network) and start building a solution that collects sensor information using a device with an enormous wireless range potential at extremely low power consumption. Next you will learn how this network can integrate with Azure to ingest data on a massive scale and take action on incoming events. You will build some hardware, write (or copy) a couple of lines of code, configure a few things and end up with a fully working solution. The workshop content is highly curated to offer developers, of all sorts and backgrounds, an accelerated experience in the field of IoT. On top of that there will be a team of experts present to help out and have an inspiring conversation with.
 
 Technologies covered are: `Arduino`, `LoRaWAN`, `TTN Technology`, `Azure IoT Hub`, `Azure Event Hubs`, `Azure Stream Analytics` and `Azure Functions`.
@@ -32,3 +30,7 @@ The third part is optional/extra if you have time left.
 1. [Getting started with the hardware and The Things Network](TheThingsNetwork.md)
 2. [Receiving TTN Data in the Azure Cloud](Azure.md)
 3. [Doing something extra with the data](Flow.md)
+
+![alt tag](img/logos/techdays2016-logo.png)
+
+![alt tag](img/logos/microsoft-ttn-atos.png)
