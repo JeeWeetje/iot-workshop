@@ -6,8 +6,6 @@ Microsoft Flow is a brand new SaaS offering, available today in preview, for aut
 
 We will pass the telemetry to an email address provided by you.
 
-![alt tag](img/arch/flow-overview.png)
-
 *Note: in this workshop we will not dive too deep into Microsoft Flow. See for [more information](https://flow.microsoft.com/).*
 
 ### Prerequisites
@@ -18,6 +16,8 @@ We will pass the telemetry to an email address provided by you.
 4. A Microsoft account for Microsoft Flow [signup here](https://flow.microsoft.com/)
 
 ## Create an endpoint in Microsoft Flow
+
+![alt tag](img/msft/Picture12-connect-anything-using-flow.png)
 
 Follow these steps to create an endpoint in Microsoft Flow to send telemetry data to. From there we can use the data in an "If Then Else" flow.
 
@@ -255,5 +255,7 @@ Microsoft Flow is passing the telemetry to the email address you provided.
 Now we get email from a TTN device. You are free to play with flow. You can alter the condition or you can add more steps to sent the telemetry to. 
 
 This concludes this part of the workshop. Thank you for checking this out!
+
+![alt tag](Picture13-make-the-world-a-better-place.png)
 
 ![Workshop provided by Microsoft, The Things Network and Atos](img/logos/microsoft-ttn-atos.png)
