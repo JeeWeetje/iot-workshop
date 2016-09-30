@@ -1,4 +1,5 @@
-# Pushing telemetry messages to Microsoft Flow and beyond
+# The Things Network & Azure IoT in unison
+## Pushing telemetry messages to Microsoft Flow and beyond
 
 This is an example of how messages from Azure Functions can be passed to an external service, eg. Mail, using Microsoft Flow. 
 
