@@ -3,6 +3,8 @@
 
 Remember creating the TTN bridge locally on your computer? Will it be always on? Most likely not, therefor it seems reasonable to deploy the TTN bridge in the Azure cloud.
 
+![Build a bridge from TTN to Azure](img/msft/Picture08-build-a-bridge-frm-ttn-to-azure.png)
+
 ### Prerequisits
 
 1. A TTN bridge deployed/running on your computer _(like the one created earlier in the workshop)_
