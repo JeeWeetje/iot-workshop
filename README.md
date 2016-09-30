@@ -1,13 +1,16 @@
 # The Things Network & Azure IoT in unison
 ## Microsoft TechDays 2016 - Workshop IoT
 
-| | |
-| -- | -- |
-| ![alt tag](img/logos/techdays2016-logo.png)                         | This workshop is all about you getting your hands on some amazing pieces of technology. First you will be introduced to The Things Network (the first ever, community powered, global IoT network) and start building a solution that collects sensor information using a device with an enormous wireless range potential at extremely low power consumption. Next you will learn how this network can integrate with Azure to ingest data on a massive scale and take action on incoming events. You will build some hardware, write (or copy) a couple of lines of code, configure a few things and end up with a fully working solution. The workshop content is highly curated to offer developers, of all sorts and backgrounds, an accelerated experience in the field of IoT. On top of that there will be a team of experts present to help out and have an inspiring conversation with. |
+![alt tag](img/logos/techdays2016-logo.png)
+
+This workshop is all about you getting your hands on some amazing pieces of technology. First you will be introduced to The Things Network (the first ever, community powered, global IoT network) and start building a solution that collects sensor information using a device with an enormous wireless range potential at extremely low power consumption. Next you will learn how this network can integrate with Azure to ingest data on a massive scale and take action on incoming events. You will build some hardware, write (or copy) a couple of lines of code, configure a few things and end up with a fully working solution. The workshop content is highly curated to offer developers, of all sorts and backgrounds, an accelerated experience in the field of IoT. On top of that there will be a team of experts present to help out and have an inspiring conversation with.
 
 Technologies covered are: `Arduino`, `LoRaWAN`, `TTN Technology`, `Azure IoT Hub`, `Azure Event Hubs`, `Azure Stream Analytics` and `Azure Functions`.
 
 ## Team of experts
+
+During the workshop the following experts will be present to guide you through the workshop.
+
 - Valery Jacobs, Technical Evangelist at Microsoft [ ![Twitter](img/social/twitter.png) ](https://twitter.com/valeryjacobs)
 - Johan Stokking; architect & co-founder at The Things Network [ ![Twitter](img/social/twitter.png) ](https://twitter.com/johanstokking)
 - Sander van de Velde; Microsoft Consultant at Atos [ ![Twitter](img/social/twitter.png) ](https://twitter.com/svelde)
