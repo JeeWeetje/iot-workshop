@@ -330,6 +330,7 @@ We can check the arrival of the messages in the Azure IoT Hub using the Device E
 3. Press `Update`
 4. On the Management tab, your device should already be available. It was registered by the bridge the very first time, telemetry arrived
 5. On the Data tab, Select your `Device ID` and press `Monitor`
+6. This will result in the following messages
 
 ```
 Receiving events...
@@ -350,25 +351,26 @@ We can check the arrival of the messages in the Azure IoT Hub using the IoT Hub 
 2. Login to the IoT Hub Explorer by supplying your IoT Hub `Connection String-primary key` using the command `iothub-explorer login "your connection string"`
 3. A session with the IoT Hub will start and it will last for approx. one jour:
 
-```
-Session started, expires Tue Sep 27 2016 18:35:37 GMT+0200 (W. Europe Daylight Time)
-```
+    ```
+    Session started, expires Tue Sep 27 2016 18:35:37 GMT+0200 (W. Europe Daylight Time)
+    ```
 
-4. To monitor the device-to-cloud messages from a device, use the following command and fill in your `Connection String-primary key` and device name in `iothub-explorer "your connection string" monitor-events goat`
+4. To monitor the device-to-cloud messages from a device, use the following command `iothub-explorer "[your connection string]" monitor-events [device name]`  and `fill in` your  *remembered* 'Connection String-primary key' and *remember* device name
+5. This will result in the following messages
 
-```
-Monitoring events from device goat
-Event received:
-{
-  "water": 12
-}
-```
+    ```
+    Monitoring events from device goat
+    Event received:
+    {
+      "water": 12
+    }
+    ```
 
 ## Conclusion
 
 The messages are shown here too. These messages are now available in Azure.
 
-You are now ready to process your data in an Azure Stream Analytics job. Continue to [Handling The Things Network telemetry in Azure](Azure.md)
+Next Step: You are now ready to process your data in an Azure Function. Continue to [Handling The Things Network telemetry in Azure](Azure.md)
 
 ![Workshop provided by Microsoft, The Things Network and Atos](img/logos/microsoft-ttn-atos.png)
 
