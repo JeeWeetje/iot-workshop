@@ -25,6 +25,8 @@ Follow the workshop facilitator connect the sensors. A few important things:
 - The water sensor SIG pin is connected to the analog pin `A0` on the The Things Network Uno
 - The water sensor GND pin is connected to one of the `GND` pins on the The Things Uno
 
+*Note: On the pictures there is a white wire; the white wire from the water sensor is not connected by intention*
+
 Your device and sensors should be connected as follows:
 
    ![alt tag](img/device-overview.JPG)
