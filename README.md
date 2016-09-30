@@ -18,12 +18,12 @@ Technologies covered are: `Arduino`, `LoRaWAN`, `TTN Technology`, `Azure IoT Hub
 - Jan Willem Groenenberg; Microsoft Consultant at Atos
 
 ## Workshop schedule at Microsoft TechDays 2016
-|StartTime          |EndTime             |Room|
-|-|-|-|
-|04/10/2016 11:45   |04/10/2016 13:45    |G108|
-|04/10/2016 14:15   |04/10/2016 16:15    |G108|
-|05/10/2016 08:15   |05/10/2016 10:15    |G108|
-|05/10/2016 10:30   |05/10/2016 12:30    |G108|
+| StartTime | EndTime | Room |
+| --------- | ------- | ---- |
+| 04/10/2016 11:45 | 04/10/2016 13:45 |G108|
+| 04/10/2016 14:15 | 04/10/2016 16:15 |G108|
+| 05/10/2016 08:15 | 05/10/2016 10:15 |G108|
+| 05/10/2016 10:30 | 05/10/2016 12:30 |G108|
 
 ## Let's dive into the workshop
 
