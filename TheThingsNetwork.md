@@ -1,20 +1,25 @@
 # The Things Network & Azure IoT in unison
 ## The Things Network Azure IoT Hub Integration Bridge
 
+![alt tag](img/msft/Picture01-overview.png)
+
 This is an example integration between The Things Network and Azure IoT Hub. This integration will be offered as a bridge, which features creating devices in the Azure IoT Hub device registry as well as sending events from uplink messages.
 
 *Note: in this workshop we will create uniquely named Azure resources. The suggested names could be reserved already.*
 
 ### Prerequisites
 
-1. A The Things Uno, a Grove - Water Sensor, a Grove - PIR Motion Sensor, wiring
-2. Arduino IDE [http://arduino.cc](http://arduino.cc)
-3. Node.js [https://nodejs.org/en/](https://nodejs.org/en/). _(We prefer Version 6.6)_
-4. Azure account [create here](https://azure.microsoft.com/en-us/free/) _([Azure passes](https://www.microsoftazurepass.com/howto) will be present for those who have no Azure account)_
-5. TTN account [https://account.thethingsnetwork.org/](https://account.thethingsnetwork.org/)
-6. [IoT Hub Explorer](https://github.com/Azure/azure-iot-sdks/tree/master/tools/iothub-explorer) _(for Command-Line interface  based usage)_ or [Device Explorer](https://github.com/Azure/azure-iot-sdks/blob/master/tools/DeviceExplorer/) _(for GUI based usage)_  
+1. A computer with internet access
+2. A The Things Uno, a Grove - Water Sensor, a Grove - PIR Motion Sensor, wiring & a micro USB cable
+3. Arduino IDE [http://arduino.cc](http://arduino.cc)
+4. Node.js [https://nodejs.org/en/](https://nodejs.org/en/). _(We prefer Version 6.6)_
+5. Azure account [create here](https://azure.microsoft.com/en-us/free/) _([Azure passes](https://www.microsoftazurepass.com/howto) will be present for those who have no Azure account)_
+6. TTN account [https://account.thethingsnetwork.org/](https://account.thethingsnetwork.org/)
+7. [IoT Hub Explorer](https://github.com/Azure/azure-iot-sdks/tree/master/tools/iothub-explorer) _(for Command-Line interface  based usage)_ or [Device Explorer](https://github.com/Azure/azure-iot-sdks/blob/master/tools/DeviceExplorer/) _(for GUI based usage)_  
 
 ## Connect your device
+
+![alt tag](img/msft/Picture02-build-the-hardware.png)
 
 Follow the workshop facilitator connect the sensors. A few important things:
 
@@ -34,6 +39,8 @@ Your device and sensors should be connected as follows:
    ![alt tag](img/device-vcc-gnd.JPG)
 
 ## Read sensors
+
+![alt tag](img/msft/Picture03-read-the-data.png)
 
 Open the Arduino IDE and follow these steps.
 
@@ -82,6 +89,8 @@ Open the Arduino IDE and follow these steps.
 
 ## Create The Things Network application
 
+![alt tag](img/msft/Picture04-create-a-ttn-device.png)
+
 Follow the steps to create an application and register your device.
 
 1. Log into the [The Things Network dashboard](https://preview.dashboard.thethingsnetwork.org). You will be asked to provide TTN credentials if needed
@@ -100,6 +109,8 @@ Follow the steps to create an application and register your device.
 8. Keep this page open, you need the device address, network session key and application session key in a minute
 
 ## Send data from your device
+
+![alt tag](img/msft/Picture05-submit-data-to-ttn.png)
 
 The sensor data is read, now it is time to send the sensor data to The Things Network. 
 
@@ -170,9 +181,14 @@ The sensor data is read, now it is time to send the sensor data to The Things Ne
     
     ![alt tag](img/device-payload-binary.png)
 
-6. Now, binary payload is not really useful in upstream. Therefore, we have payload functions.
-7. In the application overview, click **Payload Functions**
-8. Add the following **decoder** function to decode the two bytes back to a 16 bit integer called `waterLevel`:
+## Decode data on TTN
+
+![alt tag](img/msft/Picture06-decode-data-on-ttn.png)
+
+Now, binary payload is not really useful in upstream. Therefore, we have payload functions.
+
+1. In the application overview, click **Payload Functions**
+2. Add the following **decoder** function to decode the two bytes back to a 16 bit integer called `waterLevel`:
 
     ```c
     function Decoder(bytes) {
@@ -199,6 +215,8 @@ The sensor data is read, now it is time to send the sensor data to The Things Ne
 Now we have clean data ready to be processed in Azure IoT Hub and upstream.
 
 ## Create an Azure IoT Hub
+
+![alt tag](img/msft/Picture07-prepare-azure-integration.png)
 
 Follow these steps to create an Azure IoT Hub.
 
@@ -228,6 +246,8 @@ Follow these steps to create an Azure IoT Hub.
 Creating an IoT Hub takes some time. Meanwhile we will connect the device and create the bridge.
 
 ## Create a bridge
+
+![alt tag](img/msft/Picture08-build-a-bridge-frm-ttn-to-azure.png)
 
 Follow these steps to create the integration bridge between The Things Network and Azure IoT Hub. NPM will be used to create a folder structure and install packages.
 
@@ -318,7 +338,7 @@ bridge.on('uplink', data => {
 
 This is the most basic example of a bridge between TTN and Azure. 
 
-## Start the bridge
+### Start the bridge
 
 Run `npm start` to verify that the bridge works in the new folder. This is example output:
 
@@ -339,6 +359,8 @@ Uplink { devEUI: 'goatTrough',
 
 
 ## Monitoring the arrival of the telemetry in Azure
+
+![alt tag](img/msft/Picture09-monitor-incoming-data.png)
 
 We can check the arrival of messages in the Azure IoT Hub. This can be done using a UI app named Device Explorer or using a Command-Line tool named IoT Hub Explorer. `Choose one` 
 
