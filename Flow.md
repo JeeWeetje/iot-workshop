@@ -255,7 +255,7 @@ Microsoft Flow is passing the telemetry to the email address you provided.
 
 Now we get email from a TTN device. You are free to play with flow. You can alter the condition or you can add more steps to sent the telemetry to. 
 
-This concludes this part of the workshop. Thank you for checking this out!
+This concludes this part of the workshop. Thank you for checking this out. You have now acquired your IoT chops!
 
 ![alt tag](img/msft/Picture13-make-the-world-a-better-place.png)
 
