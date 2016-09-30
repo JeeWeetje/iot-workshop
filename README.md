@@ -2,9 +2,6 @@
 
 This is an example integration between The Things Network and Azure IoT Hub. This integration will be offered as a bridge, which features creating devices in the Azure IoT Hub device registry as well as sending events from uplink messages.
 
-<<<<<<< HEAD
-*Note: in this workshop we will build a simple bridge, running on your own computer. See the [full example](https://github.com/TheThingsNetwork/examples/tree/master/integrations/azure) on how to deploy this bridge as a WebJob to Azure.*
-
 *Note: in this workshop we will create uniquely named Azure resources. The suggested names could be reserved already.*
 
 ### Prerequisites
@@ -13,17 +10,8 @@ This is an example integration between The Things Network and Azure IoT Hub. Thi
 2. NodeJs (https://nodejs.org/en/). _(We prefer Version 6.6)_
 3. Azure account [create here](https://azure.microsoft.com/en-us/free/) _(Azure passes will be present for those who have no Azure account)_
 4. TTN account (https://account.thethingsnetwork.org/)
-5. Device Explorer _(for UI based usage)_ (https://github.com/Azure/azure-iot-sdks/blob/master/tools/DeviceExplorer/)
-6. IoT Hub Explorer _(for Command-Line based usage)_ (https://github.com/Azure/azure-iot-sdks/tree/master/tools/iothub-explorer)
-=======
-### Prerequisites
-
-1. A running TTN node connected to the TTN network
-2. Azure account [create here](https://azure.microsoft.com/en-us/free/) _(Azure passes will be present for those who have no Azure account)_
-3. The Things Network account [create here](https://staging.account.thethingsnetwork.org/) _(The Things Network accounts are available for every participant)_
-4. Device Explorer (https://github.com/Azure/azure-iot-sdks/blob/master/tools/DeviceExplorer/doc/how_to_use_device_explorer.md)
->>>>>>> refs/remotes/origin/fix/text
-
+5. [Device Explorer](https://github.com/Azure/azure-iot-sdks/blob/master/tools/DeviceExplorer/) _(for UI based usage)_ 
+6. [IoT Hub Explorer](https://github.com/Azure/azure-iot-sdks/tree/master/tools/iothub-explorer) _(for Command-Line based usage)_ 
 
 ## Create an Azure IoT Hub
 
@@ -52,12 +40,7 @@ Follow these steps to create an Azure IoT Hub.
 
     ![alt tag](img/azure-notifications.png)
 
-<<<<<<< HEAD
-Creating an IoT Hub takes some time. Meanwhile, we will create the bridge.
-=======
 Creating an IoT Hub takes some time. Meanwhile we will connect the device and create the bridge.
->>>>>>> refs/remotes/origin/fix/text
-
 
 ## Create a bridge
 
@@ -79,12 +62,7 @@ Follow these steps to create the integration bridge between The Things Network a
 
 This server.js file will be edited below but we need some secrets first. We have to collect unique keys of the TTN app and the Azure IoT Hub first.
 
-
-<<<<<<< HEAD
-### Collect TTN App secrets
-=======
 ### TTN Application
->>>>>>> refs/remotes/origin/fix/text
 
 The integration requires an application and device configured in The Things Network.
 
@@ -101,21 +79,12 @@ The integration requires an application and device configured in The Things Netw
 
     ![alt tag](img/ttn-device.png)
 
-<<<<<<< HEAD
-5. the `App EUI` and the `Access Keys` are shown. **Write down** both the App EUI and access keys
-
-    ![alt tag](img/ttn-application-cred.png)
-
-These are the secrets needed from the TTN app.
-=======
 8. Go back to your application by clicking its name in the navigation bar
 9. Scroll down to **Access Keys**. **Write down** the access key
 
     ![alt tag](img/ttn-application-cred.png)
 
 The `Application ID` and `Access Key` are required to get data from The Things Network.
->>>>>>> refs/remotes/origin/fix/text
-
 
 ### Collect Azure IoT Hub secrets
 
@@ -140,17 +109,12 @@ The integration requires an Azure IoT Hub Shared access policy key name with `Re
 
 6. **Write down** the `name` of the IoT Hub eg. `TechDays42ih`
 7. Navigate to the `iothubowner` policy and **write down** the primary key
-<<<<<<< HEAD
-=======
-8. In the last step op this tutorial, the 'Connection String-Primary Key' is needed. **Write down** this `Connection String-Primary Key`
->>>>>>> refs/remotes/origin/fix/text
 
     ![alt tag](img/azure-iothubowner-policy.png)
 
 8. In the last step op this Bridge tutorial, the 'Connection string-primary key' is needed. **write down** this `Connection String-Primary Key` too
 
 These are the secrets needed from the Azure IoT Hub.
-
 
 ### Edit server.js
 
