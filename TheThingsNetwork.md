@@ -40,7 +40,7 @@ Your device and sensors should be connected as follows:
 
 ## Read sensors
 
-![alt tag](img/msft/Picture03-read-the-data.png)
+![alt tag](img/msft/Picture03-read-sensor-data.png)
 
 Open the Arduino IDE and follow these steps.
 
