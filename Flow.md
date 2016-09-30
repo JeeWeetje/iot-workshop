@@ -257,6 +257,6 @@ Now we get email from a TTN device. You are free to play with flow. You can alte
 
 This concludes this part of the workshop. Thank you for checking this out!
 
-![alt tag](Picture13-make-the-world-a-better-place.png)
+![alt tag](img/msft/Picture13-make-the-world-a-better-place.png)
 
 ![Workshop provided by Microsoft, The Things Network and Atos](img/logos/microsoft-ttn-atos.png)
