@@ -56,7 +56,7 @@ Open the Arduino IDE and follow these steps.
       uint8_t motion = digitalRead(PIN_PIR);
       uint16_t waterLevel = analogRead(PIN_WATER);
 
-      // Only print the water value when there is motion
+      // Only print the water level value when there is motion
       if (motion == HIGH) {
         Serial.print("Water level: ");
         Serial.println(waterLevel);
@@ -83,7 +83,7 @@ Open the Arduino IDE and follow these steps.
 Follow the steps to create an application and register your device.
 
 1. Log into the [The Things Network dashboard](https://preview.dashboard.thethingsnetwork.org). You will be asked to provide TTN credentials if needed
-2. Add a new application. Pick a unique Application ID
+2. Add a new application. Pick a unique Application ID (for example `goatTrough`)
 
     ![alt tag](img/ttn-application.png)
 
@@ -141,18 +141,18 @@ The sensor data is read, now it is time to send the sensor data to The Things Ne
     void loop() {
       // Read sensors
       uint8_t motion = digitalRead(PIN_PIR);
-      uint16_t water = analogRead(PIN_WATER);
+      uint16_t waterLevel = analogRead(PIN_WATER);
 
       // Check if there is motion
       if (motion == HIGH) {
-        // Print the water value
-        Serial.print("Water: ");
-        Serial.println(water);
+        // Print the water level value
+        Serial.print("Water level: ");
+        Serial.println(waterLevel);
 
         // Send data to The Things Network
         byte buffer[2];
-        buffer[0] = highByte(water);
-        buffer[1] = lowByte(water);
+        buffer[0] = highByte(waterLevel);
+        buffer[1] = lowByte(waterLevel);
         ttn.sendBytes(buffer, sizeof(buffer));
       }
 
@@ -170,13 +170,13 @@ The sensor data is read, now it is time to send the sensor data to The Things Ne
 
 6. Now, binary payload is not really useful in upstream. Therefore, we have payload functions.
 7. In the application overview, click **Payload Functions**
-8. Add the following **decoder** function to decode the two bytes back to a 16 bit integer called `water`:
+8. Add the following **decoder** function to decode the two bytes back to a 16 bit integer called `waterLevel`:
 
     ```c
     function Decoder(bytes) {
-      var water = (bytes[0] << 8) | bytes[1];
+      var waterLevel = (bytes[0] << 8) | bytes[1];
       return {
-        water: water
+        waterLevel: waterLevel
       };
     }
     ```
@@ -185,7 +185,7 @@ The sensor data is read, now it is time to send the sensor data to The Things Ne
     
     ```
     function Converter(decodedObj) {
-      decodedObj.water = 682 - decodedObj.water;
+      decodedObj.waterLevel = 682 - decodedObj.waterLevel;
       return decodedObj;
     }
     ```
@@ -322,12 +322,12 @@ Run `npm start` to verify that the bridge works in the new folder. This is examp
 
 ```
 TTN connected
-goat: Handling uplink
-Uplink { devEUI: 'goat',
-  message: '{"water":19,"deviceId":"goat","time":"2016-06-14T16:19:15.402956092Z"}' }
-goat: Handling uplink
-Uplink { devEUI: 'goat',
-  message: '{"water":19,"deviceId":"goat","time":"2016-06-14T16:19:37.546601639Z"}' }
+goatTrough: Handling uplink
+Uplink { devEUI: 'goatTrough',
+  message: '{"waterLevel":19,"deviceId":"goatTrough","time":"2016-06-14T16:19:15.402956092Z"}' }
+goatThrough: Handling uplink
+Uplink { devEUI: 'goatTrough',
+  message: '{"waterLevel":19,"deviceId":"goatTrough","time":"2016-06-14T16:19:37.546601639Z"}' }
 ...
 ```
 
@@ -353,9 +353,9 @@ We can check the arrival of the messages in the Azure IoT Hub using the Device E
 
 ```
 Receiving events...
-09/23/16 21:43:47> Device: [goat], Data:[{"water":10}]
-09/23/16 21:43:51> Device: [goat], Data:[{"water":15}]
-09/23/16 21:43:53> Device: [goat], Data:[{"water":14}]
+09/23/16 21:43:47> Device: [goatTrough], Data:[{"waterLevel":10}]
+09/23/16 21:43:51> Device: [goatTrough], Data:[{"waterLevel":15}]
+09/23/16 21:43:53> Device: [goatTrough], Data:[{"waterLevel":14}]
 ```
 
 ### Monitoring using Command-line
@@ -378,10 +378,10 @@ We can check the arrival of the messages in the Azure IoT Hub using the IoT Hub 
 5. This will result in the following messages
 
     ```
-    Monitoring events from device goat
+    Monitoring events from device goatTrough
     Event received:
     {
-      "water": 12
+      "waterLevel": 12
     }
     ```
 
