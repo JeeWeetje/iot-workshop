@@ -155,7 +155,7 @@ Before we can pass telemetry to this flow, we need to have the API endpoint of t
     ![alt tag](img/flow-request-step-url.png)
 
 5. Once selected, the URL of the Request step endpoint is shown
-6. **Write down** the Url `HTTP POST to this URL`
+6. **Copy and write down** the Url in the `HTTP POST to this URL` field
 7. Select `X Close' to close this page. Do *not* save any changes
 
     ![alt tag](img/flow-portal-close.png)
@@ -164,14 +164,54 @@ Now we have the url of the endpoint. We will call it inside the Azure Function.
 
 ## Altering the azure function for Microsoft Flow access
 
+Bla.
+
+1. On the left, select `Resource groups`. A list of resource groups is shown
+
+    ![alt tag](img/azure-resource-groups.png)
+
+2. Select the ResourceGroup `TechDays42rg`. It will open a new blade with all resources in this group
+3. Select the Azure Function App `TechDays42fa`
+4. 
+5. The develop page is shown. In the middle, you will see the function in the 'Code' panel
+6. Replace 'the code'
 
 
+    ```csharp
+    using System;
+    using System.Text;
 
+    public static void Run(string myEventHubMessage, TraceWriter log)
+    {
+      log.Info($"My TechDays trigger function processed this message: {myEventHubMessage}");
 
+      using (var client = new System.Net.Http.HttpClient())
+      {
 
+        var response = client.PostAsync(
+                        "[PASTE THE REQUEST URL HERE]",
+                        new StringContent(myEventHubMessage, //JsonConvert.SerializeObject(request).ToString(),
+                                          Encoding.UTF8,
+                                          "application/json")
+                                          ).Result;
+        log.Info($"Microsoft Flow accepts the message: {response.IsSuccessStatusCode.ToString()}");
+      }
+    }
+    ```
 
+21. Select `Save`. The changed C# code will be recompiled immediately
+22. In the 'Logs' panel, just below 'Code', `verify the outcome` of the compilation
 
+    ```
+    2016-09-25T12:23:35.380 Script for function 'TechDaysEventHubTriggerFunction' changed. Reloading.
+    2016-09-25T12:23:35.427 Compilation succeeded.
+    ```
 
+23. When telemetry arrives, the log shows how the message is picked up by Microsoft Flow
 
-
-
+    ```
+    2016-09-30T08:29:04.325 Function started (Id=dbd7a0c4-3710-464d-a6fe-bc32d5a856c8)
+    2016-09-30T08:29:04.404 My TechDays trigger function processed this message: {"level":45,"eventprocessedutctime":"2016-09-30T08:28:59.4658651Z","connectiondeviceid":"DeviceOne"}
+    2016-09-30T08:29:05.252 Microsoft Flow accepts the message: True
+    2016-09-30T08:29:05.252 Function completed (Success, Id=dbd7a0c4-3710-464d-a6fe-bc32d5a856c8)
+    ```

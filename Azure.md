@@ -169,7 +169,7 @@ Follow these steps to write the query of Azure Stream Analytics job.
 
     ```sql
     SELECT
-        CAST(water as bigint) as waterLevel,
+        CAST(water as bigint) as level,
         EventProcessedUtcTime,
         IoTHub.ConnectionDeviceId
     INTO
