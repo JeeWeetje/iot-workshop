@@ -1,7 +1,7 @@
 # The Things Network & Azure IoT in unison
 ## Deploying The Things Network Bridge to Azure
 
-Remember creating the TTN bridge locally on your computer? Will it be always on? Most likely not, therefor it seems reasonable to deploy the TTN bridge in the Azure cloud.
+Remember creating the TTN bridge locally on your computer? Will it be always on? Most likely not, therefore it seems reasonable to deploy the TTN bridge in the Azure cloud.
 
 ![Build a bridge from TTN to Azure](img/msft/Picture08-build-a-bridge-frm-ttn-to-azure.png)
 
