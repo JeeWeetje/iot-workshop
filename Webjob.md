@@ -81,6 +81,24 @@ Follow these steps to deploy an Azure WebJob using Node.js that runs the integra
 23. Select `Ok`
 
 
+
+    ![alt tag](img/bridge-list-web-job.png)
+
+24. dff
+
+    ![alt tag](img/bridge-list-web-job-logs.png)
+
+25. dfdf
+
+    ![alt tag](img/bridge-webjob-running.png)
+
+26. sdfdfd
+
+    ![alt tag](img/bridge-web-job-logging.png)
+
+
+
+
 11. Once deployed, select the WebJob and click **Logs** to verify that the bridge works. This is example output:
 ```
 [06/14/2016 16:27:47 > 996af8: INFO] TTN connected
