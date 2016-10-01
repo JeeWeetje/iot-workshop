@@ -13,7 +13,7 @@ Remember creating the TTN bridge locally on your computer? Will it be always on?
 
 Follow these steps to make the bridge ready to be deployed to Azure.
 
-1. If the bridge is still running, stop the running bridge with `ctrl c` and confirm the cancelation of the process with `Y`.
+1. If the bridge is still running, stop the running bridge with `ctrl c` and confirm the cancellation of the process with `Y`.
     
     ![Canceling the running bridge](img/bridge-cancelation.png)
 
