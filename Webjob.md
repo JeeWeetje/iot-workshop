@@ -9,9 +9,9 @@ Remember creating the TTN bridge locally on your computer? Will it be always on?
 
 1. A TTN bridge deployed/running on your computer _(like the one created earlier in the workshop)_
 
-### Deploy Azure WebJob
+### Make the bridge ready for transport
 
-Follow these steps to deploy an Azure WebJob using Node.js that runs the integration between The Things Network and Azure IoT Hub.
+Follow these steps to make the bridge ready to be deployed to Azure.
 
 1. If the bridge is still running, stop the running bridge with `ctrl c` and confirm the cancelation of the process with `Y`.
     
@@ -21,6 +21,25 @@ Follow these steps to deploy an Azure WebJob using Node.js that runs the integra
 3. Compress all files (including the `node_modules` folder) in `c:\techdays42` as ZIP file
     
     ![Zipping all files](img/zipping-all-files.png)
+
+
+### Deploy Azure WebJob
+
+Follow these steps to deploy an Azure WebJob using Node.js that runs the integration between The Things Network and Azure IoT Hub.
+
+1. `Log into` the [Azure portal](https://portal.azure.com/). You will be asked to provide Azure credentials if needed
+2. On the left, select `Resource groups`. A list of resource groups is shown
+
+    ![alt tag](img/azure-resource-groups.png)
+
+3. Select the ResourceGroup `TechDays42rg`. It will open a new blade with all resources in this group
+
+4. Select `Add`. A list of available services appears
+
+    ![alt tag](img/azure-portal-add.png)
+
+5. Filter it with `web app` and select `Web App`
+
 
 4. Open the [Azure Portal](https://portal.azure.com) in a browser, log on and create a new **Web App**
 5. Under **Settings**, go to **WebJobs** and click **Add**
