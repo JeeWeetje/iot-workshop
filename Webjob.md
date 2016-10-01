@@ -87,7 +87,7 @@ Follow these steps to deploy an Azure WebJob using Node.js that runs the integra
 
     ![alt tag](img/bridge-list-web-job-logs.png)
 
-25. A new page is shown, here the status of the the Web Job is shown. The status is 'Running'
+25. A new page is shown, here the status of the Web Job is shown. The status is 'Running'
 
     ![alt tag](img/bridge-webjob-running.png)
 
