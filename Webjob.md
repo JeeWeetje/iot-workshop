@@ -52,13 +52,35 @@ Follow these steps to deploy an Azure WebJob using Node.js that runs the integra
 
 11. Select `Create`
 
-4. Open the [Azure Portal](https://portal.azure.com) in a browser, log on and create a new **Web App**
-5. Under **Settings**, go to **WebJobs** and click **Add**
-6. Enter a name, e.g. **bridge**
-7. Select your ZIP file as file to upload
-8. Ensure that the type is set to **Continuous**
-9. Set the scale to **Single Instance**
-10. Click **OK** to deploy the WebJob
+12. Creating a Web App will take some time, but we want to complete this step
+13. So navigate back to the resource group (repeat step 1 and 2) and check the Web app creation in the resource group
+14. If the Web App becomes listed, select `TechDays42ns`. Otherwise, 'refresh' the list a few times
+
+    ![alt tag](img/azure-portal-refresh.png)
+
+15. You are now in the Web App blade. It should be shown like this, with all information available (otherwise, refresh a few times):
+
+    ![alt tag](img/azure-web-app-blade.png)
+
+16. A Web App has dozens of settings. Filter the settings for `webjobs`
+
+    ![alt tag](img/azure-web-app-filter-webjobs.png)
+
+17. Select `WebJobs`. An empty list is presented
+18. Select `Add`
+
+    ![alt tag](img/azure-portal-add.png)
+
+19. Enter a unique Web App name eg. `TtnBridgeWebJob`. A green sign will be shown if the name is unique
+20. Select 'your ZIP file` as file to upload
+21. Ensure that the type is set to `Continuous`
+22. Set the scale to `Single Instance`
+
+    ![alt tag](img/azure-web-job-add.png)
+
+23. Select `Ok`
+
+
 11. Once deployed, select the WebJob and click **Logs** to verify that the bridge works. This is example output:
 ```
 [06/14/2016 16:27:47 > 996af8: INFO] TTN connected
