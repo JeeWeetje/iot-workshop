@@ -5,7 +5,7 @@
 
 This is an example integration between The Things Network and Azure IoT Hub. This integration will be offered as a bridge, which features creating devices in the Azure IoT Hub device registry as well as sending events from uplink messages.
 
-*Note: in this workshop we will create uniquely named Azure resources. The suggested names could be reserved already.*
+*Note: in this workshop, we will create uniquely named Azure resources. The suggested names could be reserved already.*
 
 ### Prerequisites
 
@@ -21,7 +21,7 @@ This is an example integration between The Things Network and Azure IoT Hub. Thi
 
 ![alt tag](img/msft/Picture02-build-the-hardware.png)
 
-Follow the workshop facilitator connect the sensors. A few important things:
+Follow the workshop facilitator connecting the sensors. A few important things:
 
 - The passive infrared sensor (PIR) VCC pin is connected to the `5v` pin on the The Things Uno
 - The passive infrared sensor (PIR) SIG pin is connected to the digital pin `2` (third pin in the pin header) on the The Things Uno
@@ -30,7 +30,7 @@ Follow the workshop facilitator connect the sensors. A few important things:
 - The water sensor SIG pin is connected to the analog pin `A0` on the The Things Network Uno
 - The water sensor GND pin is connected to one of the `GND` pins on the The Things Uno
 
-*Note: On the pictures there is a white wire from the water sensor; the white wire is not connected by intention*
+*Note: On the pictures, there is a white wire from the water sensor; the white wire is not connected by intention*
 
 Your device and sensors should be connected as follows:
 
@@ -174,7 +174,7 @@ The sensor data is read, now it is time to send the sensor data to The Things Ne
     }
     ```
 
-2. Insert your device address in `devAddr`, nework session key in `nwkSkey` and application session key in `appSKey`. You can use the handy `<>` button in the dashboard to copy it quickly as a C-style byte array; exactly what Arduino wants
+2. Insert your device address in `devAddr`, network session key in `nwkSkey` and application session key in `appSKey`. You can use the handy `<>` button in the dashboard to copy it quickly as a C-style byte array; exactly what Arduino wants
 3. In the **Sketch** menu, click **Upload**
 4. Open the **Serial Monitor** again from the **Tools** menu once upload has completed. Your device should now be sending data to The Things Network
 5. In The Things Network dashboard, go to **Data**. You see packets coming in:
@@ -185,10 +185,10 @@ The sensor data is read, now it is time to send the sensor data to The Things Ne
 
 ![alt tag](img/msft/Picture06-decode-data-on-ttn.png)
 
-Now, binary payload is not really useful in upstream. Therefore, we have payload functions.
+Now, the binary payload is not really useful in upstream. Therefore, we have payload functions.
 
 1. In the application overview, click **Payload Functions**
-2. Add the following **decoder** function to decode the two bytes back to a 16 bit integer called `waterLevel`:
+2. Add the following **decoder** function to decode the two bytes back to a 16-bit integer called `waterLevel`:
 
     ```c
     function Decoder(bytes) {
@@ -199,7 +199,7 @@ Now, binary payload is not really useful in upstream. Therefore, we have payload
     }
     ```
 
-3. We want to invert the resistance of the water sensor, so that more water resembles a higher value. The maximum value of 3v3 analog ADC converter is `682`, so use the following as the **converter**:
+3. We want to invert the resistance of the water sensor so that more water resembles a higher value. The maximum value of 3v3 analog ADC converter is `682`, so use the following as the **converter**:
     
     ```
     function Converter(decodedObj) {
@@ -243,7 +243,7 @@ Follow these steps to create an Azure IoT Hub.
 
     ![alt tag](img/azure-notifications.png)
 
-Creating an IoT Hub takes some time. Meanwhile we will connect the device and create the bridge.
+Creating an IoT Hub takes some time. Meanwhile, we will connect the device and create the bridge.
 
 ## Create a bridge
 
@@ -257,7 +257,7 @@ Follow these steps to create the integration bridge between The Things Network a
    
    ![alt tag](img/npm-init.png)
    
-4. Accept the changes to be written in a json file with yes (default option)
+4. Accept the changes to be written in a JSON file with yes (default option)
 5. Run `npm install --save ttn-azure-iothub@preview` to install this package
 6. Create a new file named `server.js` in the folder you created
 
@@ -354,9 +354,9 @@ Uplink { devEUI: 'goatTrough',
 ...
 ```
 
-*Note: the message consists of valid Json telemetry.*
+*Note: the message consists of valid JSON telemetry.*
 
-*Note: Keep the bridge running untill the end of the complete workshop.*  
+*Note: Keep the bridge running until the end of the complete workshop.*  
 
 
 ## Monitoring the arrival of the telemetry in Azure
@@ -393,7 +393,7 @@ We can check the arrival of the messages in the Azure IoT Hub using the IoT Hub 
 2. In a dos-box, navigate to the new folder 
 3. In this folder, run the following command `npm install -g iothub-explorer@latest` in your command-line environment, to install the latest (pre-release) version of the iothub-explorer tool
 4. Login to the IoT Hub Explorer by supplying your IoT Hub *remembered* `Connection String-primary key` using the command `iothub-explorer login "[your connection string]"`
-5. A session with the IoT Hub will start and it will last for approx. one jour:
+5. A session with the IoT Hub will start and it will last for approx. one hour:
 
     ```
     Session started, expires Tue Sep 27 2016 18:35:37 GMT+0200 (W. Europe Daylight Time)

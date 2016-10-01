@@ -1,13 +1,13 @@
 # The Things Network & Azure IoT in unison
 ## Handling The Things Network telemetry in Azure
 
-This is an example of how uplink messages from The Things Network can be handled in Azure. In this workshop we will pass telemetry of your device to Azure Functions. 
+This is an example of how uplink messages from The Things Network can be handled in Azure. In this workshop, we will pass telemetry of your device to Azure Functions. 
 
 ![alt tag](img/arch/azure-telemetry-pipeline.png)
 
 Before connecting to Azure Functions, you will first add an Azure Stream Analytics job and Azure Event Hub.
 
-*Note: In this workshop we will create uniquely named Azure resources. The suggested names could be reserved already.*
+*Note: In this workshop, we will create uniquely named Azure resources. The suggested names could be reserved already.*
 
 ### Prerequisites
 
@@ -23,7 +23,7 @@ Before connecting to Azure Functions, you will first add an Azure Stream Analyti
 
 Follow these steps to create an Azure Stream Analytics job which takes messages from your IoT Hub. These jobs can handle great amounts of messages, executing an SQL-like query. Stream Analytics Jobs are great for time window related queries.
 
-*Note: in this workshop we will not dive too deep into Stream Analytics. See for [more information](https://azure.microsoft.com/en-us/documentation/articles/stream-analytics-real-time-event-processing-reference-architecture/).*
+*Note: in this workshop, we will not dive too deep into Stream Analytics. See for [more information](https://azure.microsoft.com/en-us/documentation/articles/stream-analytics-real-time-event-processing-reference-architecture/).*
 
 1. `Log into` the [Azure portal](https://portal.azure.com/). You will be asked to provide Azure credentials if needed
 2. On the left, select `Resource groups`. A list of resource groups is shown

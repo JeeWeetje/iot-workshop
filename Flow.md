@@ -7,11 +7,11 @@ Microsoft Flow is a brand new SaaS offering, available today in preview, for aut
 
 We will pass the telemetry to an email address provided by you.
 
-*Note: in this workshop you are introducted into Microsoft Flow. See for [more information](https://flow.microsoft.com/).*
+*Note: in this workshop, you are introduced into Microsoft Flow. See for [more information](https://flow.microsoft.com/).*
 
 ### Prerequisites
 
-1. An Azure Function written in C# to recieve telemetry from The Things Network
+1. An Azure Function written in C#, recieving telemetry from The Things Network
 2. Telemetry arriving at the Azure Function
 3. Azure account [create here](https://azure.microsoft.com/en-us/free/) _(Azure passes will be present for those who have no Azure account)_
 4. A Microsoft account for Microsoft Flow [signup here](https://flow.microsoft.com/)
@@ -28,7 +28,7 @@ Follow these steps to create an endpoint in Microsoft Flow to send telemetry dat
 
     ![alt tag](img/flow-introduction.png)
 
-2. Select `Make a flow`. A lot of pre-defined flows are shown. Scroll through the list to get an impression of all combination possible. We will *not* use option, we will create a flow form scratch
+2. Select `Make a flow`. A lot of pre-defined flows are shown. Scroll through the list to get an impression of all combination possible. We will *not* use option, we will create a flow from scratch
 3. Select `My flows`
 
     ![alt tag](img/flow-portal-my-flows.png)
@@ -55,7 +55,7 @@ Follow these steps to create an endpoint in Microsoft Flow to send telemetry dat
     ![alt tag](img/flow-request-step-init.png)
 
 10. This is an incoming API call and we will use Azure Functions to trigger this flow. *Note: The URL will be generated after save*
-11. The Azure Function will post a Json object to this Request URL. Flow can not handle this Json object directly. Therefor, enter the following 'Request Body JSON Schema'. This is used to transform the Json object into an entity. This way, Microsoft Flow can handle the separate fields in the message
+11. The Azure Function will post a Json object to this Request URL. Flow can not handle this Json object directly. Therefore, enter the following 'Request Body JSON Schema'. This is used to transform the Json object into an entity. This way, Microsoft Flow can handle the separate fields in the message
 
     ```json
     {
@@ -82,50 +82,50 @@ Follow these steps to create an endpoint in Microsoft Flow to send telemetry dat
 
     ![alt tag](img/flow-portal-new-step.png)
 
-14. In this flow we will mail conditionally. So select `Add a condition` 
+14. In this flow, we will mail conditionally. So select `Add a condition` 
 
     ![alt tag](img/flow-portal-add-a-condition.png)
 
-14. This is the hart of the Flow. We provide a condition (like 'Level is lower then 42'). And if it's true, a certain step will be executed. Otherwise, the other step will be executed. *Note: The first or the latter are optional*
+15. This is the heart of the Flow. We provide a condition (like 'Level is lower than 42'). And if it's true, a certain step will be executed. Otherwise, the other step will be executed. *Note: The first or the latter are optional*
 
     ![alt tag](img/flow-portal-condition-init.png)
 
-15. Enter the left field with 'Choose a value'. The previous Request step will output an entity with fields like 'deviceId', 'time' and 'level'. So here you can compare one of the fields with another value
+16. Enter the left field with 'Choose a value'. The previous Request step will output an entity with fields like 'deviceId', 'time' and 'level'. So here you can compare one of the fields with another value
 
     ![alt tag](img/flow-portal-condition-fields.png)
 
-16. Select the `level` field
-17. Because we want to be warned when the level is less then a certain value, select `is less then` operator
+17. Select the `level` field
+18. Because we want to be warned when the level is less than a certain value, select `is less then` operator
 
     ![alt tag](img/flow-portal-condition-less-then.png)
 
-18. Finally, enter `42` in the right field
+19. Finally, enter `42` in the right field
 
     ![alt tag](img/flow-portal-condition-less-then-42.png)
 
-19. We have created a condition, now we can fill in the 'if then else' blocks with steps. In the left block, Change 'IF YES, DO NOTHING' into 'IF YES' by selecting `Add an Action`
+20. We have created a condition, now we can fill in the 'if then else' blocks with steps. In the left block, Change 'IF YES, DO NOTHING' into 'IF YES' by selecting `Add an Action`
 
     ![alt tag](img/flow-condition-true-add-action.png)
 
-20. Select the `Mail - Send email` step
+21. Select the `Mail - Send email` step
 
     ![alt tag](img/flow-condition-true-add-mail.png)
 
-21. Create a connection for Mail. `Accept` the SendGrid terms and privacy policy *Note: SendGrid is a third party email provider*
+22. Create a connection for Mail. `Accept` the SendGrid terms and privacy policy *Note: SendGrid is a third party email provider*
 
     ![alt tag](img/flow-condition-true-mail-step.png)
 
-22. Enter `your own email address` in the 'To' field 
-23. Enter `Check the level of device ` plus the entity field 'deviceId' in the 'Subject' field 
-24. Enter `Hurry up, the level just got below ` plus the entity field 'level' in the 'Email body' field 
+23. Enter `your own email address` in the 'To' field 
+24. Enter `Check the level of device ` plus the entity field 'deviceId' in the 'Subject' field 
+25. Enter `Hurry up, the level just got below ` plus the entity field 'level' in the 'Email body' field 
 
     ![alt tag](img/flow-condition-true-mail-step-filled-in.png)
 
-25. This Mail step is ready, and so is the flow. Select `Create flow`
+26. This Mail step is ready, and so is the flow. Select `Create flow`
 
     ![alt tag](img/flow-portal-create-flow.png)
 
-26. The flow is now being created. We have to wait a moment to get it starting up. Select `Done`
+27. The flow is now being created. We have to wait a moment to get it starting up. Select `Done`
 
     ![alt tag](img/flow-portal-flow-creation-done.png)
 
@@ -147,7 +147,7 @@ By this time, the endpoint of the Request step is created. Before we can pass te
 
     ![alt tag](img/flow-my-flows-list-flow-edit.png)
 
-4. The flow is show, in detail. Select the first step, the `Request step` so the fields are shown
+4. The flow is shown, in detail. Select the first step, the `Request step` so the fields are shown
 
     ![alt tag](img/flow-request-step-url.png)
 
@@ -157,7 +157,7 @@ By this time, the endpoint of the Request step is created. Before we can pass te
 
     ![alt tag](img/flow-portal-close.png)
 
-Now we have the url of the endpoint. We will call it inside the Azure Function.
+Now we have the URL of the endpoint. We will call it inside the Azure Function.
 
 ## Altering the azure function for Microsoft Flow access
 
@@ -250,7 +250,7 @@ Microsoft Flow is passing the telemetry to the email address you provided. Micro
 
     ![alt tag](img/flow-mail-inbox-message.png)
 
-Now we get email from a TTN device. But you are free to play with Microsoft Flow. For example, you can alter the condition or you can add more steps to sent the telemetry to. Be creative.
+Now we get an email from a TTN device. But you are free to play with Microsoft Flow. For example, you can alter the condition or you can add more steps to sent the telemetry to. Be creative.
 
 This concludes this part of the workshop. Thank you for checking out Microsoft Flow. You have now acquired your IoT chops!
 
