@@ -34,9 +34,9 @@ Follow the workshop facilitator connect the sensors. A few important things:
 
 Your device and sensors should be connected as follows:
 
-   ![alt tag](img/device-overview.JPG)
+   ![alt tag](img/ttn-device-overview.JPG)
 
-   ![alt tag](img/device-vcc-gnd.JPG)
+   ![alt tag](img/ttn-device-vcc-gnd.JPG)
 
 ## Read sensors
 
@@ -94,12 +94,12 @@ Open the Arduino IDE and follow these steps.
 Follow the steps to create an application and register your device.
 
 1. Log into the [The Things Network dashboard](https://preview.dashboard.thethingsnetwork.org). You will be asked to provide TTN credentials if needed
-2. Add a new application. Pick a unique Application ID (for example `goatTrough`)
+2. Add a new application. Pick a unique Application ID (for example `azure-demo`)
 
     ![alt tag](img/ttn-application.png)
 
 3. Go to **Manage devices** and click **Register device**
-4. Enter a **Device ID** and click **Randomize** to use a random Device EUI
+4. Enter a **Device ID** (for example `goatTrough`) and click **Randomize** to use a random Device EUI
 5. Click **Settings**
 6. Check **Disable frame counter checks**
 7. Click **Personalize device** and confirm by clicking **Personalize**
@@ -179,7 +179,7 @@ The sensor data is read, now it is time to send the sensor data to The Things Ne
 4. Open the **Serial Monitor** again from the **Tools** menu once upload has completed. Your device should now be sending data to The Things Network
 5. In The Things Network dashboard, go to **Data**. You see packets coming in:
     
-    ![alt tag](img/device-payload-binary.png)
+    ![alt tag](img/ttn-device-payload-binary.png)
 
 ## Decode data on TTN
 
@@ -199,7 +199,7 @@ Now, binary payload is not really useful in upstream. Therefore, we have payload
     }
     ```
 
-9. We want to invert the resistance of the water sensor, so that more water is a higher value. The maximum value of 3v3 analog ADC conersion is `682`, so use the following as the **converter**:
+3. We want to invert the resistance of the water sensor, so that more water is a higher value. The maximum value of 3v3 analog ADC conersion is `682`, so use the following as the **converter**:
     
     ```
     function Converter(decodedObj) {
@@ -208,9 +208,9 @@ Now, binary payload is not really useful in upstream. Therefore, we have payload
     }
     ```
 
-10. Go back to your data overview. Now you should see something like this:
+4. Go back to your data overview. Now you should see something like this:
 
-    ![alt tag](img/device-payload-fields.png)
+    ![alt tag](img/ttn-device-payload-fields.png)
 
 Now we have clean data ready to be processed in Azure IoT Hub and upstream.
 
@@ -269,6 +269,7 @@ The integration requires an application and device configured in The Things Netw
 
 1. Go to your application by clicking its name in the navigation bar
 2. Scroll down to **Access Keys**. **Write down** the access key
+
     ![alt tag](img/ttn-application-cred.png)
 
 The `Application ID` and `Access Key` are required to get data from The Things Network.
@@ -390,16 +391,16 @@ We can check the arrival of the messages in the Azure IoT Hub using the IoT Hub 
 
 1. Create a new folder eg. `c:\iothubexplorer`
 2. In a dos-box, navigate to the new folder 
-1. In this folder, to install the latest (pre-release) version of the iothub-explorer tool, run the following command `npm install -g iothub-explorer@latest` in your command-line environment
-2. Login to the IoT Hub Explorer by supplying your IoT Hub `Connection String-primary key` using the command `iothub-explorer login "your connection string"`
-3. A session with the IoT Hub will start and it will last for approx. one jour:
+3. In this folder, to install the latest (pre-release) version of the iothub-explorer tool, run the following command `npm install -g iothub-explorer@latest` in your command-line environment
+4. Login to the IoT Hub Explorer by supplying your IoT Hub `Connection String-primary key` using the command `iothub-explorer login "your connection string"`
+5. A session with the IoT Hub will start and it will last for approx. one jour:
 
     ```
     Session started, expires Tue Sep 27 2016 18:35:37 GMT+0200 (W. Europe Daylight Time)
     ```
 
-4. To monitor the device-to-cloud messages from a device, use the following command `iothub-explorer "[your connection string]" monitor-events [device name]`  and `fill in` your  *remembered* 'Connection String-primary key' and *remember* device name
-5. This will result in the following messages
+6. To monitor the device-to-cloud messages from a device, use the following command `iothub-explorer "[your connection string]" monitor-events [device name]`  and `fill in` your  *remembered* 'Connection String-primary key' and *remember* device name
+7. This will result in the following messages
 
     ```
     Monitoring events from device goatTrough
