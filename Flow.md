@@ -7,7 +7,7 @@ Microsoft Flow is a brand new SaaS offering, available today in preview, for aut
 
 We will pass the telemetry to an email address provided by you.
 
-*Note: in this workshop we will not dive too deep into Microsoft Flow. See for [more information](https://flow.microsoft.com/).*
+*Note: in this workshop you are introducted into Microsoft Flow. See for [more information](https://flow.microsoft.com/).*
 
 ### Prerequisites
 
@@ -22,7 +22,7 @@ We will pass the telemetry to an email address provided by you.
 
 Follow these steps to create an endpoint in Microsoft Flow to send telemetry data to. From there we can use the data in an "If Then Else" flow.
 
-*Note: If you have no account yet, please sign up first (You can sign up for free using the button at the top of the page).*
+*Note: If you have no account yet, please sign up first (You can sign up for free using the button at the top of the Microsoft Flow portal).*
 
 1. `Log into` the [Microsoft flow portal](https://flow.microsoft.com/). You will be asked to provide Azure credentials if needed
 
@@ -41,24 +41,21 @@ Follow these steps to create an endpoint in Microsoft Flow to send telemetry dat
 
     ![alt tag](img/flow-portal-create-from-blank.png)
 
-6. An empty flow is shown. You are invited to select one of the many flow steps
-
-    ![alt tag](img/flow-input-more.png)
-
+6. An empty flow is shown
 7. First give the flow a proper name. Name it `Mail telemetry conditionally`
 
     ![alt tag](img/flow-input-more-with-name.png)
 
-8. `Scroll down` until a step called 'Request' is shown
+8. You are invited to select one of many flow steps. `Scroll down` until a step called 'Request' is shown
 
     ![alt tag](img/flow-input-request2.png)
 
-9. Then select the `Request` step
+9. Then select the `Request` step. The following fields are shown
 
     ![alt tag](img/flow-request-step-init.png)
 
-10. This is an incoming API call and we will use Azure Functions to trigger this flow. The URL will be generated after save. *Note: We will call this API from Azure Functions later on*
-11. We will post a Json object to the Request step. Flow can not handle this object directly. Therefor, enter this 'Request Body JSON Schema' to transform this Json object into an entity. This way, Microsoft Flow can handle the fields in the message
+10. This is an incoming API call and we will use Azure Functions to trigger this flow. *Note: The URL will be generated after save*
+11. The Azure Function will post a Json object to this Request URL. Flow can not handle this Json object directly. Therefor, enter the following 'Request Body JSON Schema'. This is used to transform the Json object into an entity. This way, Microsoft Flow can handle the separate fields in the message
 
     ```json
     {
@@ -80,16 +77,16 @@ Follow these steps to create an endpoint in Microsoft Flow to send telemetry dat
     }
     ```
 
-12. The URL endpoint will be provided after the creation of this flow. So we leave it empty for now. The Request step is ready now
+12. The Request step is ready now. We will retrieve the URL after creation of the Flow
 13. Select `New step`
 
     ![alt tag](img/flow-portal-new-step.png)
 
-14. In this flow we will mail conditionally. So select `Add a condition` to add that condition
+14. In this flow we will mail conditionally. So select `Add a condition` 
 
     ![alt tag](img/flow-portal-add-a-condition.png)
 
-14. This is the hart of the Flow. We have to provide a condition (like 'Level is higher then 15'). And if it's true, a certain step will be executed. Otherwise, the other step will be executed. *Note: The first or the latter are optional*
+14. This is the hart of the Flow. We provide a condition (like 'Level is lower then 42'). And if it's true, a certain step will be executed. Otherwise, the other step will be executed. *Note: The first or the latter are optional*
 
     ![alt tag](img/flow-portal-condition-init.png)
 
@@ -106,7 +103,7 @@ Follow these steps to create an endpoint in Microsoft Flow to send telemetry dat
 
     ![alt tag](img/flow-portal-condition-less-then-42.png)
 
-19. We have created a condition. Let's act to it. In the left, Change the 'IF YES, DO NOTHING' block into 'IF YES' by selecting `Add an Action`
+19. We have created a condition, now we can fill in the 'if then else' blocks with steps. In the left block, Change 'IF YES, DO NOTHING' into 'IF YES' by selecting `Add an Action`
 
     ![alt tag](img/flow-condition-true-add-action.png)
 
@@ -124,7 +121,7 @@ Follow these steps to create an endpoint in Microsoft Flow to send telemetry dat
 
     ![alt tag](img/flow-condition-true-mail-step-filled-in.png)
 
-25. This Mail step is ready, ans so the flow is ready. Select `Create flow`
+25. This Mail step is ready, and so is the flow. Select `Create flow`
 
     ![alt tag](img/flow-portal-create-flow.png)
 
@@ -132,17 +129,17 @@ Follow these steps to create an endpoint in Microsoft Flow to send telemetry dat
 
     ![alt tag](img/flow-portal-flow-creation-done.png)
 
-Although the flow is created and almost active we still need to do one thing more. By this time , the endpoint of the Request step is already created. 
+Although the flow is created and almost available we still need to do one thing more.
 
 ## Getting the API endpoint of the Request step
 
-Before we can pass telemetry to this flow, we need to have the API endpoint of the Request step.
+By this time, the endpoint of the Request step is created. Before we can pass telemetry to this flow, we need to have that API endpoint.
 
 1. Select `My flows`
 
     ![alt tag](img/flow-portal-my-flows.png)
 
-2. All your flows will appear here. The flow we just created will be shown
+2. All your flows will appear here. The flow we just created is shown
 
     ![alt tag](img/flow-my-flows-list.png)
 
@@ -150,11 +147,11 @@ Before we can pass telemetry to this flow, we need to have the API endpoint of t
 
     ![alt tag](img/flow-my-flows-list-flow-edit.png)
 
-4. The flow will be show. Select the first step, the `Request step`
+4. The flow is show, in detail. Select the first step, the `Request step`. The fields are shown
 
     ![alt tag](img/flow-request-step-url.png)
 
-5. Once selected, the URL of the Request step endpoint is shown
+5. The URL of the Request step endpoint is now available to copy
 6. **Copy and write down** the Url in the `HTTP POST to this URL` field
 7. Select `X Close' to close this page. Do *not* save any changes
 
@@ -164,7 +161,7 @@ Now we have the url of the endpoint. We will call it inside the Azure Function.
 
 ## Altering the azure function for Microsoft Flow access
 
-At this moment, the Azure Function is still showing the telemetry as a message in the logging. Let's make the Azure function more meaningful. Let's 'talk' to Microsoft Flow  
+Right now, the Azure Function is only showing the telemetry as a message in the logging. Let's make the Azure function more meaningful. Let's 'talk' to Microsoft Flow  
 
 1. On the left, select `Resource groups`. A list of resource groups is shown
 
@@ -173,7 +170,7 @@ At this moment, the Azure Function is still showing the telemetry as a message i
 2. Select the ResourceGroup `TechDays42rg`. It will open a new blade with all resources in this group
 3. Select the Azure Function App `TechDays42fa`
 4. The develop page is shown. In the middle, you will see the function in the 'Code' panel
-5. Replace 'the code'
+5. Replace 'the code' with
 
     ```csharp
     using System;
@@ -199,14 +196,14 @@ At this moment, the Azure Function is still showing the telemetry as a message i
 
 6. And `replace` '[PASTE THE REQUEST URL HERE]' with the *remembered* `HTTP POST URL`
 7. Select `Save`. The changed C# code will be recompiled immediately
-8. In the 'Logs' panel, just below 'Code', `verify the outcome` of the compilation
+8. Just below 'Code', in the 'Logs' panel, verify the outcome of the compilation
 
     ```
     2016-09-25T12:23:35.380 Script for function 'TechDaysEventHubTriggerFunction' changed. Reloading.
     2016-09-25T12:23:35.427 Compilation succeeded.
     ```
 
-9. When telemetry arrives, the log shows how the message is picked up by Microsoft Flow
+9. When new telemetry arrives, the Azure Function log shows how the message is picked up by Microsoft Flow
 
     ```
     2016-09-30T08:29:04.325 Function started (Id=dbd7a0c4-3710-464d-a6fe-bc32d5a856c8)
@@ -219,43 +216,42 @@ Now the Azure Function is passing the telemetry towards your Microsoft Flow.
 
 ## Receiving mail from your device
 
-Microsoft Flow is passing the telemetry to the email address you provided. 
+Microsoft Flow is passing the telemetry to the email address you provided. Microsoft flow provides a list of runs. We can check how our flow is doing.
 
-1. Microsoft flow provides a list of runs. We can check how our flow is doing
-2. Go to the Microsoft flow portal
-3. Select `My flows`
+1. Go to the Microsoft Flow portal
+2. Select `My flows`
 
     ![alt tag](img/flow-portal-my-flows.png)
 
-4. All your flows will appear here. The flow we created will be shown
+3. All your flows will appear here. The flow we created will be shown
 
     ![alt tag](img/flow-my-flows-list.png)
 
-5. Select the run list of the flow by selecting `the i` (for Information) icon
+4. Select the run list of the flow by selecting `the i` (for Information) icon
 
     ![alt tag](img/flow-portal-run-list.png)
 
-6. By now, one or more runs must be listed
+5. By now, one or more runs must be listed
 
     ![alt tag](img/flow-mail-runs-list.png)
 
-7. Select a row and `click' on it
-8. The flow will be shown. Green ticks will mark which steps are executed. In this example, the telemetry is received, the condition is checked but the 'IF NO, DO NOTHING' block is executed (the 'IF YES' block has no green tick)
+6. Select a row and `click' on it
+7. The execution of the flow is shown in detail. Green ticks will mark which steps are executed successfully. In the following example, the telemetry is received, the condition is checked but the 'IF NO, DO NOTHING' block is executed (the 'IF YES' block has no green tick)
 
     ![alt tag](img/flow-mail-sent-mail-false-condition.png)
 
-9. But is the condition is right, the level is too low, both steps will have a green tick
+8. But is the condition is right, the level is too low, both steps will have a green tick
 
     ![alt tag](img/flow-mail-sent-mail-true-condition.png)
 
-10. Finally, open an email client and check your mail. Did you receive any mail?
-11. The mail is only sent conditionally when the level is too low. You will receive an email message like this
+9. Finally, open an email client and check your mail. Did you receive any mail?
+10. The mail is only sent conditionally when the level is too low. You will receive an email message like this
 
     ![alt tag](img/flow-mail-inbox-message.png)
 
-Now we get email from a TTN device. You are free to play with flow. You can alter the condition or you can add more steps to sent the telemetry to. 
+Now we get email from a TTN device. But you are free to play with Microsoft Flow. For example, you can alter the condition or you can add more steps to sent the telemetry to. Be creative.
 
-This concludes this part of the workshop. Thank you for checking this out. You have now acquired your IoT chops!
+This concludes this part of the workshop. Thank you for checking out Microsoft Flow. You have now acquired your IoT chops!
 
 ![alt tag](img/msft/Picture13-make-the-world-a-better-place.png)
 
