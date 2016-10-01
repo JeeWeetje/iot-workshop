@@ -79,23 +79,21 @@ Follow these steps to deploy an Azure WebJob using Node.js that runs the integra
     ![alt tag](img/azure-web-job-add.png)
 
 23. Select `Ok`
-
-
+24. The Web Job will be created. And it is listed on the page of the Web App
 
     ![alt tag](img/bridge-list-web-job.png)
 
-24. dff
+24. Let's check the state of the Web Job. Select `Logs`
 
     ![alt tag](img/bridge-list-web-job-logs.png)
 
-25. dfdf
+25. A new page is shown, here the status of the the Web Job is shown. The status is 'Running'
 
     ![alt tag](img/bridge-webjob-running.png)
 
-26. sdfdfd
+26. Go to the detail logging. Select 'the link' of the Web Job details. The TTN messages are handled 
 
     ![alt tag](img/bridge-web-job-logging.png)
-
 
 You have now deployed the whole upstream to the Azure cloud. You have successfully accomplished all available steps of this workshop.
 
