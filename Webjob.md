@@ -5,7 +5,7 @@ Remember creating the TTN bridge locally on your computer? Will it be always on?
 
 ![Build a bridge from TTN to Azure](img/msft/Picture08-build-a-bridge-frm-ttn-to-azure.png)
 
-### Prerequisits
+### Prerequisites
 
 1. A TTN bridge deployed/running on your computer _(like the one created earlier in the workshop)_
 
