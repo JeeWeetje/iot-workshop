@@ -91,7 +91,7 @@ Follow these steps to deploy an Azure WebJob using Node.js that runs the integra
 
     ![alt tag](img/bridge-webjob-running.png)
 
-26. Go to the detail logging. Select 'the link' of the Web Job details. The TTN messages are handled 
+26. Go to the detail logging, selecting `the link` of the Web Job details. The TTN messages are handled 
 
     ![alt tag](img/bridge-web-job-logging.png)
 
