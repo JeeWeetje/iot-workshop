@@ -54,7 +54,7 @@ Follow these steps to deploy an Azure WebJob using Node.js that runs the integra
 
 12. Creating a Web App will take some time, but we want to complete this step
 13. So navigate back to the resource group (repeat step 1 and 2) and check the Web app creation in the resource group
-14. If the Web App becomes listed, select `TechDays42ns`. Otherwise, 'refresh' the list a few times
+14. If the Web App becomes listed, select `TechDays42wa`. Otherwise, 'refresh' the list a few times
 
     ![alt tag](img/azure-portal-refresh.png)
 
