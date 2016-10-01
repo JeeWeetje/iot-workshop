@@ -30,7 +30,7 @@ Follow the workshop facilitator connect the sensors. A few important things:
 - The water sensor SIG pin is connected to the analog pin `A0` on the The Things Network Uno
 - The water sensor GND pin is connected to one of the `GND` pins on the The Things Uno
 
-*Note: On the pictures there is a white wire; the white wire from the water sensor is not connected by intention*
+*Note: On the pictures there is a white wire from the water sensor; the white wire is not connected by intention*
 
 Your device and sensors should be connected as follows:
 
@@ -102,7 +102,7 @@ Follow the steps to create an application and register your device.
 4. Enter a **Device ID** (for example `goatTrough`) and click **Randomize** to use a random Device EUI
 5. Click **Settings**
 6. Check **Disable frame counter checks**
-7. Click **Personalize device** and confirm by clicking **Personalize**
+7. Click **Personalize device** and confirm by clicking **Personalize**. The following page is shown
 
     ![alt tag](img/ttn-device.png)
 
@@ -174,7 +174,7 @@ The sensor data is read, now it is time to send the sensor data to The Things Ne
     }
     ```
 
-2. Insert your device address in `devAddr`, nework session key in `nwkSkey` and application session key in `appSKey`. You can use the handy `<>` button in the dashboard to copy it quickly as a C-style byte array; exactly what Arduino wants.
+2. Insert your device address in `devAddr`, nework session key in `nwkSkey` and application session key in `appSKey`. You can use the handy `<>` button in the dashboard to copy it quickly as a C-style byte array; exactly what Arduino wants
 3. In the **Sketch** menu, click **Upload**
 4. Open the **Serial Monitor** again from the **Tools** menu once upload has completed. Your device should now be sending data to The Things Network
 5. In The Things Network dashboard, go to **Data**. You see packets coming in:
@@ -199,7 +199,7 @@ Now, binary payload is not really useful in upstream. Therefore, we have payload
     }
     ```
 
-3. We want to invert the resistance of the water sensor, so that more water is a higher value. The maximum value of 3v3 analog ADC conersion is `682`, so use the following as the **converter**:
+3. We want to invert the resistance of the water sensor, so that more water resembles a higher value. The maximum value of 3v3 analog ADC converter is `682`, so use the following as the **converter**:
     
     ```
     function Converter(decodedObj) {
@@ -313,16 +313,16 @@ Edit the file named server.js in the new folder. `Fill in` the secrets and `save
 
 const ttnazureiot = require('ttn-azure-iothub');
 
-// Replace with your AppEUI and App Access Key
-const appEUI = '<insert AppEUI>';
+// Insert your AppId and App Access Key
+const appId = '<insert App Id>';
 const appAccessKey = '<insert App Access Key>';
 
-// Replace with your Azure IoT Hub name and key
-const hubName = '<insert hub name>';
+// Insert with your Azure IoT Hub name and primary key
+const hubName = '<insert IoT Hub name>';
 const keyName = 'iothubowner';
-const key = '<insert key>';
+const primaryKey = '<insert primary key>';
 
-const bridge = new ttnazureiot.Bridge(appEUI, appAccessKey, hubName, keyName, key);
+const bridge = new ttnazureiot.Bridge(appId, appAccessKey, hubName, keyName, primaryKey);
 
 bridge.on('ttn-connect', () => {
   console.log('TTN connected');
@@ -341,7 +341,7 @@ This is the most basic example of a bridge between TTN and Azure.
 
 ### Start the bridge
 
-Run `npm start` to verify that the bridge works in the new folder. This is example output:
+In the new folder, run `npm start` to verify the bridge works. This is example output:
 
 ```
 TTN connected
