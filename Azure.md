@@ -235,7 +235,7 @@ Follow these steps to create an Azure Function App. An Azure function is actuall
 7. Enter a unique App name eg. `TechDays42fa`. A green sign will be shown if the name is unique
 8. The Resource Group eg. `TechDays42rg` is already filled in
 9. An App Service plan is the container for your app. The already created App Service Plan will probably not fit our needs. We create a new one
-10. Open de App Service plan blade and select `Create New`
+10. Open the App Service plan blade and select `Create New`
 
     ![alt tag](img/azure-asp-create.png)
 

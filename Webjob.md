@@ -40,6 +40,17 @@ Follow these steps to deploy an Azure WebJob using Node.js that runs the integra
 
 5. Filter it with `web app` and select `Web App`
 
+    ![alt tag](img/azure-filter-web-app.png)
+
+6. An introduction will be shown. Select `Create`
+7. A dialog for the new Web App is shown
+8. Enter a unique Web App name eg. `TechDays42wa`. A green sign will be shown if the name is unique
+9. The Resource Group eg. TechDays42rg is already filled in
+10. The App Service plan blade eg. TechDays42asp is already filled in 
+
+    ![alt tag](img/azure-web-app-create.png)
+
+11. Select `Create`
 
 4. Open the [Azure Portal](https://portal.azure.com) in a browser, log on and create a new **Web App**
 5. Under **Settings**, go to **WebJobs** and click **Add**
