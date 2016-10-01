@@ -268,7 +268,7 @@ This server.js file will be edited below but we need some secrets first. We have
 The integration requires an application and device configured in The Things Network.
 
 1. Go to your application by clicking its name in the navigation bar
-2. Scroll down to **Access Keys**. **Write down** the access key
+2. Scroll down to **Access Keys**. **Write down** the application ID and access key
 
     ![alt tag](img/ttn-application-cred.png)
 
