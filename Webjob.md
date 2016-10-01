@@ -81,17 +81,22 @@ Follow these steps to deploy an Azure WebJob using Node.js that runs the integra
 23. Select `Ok`
 
 
-11. Once deployed, select the WebJob and click **Logs** to verify that the bridge works. This is example output:
-```
-[06/14/2016 16:27:47 > 996af8: INFO] TTN connected
-[06/14/2016 16:28:07 > 996af8: INFO] 0004A30B001B442B: Handling uplink
-[06/14/2016 16:28:10 > 996af8: INFO] Uplink { devEUI: '0004A30B001B442B',
-[06/14/2016 16:28:10 > 996af8: INFO]   message: '{"lux":1000,"temperature":19.82,"deviceId":"0004A30B001B442B","time":"2016-06-14T16:28:06.766772461Z"}' }
-[06/14/2016 16:28:29 > 996af8: INFO] 0004A30B001B442B: Handling uplink
-[06/14/2016 16:28:29 > 996af8: INFO] Uplink { devEUI: '0004A30B001B442B',
-[06/14/2016 16:28:29 > 996af8: INFO]   message: '{"lux":1000,"temperature":19.82,"deviceId":"0004A30B001B442B","time":"2016-06-14T16:28:28.908965124Z"}' }
-```
 
-You have now deployed the whole upstream to the Azure cloud. You have succesfully acomplished all available steps of this workshop.
+    ![alt tag](img/bridge-list-web-job.png)
+
+24. dff
+
+    ![alt tag](img/bridge-list-web-job-logs.png)
+
+25. dfdf
+
+    ![alt tag](img/bridge-webjob-running.png)
+
+26. sdfdfd
+
+    ![alt tag](img/bridge-web-job-logging.png)
+
+
+You have now deployed the whole upstream to the Azure cloud. You have successfully accomplished all available steps of this workshop.
 
 ![Workshop provided by Microsoft, The Things Network and Atos](img/logos/microsoft-ttn-atos.png)
