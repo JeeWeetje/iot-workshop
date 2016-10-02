@@ -98,7 +98,7 @@ Follow the steps to create an application and register your device.
 
     ![alt tag](img/ttn-app-list-empty.png)
 
-3. Add a new application. Pick a unique Application ID (for example `azure-demo` in lower case) and fill in a description
+3. Add a new application. Pick a unique Application ID (for example `goats-should-do-silly` in lower case) and fill in a description
 
     ![alt tag](img/ttn-application.png)
 
