@@ -367,12 +367,12 @@ In the new folder, run `npm start` to verify the bridge works. This is example o
 
 ```
 TTN connected
-goatTrough: Handling uplink
-Uplink { devEUI: 'goatTrough',
-  message: '{"waterLevel":19,"deviceId":"goatTrough","time":"2016-06-14T16:19:15.402956092Z"}' }
+goattrough: Handling uplink
+Uplink { devEUI: 'goattrough',
+  message: '{"waterLevel":19,"deviceId":"goattrough","time":"2016-06-14T16:19:15.402956092Z"}' }
 goatThrough: Handling uplink
-Uplink { devEUI: 'goatTrough',
-  message: '{"waterLevel":19,"deviceId":"goatTrough","time":"2016-06-14T16:19:37.546601639Z"}' }
+Uplink { devEUI: 'goattrough',
+  message: '{"waterLevel":19,"deviceId":"goattrough","time":"2016-06-14T16:19:37.546601639Z"}' }
 ...
 ```
 
@@ -400,9 +400,9 @@ We can check the arrival of the messages in the Azure IoT Hub using the Device E
 
 ```
 Receiving events...
-09/23/16 21:43:47> Device: [goatTrough], Data:[{"waterLevel":10}]
-09/23/16 21:43:51> Device: [goatTrough], Data:[{"waterLevel":15}]
-09/23/16 21:43:53> Device: [goatTrough], Data:[{"waterLevel":14}]
+09/23/16 21:43:47> Device: [goattrough], Data:[{"waterLevel":10}]
+09/23/16 21:43:51> Device: [goattrough], Data:[{"waterLevel":15}]
+09/23/16 21:43:53> Device: [goattrough], Data:[{"waterLevel":14}]
 ```
 
 ### Monitoring using Command-line
@@ -425,7 +425,7 @@ We can check the arrival of the messages in the Azure IoT Hub using the IoT Hub 
 7. This will result in the following messages
 
     ```
-    Monitoring events from device goatTrough
+    Monitoring events from device goattrough
     Event received:
     {
       "waterLevel": 12
