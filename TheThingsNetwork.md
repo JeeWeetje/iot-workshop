@@ -94,7 +94,7 @@ Open the Arduino IDE and follow these steps.
 Follow the steps to create an application and register your device.
 
 1. Log into the [The Things Network dashboard](https://preview.dashboard.thethingsnetwork.org). You will be asked to provide TTN credentials if needed
-2. An TTN application is a logical container of several devices, providing the same telemetry. There are no TTN applications yet. 
+2. An TTN application is a logical container of several devices, providing the same telemetry. There are no TTN applications yet
 
     ![alt tag](img/ttn-app-list-empty.png)
 
@@ -102,11 +102,15 @@ Follow the steps to create an application and register your device.
 
     ![alt tag](img/ttn-application.png)
 
-3. Go to **Manage devices** and click **Register device**
-4. Enter a **Device ID** (for example `goatTrough`) and click **Randomize** to use a random Device EUI
-5. Click **Settings**
-6. Check **Disable frame counter checks**
-7. Click **Personalize device** and confirm by clicking **Personalize**. The following page is shown
+4. Go to **Manage devices**
+
+    ![alt tag](img/ttn-devices-list-empty.png)
+
+5. Click **Register device**
+6. Enter a **Device ID** (for example `goatTrough`) and click **Randomize** to use a random Device EUI
+7. Click **Settings**
+8. Check **Disable frame counter checks**
+9. Click **Personalize device** and confirm by clicking **Personalize**. The following page is shown
 
     ![alt tag](img/ttn-device.png)
 
