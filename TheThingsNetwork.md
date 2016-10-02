@@ -94,7 +94,7 @@ Open the Arduino IDE and follow these steps.
 Follow the steps to create an application and register your device.
 
 1. Log into the [The Things Network dashboard](https://preview.dashboard.thethingsnetwork.org). You will be asked to provide TTN credentials if needed
-2. An TTN application is a logical container of several devices, providing the same telemetry. There are no TTN applications yet
+2. A TTN application is a logical container of several devices, providing the same telemetry. There are no TTN applications yet
 
     ![alt tag](img/ttn-app-list-empty.png)
 
