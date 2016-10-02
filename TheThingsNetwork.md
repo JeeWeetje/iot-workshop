@@ -314,6 +314,7 @@ Edit the file named server.js in the new folder. `Fill in` the secrets and `save
 const ttnazureiot = require('ttn-azure-iothub');
 
 // Insert your AppId and App Access Key
+const region = 'eu';
 const appId = '<insert App Id>';
 const appAccessKey = '<insert App Access Key>';
 
@@ -322,7 +323,7 @@ const hubName = '<insert IoT Hub name>';
 const keyName = 'iothubowner';
 const primaryKey = '<insert primary key>';
 
-const bridge = new ttnazureiot.Bridge(appId, appAccessKey, hubName, keyName, primaryKey);
+const bridge = new ttnazureiot.Bridge(region, appId, appAccessKey, hubName, keyName, primaryKey);
 
 bridge.on('ttn-connect', () => {
   console.log('TTN connected');
