@@ -107,10 +107,21 @@ Follow the steps to create an application and register your device.
     ![alt tag](img/ttn-devices-list-empty.png)
 
 5. Click **Register device**
-6. Enter a **Device ID** (for example `goatTrough`) and click **Randomize** to use a random Device EUI
-7. Click **Settings**
+6. Enter a **Device ID** (for example `goattrough` in lower case) and click **Randomize** to use a random Device EUI
+
+    ![alt tag](img/ttn-device-add.png)
+
+7. Click **Register** 
+8. The device is nog created
+
+    ![alt tag](img/ttn-device-created.png)
+
+7. Click **Settings** in the upper right corner
 8. Check **Disable frame counter checks**
-9. Click **Personalize device** and confirm by clicking **Personalize**. The following page is shown
+
+    ![alt tag](img/ttn-disable-frame-counter-check.png)
+
+9. Also click **Personalize device** and confirm by clicking **Personalize**. The following page is shown
 
     ![alt tag](img/ttn-device.png)
 
