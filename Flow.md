@@ -208,7 +208,7 @@ Right now, the Azure Function is only showing the telemetry as a message in the 
 
     ```
     2016-09-30T08:29:04.325 Function started (Id=dbd7a0c4-3710-464d-a6fe-bc32d5a856c8)
-    2016-09-30T08:29:04.404 My TechDays trigger function processed this message: {"level":45,"time":"2016-09-30T08:28:59.4658651Z","deviceId":"goatTrough"}
+    2016-09-30T08:29:04.404 My TechDays trigger function processed this message: {"level":45,"time":"2016-09-30T08:28:59.4658651Z","deviceId":"goattrough"}
     2016-09-30T08:29:05.252 Microsoft Flow accepts the message: True
     2016-09-30T08:29:05.252 Function completed (Success, Id=dbd7a0c4-3710-464d-a6fe-bc32d5a856c8)
     ```
