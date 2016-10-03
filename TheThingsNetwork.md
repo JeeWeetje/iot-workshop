@@ -24,13 +24,13 @@ This is an example integration between The Things Network and Azure IoT Hub. Thi
 Follow the workshop facilitator connecting the sensors. A few important things:
 
 - The passive infrared sensor (PIR) VCC pin is connected to the `5v` pin on the The Things Uno
-- The passive infrared sensor (PIR) SIG pin is connected to the digital pin `2` (third pin in the pin header) on the The Things Uno
+- The passive infrared sensor (PIR) SIG/OUT pin is connected to the digital pin `2` (third pin in the pin header) on the The Things Uno
 - The passive infrared sensor (PIR) GND pin is connected to one of the `GND` pins on the The Things Uno
 - The water sensor VCC pin is connected to the `3v3` pin on the The Things Uno 
-- The water sensor SIG pin is connected to the analog pin `A0` on the The Things Network Uno
+- The water sensor SIG/OUT pin is connected to the analog pin `A0` on the The Things Network Uno
 - The water sensor GND pin is connected to one of the `GND` pins on the The Things Uno
 
-*Note: On the pictures, there is a white wire from the water sensor; the white wire is not connected by intention*
+*Note: On the pictures, there is a white wire from pin NC on the water sensor; the white wire is not connected by intention*
 
 Your device and sensors should be connected as follows:
 
