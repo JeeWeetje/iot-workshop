@@ -354,8 +354,8 @@ bridge.on('error', err => {
   console.warn('Error', err);
 });
 
-bridge.on('uplink', data => {
-  console.log('Uplink', data);
+bridge.on('message', data => {
+  console.log('Message', data);
 });
 ```
 
