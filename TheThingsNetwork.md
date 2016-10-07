@@ -392,7 +392,7 @@ We can check the arrival of messages in the Azure IoT Hub. This can be done usin
 We can check the arrival of the messages in the Azure IoT Hub using the Device Explorer. This tool is UI based, please check the installation requirements.
 
 1. Start the `Device Explorer` from the PC desktop or using the Windows start menu
-2. On the Configuration Tab, insert the IoT Hub `Connection String-primary key` and the `name` of the IoT Hub (as Protocol Gateway Hostname)
+2. On the Configuration Tab, insert the *remembered* IoT Hub `Connection String-primary key` and the `name` of the IoT Hub (as Protocol Gateway Hostname)
 3. Press `Update`
 4. On the Management tab, your device should already be available. It was registered by the bridge the very first time, telemetry arrived
 5. On the Data tab, Select your `Device ID` and press `Monitor`
@@ -414,7 +414,7 @@ We can check the arrival of the messages in the Azure IoT Hub using the IoT Hub 
 1. Create a new folder eg. `c:\iothubexplorer`
 2. In a dos-box, navigate to the new folder 
 3. In this folder, run the following command `npm install -g iothub-explorer@latest` in your command-line environment, to install the latest (pre-release) version of the iothub-explorer tool
-4. Login to the IoT Hub Explorer by supplying your IoT Hub *remembered* `Connection String-primary key` using the command `iothub-explorer login "[your connection string]"`
+4. Login to the IoT Hub Explorer by supplying your *remembered* IoT Hub `Connection String-primary key` using the command `iothub-explorer login "[your connection string]"`
 5. A session with the IoT Hub will start and it will last for approx. one hour:
 
     ```
