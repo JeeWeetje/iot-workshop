@@ -391,7 +391,7 @@ We can check the arrival of messages in the Azure IoT Hub. This can be done usin
 
 We can check the arrival of the messages in the Azure IoT Hub using the Device Explorer. This tool is UI based, please check the installation requirements.
 
-1. Start the `Device Explorer`
+1. Start the `Device Explorer` from the PC desktop or using the Windows start menu
 2. On the Configuration Tab, insert the IoT Hub `Connection String-primary key` and the `name` of the IoT Hub (as Protocol Gateway Hostname)
 3. Press `Update`
 4. On the Management tab, your device should already be available. It was registered by the bridge the very first time, telemetry arrived
