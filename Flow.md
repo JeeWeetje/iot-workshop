@@ -24,7 +24,7 @@ Follow these steps to create an endpoint in Microsoft Flow to send telemetry dat
 
 *Note: If you have no account yet, please sign up first (You can sign up for free using the button at the top of the Microsoft Flow portal).*
 
-1. `Log into` the [Microsoft flow portal](https://flow.microsoft.com/). You will be asked to provide Azure credentials if needed
+1. `Log into` the [Microsoft flow portal](https://flow.microsoft.com/). You will be asked to provide Microsoft Flow credentials if needed
 
     ![alt tag](img/flow-introduction.png)
 
