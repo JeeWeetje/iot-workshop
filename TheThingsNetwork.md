@@ -102,12 +102,12 @@ Follow the steps to create an application and register your device.
 
     ![alt tag](img/ttn-application.png)
 
-4. Go to **Manage devices**
+4. Go to **Devices**
 
     ![alt tag](img/ttn-devices-list-empty.png)
 
 5. Click **Register device**
-6. Enter a **Device ID** (for example `goattrough` in lower case) and click **Randomize** to use a random Device EUI (the 'Randomize' link will disappear)
+6. Enter a **Device ID** (for example `goattrough` in lower case) and click **Generate** to use a random Device EUI (the 'Randomize' link will disappear)
 
     ![alt tag](img/ttn-device-add.png)
 
