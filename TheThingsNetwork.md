@@ -286,7 +286,7 @@ Follow these steps to create the integration bridge between The Things Network a
 
 This server.js file will be edited below but we need some secrets first. We have to collect unique keys of the TTN app and the Azure IoT Hub first.
 
-### TTN Application
+### Collect TTN Application secrets
 
 The integration requires an application and device configured in The Things Network.
 
