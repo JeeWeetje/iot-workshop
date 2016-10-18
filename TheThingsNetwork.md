@@ -220,7 +220,8 @@ Now, the binary payload is not really useful in upstream. Therefore, we have pay
     }
     ```
 
-3. We want to invert the resistance of the water sensor so that more water resembles a higher value. The maximum value of 3v3 analog ADC converter is `682`, so use the following as the **converter**:
+3. **Test** and **Save** (scroll to the bottom of the page) the changes
+4. We want to invert the resistance of the water sensor so that more water resembles a higher value. The maximum value of 3v3 analog ADC converter is `682`, so use the following as the **converter**:
     
     ```
     function Converter(decodedObj) {
@@ -229,7 +230,8 @@ Now, the binary payload is not really useful in upstream. Therefore, we have pay
     }
     ```
 
-4. Go back to your data overview. Now you should see something like this:
+5.  **Test** and **Save** (scroll to the bottom of the page) the changes 
+6.  Go back to your data overview. Now you should see something like this:
 
     ![alt tag](img/ttn-device-payload-fields.png)
 
