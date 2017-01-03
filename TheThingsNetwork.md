@@ -1,4 +1,4 @@
-# The Things Network & Azure IoT in unison
+# The Things Network & Azure IoT: a perfect combination
 ## The Things Network Azure IoT Hub Integration Bridge
 
 ![alt tag](img/msft/Picture01-overview.png)
@@ -440,8 +440,4 @@ The messages are shown here too. These messages are now available in Azure.
 
 Next Step: You are now ready to process your data in an Azure Function. Continue to [Handling The Things Network telemetry in Azure](Azure.md)
 
-![Workshop provided by Microsoft, The Things Network and Atos](img/logos/microsoft-ttn-atos.png)
-
-        
-        
-    
+![alt tag](img/logos/dotned-saturday.png)

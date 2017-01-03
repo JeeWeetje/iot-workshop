@@ -1,5 +1,5 @@
 # The Things Network & Azure IoT: a perfect combination
-## DotNed TechDays 2017 - IoT Workshop
+## DotNed Saturday 2017 - IoT Workshop
 
 This workshop is all about you, getting your hands on some amazing pieces of technology. 
 

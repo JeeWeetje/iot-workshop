@@ -1,4 +1,4 @@
-# The Things Network & Azure IoT in unison
+# The Things Network & Azure IoT: a perfect combination
 ## Deploying The Things Network Bridge to Azure
 
 Remember creating the TTN bridge locally on your computer? Will it be always on? Most likely not, therefore it seems reasonable to deploy the TTN bridge in the Azure cloud.
@@ -97,4 +97,4 @@ Follow these steps to deploy an Azure WebJob using Node.js that runs the integra
 
 You have now deployed the whole upstream to the Azure cloud. You have successfully accomplished all available steps of this workshop.
 
-![Workshop provided by Microsoft, The Things Network and Atos](img/logos/microsoft-ttn-atos.png)
+![alt tag](img/logos/dotned-saturday.png)
