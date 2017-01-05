@@ -319,22 +319,22 @@ Now we have sent telemetry to the Event Hub. Let's check if it's arrived.
 
 ## Monitoring the arrival of the telemetry in Azure
 
-We can monitor the arrival of telemetry only if we have enough rights to look into the IoT Hub.
+We can monitor the arrival of telemetry only if we have enough rights to look into the IoT Hub. So first we collect secrets.
 
 ### Collect Azure IoT Hub secrets
 
 The integration requires an Azure IoT Hub Shared access policy key name with `Registry read, write and Device connect` permissions. In this example, we use the **iothubowner** policy which has these permissions enabled by default.
 
-1. Check the Azure portal. The resource group and the IoT Hub should be created by now
+1. Check the Azure portal. The resource group and the IoT Hub should be created by now (otherwise we were unable to send duty cycles information to it)
 
-    ![alt tag](img/UwpToIotHub/azure-notifications.png)
+    ![alt tag](img/UwpToIotHub/azure-notifications-iothub.png)
 
 2. On the left, select `Resource groups`. A list of resource groups is shown
 
     ![alt tag](img/UwpToIotHub/azure-resource-groups.png)
 
-3. Select the resource group `IoTWorkshoprg`. It will open a new blade with all resources in this group
-4. Select the IoT Hub `IoTWorkshopih`. It will open a new blade with the IoT Hub
+3. Select the resource group `IoTWorkshop-rg`. It will open a new blade with all resources in this group
+4. Select the IoT Hub `IoTWorkshop-ih`. It will open a new blade with the IoT Hub
 
     ![alt tag](img/UwpToIotHub/azure-iot-hub-initial.png)
 
@@ -342,7 +342,7 @@ The integration requires an Azure IoT Hub Shared access policy key name with `Re
 
     ![alt tag](img/UwpToIotHub/azure-iot-hub-share-access-policy.png)
 
-6. **Write down** the `name` of the IoT Hub eg. `IoTWorkshopih`
+6. **Write down** the `name` of the IoT Hub eg. `IoTWorkshop-ih`
 7. Navigate to the 'iothubowner' policy and **write down** this `Connection String-Primary Key`
 
     ![alt tag](img/UwpToIotHub/azure-iothubowner-policy.png)
@@ -372,46 +372,47 @@ To run the Device Explorer tool, double-click the DeviceExplorer.exe file in Win
 
     ![alt tag](img/UwpToIotHub/ihe-devices.png)
 
-5. On the Data tab, Select your `Device ID` and press `Monitor`
-6. This will result in the following messages
+5. On the Data tab, Select your `Device ID` (like 'MachineCyclesUwp') and press `Monitor`
+6. This will result in the following messages when you send some Duty Cycle telemetry in your UWP app
 
     ```
     Receiving events...
-    10/07/16 23:14:10> Device: [DummyDevice], Data:[{"waterLevel":13}]
-    10/07/16 23:14:12> Device: [DummyDevice], Data:[{"waterLevel":18}]
-    10/07/16 23:14:13> Device: [DummyDevice], Data:[{"waterLevel":2}]
+    1/5/2017 9:46:18 PM> Device: [MachineCyclesUwp], Data:[{"errorCode":0,"numberOfCycles":1}]
+    1/5/2017 9:46:19 PM> Device: [MachineCyclesUwp], Data:[{"errorCode":0,"numberOfCycles":2}]
+    1/5/2017 9:46:20 PM> Device: [MachineCyclesUwp], Data:[{"errorCode":0,"numberOfCycles":3}]
     ```
 
 ### Monitoring using Command-line
 
 We can check the arrival of the messages in the Azure IoT Hub using the IoT Hub Explorer. This tool is Command-Line based, please check the installation requirements. 
 
-*Note : See the [full example](https://github.com/Azure/azure-iot-sdks/tree/master/tools/iothub-explorer) for more options of this tool.*
+*Note : See the [full example](https://www.npmjs.com/package/iothub-explorer) for more options of this tool.*
 
 1. Create a new folder eg. `c:\iothubexplorer`
-2. In a dos-box, navigate to the new folder 
+2. In a dos-box (press Windows button-R, type CMD and enter), navigate to the new folder `c:\iothubexplorer`
 3. In this folder, run the following command `npm install -g iothub-explorer@latest` in your command-line environment, to install the latest (pre-release) version of the iothub-explorer tool
 4. Login to the IoT Hub Explorer by supplying your *remembered* IoT Hub `Connection String-primary key` using the command `iothub-explorer login "[your connection string]"`
 5. A session with the IoT Hub will start and it will last for approx. one hour:
 
     ```
-    Session started, expires Tue Sep 27 2016 18:35:37 GMT+0200 (W. Europe Daylight Time)
+    Session started, expires on Thu Jan 05 2017 22:53:55 GMT+0100 (W. Europe Standard Time)
     ```
 
-6. To monitor the device-to-cloud messages from a device, use the following command `iothub-explorer "[your connection string]" monitor-events [device name]`  and `fill in` your *remembered* IoT Hub 'Connection String-primary key' and *remember* device name
+6. To monitor the device-to-cloud messages from a device, use the following command `iothub-explorer monitor-events [device name]`  and `fill in` your *remember* device name (like 'MachineCyclesUwp')
 7. This will result in the following messages
 
     ```
     Monitoring events from device DummyDevice
     Event received:
     {
-      "waterLevel": 12
+      "errorCode" : 12,
+      "numberOfCycles" : 1
     }
     ```
 
 ## Conclusion
 
-The messages are shown here too. These messages are now available in Azure.
+These messages shown during the monitoring step are now available in Azure, and kept in the IotHub until other resources are asking for telemetry...
 
 Next Step: You are now ready to process your data in an Azure Function.
 
