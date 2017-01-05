@@ -15,7 +15,7 @@ This is an example integration between The Things Network and Azure IoT Hub. Thi
 4. Node.js [https://nodejs.org/en/](https://nodejs.org/en/). _(We prefer Version 6.6)_
 5. Azure account [create here](https://azure.microsoft.com/en-us/free/) _([Azure passes](https://www.microsoftazurepass.com/howto) will be present for those who have no Azure account)_
 6. TTN account [https://account.thethingsnetwork.org/](https://account.thethingsnetwork.org/)
-7. [IoT Hub Explorer](https://github.com/Azure/azure-iot-sdks/tree/master/tools/iothub-explorer) _(for Command-Line interface  based usage)_ or [Device Explorer](https://github.com/Azure/azure-iot-sdks/blob/master/tools/DeviceExplorer/) _(for GUI based usage)_  
+7. [IoT Hub Explorer](https://www.npmjs.com/package/iothub-explorer) _(for Command-Line interface based usage; see below for installation steps)_ or [Device Explorer](https://github.com/fsautomata/azure-iot-sdks/blob/master/tools/DeviceExplorer/doc/how_to_use_device_explorer.md) _(for GUI based usage; see below for installation steps)_  
 
 ## Connect your device
 
@@ -49,43 +49,43 @@ Open the Arduino IDE and follow these steps.
 3. In the **Tools** menu, click **Port** and select the serial port of your **COMx (Arduino Leonardo)**
 4. Paste the following code in a new sketch:
 
-    ```c
-    // Define the pins of your sensors
-    #define PIN_PIR 2
-    #define PIN_WATER A0
+```c
+// Define the pins of your sensors
+#define PIN_PIR 2
+#define PIN_WATER A0
 
-    // Setup runs once
-    void setup() {
-      pinMode(PIN_PIR, INPUT);
-    }
+// Setup runs once
+void setup() {
+  pinMode(PIN_PIR, INPUT);
+}
 
-    // Loops runs indefinitely
-    void loop() {
-      // Read the sensors
-      uint8_t motion = digitalRead(PIN_PIR);
-      uint16_t waterLevel = analogRead(PIN_WATER);
+// Loops runs indefinitely
+void loop() {
+  // Read the sensors
+  uint8_t motion = digitalRead(PIN_PIR);
+  uint16_t waterLevel = analogRead(PIN_WATER);
 
-      // Only print the water level value when there is motion
-      if (motion == HIGH) {
-        Serial.print("Water level: ");
-        Serial.println(waterLevel);
-      }
+  // Only print the water level value when there is motion
+  if (motion == HIGH) {
+    Serial.print("Water level: ");
+    Serial.println(waterLevel);
+  }
 
-      // Wait one second
-      delay(1000);
-    }
-    ```
+  // Wait one second
+  delay(1000);
+}
+```
 
 5. In the **Sketch** menu, click **Verify/Compile**
 6. In the **Sketch** menu, click **Upload**
 7. Once the sketch has been uploaded, go to the **Tools** menu and open the **Serial Monitor**
 8. You should see output like this, only new lines when there is motion (your PIR sensor lights up red):
 
-    ```
-    Water level: 572
-    Water level: 573 
-    ...
-    ```
+```
+Water level: 572
+Water level: 573 
+...
+```
 
 ## Create The Things Network application
 
@@ -137,69 +137,69 @@ The sensor data is read, now it is time to send the sensor data to The Things Ne
 
 1. In the Arduino IDE, from the **File** menu, choose **New** to create a new sketch and paste the following code:
 
-    ```c
-    #include <TheThingsNetwork.h>
+```c
+#include <TheThingsNetwork.h>
 
-    // Set your DevAddr
-    const byte devAddr[4] = { ... }; //for example: {0x02, 0xDE, 0xAE, 0x00};
+// Set your DevAddr
+const byte devAddr[4] = { ... }; //for example: {0x02, 0xDE, 0xAE, 0x00};
 
-    // Set your NwkSKey and AppSKey
-    const byte nwkSKey[16] = { ... }; //for example: {0x2B, 0x7E, 0x15, 0x16, 0x28, 0xAE, 0xD2, 0xA6, 0xAB, 0xF7, 0x15, 0x88, 0x09, 0xCF, 0x4F, 0x3C};
-    const byte appSKey[16] = { ... }; //for example: {0x2B, 0x7E, 0x15, 0x16, 0x28, 0xAE, 0xD2, 0xA6, 0xAB, 0xF7, 0x15, 0x88, 0x09, 0xCF, 0x4F, 0x3C};
+// Set your NwkSKey and AppSKey
+const byte nwkSKey[16] = { ... }; //for example: {0x2B, 0x7E, 0x15, 0x16, 0x28, 0xAE, 0xD2, 0xA6, 0xAB, 0xF7, 0x15, 0x88, 0x09, 0xCF, 0x4F, 0x3C};
+const byte appSKey[16] = { ... }; //for example: {0x2B, 0x7E, 0x15, 0x16, 0x28, 0xAE, 0xD2, 0xA6, 0xAB, 0xF7, 0x15, 0x88, 0x09, 0xCF, 0x4F, 0x3C};
 
-    TheThingsNetwork ttn;
+TheThingsNetwork ttn;
 
-    // Define the pins of your sensors
-    #define PIN_PIR 2
-    #define PIN_WATER A0
+// Define the pins of your sensors
+#define PIN_PIR 2
+#define PIN_WATER A0
 
-    // Setup runs once
-    void setup() {
-      // The PIR is a digital input
-      pinMode(PIN_PIR, INPUT);
+// Setup runs once
+void setup() {
+  // The PIR is a digital input
+  pinMode(PIN_PIR, INPUT);
 
-      Serial.begin(9600);
-      Serial1.begin(57600);
+  Serial.begin(9600);
+  Serial1.begin(57600);
 
-      ttn.init(Serial1, Serial);
-      ttn.reset();
+  ttn.init(Serial1, Serial);
+  ttn.reset();
 
-      //the device will configure the LoRa module
-      ttn.personalize(devAddr, nwkSKey, appSKey);
+  //the device will configure the LoRa module
+  ttn.personalize(devAddr, nwkSKey, appSKey);
 
-      ttn.showStatus();
-      Serial.println("Setup for The Things Network complete");
-    }
+  ttn.showStatus();
+  Serial.println("Setup for The Things Network complete");
+}
 
-    // Loop runs indefinitely
-    void loop() {
-      // Read sensors
-      uint8_t motion = digitalRead(PIN_PIR);
-      uint16_t waterLevel = analogRead(PIN_WATER);
+// Loop runs indefinitely
+void loop() {
+  // Read sensors
+  uint8_t motion = digitalRead(PIN_PIR);
+  uint16_t waterLevel = analogRead(PIN_WATER);
 
-      // Check if there is motion
-      if (motion == HIGH) {
-        // Print the water level value
-        Serial.print("Water level: ");
-        Serial.println(waterLevel);
+  // Check if there is motion
+  if (motion == HIGH) {
+    // Print the water level value
+    Serial.print("Water level: ");
+    Serial.println(waterLevel);
 
-        // Send data to The Things Network
-        byte buffer[2];
-        buffer[0] = highByte(waterLevel);
-        buffer[1] = lowByte(waterLevel);
-        ttn.sendBytes(buffer, sizeof(buffer));
-      }
+    // Send data to The Things Network
+    byte buffer[2];
+    buffer[0] = highByte(waterLevel);
+    buffer[1] = lowByte(waterLevel);
+    ttn.sendBytes(buffer, sizeof(buffer));
+  }
 
-      // Wait 10 seconds
-      delay(10000);
-    }
-    ```
+  // Wait 10 seconds
+  delay(10000);
+}
+```
 
 2. Insert your device address in `devAddr`, network session key in `nwkSkey` and application session key in `appSKey`. You can use the handy `<>` button in the dashboard to copy it quickly as a C-style byte array; exactly what Arduino wants
 3. In the **Sketch** menu, click **Upload**
 4. Open the **Serial Monitor** again from the **Tools** menu once upload has completed. Your device should now be sending data to The Things Network
 5. In The Things Network dashboard, go to **Data**. You see packets coming in:
-    
+
     ![alt tag](img/ttn-device-payload-binary.png)
 
 ## Decode data on TTN
@@ -211,27 +211,27 @@ Now, the binary payload is not really useful in upstream. Therefore, we have pay
 1. In the application overview, click **Payload Functions**
 2. Add the following **decoder** function to decode the two bytes back to a 16-bit integer called `waterLevel`:
 
-    ```c
-    function Decoder(bytes) {
-      var waterLevel = (bytes[0] << 8) | bytes[1];
-      return {
-        waterLevel: waterLevel
-      };
-    }
-    ```
+```c
+function Decoder(bytes) {
+  var waterLevel = (bytes[0] << 8) | bytes[1];
+  return {
+    waterLevel: waterLevel
+  };
+}
+```
 
 3. **Test** and **Save** (scroll to the bottom of the page) the changes
 4. We want to invert the resistance of the water sensor so that more water resembles a higher value. The maximum value of 3v3 analog ADC converter is `682`, so use the following as the **converter**:
-    
-    ```
-    function Converter(decodedObj) {
-      decodedObj.waterLevel = 682 - decodedObj.waterLevel;
-      return decodedObj;
-    }
-    ```
 
-5.  **Test** and **Save** (scroll to the bottom of the page) the changes 
-6.  Go back to your data overview. Now you should see something like this:
+```
+function Converter(decodedObj) {
+  decodedObj.waterLevel = 682 - decodedObj.waterLevel;
+  return decodedObj;
+}
+```
+
+5. **Test** and **Save** (scroll to the bottom of the page) the changes 
+6. Go back to your data overview. Now you should see something like this:
 
     ![alt tag](img/ttn-device-payload-fields.png)
 
@@ -380,18 +380,24 @@ Uplink { devEUI: 'goattrough',
 
 *Note: the message consists of valid JSON telemetry.*
 
-*Note: Keep the bridge running until the end of the complete workshop.*  
+*Note: Keep the bridge running until the end of the complete workshop.*
 
 
 ## Monitoring the arrival of the telemetry in Azure
 
 ![alt tag](img/msft/Picture09-monitor-incoming-data.png)
 
-We can check the arrival of messages in the Azure IoT Hub. This can be done using a UI app named Device Explorer or using a Command-Line tool named IoT Hub Explorer. `Choose one` 
+We can check the arrival of messages in the Azure IoT Hub. This can be done using a UI app named Device Explorer or using a Command-Line tool named IoT Hub Explorer. `Choose one below` 
 
 ### Monitoring using UI
 
-We can check the arrival of the messages in the Azure IoT Hub using the Device Explorer. This tool is UI based, please check the installation requirements.
+We can check the arrival of the messages in the Azure IoT Hub using the Device Explorer.
+
+The Device Explorer tool is a Windows-only graphical tool for managing your devices in IoT Hub.
+
+The easiest way to install the Device Explorer tool in your environment is to download the pre-built version by clicking [Azure IoT SDKs releases](https://github.com/Azure/azure-iot-sdks/releases). Scroll down to the Downloads section to locate the download link for the SetupDeviceExplorer.msi installer. Download and run the installer.
+
+To run the Device Explorer tool, double-click the DeviceExplorer.exe file in Windows Explorer. The default installation folder for this application is C:\Program Files (x86)\Microsoft\DeviceExplorer.
 
 1. Start the `Device Explorer` from the PC desktop or using the Windows start menu
 2. On the Configuration Tab, insert the *remembered* IoT Hub `Connection String-primary key` and the `name` of the IoT Hub (as Protocol Gateway Hostname)
@@ -419,20 +425,20 @@ We can check the arrival of the messages in the Azure IoT Hub using the IoT Hub 
 4. Login to the IoT Hub Explorer by supplying your *remembered* IoT Hub `Connection String-primary key` using the command `iothub-explorer login "[your connection string]"`
 5. A session with the IoT Hub will start and it will last for approx. one hour:
 
-    ```
-    Session started, expires Tue Sep 27 2016 18:35:37 GMT+0200 (W. Europe Daylight Time)
-    ```
+```
+Session started, expires Tue Sep 27 2016 18:35:37 GMT+0200 (W. Europe Daylight Time)
+```
 
 6. To monitor the device-to-cloud messages from a device, use the following command `iothub-explorer "[your connection string]" monitor-events [device name]`  and `fill in` your  *remembered* 'Connection String-primary key' and *remember* device name
 7. This will result in the following messages
 
-    ```
-    Monitoring events from device goattrough
-    Event received:
-    {
-      "waterLevel": 12
-    }
-    ```
+```
+Monitoring events from device goattrough
+Event received:
+{
+  "waterLevel": 12
+}
+```
 
 ## Conclusion
 
