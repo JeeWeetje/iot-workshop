@@ -398,16 +398,23 @@ We can check the arrival of the messages in the Azure IoT Hub using the IoT Hub 
     Session started, expires on Thu Jan 05 2017 22:53:55 GMT+0100 (W. Europe Standard Time)
     ```
 
-6. To monitor the device-to-cloud messages from a device, use the following command `iothub-explorer monitor-events [device name]`  and `fill in` your *remember* device name (like 'MachineCyclesUwp')
-7. This will result in the following messages
+6. To monitor the device-to-cloud messages from a device, use the following command `iothub-explorer monitor-events --login [your connection string]` and `fill in` your *remembered* IoT Hub 'Connection String-primary key'
+7. All devices are monitored now. This will result in the following messages
 
     ```
-    Monitoring events from device DummyDevice
-    Event received:
+    Monitoring events from all devices...
+    From: MachineCyclesUwp
     {
-      "errorCode" : 12,
-      "numberOfCycles" : 1
+      "errorCode": 0,
+      "numberOfCycles": 8
     }
+    -------------------
+    From: MachineCyclesUwp
+    {
+      "errorCode": 0,
+      "numberOfCycles": 9
+    }
+    -------------------
     ```
 
 ## Conclusion
