@@ -81,7 +81,7 @@ We will create a UWP app in Visual Studio. These apps are called Universal Windo
 
     ![alt tag](img/UwpToIotHub/vs-universal-anniversary.png)
 
-*Note: If you do not have the Windows 10 Aniversary edition installed, please select the previous SDK*
+    *Note: If you do not have the Windows 10 Aniversary edition installed, please select the previous SDK*
  
 5. Press `F6` or use the menu `BUILD|Build Solution` to recompile the app and check if the build completes without errors
 
@@ -148,168 +148,168 @@ We will use the connection later on. But first let's check out the 'AzureIoTHub.
 2. The file contains a class named which has two methods: 'SendDeviceToCloudMessageAsync' and 'ReceiveCloudToDeviceMessageAsync'.
 3. The method to send data is not that intelligent. It only sends a text message. Add the following code just below it
 
-```csharp
-public static async Task SendDeviceToCloudMessageAsync(Telemetry telemetry)
-{
- var deviceClient = DeviceClient.CreateFromConnectionString(deviceConnectionString, TransportType.Amqp);
+    ```csharp
+    public static async Task SendDeviceToCloudMessageAsync(Telemetry telemetry)
+    {
+     var deviceClient = DeviceClient.CreateFromConnectionString(deviceConnectionString, TransportType.Amqp);
 
-    var message = new Message(Encoding.ASCII.GetBytes(Newtonsoft.Json.JsonConvert.SerializeObject(telemetry)));
+        var message = new Message(Encoding.ASCII.GetBytes(Newtonsoft.Json.JsonConvert.SerializeObject(telemetry)));
 
-    await deviceClient.SendEventAsync(message);
-}
+        await deviceClient.SendEventAsync(message);
+    }
 
-public class Telemetry
-{
-    public int errorCode { get; set; }
+    public class Telemetry
+    {
+        public int errorCode { get; set; }
 
-    public int numberOfCycles { get; set; }
-}
-```
+        public int numberOfCycles { get; set; }
+    }
+    ```
 
 4. We have defined the Telemetry class which will hold the number of cycles. And the current error code of the device can be passed to the cloud. The telemetry is converted to JSON
 5. The method to receive messages from the cloud to this devices needs some rework also. It should be waiting for bytes
 
-```csharp
-public static async Task<byte[]> ReceiveCloudToDeviceBytes()
-{
-    var deviceClient = DeviceClient.
-          CreateFromConnectionString(deviceConnectionString, TransportType.Amqp);
-
-    while (true)
+    ```csharp
+    public static async Task<byte[]> ReceiveCloudToDeviceBytes()
     {
-        var receivedMessage = await deviceClient.ReceiveAsync();
+        var deviceClient = DeviceClient.
+              CreateFromConnectionString(deviceConnectionString, TransportType.Amqp);
 
-        if (receivedMessage != null)
+        while (true)
         {
-            var bytes = receivedMessage.GetBytes();
+            var receivedMessage = await deviceClient.ReceiveAsync();
 
-            await deviceClient.CompleteAsync(receivedMessage);
+            if (receivedMessage != null)
+            {
+                var bytes = receivedMessage.GetBytes();
 
-            return bytes;
+                await deviceClient.CompleteAsync(receivedMessage);
+
+                return bytes;
+            }
+
+            await Task.Delay(TimeSpan.FromSeconds(1));
         }
-
-        await Task.Delay(TimeSpan.FromSeconds(1));
     }
-}
-```
+    ```
 
 6. `Open` the 'XAML' file named 'MainPage.xaml'. The empty page will be shown both in a visual editor and a textual XAML editor
 7. The page contains one component, a grid. But that grid is merely a container for other visual components
 8. In the XAML editor, within the grid, `add`
 
-```xml
-<StackPanel>
-    <TextBlock Name="txbTitle" Text="Machine Cycles Demo" Margin="5"  FontSize="100" IsColorFontEnabled="True" />
-    <Button Name="BtnReceive" Content="Wait for commands" Margin="5" FontSize="60" Click="btnReceive_Click" />
-    <Button Name="BtnSend" Content="Send cycle updates" Margin="5" FontSize="60" Click="btnSend_Click" />
-    <Button Name="BtnBreak" Content="Break down" Margin="5" FontSize="60" Click="BtnBreak_OnClick" />
-    <TextBlock Name="TbReceived" Text="---" FontSize="60" />
-</StackPanel>
-```
+    ```xml
+    <StackPanel>
+        <TextBlock Name="txbTitle" Text="Machine Cycles Demo" Margin="5"  FontSize="100" IsColorFontEnabled="True" />
+        <Button Name="BtnReceive" Content="Wait for commands" Margin="5" FontSize="60" Click="btnReceive_Click" />
+        <Button Name="BtnSend" Content="Send cycle updates" Margin="5" FontSize="60" Click="btnSend_Click" />
+        <Button Name="BtnBreak" Content="Break down" Margin="5" FontSize="60" Click="BtnBreak_OnClick" />
+        <TextBlock Name="TbReceived" Text="---" FontSize="60" />
+    </StackPanel>
+    ```
 
 9. Three buttons and two text blocks are put on the screen. Go to the code-behind source code which will be executed when the buttons are clicked. 
 10. Press `F7`, the file 'MainPage.xaml.cs' is shown. 
 11. Only the constructor of this page is shown. `Add` the following members and methods 
 
-```csharp
-private int _cycleCounter;
+    ```csharp
+    private int _cycleCounter;
 
-private int _errorCode;
+    private int _errorCode;
 
-private async void btnSend_Click(object sender, RoutedEventArgs e)
-{
-    try
-    {
-        await ShowMessage("Sending...");
-
-        if (_errorCode == 0)
-        {
-            _cycleCounter++;
-        }
-
-        var t = new AzureIoTHub.Telemetry
-        {
-            errorCode = _errorCode,
-            numberOfCycles = _cycleCounter,
-        };
-
-        await AzureIoTHub.SendDeviceToCloudMessageAsync(t);
-
-        await ShowMessage($"Telemetry sent (Cycle: {_cycleCounter}, State: {_errorCode})");
-    }
-    catch (Exception ex)
-    {
-        await ShowMessage(ex.Message);
-    }
-}
-
-private async void btnReceive_Click(object sender, RoutedEventArgs e)
-{
-    BtnReceive.IsEnabled = false;
-    while (true)
+    private async void btnSend_Click(object sender, RoutedEventArgs e)
     {
         try
         {
-            var bytes = await AzureIoTHub.ReceiveCloudToDeviceBytes();
+            await ShowMessage("Sending...");
 
-            if (bytes != null && bytes.Length > 0 && bytes[0] >= 42)
+            if (_errorCode == 0)
             {
-                await ShowMessage($"Command {Convert.ToInt32(bytes[0])} (Start running again at {DateTime.Now:hh:mm:ss})");
-                _errorCode = 0;
-                BtnBreak.IsEnabled = true;
-
-                txbTitle.Foreground = new SolidColorBrush(Colors.DarkOliveGreen);
+                _cycleCounter++;
             }
+
+            var t = new AzureIoTHub.Telemetry
+            {
+                errorCode = _errorCode,
+                numberOfCycles = _cycleCounter,
+            };
+
+            await AzureIoTHub.SendDeviceToCloudMessageAsync(t);
+
+            await ShowMessage($"Telemetry sent (Cycle: {_cycleCounter}, State: {_errorCode})");
         }
         catch (Exception ex)
         {
-            BtnReceive.IsEnabled = true;
             await ShowMessage(ex.Message);
         }
     }
-}
 
-private async Task ShowMessage(string text)
-{
-    await Dispatcher.RunAsync(
-            CoreDispatcherPriority.Normal, () =>
+    private async void btnReceive_Click(object sender, RoutedEventArgs e)
+    {
+        BtnReceive.IsEnabled = false;
+        while (true)
+        {
+            try
             {
-                TbReceived.Text = text;
-            });
-}
+                var bytes = await AzureIoTHub.ReceiveCloudToDeviceBytes();
 
-private async void BtnBreak_OnClick(object sender, RoutedEventArgs e)
-{
-    try
-    {
-        BtnBreak.IsEnabled = false;
+                if (bytes != null && bytes.Length > 0 && bytes[0] >= 42)
+                {
+                    await ShowMessage($"Command {Convert.ToInt32(bytes[0])} (Start running again at {DateTime.Now:hh:mm:ss})");
+                    _errorCode = 0;
+                    BtnBreak.IsEnabled = true;
 
-        _errorCode = 99;
-
-        txbTitle.Foreground = new SolidColorBrush(Colors.Red);
-
-        await ShowMessage("Machine is now broken, cycles have stopped; have to Notify!");
+                    txbTitle.Foreground = new SolidColorBrush(Colors.DarkOliveGreen);
+                }
+            }
+            catch (Exception ex)
+            {
+                BtnReceive.IsEnabled = true;
+                await ShowMessage(ex.Message);
+            }
+        }
     }
-    catch (Exception ex)
-    {
-        await ShowMessage(ex.Message);
-    }
-}
 
-```
+    private async Task ShowMessage(string text)
+    {
+        await Dispatcher.RunAsync(
+                CoreDispatcherPriority.Normal, () =>
+                {
+                    TbReceived.Text = text;
+                });
+    }
+
+    private async void BtnBreak_OnClick(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            BtnBreak.IsEnabled = false;
+
+            _errorCode = 99;
+
+            txbTitle.Foreground = new SolidColorBrush(Colors.Red);
+
+            await ShowMessage("Machine is now broken, cycles have stopped; have to Notify!");
+        }
+        catch (Exception ex)
+        {
+            await ShowMessage(ex.Message);
+        }
+    }
+
+    ```
 
 12. The method 'btnSend_Click' now increases the number of duty cycles and sends it to the Iot Hub using the unique access token of the device 'MachineCyclesUwp'
 13. New libraries references are introduced in this code. `Add` two using's at the top of the editor
 
-```csharp
-using System;
-using System.Threading.Tasks;
-using Windows.UI;
-using Windows.UI.Core;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media;
-```
+    ```csharp
+    using System;
+    using System.Threading.Tasks;
+    using Windows.UI;
+    using Windows.UI.Core;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+    using Windows.UI.Xaml.Media;
+    ```
 
 14. The app is now ready. `Run` the app and first send some cycle updates. It the message 'Telemetry sent' is shown, our telemetry is accepted by the IoT Hub
 
@@ -375,12 +375,12 @@ To run the Device Explorer tool, double-click the DeviceExplorer.exe file in Win
 5. On the Data tab, Select your `Device ID` and press `Monitor`
 6. This will result in the following messages
 
-```
-Receiving events...
-10/07/16 23:14:10> Device: [DummyDevice], Data:[{"waterLevel":13}]
-10/07/16 23:14:12> Device: [DummyDevice], Data:[{"waterLevel":18}]
-10/07/16 23:14:13> Device: [DummyDevice], Data:[{"waterLevel":2}]
-```
+    ```
+    Receiving events...
+    10/07/16 23:14:10> Device: [DummyDevice], Data:[{"waterLevel":13}]
+    10/07/16 23:14:12> Device: [DummyDevice], Data:[{"waterLevel":18}]
+    10/07/16 23:14:13> Device: [DummyDevice], Data:[{"waterLevel":2}]
+    ```
 
 ### Monitoring using Command-line
 
@@ -394,20 +394,20 @@ We can check the arrival of the messages in the Azure IoT Hub using the IoT Hub 
 4. Login to the IoT Hub Explorer by supplying your *remembered* IoT Hub `Connection String-primary key` using the command `iothub-explorer login "[your connection string]"`
 5. A session with the IoT Hub will start and it will last for approx. one hour:
 
-```
-Session started, expires Tue Sep 27 2016 18:35:37 GMT+0200 (W. Europe Daylight Time)
-```
+    ```
+    Session started, expires Tue Sep 27 2016 18:35:37 GMT+0200 (W. Europe Daylight Time)
+    ```
 
 6. To monitor the device-to-cloud messages from a device, use the following command `iothub-explorer "[your connection string]" monitor-events [device name]`  and `fill in` your *remembered* IoT Hub 'Connection String-primary key' and *remember* device name
 7. This will result in the following messages
 
-```
-Monitoring events from device DummyDevice
-Event received:
-{
-  "waterLevel": 12
-}
-```
+    ```
+    Monitoring events from device DummyDevice
+    Event received:
+    {
+      "waterLevel": 12
+    }
+    ```
 
 ## Conclusion
 
