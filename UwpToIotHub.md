@@ -4,7 +4,7 @@
 
 This is an example integration between a UWP app and Azure IoT Hub. This integration shows features like creating devices in the Azure IoT Hub device registry as well as sending telemetry to the IoT Hub.
 
-*Note: In this workshop, we will create uniquely named Azure resources. The suggested names could be reserved already.*
+*Note: In this workshop, we will create uniquely named Azure resources. The suggested names could be reserved already. Just try another unique name.*
 
 *Note: The IoT Hub also offers the ability of sending commands back to devices. This is not part of this workshop.*
 

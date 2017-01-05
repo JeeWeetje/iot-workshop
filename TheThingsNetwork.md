@@ -5,7 +5,7 @@
 
 This is an example integration between The Things Network and Azure IoT Hub. This integration will be offered as a bridge, which features creating devices in the Azure IoT Hub device registry as well as sending events from uplink messages.
 
-*Note: in this workshop, we will create uniquely named Azure resources. The suggested names could be reserved already.*
+*Note: In this workshop, we will create uniquely named Azure resources. The suggested names could be reserved already. Just try another unique name.*
 
 ### Prerequisites
 

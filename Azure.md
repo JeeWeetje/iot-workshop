@@ -7,7 +7,7 @@ This is an example of how uplink messages from The Things Network can be handled
 
 Before connecting to Azure Functions, you will first add an Azure Stream Analytics job and Azure Event Hub.
 
-*Note: In this workshop, we will create uniquely named Azure resources. The suggested names could be reserved already.*
+*Note: In this workshop, we will create uniquely named Azure resources. The suggested names could be reserved already. Just try another unique name.*
 
 ### Prerequisites
 

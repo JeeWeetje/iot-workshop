@@ -4,7 +4,7 @@
 
 This is an example of how to add operations monitoring to your Microsoft Azure IoT Hub. We will check how many connections are made etc.
 
-*Note: In this workshop, we will create uniquely named Azure resources. The suggested names could be reserved already.*
+*Note: In this workshop, we will create uniquely named Azure resources. The suggested names could be reserved already. Just try another unique name.*
 
 ### Prerequisites
 

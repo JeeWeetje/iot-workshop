@@ -7,7 +7,9 @@ Microsoft Flow is a brand new SaaS offering, available today in preview, for aut
 
 We will pass the telemetry to an email address provided by you.
 
-*Note: in this workshop, you are introduced into Microsoft Flow. See for [more information](https://flow.microsoft.com/).*
+*Note: In this workshop, we will create uniquely named Azure resources. The suggested names could be reserved already. Just try another unique name.*
+
+*Note: you are introduced into Microsoft Flow. See for [more information](https://flow.microsoft.com/).*
 
 ### Prerequisites
 
