@@ -253,3 +253,5 @@ Follow these steps to add metrics monitoring to your StreamAnalytics job.
     ![alt tag](img/Monitoring/mon21.png)
 
 This concludes this part of the workshop. Thank you for checking out IoT Hub operations monitoring.
+
+![alt tag](img/logos/dotned-saturday.png)

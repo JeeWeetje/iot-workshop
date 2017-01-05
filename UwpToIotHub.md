@@ -316,3 +316,5 @@ Event received:
 The messages are shown here too. These messages are now available in Azure.
 
 Next Step: You are now ready to process your data in an Azure Function.
+
+![alt tag](img/logos/dotned-saturday.png)
