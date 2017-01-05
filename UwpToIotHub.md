@@ -223,12 +223,6 @@ using Windows.UI.Core;
 
 Now we have sent telemetry to the Event Hub. Let's check if it's arrived.
 
-## Monitoring the arrival of the telemetry in Azure
-
-![alt tag](img/arch/Picture05-UWP-overview.png)
-
-We can check the arrival of messages in the Azure IoT Hub. This can be done using a UI app named Device Explorer or using a Command-Line tool named IoT Hub Explorer. `Choose one below` 
-
 ### Collect Azure IoT Hub secrets
 
 The integration requires an Azure IoT Hub Shared access policy key name with `Registry read, write and Device connect` permissions. In this example, we use the **iothubowner** policy which has these permissions enabled by default.
@@ -256,6 +250,12 @@ The integration requires an Azure IoT Hub Shared access policy key name with `Re
     ![alt tag](img/UwpToIotHub/azure-iothubowner-policy.png)
 
 This is the secret needed from the Azure IoT Hub.
+
+## Monitoring the arrival of the telemetry in Azure
+
+![alt tag](img/arch/Picture05-UWP-overview.png)
+
+We can check the arrival of messages in the Azure IoT Hub. This can be done using a UI app named Device Explorer or using a Command-Line tool named IoT Hub Explorer. `Choose one below` 
 
 ### Monitoring using UI
 
