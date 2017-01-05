@@ -60,11 +60,13 @@ Follow these steps to create an Azure IoT Hub.
 Creating an IoT Hub takes some time. Meanwhile, we will start with the app which will connect to the IoT Hub later on.
 
 
-## creating a new UWP App
+## Creating a new UWP App
 
 ![alt tag](img/arch/Picture02-UWP-overview.png)
 
 We will create a UWP app in Visual Studio. These apps are called Universal Windows Apps because they are supported by all sorts of devices running Windows 10. This includes laptops, PC's, Mobile devices like phones and tablets, the Xbox One, The Surface Hub, The Hololens and even the Raspberry Pi.
+
+*Note: Our app will simulate a machine which handles batches of work. It passes the increasing number of finished duty cycles every X seconds to the cloud. And we can simulate outage later on*
 
 1. Start Visual Studio
 2. On the Start Page or using the Menu, select New Project...
@@ -75,13 +77,13 @@ We will create a UWP app in Visual Studio. These apps are called Universal Windo
 
     ![alt tag](img/UwpToIotHub/vs-universal-app-template.png)
 
-4. Select `Ok`. Iy you are asked which minimal platform version must be loaded, just press `Ok` again
+4. Select `Ok`. If you are asked which minimal platform version must be loaded, just press `Ok` again
 
     ![alt tag](img/UwpToIotHub/vs-universal-anniversary.png)
 
 *Note: If you do not have the Windows 10 Aniversary edition installed, please select the previous SDK*
  
-5. Recompile the app and check if the build completes without errors. Press `F6` or use the menu `BUILD|Build Solution`
+5. Press `F6` or use the menu `BUILD|Build Solution` to recompile the app and check if the build completes without errors
 
     ![alt tag](img/UwpToIotHub/vs-build-succeeded.png)
 
@@ -101,7 +103,8 @@ Let's add a connection to IoT hub and register the app like a real device.
 2. Go to the solution Explorer to the right. You can see the application has one page called MainPage.xaml
 
     ![alt tag](img/UwpToIotHub/vs-solution-explorer-universal-start.png)
-3. Right click `References` and select `Add Connected Service`
+
+3. In the solution, right-click `References` and select `Add Connected Service`
 
     ![alt tag](img/UwpToIotHub/vs-iot-hub-extension.png)
 
@@ -110,7 +113,7 @@ Let's add a connection to IoT hub and register the app like a real device.
     ![alt tag](img/UwpToIotHub/vs-iot-extension-start.png)
 
 5. Select `Hardcode shared access key` as Security Mode. Confirm with `OK`
-6. Now you will be asked to select the IoT Hub you want to connect. At this time, the Hub should be created. *If you have multiple Azure accounts, please check is the correct one is selected*
+6. Now you will be asked to select the IoT Hub you want to connect. At this time, the Hub should be created. *If you have multiple Azure accounts, please double-check that the correct one is selected*
 
     ![alt tag](img/UwpToIotHub/vs-iot-extension-select.png)
 
@@ -119,77 +122,120 @@ Let's add a connection to IoT hub and register the app like a real device.
 
     ![alt tag](img/UwpToIotHub/vs-device-one.png)
 
-9. Enter a unique `device name` eg 'DummyDevice'
+9. Enter a unique `device name` eg 'MachineCyclesUwp'
 
     ![alt tag](img/UwpToIotHub/vs-device-two.png)
 
-10. The device is registered, unique credentials are created and these will be used by our app. Select `OK`
+10. The device is registered, you are allowed to create more devices. Unique credentials are created for each device in the background
+11. But afterwards, be sure to pick the 'MachineCyclesUwp'; this one will be used by our app. Select `OK` to start the generation of the connection
 
     ![alt tag](img/UwpToIotHub/vs-device-three.png)
 
-11. The necessary Nuget libraries are added and eventually you will be directed to [https://github.com/Azure/azure-iot-hub-vs-cs/wiki/C%23-Usage](https://github.com/Azure/azure-iot-hub-vs-cs/wiki/C%23-Usage) for more information
-12. In the Solution Explorer of Visual Studio a new file named 'AzureIoTHub.cs' is added. This provides all logic to connect to the IoT Hub
+12. The necessary Nuget libraries are added and eventually you will be directed to a [Get Started page](https://github.com/Azure/azure-iot-hub-vs-cs/wiki/C%23-Usage) for more information
+13. In the Solution Explorer of Visual Studio, a new file named 'AzureIoTHub.cs' is added. This provides all logic for the connection to the IoT Hub
 
     ![alt tag](img/UwpToIotHub/vs-iot-hub-singleton.png)
 
-The AzureIoTHub can be called by our App. Let's do that.
+The AzureIoTHub can be integrated in the logic of our App. Let's do that.
 
 ## Generate and send dummy telemetry
 
 ![alt tag](img/arch/Picture04-UWP-overview.png)
 
-Let's put a button on the main page of the app to send some telemetry. But first let's check out the 'AzureIoTHub.cs' file.
+We will use the connection later on. But first let's check out the 'AzureIoTHub.cs' file because it needs some rework.
 
 1. `Open` the file named 'AzureIoTHub.cs'
-2. The file contains a class named which has two methods: 'SendDeviceToCloudMessageAsync' and 'ReceiveCloudToDeviceMessageAsync'. *In this work shop, we will only send telemetry*
+2. The file contains a class named which has two methods: 'SendDeviceToCloudMessageAsync' and 'ReceiveCloudToDeviceMessageAsync'.
 3. The method to send data is not that intelligent. It only sends a text message. Add the following code just below it
 
 ```csharp
 public static async Task SendDeviceToCloudMessageAsync(Telemetry telemetry)
 {
-    var _deviceClient = DeviceClient.CreateFromConnectionString(deviceConnectionString, TransportType.Amqp);
+ var deviceClient = DeviceClient.CreateFromConnectionString(deviceConnectionString, TransportType.Amqp);
 
     var message = new Message(Encoding.ASCII.GetBytes(Newtonsoft.Json.JsonConvert.SerializeObject(telemetry)));
 
-    await _deviceClient.SendEventAsync(message);
+    await deviceClient.SendEventAsync(message);
 }
 
 public class Telemetry
 {
-    public int waterLevel { get; set; }
+    public int errorCode { get; set; }
+
+    public int numberOfCycles { get; set; }
 }
 ```
 
-4. We have defined the Telemetry class which will hold a water level value. The random levels are sent to the IoT Hub using the method. The telemetry is converted to JSON
-5. `Open` the file named 'MainPage.xaml'. The empty page will be shown both in a visual editor and a textual 'XAML' editor
-6. The page contains one component, a grid. But that is merely a container for other visual components
-7. In the XAML editor, within the grid, `add`
+4. We have defined the Telemetry class which will hold the number of cycles. And the current error code of the device can be passed to the cloud. The telemetry is converted to JSON
+5. The method to receive messages from the cloud to this devices needs some rework also. It should be waiting for bytes
 
-```xaml
+```csharp
+public static async Task<byte[]> ReceiveCloudToDeviceBytes()
+{
+    var deviceClient = DeviceClient.
+          CreateFromConnectionString(deviceConnectionString, TransportType.Amqp);
+
+    while (true)
+    {
+        var receivedMessage = await deviceClient.ReceiveAsync();
+
+        if (receivedMessage != null)
+        {
+            var bytes = receivedMessage.GetBytes();
+
+            await deviceClient.CompleteAsync(receivedMessage);
+
+            return bytes;
+        }
+
+        await Task.Delay(TimeSpan.FromSeconds(1));
+    }
+}
+```
+
+6. `Open` the 'XAML' file named 'MainPage.xaml'. The empty page will be shown both in a visual editor and a textual XAML editor
+7. The page contains one component, a grid. But that grid is merely a container for other visual components
+8. In the XAML editor, within the grid, `add`
+
+```xml
 <StackPanel>
-    <Button Name="btnSend" Content="Send" FontSize="60" Click="btnSend_Click" />
-    <TextBlock Name="tbReceived" Text="---" FontSize="60" />
+    <TextBlock Name="txbTitle" Text="Machine Cycles Demo" Margin="5"  FontSize="100" IsColorFontEnabled="True" />
+    <Button Name="BtnReceive" Content="Wait for commands" Margin="5" FontSize="60" Click="btnReceive_Click" />
+    <Button Name="BtnSend" Content="Send cycle updates" Margin="5" FontSize="60" Click="btnSend_Click" />
+    <Button Name="BtnBreak" Content="Break down" Margin="5" FontSize="60" Click="BtnBreak_OnClick" />
+    <TextBlock Name="TbReceived" Text="---" FontSize="60" />
 </StackPanel>
 ```
 
-8. A button and a text box are put on the screen. Go to the code which will be executed when the button is clicked. Put the cursor in btnSend_Click and press `F12`
-9. The file 'MainPage.xaml.cs' is shown. All code behind the page is shown here. `Replace` the empty 'btnSend_Click' method with
+9. Three buttons and two text blocks are put on the screen. Go to the code-behind source code which will be executed when the buttons are clicked. 
+10. Press `F7`, the file 'MainPage.xaml.cs' is shown. 
+11. Only the constructor of this page is shown. `Add` the following members and methods 
 
 ```csharp
+private int _cycleCounter;
+
+private int _errorCode;
+
 private async void btnSend_Click(object sender, RoutedEventArgs e)
 {
-    await ShowMessage("Sending...");
-
-    var t = new AzureIoTHub.Telemetry
-    {
-        waterLevel = _random.Next(1, 68)
-    };
-
     try
     {
+        await ShowMessage("Sending...");
+
+        if (_errorCode == 0)
+        {
+            _cycleCounter++;
+        }
+
+        var t = new AzureIoTHub.Telemetry
+        {
+            errorCode = _errorCode,
+            numberOfCycles = _cycleCounter,
+        };
+
         await AzureIoTHub.SendDeviceToCloudMessageAsync(t);
 
-        await ShowMessage("Telemetry sent");
+        await ShowMessage($"Telemetry sent (Cycle: {_cycleCounter}, State: {_errorCode})");
     }
     catch (Exception ex)
     {
@@ -197,31 +243,83 @@ private async void btnSend_Click(object sender, RoutedEventArgs e)
     }
 }
 
-private Random _random = new Random((int)DateTime.Now.Ticks);
+private async void btnReceive_Click(object sender, RoutedEventArgs e)
+{
+    BtnReceive.IsEnabled = false;
+    while (true)
+    {
+        try
+        {
+            var bytes = await AzureIoTHub.ReceiveCloudToDeviceBytes();
+
+            if (bytes != null && bytes.Length > 0 && bytes[0] >= 42)
+            {
+                await ShowMessage($"Command {Convert.ToInt32(bytes[0])} (Start running again at {DateTime.Now:hh:mm:ss})");
+                _errorCode = 0;
+                BtnBreak.IsEnabled = true;
+
+                txbTitle.Foreground = new SolidColorBrush(Colors.DarkOliveGreen);
+            }
+        }
+        catch (Exception ex)
+        {
+            BtnReceive.IsEnabled = true;
+            await ShowMessage(ex.Message);
+        }
+    }
+}
 
 private async Task ShowMessage(string text)
 {
     await Dispatcher.RunAsync(
             CoreDispatcherPriority.Normal, () =>
             {
-                tbReceived.Text = text;
+                TbReceived.Text = text;
             });
 }
+
+private async void BtnBreak_OnClick(object sender, RoutedEventArgs e)
+{
+    try
+    {
+        BtnBreak.IsEnabled = false;
+
+        _errorCode = 99;
+
+        txbTitle.Foreground = new SolidColorBrush(Colors.Red);
+
+        await ShowMessage("Machine is now broken, cycles have stopped; have to Notify!");
+    }
+    catch (Exception ex)
+    {
+        await ShowMessage(ex.Message);
+    }
+}
+
 ```
 
-10. The method 'btnSend_Click' now generates some random value and sends it to the Iot Hub using the access token of the device 'DummyDevice'
-11. New libraries references are introduced in this code. `Add` two using's at the top of the editor
+12. The method 'btnSend_Click' now increases the number of duty cycles and sends it to the Iot Hub using the unique access token of the device 'MachineCyclesUwp'
+13. New libraries references are introduced in this code. `Add` two using's at the top of the editor
 
 ```csharp
+using System;
 using System.Threading.Tasks;
+using Windows.UI;
 using Windows.UI.Core;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
 ```
 
-12. The app is now ready. `Run` the app and press the button. It the message 'Telemetry sent' is shown, our telemetry is accepted by the IoT Hub
+14. The app is now ready. `Run` the app and first send some cycle updates. It the message 'Telemetry sent' is shown, our telemetry is accepted by the IoT Hub
 
     ![alt tag](img/UwpToIotHub/uwp-send-telemetry.png)
 
 Now we have sent telemetry to the Event Hub. Let's check if it's arrived.
+
+## Monitoring the arrival of the telemetry in Azure
+
+We can monitor the arrival of telemetry only if we have enough rights to look into the IoT Hub.
 
 ### Collect Azure IoT Hub secrets
 
@@ -251,7 +349,7 @@ The integration requires an Azure IoT Hub Shared access policy key name with `Re
 
 This is the secret needed from the Azure IoT Hub.
 
-## Monitoring the arrival of the telemetry in Azure
+## Select your favorite tool for monitoring
 
 ![alt tag](img/arch/Picture05-UWP-overview.png)
 
