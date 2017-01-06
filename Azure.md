@@ -7,6 +7,8 @@ This is an example of how uplink and downlink messages from and to The Things Ne
 
 Before connecting to Azure Functions, you will first add an Azure Stream Analytics job and Azure Event Hub.
 
+The Azure Function will execute custom code in the Cloud, bases on certain telemetry. We need Stream Analytics and the Event Hub to pass the telemetry to our function.
+
 *Note: In this workshop, we will create uniquely named Azure resources. The suggested names could be reserved already. Just try another unique name.*
 
 ### Prerequisites
@@ -87,11 +89,11 @@ Follow these steps to create an Azure Event Hub which passes large amounts of ev
 12. Select `Create` and the portal will start creating the namespace. Once it is created, a notification is shown
 13. Creating a namespace will take some time, we have to check the completion this step
 14. So navigate back to the resource group (repeat step 1 and 2) and check the namespace creation in the resource group
-15. If the namespace has become listed, select it, eg. `IoTWorkshop-ns`. Otherwise, 'refresh' the list a few times
+15. If the namespace has become listed, select it, eg. `IoTWorkshop-ns`. Otherwise, 'refresh' the list of resources in the resource group a few times by pressing `Refresh` 
 
     ![alt tag](img/azure-portal-refresh.png)
 
-16. You are now in the namespace blade. It should be shown like this, with all information available (otherwise, refresh a few times):
+16. You are now in the namespace blade. It should be shown like this, with all information available (otherwise, refresh a few times so Azure can show the completely generated namespace). There are no event hubs yet in this namespace:
 
     ![alt tag](img/azure-namespace.png)
 
@@ -99,8 +101,13 @@ Follow these steps to create an Azure Event Hub which passes large amounts of ev
 
     ![alt tag](img/azure-namespace-add.png)
 
-18. A dialog for a new Event Hub is shown. Enter a unique name eg. `TechDays42eh`. A green sign will be shown if the name is unique *Note: the name will be reverted to lower case when the Event Hub is created!*
+18. A dialog for a new Event Hub is shown. Enter a unique name eg. `IoTWorkshop-eh`. A green sign will be shown if the name is unique *Note: the name will be reverted to lower case when the Event Hub is created!*
+
+    ![alt tag](img/azure-eventhub-create.png)
+
 19. Select `Create` and the portal will start creating the Event Hub. Once it is created, a notification is shown
+
+    ![alt tag](img/azure-eventhub-created.png)
 
 The Event Hub is now created. But before we leave the namespace it is created in, we need some secrets for later usage.
 
@@ -114,7 +121,7 @@ A few steps below we will create an Azure Functions triggered by an Event Hub. A
     ![alt tag](img/azure-eventhub-policy.png)
 
 3. **Write down** the Connection string `Connection String-Primary Key`
-4. **Write down** the `name` of the Event Hub eg. `techdays42eh` *Note: in lower case*
+4. **Write down** the `name` of the Event Hub eg. `iotworkshop-eh` *Note: in lower case*
 
 *Note: The Event Hub itself has Shared access policies too. We do not need to remember those, just the one of the policy of the namespace!.*
 
@@ -149,7 +156,7 @@ As shown above, the Azure Stream Analytics job will connect the IoT Hub and the 
     ![alt tag](img/azure-portal-add.png)
 
 12. Enter `huboutput` as Output alias
-13. The `Event Hub` is already selected as Sink and all other fields are automatically filled in with the right Event Hub, `techdays42eh` *Note: in lower case*
+13. The `Event Hub` is already selected as Sink and all other fields are automatically filled in with the right Event Hub, `iotworkshop-eh` *Note: in lower case*
 
     ![alt tag](img/azure-stream-analytics-add-output.png)
 
@@ -299,7 +306,7 @@ Follow these steps to create an Azure Function, triggered by the Event Hub, insi
     ![alt tag](img/azure-function-app-eventhubtrigger.png)
 
 10. At the bottom of the page (use the scrollbar of the page), you have to fill in the field 'Name your function'. Change `EventHubTriggerCSharp1` into `TechDaysEventHubTriggerFunction`
-11. In the field 'Event Hub name' you will have to pass the *remembered* name of the Event Hub eg. `techdays42eh` *Note: in lower case*
+11. In the field 'Event Hub name' you will have to pass the *remembered* name of the Event Hub eg. `iotworkshop-eh` *Note: in lower case*
 12. The 'Event Hub connection' field can be filled by pressing the `new` link
 13. A blade with an empty list of connection strings will be shown. Press `Add a connection string`
 
