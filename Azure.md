@@ -89,7 +89,7 @@ Follow these steps to create an Azure Event Hub which passes large amounts of ev
 12. Select `Create` and the portal will start creating the namespace. Once it is created, a notification is shown
 13. Creating a namespace will take some time, we have to check the completion this step
 14. So navigate back to the resource group (repeat step 1 and 2) and check the namespace creation in the resource group
-15. If the namespace has become listed, select it, eg. `IoTWorkshop-ns`. Otherwise, 'refresh' the list of resources in the resource group a few times by pressing `Refresh` 
+15. If the namespace has become listed, select it, eg. `IoTWorkshop-ns`. Otherwise, 'refresh' the list of resources in the resource group a few times by pressing `Refresh` (as seen at the bottom of the screen)
 
     ![alt tag](img/azure-portal-refresh.png)
 
@@ -109,14 +109,14 @@ Follow these steps to create an Azure Event Hub which passes large amounts of ev
 
     ![alt tag](img/azure-eventhub-created.png)
 
-The Event Hub is now created. But before we leave the namespace it is created in, we need some secrets for later usage.
+The Event Hub is now created. But before we pass on, we need some Namespace secrets for later usage.
 
-## Azure Event Hub secrets
+## Azure Event Hub namespace secrets
 
-A few steps below we will create an Azure Functions triggered by an Event Hub. At this moment, in the editor of the Azure portal, the Azure functions can not automatically connect to an Event Hub. We need some secrets to do it by hand.
+A few steps below we will create an Azure Functions triggered by an Event Hub. At this moment, in the editor of the Azure portal, the Azure functions can not automatically recognize available Event Hubs. We need some secrets to do it by hand.
 
 1. Within the namespace blade, select the general setting `Shared access policies`
-2. select the `RootManageSharedAccessKey` policy
+2. select the already available `RootManageSharedAccessKey` policy
 
     ![alt tag](img/azure-eventhub-policy.png)
 
