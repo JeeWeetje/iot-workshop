@@ -39,17 +39,18 @@ Follow these steps to create an Azure Stream Analytics job which takes messages 
 
     ![alt tag](img/azure-filter-stream-analytics.png)
 
-6. An introduction will be shown. Select `Create`
+6. An introduction will be shown
 
     ![alt tag](img/azure-stream-analytics-intro.png)
 
-7. A dialog for a new Stream Analytics job is shown. Enter a unique name eg. `TechDays42sa`. A green sign will be shown if the name is unique
-8. The Resource Group eg. `TechDays42rg` is already filled in
-9. Select `West Europe` for the location
+7. Select `Create`
+8. A dialog for a new Stream Analytics job is shown. Enter a unique name eg. `IoTWorkshop-sa`. A green sign will be shown if the name is unique
+9. The Resource Group eg. `IoTWorkshop-rg` is already filled in
+10. Select `West Europe` for the location
 
     ![alt tag](img/azure-create-stream-analytics.png)
 
-10. Select `Create` and the portal will start creating the service. Once it is created, a notification is shown
+11. Select `Create` and the portal will start creating the service. Once it is created, a notification is shown
 
 Creating an Azure Stream analytics job will take some time. Input is already known, the already existing IoT Hub; so let's create the service to send the output to, an azure Event Hub.
 
