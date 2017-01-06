@@ -22,8 +22,7 @@ During the workshop the following experts will be present to guide you through t
 ## Workshop schedule at DotNed Saturday 2017
 | StartTime** | EndTime** | 
 | --------- | ------- | 
-| 01/28/2017 09:00 | 01/28/2017 11:15 |
-| 01/28/2017 13:15 | 01/28/2017 15:30 |
+| 01/28/2017 10:15 | 01/28/2017 12:15 |
 
 ** Start and end times subject to changes
 

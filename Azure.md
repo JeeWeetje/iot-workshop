@@ -1,7 +1,7 @@
 # The Things Network & Azure IoT: a perfect combination
 ## Handling The Things Network telemetry in Azure
 
-This is an example of how uplink messages from The Things Network can be handled in Azure. In this workshop, we will pass telemetry of your device to Azure Functions. 
+This is an example of how uplink and downlink messages from and to The Things Network can be handled in Azure. In this workshop, we will pass telemetry from your device to Azure Functions and we will pass commands back to your device. 
 
 ![alt tag](img/arch/azure-telemetry-pipeline.png)
 
@@ -12,10 +12,10 @@ Before connecting to Azure Functions, you will first add an Azure Stream Analyti
 ### Prerequisites
 
 1. A running TTN node connected to the TTN network
-2. Azure account [create here](https://azure.microsoft.com/en-us/free/) _(Azure passes will be present for those who have no Azure account)_
-3. An Azure IoT Hub
-4. A running TTN bridge on your PC and connected to an IoT Hub
-5. A running Device Explorer or IoT Hub Explorer, connected to the IoT Hub, showing the telemetry coming in
+2. Azure account [create here](https://azure.microsoft.com/en-us/free/) _([Azure passes](https://www.microsoftazurepass.com/howto) will be present for those who have no Azure account)_
+3. An Azure IoT Hub (created in the previous workshop)
+4. A running TTN bridge on your PC and connected to an IoT Hub (or an UWP app which represents the same logic)
+5. A running Device Explorer or IoT Hub Explorer, connected to the IoT Hub, showing the telemetry coming in (created in the previous workshop)
 
 ## Create Azure Stream Analytics job
 
@@ -30,7 +30,7 @@ Follow these steps to create an Azure Stream Analytics job which takes messages 
 
     ![alt tag](img/azure-resource-groups.png)
 
-3. Select the ResourceGroup `TechDays42rg`. It will open a new blade with all resources in this group
+3. Select the ResourceGroup `IoTWorkshop-rg`. It will open a new blade with all resources in this group
 4. Select `Add`. A list of available services appears
 
     ![alt tag](img/azure-portal-add.png)
