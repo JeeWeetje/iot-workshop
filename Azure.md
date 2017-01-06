@@ -74,7 +74,7 @@ Follow these steps to create an Azure Event Hub which passes large amounts of ev
 5. An introduction will be shown. Select `Create`
 6. Event Hubs live within namespaces. So first a new namespace must be created
 7. A dialog for the new namespace is shown
-8. Enter a unique namespace name eg. `TechDays42ns`. A green sign will be shown if the name is unique
+8. Enter a unique namespace name eg. `IoTWorkshop-ns`. A green sign will be shown if the name is unique
 9. Select a pricing tier. Select the `pricing tier` selection. A 'Choose your pricing tier' section will be shown. Select the `Basic tier` or `Standard tier` and press `select`
 
     ![alt tag](img/azure-namespace-pricingtier.png)
@@ -85,9 +85,9 @@ Follow these steps to create an Azure Event Hub which passes large amounts of ev
     ![alt tag](img/azure-create-eventhub-namespace.png)
 
 12. Select `Create` and the portal will start creating the namespace. Once it is created, a notification is shown
-13. Creating a namespace will take some time, but we want to complete this step
+13. Creating a namespace will take some time, we have to check the completion this step
 14. So navigate back to the resource group (repeat step 1 and 2) and check the namespace creation in the resource group
-15. If the namespace becomes listed, select `TechDays42ns`. Otherwise, 'refresh' the list a few times
+15. If the namespace has become listed, select it, eg. `IoTWorkshop-ns`. Otherwise, 'refresh' the list a few times
 
     ![alt tag](img/azure-portal-refresh.png)
 
