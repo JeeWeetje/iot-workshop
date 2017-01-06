@@ -62,7 +62,7 @@ Follow these steps to create an Azure Event Hub which passes large amounts of ev
 
     ![alt tag](img/azure-resource-groups.png)
 
-2. Select the ResourceGroup `TechDays42rg`. It will open a new blade with all resources in this group
+2. Select the ResourceGroup `IoTWorkshop-rg`. It will open a new blade with all resources in this group
 3. Select `Add`. A list of available services appears
 
     ![alt tag](img/azure-portal-add.png)
@@ -79,7 +79,7 @@ Follow these steps to create an Azure Event Hub which passes large amounts of ev
 
     ![alt tag](img/azure-namespace-pricingtier.png)
 
-10. The Resource Group eg. `TechDays42rg` is already filled in
+10. The Resource Group eg. `IoTWorkshop-rg` is already filled in
 11. Select `West Europe` for the location
 
     ![alt tag](img/azure-create-eventhub-namespace.png)
@@ -126,8 +126,8 @@ As shown above, the Azure Stream Analytics job will connect the IoT Hub and the 
 
     ![alt tag](img/azure-resource-groups.png)
 
-2. Select the ResourceGroup `TechDays42rg`. It will open a new blade with all resources in this group
-3. Select the Azure Stream Analytics job `TechDays42sa`. At this moment there are no Inputs or Outputs.
+2. Select the ResourceGroup `IoTWorkshop-rg`. It will open a new blade with all resources in this group
+3. Select the Azure Stream Analytics job `IoTWorkshop-sa`. At this moment there are no Inputs or Outputs.
 
     ![alt tag](img/azure-stream-analytics-empty.png)
 
@@ -184,7 +184,7 @@ Follow these steps to write the query of Azure Stream Analytics job.
 
     ![alt tag](img/azure-portal-save.png)
 
-5. Close the Query blade with the `close icon` or select `TechDays42sa` in the bread crumbs in the top of the page
+5. Close the Query blade with the `close icon` or select `IoTWorkshop-sa` in the bread crumbs in the top of the page
 
     ![alt tag](img/azure-portal-close.png)
 
@@ -216,7 +216,7 @@ Follow these steps to create an Azure Function App. An Azure function is actuall
 
     ![alt tag](img/azure-resource-groups.png)
 
-2. Select the ResourceGroup `TechDays42rg`. It will open a new blade with all resources in this group
+2. Select the ResourceGroup `IoTWorkshop-rg`. It will open a new blade with all resources in this group
 3. Select `Add`. A list of available services appears
 
     ![alt tag](img/azure-portal-add.png)
@@ -234,7 +234,7 @@ Follow these steps to create an Azure Function App. An Azure function is actuall
     ![alt tag](img/azure-function-app-initial.png)
 
 7. Enter a unique App name eg. `TechDays42fa`. A green sign will be shown if the name is unique
-8. The Resource Group eg. `TechDays42rg` is already filled in
+8. The Resource Group eg. `IoTWorkshop-rg` is already filled in
 9. An App Service plan is the container for your app. The already created App Service Plan will probably not fit our needs. We create a new one
 10. Open the App Service plan blade and select `Create New`
 
@@ -275,7 +275,7 @@ Follow these steps to create an Azure Function, triggered by the Event Hub, insi
 
     ![alt tag](img/azure-resource-groups.png)
 
-2. Select the ResourceGroup `TechDays42rg`. It will open a new blade with all resources in this group
+2. Select the ResourceGroup `IoTWorkshop-rg`. It will open a new blade with all resources in this group
 3. Select the Azure Function App `TechDays42fa`
 4. If the Function App is not shown yet, `refresh` the list. The Function app resource will be shown in a new blade
 
