@@ -178,37 +178,41 @@ Follow these steps to write the query of Azure Stream Analytics job.
 3. Write the following, very simple, query
 
     ```sql
-    SELECT
-        CAST(waterLevel as bigint) as level,
-        EventProcessedUtcTime as time,
+    SELECT 
+        Count(errorCode),
         IoTHub.ConnectionDeviceId as deviceId
     INTO
-        huboutput 
+        huboutputsink
     FROM
-        hubinput
+        hubinput timestamp by EventProcessedUtcTime
+    WHERE
+        errorCode <> 0
+    GROUP BY IoTHub.ConnectionDeviceId, TumblingWindow(Duration(minute, 1))
+    HAVING Count(errorCode) > 1 
     ```
 
-4. Press `Save`. Confirm if needed
+4. This rather simple query will collect every minute, all devices and the number of their messages when their telemetry shows more than one error *See [Introduction to Stream Analytics Window functions](https://docs.microsoft.com/en-us/azure/stream-analytics/stream-analytics-window-functions) for more information about the query language*
+5. Press `Save`. Confirm if needed
 
     ![alt tag](img/azure-portal-save.png)
 
-5. Close the Query blade with the `close icon` or select `IoTWorkshop-sa` in the bread crumbs in the top of the page
+6. Close the Query blade with the `close icon` or select `IoTWorkshop-sa` in the bread crumbs in the top of the page
 
     ![alt tag](img/azure-portal-close.png)
 
-6. Now the Azure Stream Analytics job has both inputs, outputs and a query
+7. Now the Azure Stream Analytics job has both inputs, outputs and a query
 
     ![alt tag](img/azure-stream-analytics-job-topology.png)
 
-7. Select `Start` 
+8. Select `Start` 
 
     ![alt tag](img/azure-portal-start.png)
 
-8. An Azure Stream Analytics job can start with telemetry from the past (if you want to rerun historical telemetry still stored in the input) or you can start with new telemetry. Select `Now` 
+9. An Azure Stream Analytics job can start with telemetry from the past (if you want to rerun historical telemetry still stored in the input) or you can start with new telemetry. Select `Now` 
 
     ![alt tag](img/azure-stream-analytics-start.png)
 
-9. Select `Start` 
+10. Select `Start` 
 
 Starting an Azure Stream Analytics job will take some time. After starting, all telemetry from the IoT Hub will be passed on to the Event Hub. And that telemetry will each time trigger an Azure Function.
 
