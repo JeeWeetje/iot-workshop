@@ -247,37 +247,25 @@ Follow these steps to create an Azure Function App. An Azure function is actuall
 
 7. Enter a unique App name eg. `IoTWorkshop-fa`. A green sign will be shown if the name is unique
 8. The Resource Group eg. `IoTWorkshop-rg` is already filled in
-9. An App Service plan is the container for your app. The already created App Service Plan will probably not fit our needs. We create a new one
-10. Open the App Service plan blade and select `Create New`
-
-    ![alt tag](img/azure-asp-create.png)
-
-11. Enter a unique App name eg. `IoTWorkshop-asp`. A green sign will be shown if the name is unique
-12. Select `West Europe` for the location
-
-    ![alt tag](img/azure-asp-new.png)
-
-13. The Pricing tier will be left unaltered
-14. Select `Ok`
-15. Our new App Service plan is now added to the Azure Function App
-16. We also want to give the Storage Account a more meaningful name. In this storage account, the function source code etc. will be stored
-17. Open de Storage Account blade and select `Create New`
+9. The hosting plan is set to 'Consumption plan' by default. This means that you will only be charged for the number of times a function is executed and the resources needed for that execution. *Note: Every month, the first one million requests and and 400.000 GBs are [free of charge](https://azure.microsoft.com/en-us/pricing/details/functions/)*
+10. Select `West Europe` for the location
+11. We also want to give the Storage Account a more meaningful name. In this storage account, the function source code etc. will be stored
+12. Open de Storage Account blade and select `Create New`
 
     ![alt tag](img/azure-storage-account-create.png)
 
-18. Enter a unique App name eg. `techdays42storage`. A green sign will be shown if the name is unique *Note: Storage account names must be all lower case!.*
+13. Enter a unique App name eg. `iotworkshopstorage`. A green sign will be shown if the name is unique *Note: Storage account names must be all lower case!.*
 
     ![alt tag](img/azure-storage-account-new.png)
 
-19. Select `Ok`
-20. Our new Storage Account is now added to the Azure Function App
+14. Select `Ok`
+15. Our new Storage Account is now added to the Azure Function App
 
     ![alt tag](img/azure-function-app-create.png)
 
-21. Select `Create` 
+16. Select `Create` 
 
 The portal will start creating the Function app. Once it is created, a notification is shown.
-
 
 ## Create an Azure Function triggered by Event Hub
 
@@ -288,7 +276,7 @@ Follow these steps to create an Azure Function, triggered by the Event Hub, insi
     ![alt tag](img/azure-resource-groups.png)
 
 2. Select the ResourceGroup `IoTWorkshop-rg`. It will open a new blade with all resources in this group
-3. Select the Azure Function App `TechDays42fa`
+3. Select the Azure Function App `IoTWorkshop-fa`
 4. If the Function App is not shown yet, `refresh` the list. The Function app resource will be shown in a new blade
 
     ![alt tag](img/azure-portal-refresh.png)
