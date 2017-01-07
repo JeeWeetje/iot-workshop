@@ -281,20 +281,25 @@ Follow these steps to create an Azure Function, triggered by the Event Hub, insi
 
     ![alt tag](img/azure-portal-refresh.png)
 
-5. Function Apps are quite new in the Azure portal and the interface is still frequently updated. Check the Function app settings if you want to know the current version.
-6. If you are requested to update the Function App, select `Update`
+5. Select the `Function app settings` page
+
+    ![alt tag](img/azure-function-app-settings.png)
+ 
+6. As you can see, there are lot's of extra features regarding development, deployment and management. 
 
     ![alt tag](img/azure-function-app-update.png)
 
-7. Select `Quickstart`
+7. Keep the default settings. *Note: Function Apps are quite new in the Azure portal and the interface is still frequently updated* 
+8. Select the `Quickstart` page
 
     ![alt tag](img/azure-function-app-quickstart.png)
 
-8. You will be invited to get started quickly with a premade function. We will create our own custom function. Select at the bottom `Or create your own custom function`
+9. Here you are invited to get started quickly with a premade function. Ignore this, we will create our own custom function by hand
 
     ![alt tag](img/azure-function-app-custom-function.png)
 
-9. Azure Functions are triggered by events in Azure. A list of possible triggers is shown. At this moment there are 50+ C#, Python, Powershell, Bash and Node triggers. Select the `EventHubTrigger - C#`
+10. Select at the bottom `Or create your own custom function` or press `New function` to the left
+11. We have to choose a template. Azure Functions are triggered by events in Azure. A list of possible triggers will be shown. At this moment there are 60+ Bash, Batch, C#, F#, JavaScript, Php, Powershell, and Python triggers. Select the `EventHubTrigger - C#` template
 
     ![alt tag](img/azure-function-app-eventhubtrigger.png)
 
