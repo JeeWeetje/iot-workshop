@@ -214,7 +214,7 @@ Follow these steps to write the query of Azure Stream Analytics job.
 
 10. Select `Start`, this will actually start the job
 
-Starting an Azure Stream Analytics job will take some time. After starting, all telemetry from the IoT Hub will be passed on to the Event Hub. And that telemetry will each time trigger an Azure Function.
+Starting an Azure Stream Analytics job will take some time. After starting, all data which is collected by the Stream Analytics job query, will be passed on to the Event Hub sink. This is the Event hub we created first. And now we are creating an Azure Function, which will be triggered by the Event Hub.
 
 *Note: Again, this is a fairly simple example of Stream Analytics usage. The job is actually a very powerful, easy and common way to handle data and make simple choices. More in-depth usage is described [here](https://azure.microsoft.com/en-us/documentation/articles/stream-analytics-real-time-event-processing-reference-architecture/).*
 
@@ -245,14 +245,14 @@ Follow these steps to create an Azure Function App. An Azure function is actuall
 
     ![alt tag](img/azure-function-app-initial.png)
 
-7. Enter a unique App name eg. `TechDays42fa`. A green sign will be shown if the name is unique
+7. Enter a unique App name eg. `IoTWorkshop-fa`. A green sign will be shown if the name is unique
 8. The Resource Group eg. `IoTWorkshop-rg` is already filled in
 9. An App Service plan is the container for your app. The already created App Service Plan will probably not fit our needs. We create a new one
 10. Open the App Service plan blade and select `Create New`
 
     ![alt tag](img/azure-asp-create.png)
 
-11. Enter a unique App name eg. `TechDays42asp`. A green sign will be shown if the name is unique
+11. Enter a unique App name eg. `IoTWorkshop-asp`. A green sign will be shown if the name is unique
 12. Select `West Europe` for the location
 
     ![alt tag](img/azure-asp-new.png)
