@@ -191,7 +191,7 @@ Follow these steps to write the query of Azure Stream Analytics job.
     HAVING Count(errorCode) > 1 
     ```
 
-4. This rather simple query will collect every minute, all devices and the number of their messages when their telemetry shows more than one error *See [Introduction to Stream Analytics Window functions](https://docs.microsoft.com/en-us/azure/stream-analytics/stream-analytics-window-functions) for more information about the query language*
+4. This rather simple query will collect every minute, all devices and the number of their messages when their telemetry shows more than one error *Note: See [Introduction to Stream Analytics Window functions](https://docs.microsoft.com/en-us/azure/stream-analytics/stream-analytics-window-functions) for more information about the query language*
 5. Press `Save`. Confirm if needed
 
     ![alt tag](img/azure-portal-save.png)
@@ -200,23 +200,23 @@ Follow these steps to write the query of Azure Stream Analytics job.
 
     ![alt tag](img/azure-portal-close.png)
 
-7. Now the Azure Stream Analytics job has both inputs, outputs and a query
+7. Now the Azure Stream Analytics job has both an inputs and an output. And we just created the query
 
     ![alt tag](img/azure-stream-analytics-job-topology.png)
 
-8. Select `Start` 
+8. Select `Start` to get the Stream Analytics job running
 
     ![alt tag](img/azure-portal-start.png)
 
-9. An Azure Stream Analytics job can start with telemetry from the past (if you want to rerun historical telemetry still stored in the input) or you can start with new telemetry. Select `Now` 
+9. You have to provide the moment in time, the job must start retrieving data. Select `Now`. *Note: An Azure Stream Analytics job can start with telemetry from the past (if you want to rerun historical telemetry still stored in the input) or you can start at the last point the query stopped (only when applicable) or you it can start fresh only with new telemetry*
 
     ![alt tag](img/azure-stream-analytics-start.png)
 
-10. Select `Start` 
+10. Select `Start`, this will actually start the job
 
 Starting an Azure Stream Analytics job will take some time. After starting, all telemetry from the IoT Hub will be passed on to the Event Hub. And that telemetry will each time trigger an Azure Function.
 
-*Note: This is the simplest example of Stream Analytics usage. More in-depth usage is described [here](https://azure.microsoft.com/en-us/documentation/articles/stream-analytics-real-time-event-processing-reference-architecture/).*
+*Note: Again, this is a fairly simple example of Stream Analytics usage. The job is actually a very powerful, easy and common way to handle data and make simple choices. More in-depth usage is described [here](https://azure.microsoft.com/en-us/documentation/articles/stream-analytics-real-time-event-processing-reference-architecture/).*
 
 ## Create an Azure Function App 
 
