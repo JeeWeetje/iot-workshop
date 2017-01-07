@@ -144,7 +144,7 @@ As shown above, the Azure Stream Analytics job will connect the IoT Hub and the 
     ![alt tag](img/azure-portal-add.png)
 
 6. Enter `hubinput` as Input alias
-7. Select `IoT Hub` as Source. Because we have only one IoT Hub in our account, all other fields are automatically filled in with the right IoT Hub, `TechDays42ih`
+7. Select `IoT Hub` as Source. Because we have only one IoT Hub in our account, all other fields are automatically filled in with the right IoT Hub, `IoTWorkshop-rg`
 
     ![alt tag](img/azure-stream-analytics-add-input.png)
 
@@ -155,13 +155,14 @@ As shown above, the Azure Stream Analytics job will connect the IoT Hub and the 
 
     ![alt tag](img/azure-portal-add.png)
 
-12. Enter `huboutput` as Output alias
+12. Enter `huboutputsink` as Output alias
 13. The `Event Hub` is already selected as Sink and all other fields are automatically filled in with the right Event Hub, `iotworkshop-eh` *Note: in lower case*
 
     ![alt tag](img/azure-stream-analytics-add-output.png)
 
-14. Select `Create`
-15. The Output will be created and the connection to the hub is tested automatically. 
+14. Change the Format into `Array`. *Note: Our output will generate JSON. And multiple lines of JSON are formatted as Array, not as separated lines*
+15. Select `Create`
+16. The Output will be created and the connection to the hub is tested automatically. 
 
 The input and output are now defined. Let's add the Azure Stream Analytics job query.
 
