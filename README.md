@@ -26,11 +26,12 @@ During the workshop the following experts will be present to guide you through t
 
 ## Let's dive into the workshop
 
-The workshop consists of three parts. The first two parts will guide you through the essentials we want you to get your hands on. 
-The third part is optional/extra if you have time left.
+The workshop consists of multiple parts. The first two parts will guide you through the essentials we want you to get your hands on. 
+The other parts are optional/extra if you have time left.
 
-1. [Getting started with the hardware and The Things Network](TheThingsNetwork.md)
-1.a. [Connecting to an IoT Hub using a UWP app](UwpToIotHub.md)
+1. Connecting a device to the Azure IoT Platform
+    1. [Getting started with the hardware and The Things Network](TheThingsNetwork.md)
+    2. [Connecting to an IoT Hub using a UWP app](UwpToIotHub.md)
 2. [Handling The Things Network telemetry in Azure](Azure.md)
 3. [Passing commands back to a device](Commands.md)
 4. [Pushing telemetry messages to Microsoft Flow and beyond](Flow.md)
