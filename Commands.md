@@ -39,12 +39,103 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
 
     ![alt tag](img/commands/azure-functions-functions.png)
 
+5. The Code panel is shown. The code of the function is shown. *Note: this code is saved in a file named run.scx*
+6. Change the current code into
 
-5.
+    ```csharp
+    using System;
+    using Microsoft.Azure.Devices;
+    using System.Text;
+    using Newtonsoft.Json; 
 
+    public static void Run(string myEventHubMessage, TraceWriter log)
+    {
+      log.Info($"Stream Analytics produced {myEventHubMessage}");  
 
+      // Connect to IoT Hub   
+      var connectionString = "[IOT HUB connection string]";
+      var serviceClient = ServiceClient.CreateFromConnectionString(connectionString);
+    
+      // Send commands to all devices 
+      var messages = JsonConvert.DeserializeObject<StreamAnalyticsCommand[]>(myEventHubMessage);
 
+      log.Info($"{messages.Length} messages arrived.");
 
+      foreach(var message in messages)
+      {
+        var bytes= new byte[1];
+        bytes[0] = 42; // restart the machine!
+        var commandMessage = new Message(bytes);
+        serviceClient.SendAsync(message.deviceid, commandMessage);
+
+        // Log
+        log.Info($"Machine restart command processed after {message.count} errors for {message.deviceid}");
+      }
+    }
+
+    public class StreamAnalyticsCommand
+    {
+      public string deviceid {get; set;}
+      public int count {get; set;}
+    }
+    ```
+
+7. Press the `Logs` button to open the pane which shows some basic logging
+
+    ![alt tag](img/azure-function-app-eventhubtrigger-logs.png)
+
+8. A 'Logs' panel is shown. This 'Logs' panel works like a trace log.
+9. If you try to run this code, you will notice that compilation fails. This is not that surprising: we are using certain libraries that Azure Functions has no knowledge of. Yet!
+10. Press the `View Files` button to open the pane which shows a directory tree of all files.
+
+    ![alt tag](img/commands/azure-function-app-view-files.png)
+
+11. In the pane you can see that the file currently selected is: run.csx
+
+    ![alt tag](img/commands/azure-function-app-view-files-pane.png)
+
+12. Add a new file by pressing `Add`
+
+    ![alt tag](img/commands/azure-function-app-view-files-pane-add.png)
+
+13. Name the new file `project.json`
+
+    ![alt tag](img/commands/azure-function-app-view-files-pane-add-file.png)
+
+14. Press `Enter` to confirm the name of the file and an empty code editor will be shown for this file.
+15. The Project.json file describes which nuget packages have to be references. Fill the editor with the following code 
+
+    ```json
+    {
+      "frameworks": {
+        "net46": {
+          "dependencies": {
+            "Microsoft.AspNet.WebApi.Client": "5.2.3",
+            "Microsoft.AspNet.WebApi.Core": "5.2.3",
+            "Microsoft.Azure.Amqp": "1.1.5",
+            "Microsoft.Azure.Devices": "1.1.0",
+            "Newtonsoft.Json": "9.0.1"
+          }
+        }
+      }
+    }
+    ```
+
+16. Select `Save`. The changed C# code will be recompiled immediately *Note: you can press 'save and run', this will actually run the function, but an empty test will passed (check out the 'Test' option to the right for more info)*
+17. In the 'Logs' panel, just below 'Code', `verify the outcome` of the compilation
+
+    ```
+    2017-01-08T14:49:46.794 Packages restored.
+    2017-01-08T14:49:47.113 Script for function 'IoTWorkshopEventHubFunction' changed. Reloading.
+    2017-01-08T14:49:47.504 Compilation succeeded.
+
+    ```
+
+18. There is just one thing left to do: we have to fill in the Azure IoT Hub security policy connection string. To send commands back, we have to proof we are authorized to do this
+19. In the Azure Function, replace '[IOT HUB connection string]' your *remembered* IoT Hub `Connection String-primary key`
+20. Recompile again succesfully
+
+Now your 
 
 
 ## Create Azure Stream Analytics job

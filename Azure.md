@@ -342,7 +342,7 @@ Follow these steps to create an Azure Function, triggered by the Event Hub, insi
     ```
 
 25. Select `Save`. The changed C# code will be recompiled immediately *Note: you can press 'save and run', this will actually run the function, but an empty test will passed (check out the 'Test' option to the right for more info)*
-26. A In the 'Logs' panel, just below 'Code', `verify the outcome` of the compilation
+26. In the 'Logs' panel, just below 'Code', `verify the outcome` of the compilation
 
     ```
     2017-01-08T00:14:24.981 Script for function 'IoTWorkshopEventHubFunction' changed. Reloading.

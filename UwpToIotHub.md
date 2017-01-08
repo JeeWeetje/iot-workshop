@@ -254,7 +254,7 @@ We will use the connection later on. But first let's check out the 'AzureIoTHub.
 
                 if (bytes != null && bytes.Length > 0 && bytes[0] >= 42)
                 {
-                    await ShowMessage($"Command {Convert.ToInt32(bytes[0])} (Start running again at {DateTime.Now:hh:mm:ss})");
+                    await ShowMessage($"Command {Convert.ToInt32(bytes[0])} (Started running again at {DateTime.Now:hh:mm:ss})");
                     _errorCode = 0;
                     BtnBreak.IsEnabled = true;
 
