@@ -5,17 +5,47 @@ This is an example of how downlink commands are sent back to a device. In this w
 
 ![alt tag](img/arch/azure-telemetry-pipeline.png)
 
-This example connects tot the [UWP app](UwpToIotHub.md).
+This example connects to the [UWP app](UwpToIotHub.md).
 
 *Note: In this workshop, we will create uniquely named Azure resources. The suggested names could be reserved already.*
 
 ### Prerequisites
 
-1. A running TTN node connected to the TTN network
-2. Azure account [create here](https://azure.microsoft.com/en-us/free/) _(Azure passes will be present for those who have no Azure account)_
-3. An Azure IoT Hub, Stream Analytics Job, Event Hub and Azure Function which 
-4. A running TTN bridge on your PC and connected to an IoT Hub
+1. Azure account [create here](https://azure.microsoft.com/en-us/free/) _(Azure passes will be present for those who have no Azure account)_
+2. A running TTN node connected to the TTN network and a running TTN bridge on your PC and connected to an IoT Hub
+3. or... a UWP app which simulates a machine running duty cycles
+4. An Azure IoT Hub, Stream Analytics job, Event Hub and Azure Function which are waiting for analysed telemetry coming from the devices
 5. A running Device Explorer or IoT Hub Explorer, connected to the IoT Hub, showing the telemetry coming in
+
+## Creating commands for devices which are in a faulty state
+
+In the [previous workshop](Azure.md) we passed the telemetry from the device to an Stream Analytics job. This job collected devices which are sending error states. Every minute, information about devices that are in a faulty state are passed to an Azure Function.
+
+In this workshop we will react on these devices by sending them a command to 'repair themself'. 
+
+### Updating the Azure Function with sending command logic
+
+First we update the Azure Function. For each devices which is passed on, we send a command back.
+
+Sending commands back to devices is a specific feature of the IoT Hub. The IoT Hub registers devices and thier security policies. And the Iot Hub has build-in logic to send commands back.
+
+1. On the left, select `Resource groups`. A list of resource groups is shown
+
+    ![alt tag](img/azure-resource-groups.png)
+
+2. Select the ResourceGroup `IoTWorkshop-rg`. It will open a new blade with all resources in this group
+3. Select the Azure Function App `IoTWorkshop-fa`
+4. To the left, the currenct functions are shown. Select `IoTWorkshopEventHubFunction`
+
+    ![alt tag](img/commands/azure-functions-functions.png)
+
+
+5.
+
+
+
+
+
 
 ## Create Azure Stream Analytics job
 

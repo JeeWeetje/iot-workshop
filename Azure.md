@@ -362,11 +362,11 @@ So, if your node of UWP is in a fault state, telemetry will start arriving in th
 
 ### Receiving UWP app faults in the Azure Function
 
-1. start the UWP app and press the `Break down` button. The UWP app simulates now a machine which has a certain fault status eg. '99'.
+1. start the UWP app and press the `Break down` button. The UWP app simulates now a machine which has a certain fault status eg. '99'. *Note: the interface will show the title in red when the 'machine' is broken*
 
     ![alt tag](img/azure-function-test-app-broken.png)
     
-2. Press the `Send cycles updates` button to send the new telemetry. Press the button multiple times within the same time frame of one minute to match the query in Stream Analytics.
+2. Press the `Send cycles updates` button to send the new telemetry. Press the button _multiple times_ within the same time frame of one minute to match the query in Stream Analytics.
 
     ![alt tag](img/azure-function-test-app-broken-telemetry.png)
 
