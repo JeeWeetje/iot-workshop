@@ -285,7 +285,7 @@ Follow these steps to create an Azure Function, triggered by the Event Hub, insi
 
     ![alt tag](img/azure-function-app-settings.png)
  
-6. As you can see, there are lot's of extra features regarding development, deployment and management. 
+6. As you can see, there are lot's of extra features regarding development, deployment and management
 
     ![alt tag](img/azure-function-app-update.png)
 
@@ -303,7 +303,7 @@ Follow these steps to create an Azure Function, triggered by the Event Hub, insi
 
     ![alt tag](img/azure-function-app-eventhubtrigger.png)
 
-10. At the bottom of the page (use the scrollbar of the page), you have to fill in the field 'Name your function'. Change `EventHubTriggerCSharp1` into `TechDaysEventHubTriggerFunction`
+10. At the bottom of the selected template page (use the scrollbar of the current page), you have to fill in the field 'Name your function'. Change `EventHubTriggerCSharp1` into `IoTWorkshopEventHubFunction`
 11. In the field 'Event Hub name' you will have to pass the *remembered* name of the Event Hub eg. `iotworkshop-eh` *Note: in lower case*
 12. The 'Event Hub connection' field can be filled by pressing the `new` link
 13. A blade with an empty list of connection strings will be shown. Press `Add a connection string`
@@ -316,7 +316,7 @@ Follow these steps to create an Azure Function, triggered by the Event Hub, insi
     ![alt tag](img/azure-function-app-connectionstring.png)
 
 16. Select `OK`
-17. The Connection string is now entered in the right field
+17. The Connection string is now filled in into the corresponding field (Give the portal a moment to check the settings)
 
     ![alt tag](img/azure-function-app-eventhubtrigger-new.png)
 
@@ -324,27 +324,33 @@ Follow these steps to create an Azure Function, triggered by the Event Hub, insi
 
     ![alt tag](img/azure-portal-create.png)
 
-19. The function and trigger are saved. The develop page is shown. In the middle, you will see the function in the 'Code' panel. The 'Logs' panel works like a trace log. 
-20. Update the code a bit, change the string in the log.Info() call eg.
+19. The function and trigger are saved. The develop page is shown. In the middle, you will see the function in the 'Code' panel
+20. Press the `Logs` button to open the pane which shows some basic logging
+
+    ![alt tag](img/azure-function-app-eventhubtrigger-logs.png)
+
+21. A 'Logs' panel is shown. This 'Logs' panel works like a trace log.
+22. Update the code a bit, change the string in the log.Info() trace call eg.
 
     ```csharp
     using System;
-    
+
     public static void Run(string myEventHubMessage, TraceWriter log)
     {
-        log.Info($"My TechDays trigger function processed this message: {myEventHubMessage}");
+        log.Info($"IoT Workshop function triggered by message: {myEventHubMessage}");
     }
     ```
 
-21. Select `Save`. The changed C# code will be recompiled immediately
-22. In the 'Logs' panel, just below 'Code', `verify the outcome` of the compilation
+21. Select `Save`. The changed C# code will be recompiled immediately *Note: you can press 'save and run', this will actually run the function, but an empty test will passed (check out the 'Test' option to the right for more info)*
+22. A In the 'Logs' panel, just below 'Code', `verify the outcome` of the compilation
 
     ```
-    2016-09-25T12:23:35.380 Script for function 'TechDaysEventHubTriggerFunction' changed. Reloading.
-    2016-09-25T12:23:35.427 Compilation succeeded.
+    2017-01-08T00:14:24.981 Script for function 'IoTWorkshopEventHubFunction' changed. Reloading.
+    2017-01-08T00:14:25.122 Compilation succeeded.
+
     ```
 
-This completes the Azure function and trigger.
+Now we are confident, the Azure function and trigger are available.
 
 ## Receiving telemetry in the Azure Function
 
