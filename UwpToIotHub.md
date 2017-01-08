@@ -373,7 +373,8 @@ To run the Device Explorer tool, double-click the DeviceExplorer.exe file in Win
     ![alt tag](img/UwpToIotHub/ihe-devices.png)
 
 5. On the Data tab, Select your `Device ID` (like 'MachineCyclesUwp') and press `Monitor`
-6. This will result in the following messages when you send some Duty Cycle telemetry in your UWP app
+6. in the UWP app, press `Send cycle updates` a couple of times
+7. This will result in the following messages when you send some Duty Cycle telemetry in your UWP app
 
     ```
     Receiving events...

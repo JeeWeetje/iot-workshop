@@ -347,7 +347,6 @@ Follow these steps to create an Azure Function, triggered by the Event Hub, insi
     ```
     2017-01-08T00:14:24.981 Script for function 'IoTWorkshopEventHubFunction' changed. Reloading.
     2017-01-08T00:14:25.122 Compilation succeeded.
-
     ```
 
 Now we are confident, the Azure function and trigger are available.
