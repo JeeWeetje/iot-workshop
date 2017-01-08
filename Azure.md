@@ -303,34 +303,34 @@ Follow these steps to create an Azure Function, triggered by the Event Hub, insi
 
     ![alt tag](img/azure-function-app-eventhubtrigger.png)
 
-10. At the bottom of the selected template page (use the scrollbar of the current page), you have to fill in the field 'Name your function'. Change `EventHubTriggerCSharp1` into `IoTWorkshopEventHubFunction`
-11. In the field 'Event Hub name' you will have to pass the *remembered* name of the Event Hub eg. `iotworkshop-eh` *Note: in lower case*
-12. The 'Event Hub connection' field can be filled by pressing the `new` link
-13. A blade with an empty list of connection strings will be shown. Press `Add a connection string`
+12. At the bottom of the selected template page (use the scrollbar of the current page), you have to fill in the field 'Name your function'. Change `EventHubTriggerCSharp1` into `IoTWorkshopEventHubFunction`
+13. In the field 'Event Hub name' you will have to pass the *remembered* name of the Event Hub eg. `iotworkshop-eh` *Note: in lower case*
+14. The 'Event Hub connection' field can be filled by pressing the `new` link
+15. A blade with an empty list of connection strings will be shown. Press `Add a connection string`
 
     ![alt tag](img/azure-function-app-add-connectionstring.png)
 
-14. In a new blade, enter some name in the 'Connection name' field eg. `RootManageSharedAccessKey`. A green sign will be shown if the name is correct
-15. In the 'Connection string' field you will have to pass the *remembered* `Connection String-Primary Key` of the Event Hub namespace connection string. A green sign will be shown if the name is correct
+16. In a new blade, enter some name in the 'Connection name' field eg. `RootManageSharedAccessKey`. A green sign will be shown if the name is correct
+17. In the 'Connection string' field you will have to pass the *remembered* `Connection String-Primary Key` of the Event Hub namespace connection string. A green sign will be shown if the name is correct
 
     ![alt tag](img/azure-function-app-connectionstring.png)
 
-16. Select `OK`
-17. The Connection string is now filled in into the corresponding field (Give the portal a moment to check the settings)
+18. Select `OK`
+19. The Connection string is now filled in into the corresponding field (Give the portal a moment to check the settings)
 
     ![alt tag](img/azure-function-app-eventhubtrigger-new.png)
 
-18. Select `Create`
+20. Select `Create`
 
     ![alt tag](img/azure-portal-create.png)
 
-19. The function and trigger are saved. The develop page is shown. In the middle, you will see the function in the 'Code' panel
-20. Press the `Logs` button to open the pane which shows some basic logging
+21. The function and trigger are saved. The develop page is shown. In the middle, you will see the function in the 'Code' panel
+22. Press the `Logs` button to open the pane which shows some basic logging
 
     ![alt tag](img/azure-function-app-eventhubtrigger-logs.png)
 
-21. A 'Logs' panel is shown. This 'Logs' panel works like a trace log.
-22. Update the code a bit, change the string in the log.Info() trace call eg.
+23. A 'Logs' panel is shown. This 'Logs' panel works like a trace log.
+24. Update the code a bit, change the string in the log.Info() trace call eg.
 
     ```csharp
     using System;
@@ -341,8 +341,8 @@ Follow these steps to create an Azure Function, triggered by the Event Hub, insi
     }
     ```
 
-21. Select `Save`. The changed C# code will be recompiled immediately *Note: you can press 'save and run', this will actually run the function, but an empty test will passed (check out the 'Test' option to the right for more info)*
-22. A In the 'Logs' panel, just below 'Code', `verify the outcome` of the compilation
+25. Select `Save`. The changed C# code will be recompiled immediately *Note: you can press 'save and run', this will actually run the function, but an empty test will passed (check out the 'Test' option to the right for more info)*
+26. A In the 'Logs' panel, just below 'Code', `verify the outcome` of the compilation
 
     ```
     2017-01-08T00:14:24.981 Script for function 'IoTWorkshopEventHubFunction' changed. Reloading.
@@ -354,19 +354,39 @@ Now we are confident, the Azure function and trigger are available.
 
 ## Receiving telemetry in the Azure Function
 
-By now, the full chain of Azure services is set up. Telemetry from The Things Network is passed by the bridge to the Azure IoT Hub (as seen in one of the two explorers). Azure Stream Analytics passes 'the telemetry to the Azure Function using an Azure Event Hub. So by now, the telemetry will start arriving in the 'Logs' panel.
+By now, the full chain of Azure services is set up. Telemetry from The Things Network node (or the test UWP app) is passed by the bridge to the Azure IoT Hub (as seen in one of the two explorers). 
 
-```
-2016-09-25T14:58:56.659 Function started (Id=44cf8082-b355-47a1-a220-260e23679eb7)
-2016-09-25T14:58:56.659 My TechDays trigger function processed this message: {"level":16,"time":"2016-09-25T14:58:52.1818540Z","deviceId":"goattrough"}
-2016-09-25T14:58:56.659 Function completed (Success, Id=44cf8082-b355-47a1-a220-260e23679eb7)
-2016-09-25T14:59:12.157 Function started (Id=8e617e92-6492-439a-8d2d-d324694a55a4)
-2016-09-25T14:59:12.157 My TechDays trigger function processed this message: {"level":23,"time":"2016-09-25T14:59:08.1899979Z","deviceId":"goattrough"}
-2016-09-25T14:59:12.157 Function completed (Success, Id=8e617e92-6492-439a-8d2d-d324694a55a4)
-```
+Azure Stream Analytics passes a cumumation of the fault states to the Azure Function using an Azure Event Hub.
 
-Notice that we have full control over telemetry. We know which device has sent data at what time. This is great for charts or commands.
+So, if your node of UWP is in a fault state, telemetry will start arriving in the 'Logs' panel.
 
-Receiving telemetry in Azure completes this part of the workshop. You are now ready to do something exciting with this telemetry. One example is available at [Pushing telemetry messages to Microsoft Flow and beyond](Flow.md)
+### Receiving UWP app faults in the Azure Function
+
+1. start the UWP app and press the `Break down` button. The UWP app simulates now a machine which has a certain fault status eg. '99'.
+
+    ![alt tag](img/azure-function-test-app-broken.png)
+    
+2. Press the `Send cycles updates` button to send the new telemetry. Press the button multiple times within the same time frame of one minute to match the query in Stream Analytics.
+
+    ![alt tag](img/azure-function-test-app-broken-telemetry.png)
+
+3. Telemetry will not arrive until Stream Analytics 'hops' to the next time frame. After that, you can see the telemetry arrive
+
+    ```
+    2017-01-08T00:31:05.546 Function started (Id=b155de3d-c162-4fa4-a341-404ce83f5e84)
+    2017-01-08T00:31:05.546 IoT Workshop function triggered by message: [{"count":18,"deviceid":"MachineCyclesUwp"}]
+    2017-01-08T00:31:05.546 Function completed (Success, Id=b155de3d-c162-4fa4-a341-404ce83f5e84)
+    2017-01-08T00:32:05.152 Function started (Id=96b403f9-2152-48b6-8bc8-78058f53fca5)
+    2017-01-08T00:32:05.152 IoT Workshop function triggered by message: [{"count":24,"deviceid":"MachineCyclesUwp"}]
+    2017-01-08T00:32:05.152 Function completed (Success, Id=96b403f9-2152-48b6-8bc8-78058f53fca5)
+    ```
+
+Notice that we have full control over telemetry. We know which device has sent faults at what time frame. This is great for charts or commands.
+
+Receiving basic telemetry in Azure completes this part of the workshop. You are now ready to do something exciting with this telemetry. 
+
+One example is available at [Pushing telemetry messages to Microsoft Flow and beyond](Flow.md)
+
+Another example is [Sending back commands to the device to fix the issue](Commands.md)
 
 ![alt tag](img/logos/dotned-saturday.png)
