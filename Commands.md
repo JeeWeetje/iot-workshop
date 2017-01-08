@@ -146,10 +146,10 @@ You can work with TTN devices or with the UWP app which simulates a device.
 
 ### Handle commands in an UWP app
 
-At this moment your UWP app should run already. Let's send some telemetry
+At this moment your [UWP app](UwpToIotHub.md) should already been build. Let's send some telemetry
 
 
-1. In the UWP app, press `Send cycle updates` a couple of times
+1. Restart the UWP app, press `Send cycle updates` a couple of times
 
     ![alt tag](img/commands/UWP-app-sending-duty-cycles.png)
 
