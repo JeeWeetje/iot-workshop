@@ -30,7 +30,9 @@ The workshop consists of three parts. The first two parts will guide you through
 The third part is optional/extra if you have time left.
 
 1. [Getting started with the hardware and The Things Network](TheThingsNetwork.md)
+1.a. [Connecting to an IoT Hub using a UWP app](UwpToIotHub.md)
 2. [Handling The Things Network telemetry in Azure](Azure.md)
-3. [Pushing telemetry messages to Microsoft Flow and beyond](Flow.md)
+3. [Passing commands back to a device](Commands.md)
+4. [Pushing telemetry messages to Microsoft Flow and beyond](Flow.md)
 
 ![alt tag](img/logos/dotned-saturday.png)
