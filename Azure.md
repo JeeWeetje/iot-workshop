@@ -384,8 +384,6 @@ Notice that we have full control over telemetry. We know which device has sent f
 
 Receiving basic telemetry in Azure completes this part of the workshop. You are now ready to do something exciting with this telemetry. 
 
-One example is available at [Pushing telemetry messages to Microsoft Flow and beyond](Flow.md)
-
-Another example is [Sending back commands to the device to fix the issue](Commands.md)
+Let's start [ending back commands to the device to fix the issue](Commands.md)
 
 ![alt tag](img/logos/dotned-saturday.png)
