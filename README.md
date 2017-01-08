@@ -35,5 +35,8 @@ The other parts are optional/extra if you have time left.
 2. [Handling The Things Network telemetry in Azure](Azure.md)
 3. [Passing commands back to a device](Commands.md)
 4. [Pushing telemetry messages to Microsoft Flow and beyond](Flow.md)
+5. [Runnning the TTN Azure bridge as a webjob](Webjob.md)
+6. [Add basic monitoring to the platform](IoTPatformMonitoring.md)
 
 ![alt tag](img/logos/dotned-saturday.png)
+
