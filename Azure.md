@@ -16,7 +16,7 @@ The Azure Function will execute custom code in the Cloud, bases on certain telem
 1. A running TTN node connected to the TTN network
 2. Azure account [create here](https://azure.microsoft.com/en-us/free/) _([Azure passes](https://www.microsoftazurepass.com/howto) will be present for those who have no Azure account)_
 3. An Azure IoT Hub (created in the previous workshop)
-4. A running TTN bridge on your PC and connected to an IoT Hub (or an UWP app which represents the same logic)
+4. A running TTN bridge on your PC and connected to an IoT Hub (or an UWP app which represents the same devices, but connected to the IoT Hub directly)
 5. A running Device Explorer or IoT Hub Explorer, connected to the IoT Hub, showing the telemetry coming in (created in the previous workshop)
 
 ## Create Azure Stream Analytics job
