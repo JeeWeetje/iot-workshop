@@ -48,50 +48,63 @@ Your device and sensors should be connected as follows:
 
 ![alt tag](img/msft/Picture03-read-sensor-data.png)
 
-Open the Arduino IDE and follow these steps.
+We start with running a simple sketch on the Arduino. This is a program which simulates a machine and when you press a button it 'breaks down'.
 
-1. Connect The Things Uno via the micro USB cable to your computer
-2. In the **Tools** menu, click **Board** and select **Arduino Leonardo**
-3. In the **Tools** menu, click **Port** and select the serial port of your **COMx (Arduino Leonardo)**
-4. Paste the following code in a new sketch:
+1. Open the Arduino IDE
+2. Connect The Things Uno via the micro USB cable to your computer
+3. In the **Tools** menu, click **Board** and select **Arduino Leonardo**
+4. In the **Tools** menu, click **Port** and select the serial port of your **COMx (Arduino Leonardo)**
+5. Paste the following code in a new sketch:
 
 ```c
-// Define the pins of your sensors
-#define PIN_PIR 2
-#define PIN_WATER A0
+int commButton = 4;
+int commLed = 10;
+int cycleCompleted = 0;
+int errorCode = 0;
 
-// Setup runs once
 void setup() {
-  pinMode(PIN_PIR, INPUT);
-}
+  Serial.begin(9600);
+  
+  pinMode(commLed, OUTPUT);
+  pinMode(commButton, INPUT);
+  
+  digitalWrite(commLed, HIGH);
+ }
 
-// Loops runs indefinitely
 void loop() {
-  // Read the sensors
-  uint8_t motion = digitalRead(PIN_PIR);
-  uint16_t waterLevel = analogRead(PIN_WATER);
-
-  // Only print the water level value when there is motion
-  if (motion == HIGH) {
-    Serial.print("Water level: ");
-    Serial.println(waterLevel);
+ 
+  // If not in error state, update the number of cycles
+  if (errorCode == 0) {
+    cycleCompleted++;  
+     Serial.print("Cycle completed: ");
+     Serial.println(cycleCompleted );
   }
 
-  // Wait one second
+  // In the button is pushed, the machine enters an error state
+  if (digitalRead(commButton) == LOW) {
+    errorCode = 99;
+    digitalWrite(commLed, LOW);
+    Serial.print("Error occured: ");
+    Serial.println( errorCode);
+    Serial.println("Repair of machine needed...");
+  }
+
   delay(1000);
-}
+} 
 ```
 
 5. In the **Sketch** menu, click **Verify/Compile**
 6. In the **Sketch** menu, click **Upload**
 7. Once the sketch has been uploaded, go to the **Tools** menu and open the **Serial Monitor**
-8. You should see output like this, only new lines when there is motion (your PIR sensor lights up red):
+8. You should see output like this, just wait a few seconds before pushing the button:
 
 ```
-Water level: 572
-Water level: 573 
 ...
-```
+Cycle completed: 4
+Cycle completed: 5
+Cycle completed: 6
+Error occured: 99
+Repair of machine needed...```
 
 ## Create The Things Network application
 
