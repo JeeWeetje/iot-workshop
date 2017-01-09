@@ -23,20 +23,26 @@ This is an example integration between The Things Network and Azure IoT Hub. Thi
 
 Follow the workshop facilitator connecting the sensors. A few important things:
 
-- The passive infrared sensor (PIR) VCC pin is connected to the `5v` pin on the The Things Uno
-- The passive infrared sensor (PIR) SIG/OUT pin is connected to the digital pin `2` (third pin in the pin header) on the The Things Uno
-- The passive infrared sensor (PIR) GND pin is connected to one of the `GND` pins on the The Things Uno
-- The water sensor VCC pin is connected to the `3v3` pin on the The Things Uno 
-- The water sensor SIG/OUT pin is connected to the analog pin `A0` on the The Things Network Uno
-- The water sensor GND pin is connected to one of the `GND` pins on the The Things Uno
-
-*Note: On the pictures, there is a white wire from pin NC on the water sensor; the white wire is not connected by intention*
+- The Button VCC pin (red cable) is connected to the `5v` pin on the The Things Uno
+- The Button SIG/OUT (brown cable) pin is connected to the digital pin `4` (fifth pin in the pin header) on the The Things Uno
+- The Button GND pin (white cable) is connected to one of the `GND` pins on the The Things Uno
+- The LED SIG/IN pin (blue cable) is connected to the digital pin `10` on the The Things Network Uno
+- The LED GND pin (brown cable) is connected to one of the `GND` pins on the The Things Uno
 
 Your device and sensors should be connected as follows:
 
-   ![alt tag](img/ttn-device-overview.JPG)
+* overview
+   ![alt tag](img/TheThingsNetwork/node-overview.jpg)
 
-   ![alt tag](img/ttn-device-vcc-gnd.JPG)
+* detail node
+   ![alt tag](img/TheThingsNetwork/node-detail.jpg)
+
+* Button
+   ![alt tag](img/TheThingsNetwork/node-button.jpg)
+
+* LED
+   ![alt tag](img/TheThingsNetwork/node-led.jpg)
+
 
 ## Read sensors
 
