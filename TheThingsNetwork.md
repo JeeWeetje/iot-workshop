@@ -56,55 +56,57 @@ We start with running a simple sketch on the Arduino. This is a program which si
 4. In the **Tools** menu, click **Port** and select the serial port of your **COMx (Arduino Leonardo)**
 5. Paste the following code in a new sketch:
 
-```c
-int commButton = 4;
-int commLed = 10;
-int cycleCompleted = 0;
-int errorCode = 0;
+    ```c
+    int commButton = 4;
+    int commLed = 10;
+    int cycleCompleted = 0;
+    int errorCode = 0;
 
-void setup() {
-  Serial.begin(9600);
+    void setup() {
+      Serial.begin(9600);
   
-  pinMode(commLed, OUTPUT);
-  pinMode(commButton, INPUT);
+      pinMode(commLed, OUTPUT);
+      pinMode(commButton, INPUT);
   
-  digitalWrite(commLed, HIGH);
- }
+      digitalWrite(commLed, HIGH);
+     }
 
-void loop() {
+    void loop() {
  
-  // If not in error state, update the number of cycles
-  if (errorCode == 0) {
-    cycleCompleted++;  
-     Serial.print("Cycle completed: ");
-     Serial.println(cycleCompleted );
-  }
+      // If not in error state, update the number of cycles
+      if (errorCode == 0) {
+        cycleCompleted++;  
+         Serial.print("Cycle completed: ");
+         Serial.println(cycleCompleted );
+      }
 
-  // In the button is pushed, the machine enters an error state
-  if (digitalRead(commButton) == LOW) {
-    errorCode = 99;
-    digitalWrite(commLed, LOW);
-    Serial.print("Error occured: ");
-    Serial.println( errorCode);
-    Serial.println("Repair of machine needed...");
-  }
+      // In the button is pushed, the machine enters an error state
+      if (digitalRead(commButton) == LOW) {
+        errorCode = 99;
+        digitalWrite(commLed, LOW);
+        Serial.print("Error occured: ");
+        Serial.println( errorCode);
+        Serial.println("Repair of machine needed...");
+      }
 
-  delay(1000);
-} 
-```
+      delay(1000);
+    } 
+    ```
 
 5. In the **Sketch** menu, click **Verify/Compile**
 6. In the **Sketch** menu, click **Upload**
 7. Once the sketch has been uploaded, go to the **Tools** menu and open the **Serial Monitor**
 8. You should see output like this, just wait a few seconds before pushing the button:
 
-```
-...
-Cycle completed: 4
-Cycle completed: 5
-Cycle completed: 6
-Error occured: 99
-Repair of machine needed...```
+    ```
+    ...
+    Cycle completed: 4
+    Cycle completed: 5
+    Cycle completed: 6
+    Error occured: 99
+    Repair of machine needed...    ```
+
+Now we have a running Arduino with some basic logic. Let's send some messages using the The Things Network.
 
 ## Create The Things Network application
 
@@ -155,6 +157,8 @@ Follow the steps to create an application and register your device.
 
 8. Keep this page open, you need the device address, network session key and application session key in a minute
 
+The TTN application is now created.
+
 ## Send data from your device
 
 ![alt tag](img/msft/Picture05-submit-data-to-ttn.png)
@@ -163,73 +167,73 @@ The sensor data is read, now it is time to send the sensor data to The Things Ne
 
 1. In the Arduino IDE, from the **File** menu, choose **New** to create a new sketch and paste the following code:
 
-```c
-#include <TheThingsNetwork.h>
+    ```c
+    #include <TheThingsNetwork.h>
 
-const char *devAddr = "00000000";
-const char *nwkSKey = "00000000000000000000000000000000";
-const char *appSKey = "00000000000000000000000000000000";
+    const char *devAddr = "00000000";
+    const char *nwkSKey = "00000000000000000000000000000000";
+    const char *appSKey = "00000000000000000000000000000000";
 
-#define loraSerial Serial1
-#define debugSerial Serial
+    #define loraSerial Serial1
+    #define debugSerial Serial
 
-#define freqPlan TTN_FP_EU868
+    #define freqPlan TTN_FP_EU868
 
-TheThingsNetwork ttn(loraSerial, debugSerial, freqPlan);
+    TheThingsNetwork ttn(loraSerial, debugSerial, freqPlan);
 
-int commButton = 4;
-int commLed = 10;
-int cycleCompleted = 0;
-int errorCode = 0;
+    int commButton = 4;
+    int commLed = 10;
+    int cycleCompleted = 0;
+    int errorCode = 0;
 
-#define debugSerial Serial
-#define loraSerial Serial1
+    #define debugSerial Serial
+    #define loraSerial Serial1
 
-void setup() {
-  loraSerial.begin(57600);
-  debugSerial.begin(9600);
+    void setup() {
+      loraSerial.begin(57600);
+      debugSerial.begin(9600);
 
-  pinMode(commLed, OUTPUT);
-  pinMode(commButton, INPUT);
+      pinMode(commLed, OUTPUT);
+      pinMode(commButton, INPUT);
   
-  delay(1000);
+      delay(1000);
   
-  debugSerial.print("Initializing");
+      debugSerial.print("Initializing");
 
-  //Initializing TTN communcation...
+      //Initializing TTN communcation...
 
-  ttn.personalize(devAddr, nwkSKey, appSKey);
+      ttn.personalize(devAddr, nwkSKey, appSKey);
   
-  digitalWrite(commLed, HIGH);
+      digitalWrite(commLed, HIGH);
   
-  debugSerial.print("The Things Network connected");
-}
+      debugSerial.print("The Things Network connected");
+    }
 
-void loop() {
+    void loop() {
 
-  // If not in error state, update the number of cycles
-  if (errorCode == 0) {
-    cycleCompleted++;  
-  }
+      // If not in error state, update the number of cycles
+      if (errorCode == 0) {
+        cycleCompleted++;  
+      }
  
-  // In the button is pushed, the machine enters an error state
-  if (digitalRead(commButton) == LOW) {  
-    errorCode = 99;
-    digitalWrite(commLed, LOW);
-    debugSerial.print("Error occured");
-  }
+      // In the button is pushed, the machine enters an error state
+      if (digitalRead(commButton) == LOW) {  
+        errorCode = 99;
+        digitalWrite(commLed, LOW);
+        debugSerial.print("Error occured");
+      }
 
-  // Communicate with TTN about number of cycles and current state (error code)
-  byte buffer[2];
-  buffer[0] = (byte) cycleCompleted;
-  buffer[1] = (byte) errorCode;
+      // Communicate with TTN about number of cycles and current state (error code)
+      byte buffer[2];
+      buffer[0] = (byte) cycleCompleted;
+      buffer[1] = (byte) errorCode;
 
-  // send message to TTN
-  ttn.sendBytes(buffer, sizeof(buffer));
+      // send message to TTN
+      ttn.sendBytes(buffer, sizeof(buffer));
 
-  delay(10000);
-} 
-```
+      delay(10000);
+    } 
+    ```
 
 2. Insert your device address in `devAddr`, network session key in `nwkSkey` and application session key in `appSKey`. You can use the handy `<>` button in the dashboard to copy it quickly as a C-style byte array; exactly what Arduino wants
 
@@ -244,40 +248,51 @@ void loop() {
 
     ![alt tag](img/TheThingsNetwork/ttn-portal-raw-messages.png)
 
+We are now receiving row data. We can decode and transform this in the TTN portal towards JSON messages.
+
 ## Decode data on TTN
 
 ![alt tag](img/msft/Picture06-decode-data-on-ttn.png)
 
-Now, the binary payload is not really useful in upstream. Therefore, we have payload functions.
+Now, the binary payload is not really useful in upstream. We want JSON. Therefore, we have payload functions.
 
 1. In the application overview, click **Payload Functions**
-2. Add the following **decoder** function to decode the two bytes back to a 16-bit integer called `waterLevel`:
+2. Add the following **decoder** function to decode the two bytes back to the number of cycles completed and the current state:
 
-```c
-function Decoder(bytes) {
-  var waterLevel = (bytes[0] << 8) | bytes[1];
-  return {
-    waterLevel: waterLevel
-  };
-}
-```
+    ```c
+    function Decoder(bytes, port) {
+      var cyclesCompleted = bytes[0];
+      var errorCode = bytes[1];
+  
+      return {
+        cyclesCompleted: cyclesCompleted,
+        errorCode: errorCode
+      };
+    }
+    ```
 
-3. **Test** and **Save** (scroll to the bottom of the page) the changes
-4. We want to invert the resistance of the water sensor so that more water resembles a higher value. The maximum value of 3v3 analog ADC converter is `682`, so use the following as the **converter**:
+3. Test before you can save the decode function. Enter eg '2A00' in the payload and click **Test**. A decoded JSON message should become visible
 
-```
-function Converter(decodedObj) {
-  decodedObj.waterLevel = 682 - decodedObj.waterLevel;
-  return decodedObj;
-}
-```
+    ![alt tag](img/TheThingsNetwork/ttn-portal-decoder.png)
 
-5. **Test** and **Save** (scroll to the bottom of the page) the changes 
+5. We want rearrange the order od the JSON element. So use the following function as the **converter**:
+
+    ```c
+    function Converter(decoded, port) {
+      return { 
+        errorCode: decoded.errorCode,
+        numberOfCycles: decoded.cyclesCompleted 
+      };
+    }
+    ```
+
+3. Test before you can save the converter function. Again, enter eg '2A00' in the payload and click **Test**. The converted JSON message should become visible
+4. Finally, scroll to the bottom of the page and click **Save**
 6. Go back to your data overview. Now you should see something like this:
 
     ![alt tag](img/ttn-device-payload-fields.png)
 
-Now we have clean data ready to be processed in Azure IoT Hub and upstream.
+Now we have clean JSON data ready to be processed in Azure IoT Hub and upstream.
 
 ## Create an Azure IoT Hub
 
