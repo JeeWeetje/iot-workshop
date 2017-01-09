@@ -115,36 +115,38 @@ Follow the steps to create an application and register your device.
 1. Log into the [The Things Network dashboard](https://console.thethingsnetwork.org). You will be asked to provide TTN credentials if needed
 2. A TTN application is a logical container of several devices, providing the same telemetry. There are no TTN applications yet
 
-    ![alt tag](img/ttn-app-list-empty.png)
+    ![alt tag](img/TheThingsNetwork/ttn-applications.png)
 
-3. Add a new application. Pick a unique Application ID (for example `goats-should-do-silly` in lower case) and fill in a description
+3. Add a new application. Pick a unique Application ID (for example `predictive_maintenance` in lower case) and fill in a description
 
-    ![alt tag](img/ttn-application.png)
+    ![alt tag](img/TheThingsNetwork/ttn-applications-add.png)
 
 4. Go to **Devices**
 
-    ![alt tag](img/ttn-devices-list-empty.png)
+    ![alt tag](img/TheThingsNetwork/ttn-applications-devices.png)
 
 5. Click **Register device**
-6. Enter a **Device ID** (for example `goattrough` in lower case) and click **Generate** to use a random Device EUI (the 'Randomize' link will disappear)
+6. Enter a **Device ID** (for example `predictive_maintenance_machine_42` in lower case) and click the **Generate** icon for 'Device EUI' so a unique EUI can be generated on register
 
-    ![alt tag](img/ttn-device-add.png)
+    ![alt tag](img/TheThingsNetwork/ttn-applications-devices-before-register.png)
 
+7. The text in the EUI textbox is changed
 7. Click **Register** 
 8. The device is now created
 
-    ![alt tag](img/ttn-device-created.png)
+    ![alt tag](img/TheThingsNetwork/ttn-applications-devices-registered-otaa.png)
 
-7. Click **Settings** in the upper right corner
-8. Check **Disable frame counter checks**
+7. Now we have to fine tune the settings
+11. Click **Settings** in the upper right corner
+12. Select activation method **ABP** instead of OTAA
+8. And uncheck **Frame counter checks** *Note: As stated, Disabling frame counter checks drastically reduces security and should only be used for development purposes. In this workshop, this makes you more flexible*
 
-    ![alt tag](img/ttn-disable-frame-counter-check.png)
+    ![alt tag](img/TheThingsNetwork/ttn-applications-devices-settings.png)
 
 9. Click **Save**
+9.  The following device settings are shown
 
-9. Again Click **Settings** and click **Personalize device** and just confirm by clicking **Personalize**. The following page is shown
-
-    ![alt tag](img/ttn-device.png)
+    ![alt tag](img/TheThingsNetwork/ttn-applications-devices-ready.png)
 
 8. Keep this page open, you need the device address, network session key and application session key in a minute
 
