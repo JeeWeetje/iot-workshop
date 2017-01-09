@@ -126,7 +126,12 @@ Follow the steps to create an application and register your device.
     ![alt tag](img/TheThingsNetwork/ttn-applications-devices.png)
 
 5. Click **Register device**
-6. Enter a **Device ID** (for example `predictive_maintenance_machine_42` in lower case) and click the **Generate** icon for 'Device EUI' so a unique EUI can be generated on register
+6. Enter a **Device ID** (for example `predictive_maintenance_machine_42` in lower case) 
+
+    ![alt tag](img/TheThingsNetwork/ttn-applications-devices-name-only.png)
+
+7. Notice that the Register button is still disabled. A device needs a unique unique identifier
+8.  Click the **Generate** icon for 'Device EUI' so a unique EUI can be generated on register
 
     ![alt tag](img/TheThingsNetwork/ttn-applications-devices-before-register.png)
 
