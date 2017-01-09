@@ -136,7 +136,7 @@ Follow the steps to create an application and register your device.
     ![alt tag](img/TheThingsNetwork/ttn-applications-devices-before-register.png)
 
 7. The text in the EUI textbox is changed
-7. Click **Register** 
+7. The register button is now enabled. Click **Register** 
 8. The device is now created
 
     ![alt tag](img/TheThingsNetwork/ttn-applications-devices-registered-otaa.png)
@@ -166,86 +166,83 @@ The sensor data is read, now it is time to send the sensor data to The Things Ne
 ```c
 #include <TheThingsNetwork.h>
 
-TheThingsNetwork ttn;
+const char *devAddr = "00000000";
+const char *nwkSKey = "00000000000000000000000000000000";
+const char *appSKey = "00000000000000000000000000000000";
+
+#define loraSerial Serial1
+#define debugSerial Serial
+
+#define freqPlan TTN_FP_EU868
+
+TheThingsNetwork ttn(loraSerial, debugSerial, freqPlan);
 
 int commButton = 4;
 int commLed = 10;
 int cycleCompleted = 0;
 int errorCode = 0;
 
-const byte devAddr[4] = { 0x80, 0x4A, 0x41, 0x62 };
-const byte nwkSKey[16] = { 0xB2, 0x88, 0x7A, 0xEA, 0x65, 0x19, 0x05, 0xF9, 0xEE, 0xA6, 0x09, 0xCD, 0x03, 0xCE, 0x87, 0x8A };
-const byte appSKey[16] = { 0xAA, 0x66, 0xF2, 0x8D, 0x74, 0x3C, 0x2F, 0xD4, 0x44, 0xD8, 0x71, 0xCD, 0xFD, 0x8A, 0x28, 0x69 };
-
 #define debugSerial Serial
 #define loraSerial Serial1
 
-#define debugPrintLn(...) { if (debugSerial) debugSerial.println(__VA_ARGS__); }
-#define debugPrint(...) { if (debugSerial) debugSerial.print(__VA_ARGS__); }
-
 void setup() {
-  debugSerial.begin(115200);
   loraSerial.begin(57600);
+  debugSerial.begin(9600);
 
   pinMode(commLed, OUTPUT);
   pinMode(commButton, INPUT);
   
   delay(1000);
   
-  debugPrintLn("Initializing");
+  debugSerial.print("Initializing");
 
   //Initializing TTN communcation...
-  ttn.init(loraSerial, debugSerial);  
-  ttn.reset(false, 7, 1);
+
   ttn.personalize(devAddr, nwkSKey, appSKey);
   
   digitalWrite(commLed, HIGH);
   
-  debugPrintLn("The Things Network connected");
+  debugSerial.print("The Things Network connected");
 }
 
 void loop() {
- 
-  // In the button is pushed, the machine enters an error state
-  if (digitalRead(commButton) == LOW) {  //// KY-004 LOW = Push // Touch sensor = Low
-    errorCode = 99;
-    digitalWrite(commLed, LOW);
-    debugPrintLn("Error occured");
-  }
 
   // If not in error state, update the number of cycles
   if (errorCode == 0) {
     cycleCompleted++;  
   }
+ 
+  // In the button is pushed, the machine enters an error state
+  if (digitalRead(commButton) == LOW) {  
+    errorCode = 99;
+    digitalWrite(commLed, LOW);
+    debugSerial.print("Error occured");
+  }
 
-  // Communicate with TTN about current state and number of cycles
+  // Communicate with TTN about number of cycles and current state (error code)
   byte buffer[2];
   buffer[0] = (byte) cycleCompleted;
   buffer[1] = (byte) errorCode;
 
-  // send (and when sent, check if there is a command waiting at the TTN platform)
-  int downlinkBytes = ttn.sendBytes(buffer, sizeof(buffer));
-
-  // if a command is waiting, get it and handle it
-  if (downlinkBytes > 0) {
-    int command = ttn.downlink[0];
-
-    if (command >= 42) {
-      errorCode = 0;
-      digitalWrite(commLed, HIGH);
-    }
-  }
+  // send message to TTN
+  ttn.sendBytes(buffer, sizeof(buffer));
 
   delay(10000);
 } 
 ```
 
 2. Insert your device address in `devAddr`, network session key in `nwkSkey` and application session key in `appSKey`. You can use the handy `<>` button in the dashboard to copy it quickly as a C-style byte array; exactly what Arduino wants
+
+    ![alt tag](img/TheThingsNetwork/ttn-applications-devices-credentials.png)
+
 3. In the **Sketch** menu, click **Upload**
 4. Open the **Serial Monitor** again from the **Tools** menu once upload has completed. Your device should now be sending data to The Things Network
+
+    ![alt tag](img/TheThingsNetwork/ttn-arduino-debug.png)
+
 5. In The Things Network dashboard, go to **Data**. You see packets coming in:
 
-    ![alt tag](img/ttn-device-payload-binary.png)
+    ![alt tag](img/TheThingsNetwork/ttn-portal-raw-messages.png)
 
 ## Decode data on TTN
 
