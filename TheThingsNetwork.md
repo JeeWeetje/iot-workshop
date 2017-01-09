@@ -146,59 +146,78 @@ The sensor data is read, now it is time to send the sensor data to The Things Ne
 ```c
 #include <TheThingsNetwork.h>
 
-// Set your DevAddr
-const byte devAddr[4] = { ... }; //for example: {0x02, 0xDE, 0xAE, 0x00};
-
-// Set your NwkSKey and AppSKey
-const byte nwkSKey[16] = { ... }; //for example: {0x2B, 0x7E, 0x15, 0x16, 0x28, 0xAE, 0xD2, 0xA6, 0xAB, 0xF7, 0x15, 0x88, 0x09, 0xCF, 0x4F, 0x3C};
-const byte appSKey[16] = { ... }; //for example: {0x2B, 0x7E, 0x15, 0x16, 0x28, 0xAE, 0xD2, 0xA6, 0xAB, 0xF7, 0x15, 0x88, 0x09, 0xCF, 0x4F, 0x3C};
-
 TheThingsNetwork ttn;
 
-// Define the pins of your sensors
-#define PIN_PIR 2
-#define PIN_WATER A0
+int commButton = 4;
+int commLed = 10;
+int cycleCompleted = 0;
+int errorCode = 0;
 
-// Setup runs once
+const byte devAddr[4] = { 0x80, 0x4A, 0x41, 0x62 };
+const byte nwkSKey[16] = { 0xB2, 0x88, 0x7A, 0xEA, 0x65, 0x19, 0x05, 0xF9, 0xEE, 0xA6, 0x09, 0xCD, 0x03, 0xCE, 0x87, 0x8A };
+const byte appSKey[16] = { 0xAA, 0x66, 0xF2, 0x8D, 0x74, 0x3C, 0x2F, 0xD4, 0x44, 0xD8, 0x71, 0xCD, 0xFD, 0x8A, 0x28, 0x69 };
+
+#define debugSerial Serial
+#define loraSerial Serial1
+
+#define debugPrintLn(...) { if (debugSerial) debugSerial.println(__VA_ARGS__); }
+#define debugPrint(...) { if (debugSerial) debugSerial.print(__VA_ARGS__); }
+
 void setup() {
-  // The PIR is a digital input
-  pinMode(PIN_PIR, INPUT);
+  debugSerial.begin(115200);
+  loraSerial.begin(57600);
 
-  Serial.begin(9600);
-  Serial1.begin(57600);
+  pinMode(commLed, OUTPUT);
+  pinMode(commButton, INPUT);
+  
+  delay(1000);
+  
+  debugPrintLn("Initializing");
 
-  ttn.init(Serial1, Serial);
-  ttn.reset();
-
-  //the device will configure the LoRa module
+  //Initializing TTN communcation...
+  ttn.init(loraSerial, debugSerial);  
+  ttn.reset(false, 7, 1);
   ttn.personalize(devAddr, nwkSKey, appSKey);
-
-  ttn.showStatus();
-  Serial.println("Setup for The Things Network complete");
+  
+  digitalWrite(commLed, HIGH);
+  
+  debugPrintLn("The Things Network connected");
 }
 
-// Loop runs indefinitely
 void loop() {
-  // Read sensors
-  uint8_t motion = digitalRead(PIN_PIR);
-  uint16_t waterLevel = analogRead(PIN_WATER);
-
-  // Check if there is motion
-  if (motion == HIGH) {
-    // Print the water level value
-    Serial.print("Water level: ");
-    Serial.println(waterLevel);
-
-    // Send data to The Things Network
-    byte buffer[2];
-    buffer[0] = highByte(waterLevel);
-    buffer[1] = lowByte(waterLevel);
-    ttn.sendBytes(buffer, sizeof(buffer));
+ 
+  // In the button is pushed, the machine enters an error state
+  if (digitalRead(commButton) == LOW) {  //// KY-004 LOW = Push // Touch sensor = Low
+    errorCode = 99;
+    digitalWrite(commLed, LOW);
+    debugPrintLn("Error occured");
   }
 
-  // Wait 10 seconds
+  // If not in error state, update the number of cycles
+  if (errorCode == 0) {
+    cycleCompleted++;  
+  }
+
+  // Communicate with TTN about current state and number of cycles
+  byte buffer[2];
+  buffer[0] = (byte) cycleCompleted;
+  buffer[1] = (byte) errorCode;
+
+  // send (and when sent, check if there is a command waiting at the TTN platform)
+  int downlinkBytes = ttn.sendBytes(buffer, sizeof(buffer));
+
+  // if a command is waiting, get it and handle it
+  if (downlinkBytes > 0) {
+    int command = ttn.downlink[0];
+
+    if (command >= 42) {
+      errorCode = 0;
+      digitalWrite(commLed, HIGH);
+    }
+  }
+
   delay(10000);
-}
+} 
 ```
 
 2. Insert your device address in `devAddr`, network session key in `nwkSkey` and application session key in `appSKey`. You can use the handy `<>` button in the dashboard to copy it quickly as a C-style byte array; exactly what Arduino wants
