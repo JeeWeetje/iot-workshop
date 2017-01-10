@@ -296,7 +296,7 @@ Now, the binary payload is not really useful in upstream. We want JSON. Therefor
 6. Finally, scroll to the bottom of the page and click **Save**
 7. Go back to your data overview. Now you should see something like this:
 
-    ![alt tag](img/ttn-device-payload-fields.png)
+    ![alt tag](img/TheThingsNetwork/ttn-device-payload-fields.png)
 
 Now we have clean JSON data ready to be processed in Azure IoT Hub and upstream.
 
