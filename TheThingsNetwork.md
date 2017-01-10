@@ -31,16 +31,20 @@ Follow the workshop facilitator connecting the sensors. A few important things:
 
 Your device and sensors should be connected as follows:
 
-* overview
+* Overview
+
    ![alt tag](img/TheThingsNetwork/node-overview.jpg)
 
-* detail node
+* Details pin layout node
+
    ![alt tag](img/TheThingsNetwork/node-detail.jpg)
 
-* Button
+* Button pin layout 
+
    ![alt tag](img/TheThingsNetwork/node-button.jpg)
 
-* LED
+* LED pin layout 
+
    ![alt tag](img/TheThingsNetwork/node-led.jpg)
 
 
