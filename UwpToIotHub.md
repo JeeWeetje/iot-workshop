@@ -59,7 +59,6 @@ Follow these steps to create an Azure IoT Hub.
 
 Creating an IoT Hub takes some time. Meanwhile, we will start with the app which will connect to the IoT Hub later on.
 
-
 ## Creating a new UWP App
 
 ![alt tag](img/arch/Picture02-UWP-overview.png)
