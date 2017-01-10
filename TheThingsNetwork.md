@@ -97,10 +97,10 @@ We start with running a simple sketch on the Arduino. This is a program which si
     } 
     ```
 
-5. In the **Sketch** menu, click **Verify/Compile**
-6. In the **Sketch** menu, click **Upload**
-7. Once the sketch has been uploaded, go to the **Tools** menu and open the **Serial Monitor**
-8. You should see output like this, just wait a few seconds before pushing the button:
+7. In the **Sketch** menu, click **Verify/Compile**
+8. In the **Sketch** menu, click **Upload**
+9. Once the sketch has been uploaded, go to the **Tools** menu and open the **Serial Monitor**
+10. You should see output like this, just wait a few seconds before pushing the button:
 
     ```
     ...
@@ -142,25 +142,25 @@ Follow the steps to create an application and register your device.
 
     ![alt tag](img/TheThingsNetwork/ttn-applications-devices-before-register.png)
 
-7. The text in the EUI textbox is changed
-7. The register button is now enabled. Click **Register** 
-8. The device is now created
+9. The text in the EUI textbox is changed
+10. The register button is now enabled. Click **Register** 
+11. The device is now created
 
     ![alt tag](img/TheThingsNetwork/ttn-applications-devices-registered-otaa.png)
 
-7. Now we have to fine tune the settings
-11. Click **Settings** in the upper right corner
-12. Select activation method **ABP** instead of OTAA
-8. And uncheck **Frame counter checks** *Note: As stated, Disabling frame counter checks drastically reduces security and should only be used for development purposes. In this workshop, this makes you more flexible*
+12. Now we have to fine tune the settings
+13. Click **Settings** in the upper right corner
+14. Select activation method **ABP** instead of OTAA
+15. And uncheck **Frame counter checks** *Note: As stated, Disabling frame counter checks drastically reduces security and should only be used for development purposes. In this workshop, this makes you more flexible*
 
     ![alt tag](img/TheThingsNetwork/ttn-applications-devices-settings.png)
 
-9. Click **Save**
-9.  The following device settings are shown
+16. Click **Save**
+17.  The following device settings are shown
 
     ![alt tag](img/TheThingsNetwork/ttn-applications-devices-ready.png)
 
-8. Keep this page open, you need the device address, network session key and application session key in a minute
+18. Keep this page open, you need the device address, network session key and application session key in a minute
 
 The TTN application is now created.
 
@@ -280,7 +280,7 @@ Now, the binary payload is not really useful in upstream. We want JSON. Therefor
 
     ![alt tag](img/TheThingsNetwork/ttn-portal-decoder.png)
 
-5. We want rearrange the order od the JSON element. So use the following function as the **converter**:
+4. We want to rearrange the order of the JSON element. So use the following function as the **converter**:
 
     ```c
     function Converter(decoded, port) {
@@ -291,9 +291,9 @@ Now, the binary payload is not really useful in upstream. We want JSON. Therefor
     }
     ```
 
-3. Test before you can save the converter function. Again, enter eg '2A00' in the payload and click **Test**. The converted JSON message should become visible
-4. Finally, scroll to the bottom of the page and click **Save**
-6. Go back to your data overview. Now you should see something like this:
+5. Test before you can save the converter function. Again, enter eg '2A00' in the payload and click **Test**. The converted JSON message should become visible
+6. Finally, scroll to the bottom of the page and click **Save**
+7. Go back to your data overview. Now you should see something like this:
 
     ![alt tag](img/ttn-device-payload-fields.png)
 
