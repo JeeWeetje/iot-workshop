@@ -104,7 +104,8 @@ We start with running a simple sketch on the Arduino. This is a program which si
     Cycle completed: 5
     Cycle completed: 6
     Error occured: 99
-    Repair of machine needed...    ```
+    Repair of machine needed...
+    ```
 
 Now we have a running Arduino with some basic logic. Let's send some messages using the The Things Network.
 
