@@ -14,7 +14,7 @@ This is an example integration between a UWP app and Azure IoT Hub. This integra
 2. Visual Studio 2015 [Community edition](https://www.visualstudio.com/vs/community/) or higher
 3. Universal Windows App Development Tools [Windows SDK](https://developer.microsoft.com/en-US/windows/downloads/windows-10-sdk)
 4. Visual Studio Extension [Connected Service for Azure IoT Hub](https://visualstudiogallery.msdn.microsoft.com/e254a3a5-d72e-488e-9bd3-8fee8e0cd1d6)
-5. Node.js [https://nodejs.org/en/](https://nodejs.org/en/). _(We prefer Version 6.6)_
+5. Node.js [https://nodejs.org/en/](https://nodejs.org/en/). _(We prefer Version 6)_
 6. Azure account [create here](https://azure.microsoft.com/en-us/free/) _([Azure passes](https://www.microsoftazurepass.com/howto) will be present for those who have no Azure account)_
 7. [IoT Hub Explorer](https://www.npmjs.com/package/iothub-explorer) _(for Command-Line interface based usage; see below for installation steps)_ or [Device Explorer](https://github.com/fsautomata/azure-iot-sdks/blob/master/tools/DeviceExplorer/doc/how_to_use_device_explorer.md) _(for GUI based usage; see below for installation steps)_  
 

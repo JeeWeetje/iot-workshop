@@ -12,10 +12,11 @@ This is an example integration between The Things Network and Azure IoT Hub. Thi
 1. A computer with internet access
 2. A The Things Uno, a Grove - Water Sensor, a Grove - PIR Motion Sensor, wiring & a micro USB cable
 3. Arduino IDE [http://arduino.cc](http://arduino.cc)
-4. Node.js [https://nodejs.org/en/](https://nodejs.org/en/). _(We prefer Version 6.6)_
+4. Node.js [https://nodejs.org/en/](https://nodejs.org/en/). _(We prefer Version 6)_
 5. Azure account [create here](https://azure.microsoft.com/en-us/free/) _([Azure passes](https://www.microsoftazurepass.com/howto) will be present for those who have no Azure account)_
 6. TTN account [https://account.thethingsnetwork.org/](https://account.thethingsnetwork.org/)
-7. [IoT Hub Explorer](https://www.npmjs.com/package/iothub-explorer) _(for Command-Line interface based usage; see below for installation steps)_ or [Device Explorer](https://github.com/fsautomata/azure-iot-sdks/blob/master/tools/DeviceExplorer/doc/how_to_use_device_explorer.md) _(for GUI based usage; see below for installation steps)_  
+7. Bridge software between TTN and Azure [TtnAzureBridge](https://github.com/sandervandevelde/TtnAzureBridge) (or [as zip](https://1drv.ms/f/s!At-2dMPHYH4-kP0ENT3ieMCvJPxeKA))
+8. [IoT Hub Explorer](https://www.npmjs.com/package/iothub-explorer) _(for Command-Line interface based usage; see below for installation steps)_ or [Device Explorer](https://github.com/fsautomata/azure-iot-sdks/blob/master/tools/DeviceExplorer/doc/how_to_use_device_explorer.md) _(for GUI based usage; see below for installation steps)_  
 
 ## Connect your device
 
@@ -330,24 +331,6 @@ Follow these steps to create an Azure IoT Hub.
 
 Creating an IoT Hub takes some time. Meanwhile, we will connect the device and create the bridge.
 
-## Create a bridge
-
-![alt tag](img/msft/Picture08-build-a-bridge-frm-ttn-to-azure.png)
-
-Follow these steps to create the integration bridge between The Things Network and Azure IoT Hub. NPM will be used to create a folder structure and install packages.
-
-1. Create a new folder eg. `c:\techdays42`
-2. In Command Prompt, navigate to the new folder 
-3. In this new folder, run `npm init` to initialize a new Node.js application. Some values will be presented to be changed; accept the initial values, only use `server.js` (instead of _index.js_ as entry point, if proposed)
-   
-   ![alt tag](img/npm-init.png)
-   
-4. Accept the changes to be written in a JSON file with yes (default option)
-5. Run `npm install --save ttn-azure-iothub@preview` to install this package
-6. Create a new file named `server.js` in the folder you created
-
-This server.js file will be edited below but we need some secrets first. We have to collect unique keys of the TTN app and the Azure IoT Hub first.
-
 ### Collect TTN Application secrets
 
 The integration requires an application and device configured in The Things Network.
@@ -363,67 +346,50 @@ The `Application ID` and `Access Key` are required to get data from The Things N
 
 The integration requires an Azure IoT Hub Shared access policy key name with `Registry read, write and Device connect` permissions. In this example, we use the **iothubowner** policy which has these permissions enabled by default.
 
-1. Check the Azure portal. The resource group and the IoT Hub should be created by now
+1. Check the Azure portal. The resource group and the IoT Hub should be created by now (otherwise we were unable to send duty cycles information to it)
 
-    ![alt tag](img/azure-notifications.png)
+    ![alt tag](img/UwpToIotHub/azure-notifications-iothub.png)
 
 2. On the left, select `Resource groups`. A list of resource groups is shown
 
-    ![alt tag](img/azure-resource-groups.png)
+    ![alt tag](img/UwpToIotHub/azure-resource-groups.png)
 
-3. Select the resource group `TechDays42rg`. It will open a new blade with all resources in this group
-4. Select the IoT Hub `TechDays42ih`. It will open a new blade with the IoT Hub
+3. Select the resource group `IoTWorkshop-rg`. It will open a new blade with all resources in this group
+4. Select the IoT Hub `IoTWorkshop-ih`. It will open a new blade with the IoT Hub
 
-    ![alt tag](img/azure-iot-hub-initial.png)
+    ![alt tag](img/UwpToIotHub/azure-iot-hub-initial.png)
 
 5. The IoTHub has not received any messages yet. Check the general settings for `Shared access policies`
 
-    ![alt tag](img/azure-iot-hub-share-access-policy.png)
+    ![alt tag](img/UwpToIotHub/azure-iot-hub-share-access-policy.png)
 
-6. **Write down** the `name` of the IoT Hub eg. `TechDays42ih`
-7. Navigate to the `iothubowner` policy and **write down** the primary key
+6. **Write down** the `name` of the IoT Hub eg. `IoTWorkshop-ih`
+7. Navigate to the 'iothubowner' policy and **write down** this `Connection String-Primary Key`
 
-    ![alt tag](img/azure-iothubowner-policy.png)
+    ![alt tag](img/UwpToIotHub/azure-iothubowner-policy.png)
 
-8. In the last step op this Bridge tutorial, the 'Connection string-primary key' is needed. **write down** this `Connection String-Primary Key` too
+This is the secret needed from the Azure IoT Hub.
 
-These are the secrets needed from the Azure IoT Hub.
+## Create a bridge
 
-### Edit server.js
+![alt tag](img/msft/Picture08-build-a-bridge-frm-ttn-to-azure.png)
 
-Edit the file named server.js in the new folder. `Fill in` the secrets and `save` the file.
+Follow these steps to create the integration bridge between The Things Network and Azure IoT Hub. 
 
-```js
-'use strict';
+1. Create a new folder eg. `c:\IoTWorkshop`
+2. Copy the zip file 'TTNAzureBridge.zip' from [this OneDrive location](https://1drv.ms/f/s!At-2dMPHYH4-kP0ENT3ieMCvJPxeKA) to this folder and unzip it
+3. 
+2. In Command Prompt, navigate to the new folder 
+3. In this new folder, run `npm init` to initialize a new Node.js application. Some values will be presented to be changed; accept the initial values, only use `server.js` (instead of _index.js_ as entry point, if proposed)
+   
+   ![alt tag](img/npm-init.png)
+   
+4. Accept the changes to be written in a JSON file with yes (default option)
+5. Run `npm install --save ttn-azure-iothub@preview` to install this package
+6. Create a new file named `server.js` in the folder you created
 
-const ttnazureiot = require('ttn-azure-iothub');
+This server.js file will be edited below but we need some secrets first. We have to collect unique keys of the TTN app and the Azure IoT Hub first.
 
-// Insert your AppId and App Access Key
-const region = 'eu';
-const appId = '<insert App Id>';
-const appAccessKey = '<insert App Access Key>';
-
-// Insert with your Azure IoT Hub name and primary key
-const hubName = '<insert IoT Hub name>';
-const keyName = 'iothubowner';
-const primaryKey = '<insert primary key>';
-
-const bridge = new ttnazureiot.Bridge(region, appId, appAccessKey, hubName, keyName, primaryKey);
-
-bridge.on('ttn-connect', () => {
-  console.log('TTN connected');
-});
-
-bridge.on('error', err => {
-  console.warn('Error', err);
-});
-
-bridge.on('message', data => {
-  console.log('Message', data);
-});
-```
-
-This is the most basic example of a bridge between TTN and Azure. 
 
 ### Start the bridge
 
@@ -444,10 +410,9 @@ Uplink { devEUI: 'goattrough',
 
 *Note: Keep the bridge running until the end of the complete workshop.*
 
+## Select your favorite tool for monitoring
 
-## Monitoring the arrival of the telemetry in Azure
-
-![alt tag](img/msft/Picture09-monitor-incoming-data.png)
+![alt tag](img/arch/Picture05-UWP-overview.png)
 
 We can check the arrival of messages in the Azure IoT Hub. This can be done using a UI app named Device Explorer or using a Command-Line tool named IoT Hub Explorer. `Choose one below` 
 
@@ -461,46 +426,59 @@ The easiest way to install the Device Explorer tool in your environment is to do
 
 To run the Device Explorer tool, double-click the DeviceExplorer.exe file in Windows Explorer. The default installation folder for this application is C:\Program Files (x86)\Microsoft\DeviceExplorer.
 
-1. Start the `Device Explorer` from the PC desktop or using the Windows start menu
-2. On the Configuration Tab, insert the *remembered* IoT Hub `Connection String-primary key` and the `name` of the IoT Hub (as Protocol Gateway Hostname)
+1. Start the `Device Explorer` from the desktop or using the start menu
+2. On the Configuration Tab, insert the IoT Hub `Connection String-primary key` and the `name` of the IoT Hub (as Protocol Gateway Hostname)
 3. Press `Update`
 4. On the Management tab, your device should already be available. It was registered by the bridge the very first time, telemetry arrived
-5. On the Data tab, Select your `Device ID` and press `Monitor`
-6. This will result in the following messages
 
-```
-Receiving events...
-09/23/16 21:43:47> Device: [goattrough], Data:[{"waterLevel":10}]
-09/23/16 21:43:51> Device: [goattrough], Data:[{"waterLevel":15}]
-09/23/16 21:43:53> Device: [goattrough], Data:[{"waterLevel":14}]
-```
+    ![alt tag](img/UwpToIotHub/ihe-devices.png)
+
+5. On the Data tab, Select your `Device ID` (like 'MachineCyclesUwp') and press `Monitor`
+6. in the UWP app, press `Send cycle updates` a couple of times
+7. This will result in the following messages when you send some Duty Cycle telemetry in your UWP app
+
+    ```
+    Receiving events...
+    1/5/2017 9:46:18 PM> Device: [MachineCyclesUwp], Data:[{"errorCode":0,"numberOfCycles":1}]
+    1/5/2017 9:46:19 PM> Device: [MachineCyclesUwp], Data:[{"errorCode":0,"numberOfCycles":2}]
+    1/5/2017 9:46:20 PM> Device: [MachineCyclesUwp], Data:[{"errorCode":0,"numberOfCycles":3}]
+    ```
 
 ### Monitoring using Command-line
 
 We can check the arrival of the messages in the Azure IoT Hub using the IoT Hub Explorer. This tool is Command-Line based, please check the installation requirements. 
 
-*Note : See the [full example](https://github.com/Azure/azure-iot-sdks/tree/master/tools/iothub-explorer) for more options of this tool.*
+*Note : See the [full example](https://www.npmjs.com/package/iothub-explorer) for more options of this tool.*
 
 1. Create a new folder eg. `c:\iothubexplorer`
-2. In a dos-box, navigate to the new folder 
+2. In a dos-box (press Windows button-R, type CMD and enter), navigate to the new folder `c:\iothubexplorer`
 3. In this folder, run the following command `npm install -g iothub-explorer@latest` in your command-line environment, to install the latest (pre-release) version of the iothub-explorer tool
 4. Login to the IoT Hub Explorer by supplying your *remembered* IoT Hub `Connection String-primary key` using the command `iothub-explorer login "[your connection string]"`
 5. A session with the IoT Hub will start and it will last for approx. one hour:
 
-```
-Session started, expires Tue Sep 27 2016 18:35:37 GMT+0200 (W. Europe Daylight Time)
-```
+    ```
+    Session started, expires on Thu Jan 05 2017 22:53:55 GMT+0100 (W. Europe Standard Time)
+    ```
 
-6. To monitor the device-to-cloud messages from a device, use the following command `iothub-explorer "[your connection string]" monitor-events [device name]`  and `fill in` your  *remembered* 'Connection String-primary key' and *remember* device name
-7. This will result in the following messages
+6. To monitor the device-to-cloud messages from a device, use the following command `iothub-explorer monitor-events --login [your connection string]` and `fill in` your *remembered* IoT Hub 'Connection String-primary key'
+7. All devices are monitored now. This will result in the following messages
 
-```
-Monitoring events from device goattrough
-Event received:
-{
-  "waterLevel": 12
-}
-```
+    ```
+    Monitoring events from all devices...
+    From: MachineCyclesUwp
+    {
+      "errorCode": 0,
+      "numberOfCycles": 8
+    }
+    -------------------
+    From: MachineCyclesUwp
+    {
+      "errorCode": 0,
+      "numberOfCycles": 9
+    }
+    -------------------
+    ```
+
 
 ## Conclusion
 
