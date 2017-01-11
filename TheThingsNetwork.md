@@ -498,6 +498,6 @@ We can check the arrival of the messages in the Azure IoT Hub using the IoT Hub 
 
 The messages are shown here too. These messages are now available in Azure.
 
-Next Step: You are now ready to process your data in an Azure Function. Continue to [Handling The Things Network telemetry in Azure](Azure.md)
+Next Step: You are now ready to process your data in an Azure Function. Continue to [Receivig and handling The Things Network telemetry in Azure](Azure.md)
 
 ![alt tag](img/logos/dotned-saturday.png)

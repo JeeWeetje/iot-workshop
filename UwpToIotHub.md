@@ -368,6 +368,6 @@ We can check the arrival of the messages in the Azure IoT Hub using the IoT Hub 
 
 These messages shown during the monitoring step are now available in Azure, and kept in the IotHub until other resources are asking for telemetry...
 
-Next Step: You are now ready to process your data in an Azure Function.
+Next Step: You are now ready to process your data in an Azure Function. Continue to [Receivig and handling telemetry in Azure](Azure.md)
 
 ![alt tag](img/logos/dotned-saturday.png)
