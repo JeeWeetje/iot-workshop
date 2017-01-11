@@ -300,6 +300,19 @@ Now, the binary payload is not really useful in upstream. We want JSON. Therefor
 
 Now we have clean JSON data ready to be processed in Azure IoT Hub and upstream.
 
+### Collect TTN Application secrets
+
+We now have our telemetry in the TTN back-end. Our goal is to pass the telemetry through the Azure IoT Platform. Now, we will create a bridge between the two platforms. But again we need some secrets so only we can access our telemetry.
+We have to collect unique keys of the TTN app.
+
+1. Go to your TTN application **Overview** in the navigation bar
+2. **Write down** the 'Application ID'
+3. Scroll down to **Access Keys**. **Write down** the 'Access Key'
+
+    ![alt tag](img/TheThingsNetwork/ttn-access-key.png)
+
+The `Application ID` and `Access Key` are required to get data from The Things Network.
+
 ## Create an Azure IoT Hub
 
 ![alt tag](img/msft/Picture07-prepare-azure-integration.png)
@@ -330,17 +343,6 @@ Follow these steps to create an Azure IoT Hub.
     ![alt tag](img/UwpToIotHub/azure-notifications-iothub.png)
 
 Creating an IoT Hub takes some time. Meanwhile, we will connect the device and create the bridge.
-
-### Collect TTN Application secrets
-
-The integration requires an application and device configured in The Things Network.
-
-1. Go to your application by clicking its name in the navigation bar
-2. Scroll down to **Access Keys**. **Write down** the application ID and access key
-
-    ![alt tag](img/ttn-application-cred.png)
-
-The `Application ID` and `Access Key` are required to get data from The Things Network.
 
 ### Collect Azure IoT Hub secrets
 
@@ -376,24 +378,27 @@ This is the secret needed from the Azure IoT Hub.
 
 Follow these steps to create the integration bridge between The Things Network and Azure IoT Hub. 
 
-1. Create a new folder eg. `c:\IoTWorkshop`
-2. Copy the zip file 'TTNAzureBridge.zip' from [this OneDrive location](https://1drv.ms/f/s!At-2dMPHYH4-kP0ENT3ieMCvJPxeKA) to this folder and unzip it
-3. 
-2. In Command Prompt, navigate to the new folder 
-3. In this new folder, run `npm init` to initialize a new Node.js application. Some values will be presented to be changed; accept the initial values, only use `server.js` (instead of _index.js_ as entry point, if proposed)
-   
-   ![alt tag](img/npm-init.png)
-   
-4. Accept the changes to be written in a JSON file with yes (default option)
-5. Run `npm install --save ttn-azure-iothub@preview` to install this package
-6. Create a new file named `server.js` in the folder you created
+1. **Create** a new folder eg. `c:\IoTWorkshop`
+2. **Copy** the zip file 'TTNAzureBridge.zip' from [this OneDrive location](https://1drv.ms/f/s!At-2dMPHYH4-kP0ENT3ieMCvJPxeKA) to this folder and **unzip** it
 
-This server.js file will be edited below but we need some secrets first. We have to collect unique keys of the TTN app and the Azure IoT Hub first.
+    ![alt tag](img/TheThingsNetwork/bridge-download.png)
 
+3. **Navigate** to the folder with the executable and identify the config file name 'TtnAzureBridge.exe.config'
+2. **Open** this config file in notepad or another text file editor
+3. **Replace** [TTN App EUI] with the `TTN Application ID`
+6. **Replace** [TTN App Access Key] with the `TTN Access Key`
+7. **Replace** twice [iothub name] with the `name` of the IoT Hub, both in the app settings as in the connection string 'IoTHub'
+8. In the connectionstring of 'IoTHub', **replace** [shared access key] with the remembered `Connection String-Primary Key` 
+   
+   ![alt tag](img/TheThingsNetwork/bridge-config.png)
+   
+4. **Save** the config file and close the editor
+
+The bridge is now ready for execution.
 
 ### Start the bridge
 
-In the new folder, run `npm start` to verify the bridge works. This is example output:
+In the same folder, run `TtnAzureBridge.exe` to verify the bridge works. A dos box will open. This is example output:
 
 ```
 TTN connected
