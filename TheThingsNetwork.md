@@ -398,18 +398,27 @@ The bridge is now ready for execution.
 
 ### Start the bridge
 
-In the same folder, run `TtnAzureBridge.exe` to verify the bridge works. A dos box will open. This is example output:
+You are about to retrieve the telemetry from TTN.
 
-```
-TTN connected
-goattrough: Handling uplink
-Uplink { devEUI: 'goattrough',
-  message: '{"waterLevel":19,"deviceId":"goattrough","time":"2016-06-14T16:19:15.402956092Z"}' }
-goatThrough: Handling uplink
-Uplink { devEUI: 'goattrough',
-  message: '{"waterLevel":19,"deviceId":"goattrough","time":"2016-06-14T16:19:37.546601639Z"}' }
-...
-```
+2. In a dos-box (press Windows button-R, type CMD and enter), navigate to the new folder `c:\iotworkshop`
+2. In the same folder, **run** `TtnAzureBridge.exe` to verify the bridge is working
+   
+   ![alt tag](img/TheThingsNetwork/bridge-running.png)
+
+3. This is example output:
+
+    ```
+    time 1/11/2017 8:16:29 PM -> IoT Hub IoTWorkshop-ih connected
+    MQTT KeepAlivePeriod is 60000
+    MQTT subscribed to predictive_maintenance on eu.thethings.network
+    MQTT handling uplink
+    Message received (2/predictive_maintenance_machine_42/eui-b827ebffffc19ca8/51.46018/5.61902/868.1/-76): {"errorCode":0,"numberOfCycles":3}-IoT Hub message sent
+    MQTT handling uplink
+    Message received (12/predictive_maintenance_machine_42/eui-b827ebffffc19ca8/51.46018/5.61902/868.1/-77): {"errorCode":0,"numberOfCycles":13}-IoT Hub message sent
+    ...
+    ```
+
+4. The telemetry is passed to the connect Azure IoTHub. We also see some basic information about the framecount, the node, the name and location of the gateway, the Lora channel used and the quality of the reception (RSSI)
 
 *Note: the message consists of valid JSON telemetry.*
 
