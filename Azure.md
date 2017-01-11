@@ -1,5 +1,5 @@
 # The Things Network & Azure IoT: a perfect combination
-## Handling The Things Network telemetry in Azure
+## Receivig and handling telemetry in Azure
 
 This is an example of how uplink and downlink messages from and to The Things Network can be handled in Azure. In this workshop, we will pass telemetry from your device to Azure Functions and we will pass commands back to your device. 
 
