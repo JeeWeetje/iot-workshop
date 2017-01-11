@@ -31,7 +31,7 @@ The other parts are optional/extra if you have time left.
 
 1. Connecting a device to the Azure IoT Platform
     1. [Getting started with the hardware and The Things Network](TheThingsNetwork.md)
-    2. [Connecting to an IoT Hub using a UWP app](UwpToIotHub.md)
+    2. [Connecting to an IoT Hub using a UWP app device simulation](UwpToIotHub.md)
 2. [Handling The Things Network telemetry in Azure](Azure.md)
 3. [Passing commands back to a device](Commands.md)
 4. [Pushing telemetry messages to Microsoft Flow and beyond](Flow.md)

@@ -1,4 +1,4 @@
-## Connecting to an IoT Hub using a UWP app
+## Connecting to an IoT Hub using a UWP app device simulation
 
 ![alt tag](img/arch/Picture00-UWP-overview.png)
 
@@ -144,7 +144,7 @@ The AzureIoTHub can be integrated in the logic of our App. Let's do that.
 We will use the connection later on. But first let's check out the 'AzureIoTHub.cs' file because it needs some rework.
 
 1. `Open` the file named 'AzureIoTHub.cs'
-2. The file contains a class named which has two methods: 'SendDeviceToCloudMessageAsync' and 'ReceiveCloudToDeviceMessageAsync'.
+2. The file contains a class named which has two methods: 'SendDeviceToCloudMessageAsync' and 'ReceiveCloudToDeviceMessageAsync'. *Note: receiving Cloud to Device messages will be discussed later on*
 3. The method to send data is not that intelligent. It only sends a text message. Add the following code just below it
 
     ```csharp
@@ -166,32 +166,6 @@ We will use the connection later on. But first let's check out the 'AzureIoTHub.
     ```
 
 4. We have defined the Telemetry class which will hold the number of cycles. And the current error code of the device can be passed to the cloud. The telemetry is converted to JSON
-5. The method to receive messages from the cloud to this devices needs some rework also. It should be waiting for bytes
-
-    ```csharp
-    public static async Task<byte[]> ReceiveCloudToDeviceBytes()
-    {
-        var deviceClient = DeviceClient.
-              CreateFromConnectionString(deviceConnectionString, TransportType.Amqp);
-
-        while (true)
-        {
-            var receivedMessage = await deviceClient.ReceiveAsync();
-
-            if (receivedMessage != null)
-            {
-                var bytes = receivedMessage.GetBytes();
-
-                await deviceClient.CompleteAsync(receivedMessage);
-
-                return bytes;
-            }
-
-            await Task.Delay(TimeSpan.FromSeconds(1));
-        }
-    }
-    ```
-
 6. `Open` the 'XAML' file named 'MainPage.xaml'. The empty page will be shown both in a visual editor and a textual XAML editor
 7. The page contains one component, a grid. But that grid is merely a container for other visual components
 8. In the XAML editor, within the grid, `add`
@@ -199,10 +173,9 @@ We will use the connection later on. But first let's check out the 'AzureIoTHub.
     ```xml
     <StackPanel>
         <TextBlock Name="txbTitle" Text="Machine Cycles Demo" Margin="5"  FontSize="100" IsColorFontEnabled="True" />
-        <Button Name="BtnReceive" Content="Wait for commands" Margin="5" FontSize="60" Click="btnReceive_Click" />
         <Button Name="BtnSend" Content="Send cycle updates" Margin="5" FontSize="60" Click="btnSend_Click" />
         <Button Name="BtnBreak" Content="Break down" Margin="5" FontSize="60" Click="BtnBreak_OnClick" />
-        <TextBlock Name="TbReceived" Text="---" FontSize="60" />
+        <TextBlock Name="TbMessage" Text="---" FontSize="60" />
     </StackPanel>
     ```
 
@@ -242,38 +215,12 @@ We will use the connection later on. But first let's check out the 'AzureIoTHub.
         }
     }
 
-    private async void btnReceive_Click(object sender, RoutedEventArgs e)
-    {
-        BtnReceive.IsEnabled = false;
-        while (true)
-        {
-            try
-            {
-                var bytes = await AzureIoTHub.ReceiveCloudToDeviceBytes();
-
-                if (bytes != null && bytes.Length > 0 && bytes[0] >= 42)
-                {
-                    await ShowMessage($"Command {Convert.ToInt32(bytes[0])} (Started running again at {DateTime.Now:hh:mm:ss})");
-                    _errorCode = 0;
-                    BtnBreak.IsEnabled = true;
-
-                    txbTitle.Foreground = new SolidColorBrush(Colors.DarkOliveGreen);
-                }
-            }
-            catch (Exception ex)
-            {
-                BtnReceive.IsEnabled = true;
-                await ShowMessage(ex.Message);
-            }
-        }
-    }
-
     private async Task ShowMessage(string text)
     {
         await Dispatcher.RunAsync(
                 CoreDispatcherPriority.Normal, () =>
                 {
-                    TbReceived.Text = text;
+                    TbMessage.Text = text;
                 });
     }
 
