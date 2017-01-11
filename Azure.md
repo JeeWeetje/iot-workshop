@@ -1,7 +1,7 @@
 # The Things Network & Azure IoT: a perfect combination
 ## Receivig and handling telemetry in Azure
 
-This is an example of how uplink and downlink messages from and to The Things Network can be handled in Azure. In this workshop, we will pass telemetry from your device to Azure Functions and we will pass commands back to your device. 
+This is an example of how uplink messages from The Things Network can be handled in Azure. In this workshop, we will pass telemetry from your device to Azure Functions. *Note: passing back commands to your device will be added after this workshop* 
 
 ![alt tag](img/arch/azure-telemetry-pipeline.png)
 
@@ -353,13 +353,24 @@ Now we are confident, the Azure function and trigger are available.
 
 ## Receiving telemetry in the Azure Function
 
-By now, the full chain of Azure services is set up. Telemetry from The Things Network node (or the test UWP app) is passed by the bridge to the Azure IoT Hub (as seen in one of the two explorers). 
+By now, the full chain of Azure services is set up. Telemetry from The Things Network node is passed by the bridge (or the test UWP app) to the Azure IoT Hub (as seen in one of the two explorers). Azure Stream Analytics passes a cumulation of the fault states to the Azure Function using an Azure Event Hub.
 
-Azure Stream Analytics passes a cumumation of the fault states to the Azure Function using an Azure Event Hub.
+So, if your TTN node or your UWP is put into a faulty state, telemetry will start arriving in the 'Logs' panel.
 
-So, if your node of UWP is in a fault state, telemetry will start arriving in the 'Logs' panel.
+### Sending TTN Node faults 
 
-### Receiving UWP app faults in the Azure Function
+The TTN node sends a message every 5 seconds. For now it's passing work cycles.
+
+1. `Push` the button attach to the port and `hold` it until the LED is unlit. The machine is now in an 'error' state
+2. `Check out` the bridge. The node is not updating the cycles anymore and error 99 is passed
+
+    ![alt tag](img/azure/ttn-bridge-upling-errorstate.png)
+
+The TTN node now simulates a machine which has stopped working. If this error is passed several times a minute, this is picked up by Stream Analytics. Let's check out the Azure Function
+
+### Sending UWP app faults
+
+If you are using the UWP app as simulator for a node, you have to 'break' the machine by hand
 
 1. start the UWP app and press the `Break down` button. The UWP app simulates now a machine which has a certain fault status eg. '99'. *Note: the interface will show the title in red when the 'machine' is broken*
 
@@ -369,7 +380,13 @@ So, if your node of UWP is in a fault state, telemetry will start arriving in th
 
     ![alt tag](img/azure-function-test-app-broken-telemetry.png)
 
-3. Telemetry will not arrive until Stream Analytics 'hops' to the next time frame. After that, you can see the telemetry arrive
+The UWP app now simulates a machine which has stopped working. If this error is passed several times a minute, this is picked up by Stream Analytics. Let's check out the Azure Function
+
+## Receiving broken machines information in the Azure Function
+
+Machine telemetry with an error state are arriving at the Azure IoTHub. The Azure Function should pick thes up
+
+1. Telemetry will not arrive until Stream Analytics 'hops' to the next time frame. After that, you can see `telemetry arriving`
 
     ```
     2017-01-08T00:31:05.546 Function started (Id=b155de3d-c162-4fa4-a341-404ce83f5e84)
@@ -384,6 +401,6 @@ Notice that we have full control over telemetry. We know which device has sent f
 
 Receiving basic telemetry in Azure completes this part of the workshop. You are now ready to do something exciting with this telemetry. 
 
-Let's start [ending back commands to the device to fix the issue](Commands.md)
+Let's start [Sending back commands to the device to fix the issue](Commands.md)
 
 ![alt tag](img/logos/dotned-saturday.png)
