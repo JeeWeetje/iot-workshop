@@ -100,7 +100,30 @@ Follow these steps to deploy an console app as Azure WebJob that runs the integr
 24. But actually, this job is not ready to run yet. We need to add settings
 32. `Clear` the settings filter. 
 33. Select `Application settings`
-32. Let's check the state of the Web Job. Select `Logs`
+34. The Application settings pane is shown. `Scroll down` until both the App Settings and Conneciton Strings are shown
+
+    ![alt tag](img/webjob/azure-web-job-app-settings.png)
+
+11. We will enter the actual settings here. These will override the settings in the config file of the brige *Note: this is a great feature for administrators*
+11. Add for each app setting the name and value
+    37. `ApplicationEui`
+    37. ApplicationAccessKey
+    37. IotHubName
+11. If in an unforseen event that the connenction to the TTN is lost, we let the Web App restart the web job. Add this extra setting and give it the value `True` 
+    38. ExitOnConnectionClosed (value `True`)  
+11. We also have to add the connection string. Fill in both the name, connection string. Finally, set the kind to `Custom`
+    39. IoTHub (kind `Custom`)
+39. The settings are now ready and should look like this
+
+    ![alt tag](img/webjob/azure-web-job-app-settings-ready.png)
+
+39. Press `Save`. A notification will be shown that the web app settings are updated succesfully
+
+    ![alt tag](img/azure-portal-save.png)
+
+32. Let's check the state of the Web Job. 
+38. Filter the settings for `webjobs`. the bridge should have the state 'started' by now.
+39. Select `Logs` of your webjob
 
     ![alt tag](img/bridge-list-web-job-logs.png)
 
