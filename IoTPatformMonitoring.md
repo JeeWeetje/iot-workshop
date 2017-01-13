@@ -8,8 +8,8 @@ This is an example of how to add operations monitoring to your Microsoft Azure I
 
 ### Prerequisites
 
-1. A running Azure IoT Hub (see part 1) and Azure StreamAnalytics job (see part 2)
 2. One or more dummy devices running and connecting to the Azure IoT Hub (a UWP application, see part 1)
+1. A running Azure IoT Hub using [TTN Node](TheThingsNetwork.md) or [UWP App](UwpToIotHub.md) and Azure [StreamAnalytics job](Azure.md)
 3. Azure account create here (Azure passes will be present for those who have no Azure account)
 
 ### Objectives

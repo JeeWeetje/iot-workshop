@@ -107,7 +107,7 @@ Follow these steps to deploy an console app as Azure WebJob that runs the integr
 11. We will enter the actual settings here. These will override the settings in the config file of the brige *Note: this is a great feature for administrators*
 11. Add for each app setting the name and value
     37. "BrokerHostName" (value 'eu.thethings.network')
-    37. `ApplicationEui`
+    37. ApplicationEui
     37. ApplicationAccessKey
     37. IotHubName
 11. If in an unforseen event that the connenction to the TTN is lost, we let the Web App restart the web job. Add this extra setting and give it the value `True` 
