@@ -187,11 +187,11 @@ Follow these steps to write the query of Azure Stream Analytics job.
         hubinput timestamp by EventProcessedUtcTime
     WHERE
         errorCode <> 0
-    GROUP BY IoTHub.ConnectionDeviceId, TumblingWindow(Duration(minute, 1))
+    GROUP BY IoTHub.ConnectionDeviceId, TumblingWindow(Duration(minute, 2))
     HAVING Count(errorCode) > 1 
     ```
 
-4. This rather simple query will collect every minute, all devices and the number of their messages when their telemetry shows more than one error *Note: See [Introduction to Stream Analytics Window functions](https://docs.microsoft.com/en-us/azure/stream-analytics/stream-analytics-window-functions) for more information about the query language*
+4. This rather simple query will collect every 2 minutes, all devices and the number of their messages when their telemetry shows more than one error *Note: See [Introduction to Stream Analytics Window functions](https://docs.microsoft.com/en-us/azure/stream-analytics/stream-analytics-window-functions) for more information about the query language*
 5. Press `Save`. Confirm if needed
 
     ![alt tag](img/azure-portal-save.png)
@@ -366,7 +366,7 @@ The TTN node sends a message every 5 seconds. For now it's passing work cycles.
 
     ![alt tag](img/azure/ttn-bridge-upling-errorstate.png)
 
-The TTN node now simulates a machine which has stopped working. If this error is passed several times a minute, this is picked up by Stream Analytics. Let's check out the Azure Function
+The TTN node now simulates a machine which has stopped working. If this error is passed several times within two minutes, this is picked up by Stream Analytics. Let's check out the Azure Function
 
 ### Sending UWP app faults
 
@@ -376,11 +376,11 @@ If you are using the UWP app as simulator for a node, you have to 'break' the ma
 
     ![alt tag](img/azure-function-test-app-broken.png)
     
-2. Press the `Send cycles updates` button to send the new telemetry. Press the button _multiple times_ within the same time frame of one minute to match the query in Stream Analytics.
+2. Press the `Send cycles updates` button to send the new telemetry. Press the button _multiple times_ within the same time frame of two minutes to match the query in Stream Analytics.
 
     ![alt tag](img/azure-function-test-app-broken-telemetry.png)
 
-The UWP app now simulates a machine which has stopped working. If this error is passed several times a minute, this is picked up by Stream Analytics. Let's check out the Azure Function
+The UWP app now simulates a machine which has stopped working. If this error is passed several times within two minutes, this is picked up by Stream Analytics. Let's check out the Azure Function
 
 ## Receiving broken machines information in the Azure Function
 

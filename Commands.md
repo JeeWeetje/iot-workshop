@@ -5,7 +5,7 @@ This is an example of how downlink commands are sent back to a device. In this w
 
 ![alt tag](img/arch/azure-telemetry-pipeline-commands.png)
 
-This example connects to the [UWP app](UwpToIotHub.md).
+This part of the workshop supports both to the [TTN Node](TheThingsNetwork.md) and to the [UWP app](UwpToIotHub.md). 
 
 *Note: In this workshop, we will create uniquely named Azure resources. The suggested names could be reserved already.*
 
@@ -23,10 +23,12 @@ At the end of this part of the workshop, the following steps are performed
 
 1. Creating commands to send back
 2. Handle commands in the devices
+   1. Handle commands in the TTN Node
+   2. Handle commands in an UWP app
 
 ## Creating commands for devices which are in a faulty state
 
-In the [previous workshop](Azure.md) we passed the telemetry from the device to an Stream Analytics job. This job collected devices which are sending error states. Every minute, information about devices that are in a faulty state are passed to an Azure Function.
+In the [previous workshop](Azure.md) we passed the telemetry from the device to an Stream Analytics job. This job collected devices which are sending error states. Every two minutes, information about devices that are in a faulty state are passed to an Azure Function.
 
 In this workshop we will react on these devices by sending them a command to 'repair themself'. 
 
@@ -141,17 +143,71 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
 19. In the Azure Function, replace '[IOT HUB connection string]' your *remembered* IoT Hub `Connection String-primary key`
 20. Recompile again succesfully
 
-At this moment the Azure Function is ready to receive data about devices which simulate 'faulty machines'. And it can send commands back to 'repair' the 'machines'.
+Now, the Azure Function is ready to receive data about devices which simulate 'faulty machines'. And it can send commands back to 'repair' the 'machines'.
 
 ## Handle commands in the devices
 
 ![alt tag](img/msft/Picture10-stream-data-to-an-event-hub.png)
 
-Let's bring a device in a faulty state and see how the Azure IoT Platforms sends back a command to repair it.
+Let's bring your device in a faulty state and see how the Azure IoT Platforms sends back a command to repair it.
 
 You can work with TTN devices or with the UWP app which simulates a device.
 
 ### Handle commands in the TTN Node
+
+In [TTN Node](TheThingsNetwork.md), we assembled a TTN node and we put a sketch (source code) on it. Here we will add more logic to the node.
+
+1. Go back to the Arduino IDE and select the sketch
+2. Alter the sketch, Add the 'ttn.onMessage(handleCommand);' in the setup function:
+
+    ```c
+    // Initializing TTN communcation...
+    ttn.onMessage(handleCommand);
+    ttn.personalize(devAddr, nwkSKey, appSKey);
+    ```
+
+4. Every time a message is send to the TTN backend, the node checks for commands. When a command is received, the handleCommand functoin will be called
+5. Add the extra fuction 'handleCommand' at the end of the sketch
+
+    ```c
+    void handleCommand(const byte* payload, size_t length, port_t port) {
+      if (length > 0) {
+        int command = payload[0];
+    
+        if (command >= 42) {
+          errorCode = 0;
+          digitalWrite(commLed, HIGH);
+        }
+      }
+    }
+    ```
+
+6. In the **Sketch** menu, click **Upload**. *Note: The sketch is uploaded and again telemetry will arrive at the TTN Portal, the TTN Azure bridge and the IoTHub*
+7. **Push** the button attach to the port and `hold` it until the LED is unlit. The machine is now in an 'error' state
+8. **Check out** the bridge. The node is not updating the cycles anymore and error 99 is passed
+
+    ![alt tag](img/commands/TTN-Errors-arrive.png)
+
+9. After a few errors within two minutes (the same time frame Stream Analytics is checking), **Check out** the Azure Function. It will handle the event message.
+
+    ```
+    2017-01-13T14:09:17.188 Function started (Id=ed3a2175-33e6-4698-a76c-5831b2ea86a1)
+    2017-01-13T14:09:17.646 Stream Analytics produced [{"count":2,"deviceid":"predictive_maintenance_machine_42"}]
+    2017-01-13T14:09:17.724 1 messages arrived.
+    2017-01-13T14:09:17.833 Machine restart command processed after 2 errors for predictive_maintenance_machine_42
+    2017-01-13T14:09:17.833 Function completed (Success, Id=ed3a2175-33e6-4698-a76c-5831b2ea86a1)
+    ```
+
+10. **Check out** the bridge again. It will now handle the command (Downlink message)
+
+    ![alt tag](img/commands/TTN-Errors-arrive-at-bridge.png)
+
+11. **Check out** the bridge again. It will now handle the command (Downlink message)
+
+    ![alt tag](img/commands/TTN-Errors-arrive-at-ttn.png)
+
+    
+
 
 ### Handle commands in an UWP app
 
@@ -175,7 +231,7 @@ At this moment your [UWP app](UwpToIotHub.md) should already been build. Let's s
 
     ![alt tag](img/commands/UWP-app-send-faulty-state.png)
  
-7. The telemetry is sent to the IoTHub which passes the data to the StreamAnalytics job. If the error codes arrive multiple times within the same time frame (the hopping window is 1 minute), an event is constructed and passed to the Azure Function.
+7. The telemetry is sent to the IoTHub which passes the data to the StreamAnalytics job. If the error codes arrive multiple times within the same time frame (the hopping window is two minutes), an event is constructed and passed to the Azure Function.
 8. The Azure function will show the execution of the method
 
     ```

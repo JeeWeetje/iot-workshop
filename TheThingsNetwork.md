@@ -206,7 +206,7 @@ The sensor data is read, now it is time to send the sensor data to The Things Ne
   
       debugSerial.print("Initializing");
 
-      //Initializing TTN communcation...
+      // Initializing TTN communcation...
 
       ttn.personalize(devAddr, nwkSKey, appSKey);
   
