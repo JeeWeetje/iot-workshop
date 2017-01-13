@@ -210,7 +210,7 @@ In [TTN Node](TheThingsNetwork.md), we assembled a TTN node and we put a sketch 
 
     ![alt tag](img/commands/TTN-Errors-arrive-at-node.png)
 
-12. And in the end, the device will turn the light. The 'machine' is now running again
+12. And in the end, the device will lit the light of the LED again. The 'machine' is now running again
 
 We have reached full circle, the machine, simulated by the TTN Node, is runnning again an updating the machine cycles again. And it's running without an error state.
 
