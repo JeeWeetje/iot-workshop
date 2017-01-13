@@ -202,11 +202,15 @@ In [TTN Node](TheThingsNetwork.md), we assembled a TTN node and we put a sketch 
 
     ![alt tag](img/commands/TTN-Errors-arrive-at-bridge.png)
 
-10. **Check out** the bridge again. It will now handle the command (Downlink message) and send it to the device, one the first moment a new uplink message arrives
+10. **Check out** the TTN portal, the data pane. It will now handle the command (Downlink message) and send it to the device, one the first moment a new uplink message arrives
 
     ![alt tag](img/commands/TTN-Errors-arrive-at-ttn.png)
 
-11. And in the end, the device will turn the light. The 'machine' is now running again
+11. Finally, **check out** the logging of the node. The commands arrives and is handled by the function in the sketch
+
+    ![alt tag](img/commands/TTN-Errors-arrive-at-node.png)
+
+12. And in the end, the device will turn the light. The 'machine' is now running again
 
 We have reached full circle, the machine, simulated by the TTN Node, is runnning again an updating the machine cycles again. And it's running without an error state.
 

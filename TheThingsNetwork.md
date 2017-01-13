@@ -237,7 +237,7 @@ The sensor data is read, now it is time to send the sensor data to The Things Ne
       // send message to TTN
       ttn.sendBytes(buffer, sizeof(buffer));
 
-      delay(5000);
+      delay(15000);
     } 
     ```
 
