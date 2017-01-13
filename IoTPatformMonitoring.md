@@ -8,8 +8,8 @@ This is an example of how to add operations monitoring to your Microsoft Azure I
 
 ### Prerequisites
 
-2. One or more dummy devices running and connecting to the Azure IoT Hub (a UWP application, see part 1)
-1. A running Azure IoT Hub using [TTN Node](TheThingsNetwork.md) or [UWP App](UwpToIotHub.md) and Azure [StreamAnalytics job](Azure.md)
+1. One (or more) devices running and connecting to the Azure IoT Hub using [TTN Node](TheThingsNetwork.md) or [UWP App](UwpToIotHub.md)
+2. A running Azure IoT Hub using [TTN Node](TheThingsNetwork.md) or [UWP App](UwpToIotHub.md) and Azure [StreamAnalytics job](Azure.md)
 3. Azure account create here (Azure passes will be present for those who have no Azure account)
 
 ### Objectives
@@ -33,8 +33,8 @@ Follow these steps to add monitoring to an Azure IoT Hub.
 
     ![alt tag](img/Monitoring/azure-resource-groups.png)
     
-2. Select the ResourceGroup `IoTWorkshoprg`. It will open a new blade with all resources in this group
-3. Select the IoT Hub `IoTWorkshopih`. The IoT Hub is shown
+2. Select the ResourceGroup `IoTWorkshop-rg`. It will open a new blade with all resources in this group
+3. Select the IoT Hub `IoTWorkshop-ih`. The IoT Hub is shown
 
     ![alt tag](img/Monitoring/mon01.png)
 
@@ -62,7 +62,7 @@ Follow these steps to create dedicated Azure Storage for your operations monitor
 
     ![alt tag](img/Monitoring/azure-resource-groups.png)
 
-2. Select the ResourceGroup `IoTWorkshoprg`. It will open a new blade with all resources in this group
+2. Select the ResourceGroup `IoTWorkshop-rg`. It will open a new blade with all resources in this group
 3. Select `Add`. A list of available services appears
 
     ![alt tag](img/Monitoring/azure-portal-add.png)
@@ -92,15 +92,15 @@ Follow these steps to start monitoring operation using an Azure StreamAnalytics 
 
     ![alt tag](img/Monitoring/azure-resource-groups.png)
     
-2. Select the ResourceGroup `IoTWorkshoprg`. It will open a new blade with all resources in this group
-3. Select the Azure Stream Analytics job eg. `IoTWorkshopsa`. At this moment there should be an Input source and Output sink already, from previous workshops.
+2. Select the ResourceGroup `IoTWorkshop-rg`. It will open a new blade with all resources in this group
+3. Select the Azure Stream Analytics job eg. `IoTWorkshop-sa`. At this moment there should be an Input source and Output sink already, from previous workshops.
 4. Select `Inputs`
 5. Select `Add`. A dialog to add a new input is shown
 
     ![alt tag](img/Monitoring/azure-portal-add.png)
 
 6. Enter `hubmoninput` as Input alias
-7. Select IoT Hub as Source. Because we have only one IoT Hub in our account, all other fields are automatically filled in with the right IoT Hub, 'IoTWorkshopih'
+7. Select IoT Hub as Source. Because we have only one IoT Hub in our account, all other fields are automatically filled in with the right IoT Hub, 'IoTWorkshop-ih'
 8. Make one other change: alter the Endpoint to `Operations monitoring` 
 
     ![alt tag](img/Monitoring/mon07.png)
@@ -134,7 +134,7 @@ The input and output are now defined. Let's add the Azure Stream Analytics job q
 
     ![alt tag](img/Monitoring/mon03.png)
 
-5. Close the Query blade with the `close icon` or select `IoTWorkshopsa` in the bread crumbs in the top of the page
+5. Close the Query blade with the `close icon` or select `IoTWorkshop-sa` in the bread crumbs in the top of the page
 
     ![alt tag](img/Monitoring/azure-portal-close.png)
 
@@ -183,7 +183,7 @@ Follow these steps to check operation monitoring coming from an Azure IoT Hub.
 
     ![alt tag](img/Monitoring/azure-resource-groups.png)
     
-2. Select the ResourceGroup `IoTWorkshoprg`. It will open a new blade with all resources in this group
+2. Select the ResourceGroup `IoTWorkshop-rg`. It will open a new blade with all resources in this group
 3. Select the Azure Storage Account eg. `iotworkshopmonstorage`. The storage account blade will be shown
 4. A storage account has four services. Open the `Blobs` service by clicking the icon
 
@@ -232,8 +232,8 @@ Follow these steps to add metrics monitoring to your StreamAnalytics job.
 
     ![alt tag](img/Monitoring/azure-resource-groups.png)
     
-2. Select the ResourceGroup `IoTWorkshoprg`. It will open a new blade with all resources in this group
-3. Select the Azure Stream Analytics job eg. `IoTWorkshopsa`
+2. Select the ResourceGroup `IoTWorkshop-rg`. It will open a new blade with all resources in this group
+3. Select the Azure Stream Analytics job eg. `IoTWorkshop-sa`
 4. Just below the inputs/query/outputs panel, look at the monitoring panel. No data is available
 
     ![alt tag](img/Monitoring/mon18.png)
