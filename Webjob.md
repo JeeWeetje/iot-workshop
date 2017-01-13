@@ -106,6 +106,7 @@ Follow these steps to deploy an console app as Azure WebJob that runs the integr
 
 11. We will enter the actual settings here. These will override the settings in the config file of the brige *Note: this is a great feature for administrators*
 11. Add for each app setting the name and value
+    37. "BrokerHostName" (value 'eu.thethings.network')
     37. `ApplicationEui`
     37. ApplicationAccessKey
     37. IotHubName
@@ -122,18 +123,18 @@ Follow these steps to deploy an console app as Azure WebJob that runs the integr
     ![alt tag](img/azure-portal-save.png)
 
 32. Let's check the state of the Web Job. 
-38. Filter the settings for `webjobs`. the bridge should have the state 'started' by now.
-39. Select `Logs` of your webjob
+38. Filter the settings for `webjobs`. the bridge should have the state 'Running' by now.
+39. Select the bridge and `Logs` of your webjob
 
     ![alt tag](img/bridge-list-web-job-logs.png)
 
 25. A new page is shown, here the status of the Web Job is shown. The status is 'Running'
 
-    ![alt tag](img/bridge-webjob-running.png)
+    ![alt tag](img/webjob/webapp-job-running.png)
 
-26. Go to the detail logging, selecting `the link` of the Web Job details. The TTN messages are handled 
+26. Go to the detail logging, by selecting `the link` of the Web Job details. The TTN messages are handled 
 
-    ![alt tag](img/bridge-web-job-logging.png)
+    ![alt tag](img/webjob/webapp-job-logging.png)
 
 You have now deployed the whole upstream to the Azure cloud. You have successfully accomplished all available steps of this workshop.
 
