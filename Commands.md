@@ -14,8 +14,15 @@ This example connects to the [UWP app](UwpToIotHub.md).
 1. Azure account [create here](https://azure.microsoft.com/en-us/free/) _(Azure passes will be present for those who have no Azure account)_
 2. A running TTN node connected to the TTN network and a running TTN bridge on your PC and connected to an IoT Hub
 3. or... a UWP app which simulates a machine running duty cycles
-4. An Azure IoT Hub, Stream Analytics job, Event Hub and Azure Function which are waiting for analysed telemetry coming from the devices
+4. A combination of Azure IoT Hub, Stream Analytics job, Event Hub and Azure Function which are waiting for analysed telemetry coming from the devices
 5. A running Device Explorer or IoT Hub Explorer, connected to the IoT Hub, showing the telemetry coming in
+
+### Steps to perform in this part of the workshop
+
+At the end of this part of the workshop, the following steps are performed
+
+1. Creating commands to send back
+2. Handle commands in the devices
 
 ## Creating commands for devices which are in a faulty state
 
@@ -144,10 +151,11 @@ Let's bring a device in a faulty state and see how the Azure IoT Platforms sends
 
 You can work with TTN devices or with the UWP app which simulates a device.
 
+### Handle commands in the TTN Node
+
 ### Handle commands in an UWP app
 
 At this moment your [UWP app](UwpToIotHub.md) should already been build. Let's send some telemetry
-
 
 1. Restart the UWP app, press `Send cycle updates` a couple of times
 
