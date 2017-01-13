@@ -166,8 +166,8 @@ In [TTN Node](TheThingsNetwork.md), we assembled a TTN node and we put a sketch 
     ttn.personalize(devAddr, nwkSKey, appSKey);
     ```
 
-4. Every time a message is send to the TTN backend, the node checks for commands. When a command is received, the handleCommand functoin will be called
-5. Add the extra fuction 'handleCommand' at the end of the sketch
+3. Every time a message is send to the TTN backend, the node checks for commands. When a command is received, the handleCommand functoin will be called
+4. Add the extra fuction 'handleCommand' at the end of the sketch
 
     ```c
     void handleCommand(const byte* payload, size_t length, port_t port) {
@@ -182,13 +182,13 @@ In [TTN Node](TheThingsNetwork.md), we assembled a TTN node and we put a sketch 
     }
     ```
 
-6. In the **Sketch** menu, click **Upload**. *Note: The sketch is uploaded and again telemetry will arrive at the TTN Portal, the TTN Azure bridge and the IoTHub*
-7. **Push** the button attach to the port and `hold` it until the LED is unlit. The machine is now in an 'error' state
-8. **Check out** the bridge. The node is not updating the cycles anymore and error 99 is passed
+5. In the **Sketch** menu, click **Upload**. *Note: The sketch is uploaded and again telemetry will arrive at the TTN Portal, the TTN Azure bridge and the IoTHub*
+6. **Push** the button attach to the port and `hold` it until the LED is unlit. The machine is now in an 'error' state
+7. **Check out** the bridge. The node is not updating the cycles anymore and error 99 is passed
 
     ![alt tag](img/commands/TTN-Errors-arrive.png)
 
-9. After a few errors within two minutes (the same time frame Stream Analytics is checking), **Check out** the Azure Function. It will handle the event message.
+8. After a few errors within two minutes (the same time frame Stream Analytics is checking), **Check out** the Azure Function. It will handle the event message.
 
     ```
     2017-01-13T14:09:17.188 Function started (Id=ed3a2175-33e6-4698-a76c-5831b2ea86a1)
@@ -198,16 +198,17 @@ In [TTN Node](TheThingsNetwork.md), we assembled a TTN node and we put a sketch 
     2017-01-13T14:09:17.833 Function completed (Success, Id=ed3a2175-33e6-4698-a76c-5831b2ea86a1)
     ```
 
-10. **Check out** the bridge again. It will now handle the command (Downlink message)
+9. **Check out** the bridge again. It will now handle the command (Downlink message) and send it to the TTN portal
 
     ![alt tag](img/commands/TTN-Errors-arrive-at-bridge.png)
 
-11. **Check out** the bridge again. It will now handle the command (Downlink message)
+10. **Check out** the bridge again. It will now handle the command (Downlink message) and send it to the device, one the first moment a new uplink message arrives
 
     ![alt tag](img/commands/TTN-Errors-arrive-at-ttn.png)
 
-    
+11. And in the end, the device will turn the light. The 'machine' is now running again
 
+We have reached full circle, the machine, simulated by the TTN Node, is runnning again an updating the machine cycles again. And it's running without an error state.
 
 ### Handle commands in an UWP app
 
