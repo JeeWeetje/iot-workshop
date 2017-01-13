@@ -3,7 +3,7 @@
 
 This is an example of how downlink commands are sent back to a device. In this workshop, we will send commands back to faulty devices, using an Azure Function, to start them up again. 
 
-![alt tag](img/arch/azure-telemetry-pipeline.png)
+![alt tag](img/arch/azure-telemetry-pipeline-commands.png)
 
 This example connects to the [UWP app](UwpToIotHub.md).
 
