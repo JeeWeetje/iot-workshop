@@ -111,9 +111,9 @@ Follow these steps to deploy an console app as Azure WebJob that runs the integr
     37. ApplicationAccessKey
     37. IotHubName
 11. If in an unforseen event that the connenction to the TTN is lost, we let the Web App restart the web job. Add this extra setting and give it the value `True` 
-    38. ExitOnConnectionClosed (value `True`)  
+    38. ExitOnConnectionClosed (value 'True')  
 11. We also have to add the connection string. Fill in both the name, connection string. Finally, set the kind to `Custom`
-    39. IoTHub (kind `Custom`)
+    39. IoTHub (value kind 'Custom')
 39. The settings are now ready and should look like this
 
     ![alt tag](img/webjob/azure-web-job-app-settings-ready.png)
