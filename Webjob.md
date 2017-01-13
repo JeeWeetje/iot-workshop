@@ -1,7 +1,7 @@
 # The Things Network & Azure IoT: a perfect combination
 ## Deploying The Things Network Bridge to Azure
 
-Remember creating the TTN bridge locally on your computer? Will it be always on? Most likely not, therefore it seems reasonable to deploy the TTN bridge in the Azure cloud.
+Remember creating the TTN bridge locally on your computer? Will your PC be always on? Most likely not, therefore it seems reasonable to deploy the TTNAzureBridge somewhere else. What place is better then the Azure cloud?
 
 ![Build a bridge from TTN to Azure](img/msft/Picture08-build-a-bridge-frm-ttn-to-azure.png)
 
@@ -9,32 +9,33 @@ Remember creating the TTN bridge locally on your computer? Will it be always on?
 
 ### Prerequisites
 
-1. A TTN bridge deployed/running on your computer _(like the one created earlier in the workshop)_
+1. The TTN Azure bridge deployed/running on your computer _(like the one created earlier in the workshop)_
 
-### Make the bridge ready for transport
+### Collect the parts we need
 
-Follow these steps to make the bridge ready to be deployed to Azure.
+Follow these steps to collect all parts before we can deploy to Azure.
 
-1. If the bridge is still running, stop the running bridge with `ctrl c` and confirm the cancellation of the process with `Y`.
+1. If the bridge is still running, stop the running bridge with `ctrl c`.
     
-    ![Canceling the running bridge](img/bridge-cancelation.png)
+    ![Canceling the running bridge](img/webjob/bridge-cancelation.png)
 
-2. Open a File Explorer and browse to the directory `c:\techdays42`.
-3. Compress all files (including the `node_modules` folder) in `c:\techdays42` as ZIP file
-    
-    ![Zipping all files](img/zipping-all-files.png)
+2. `Open` a File Explorer and browse to the directory `c:\iotworkshop`. 
+3. `Check` if the 'TTNAzureBridge.zip' is still available. This should be the same file you downloaded from [this OneDrive location](https://1drv.ms/f/s!At-2dMPHYH4-kP0ENT3ieMCvJPxeKA) to this folder
+4. `Navigate` to the folder with the executable and identify the config file name 'TtnAzureBridge.exe.config'
+5. The config file should still contain the complete app settings 'ApplicationEui', 'ApplicationAccessKey', 'IotHubName' and the connection string 'IoTHub'
 
+We need both the zip file and the secrets. *Note: the config file inside the zip file does **not** contain the secrets*
 
 ### Deploy Azure WebJob
 
-Follow these steps to deploy an Azure WebJob using Node.js that runs the integration between The Things Network and Azure IoT Hub.
+Follow these steps to deploy an console app as Azure WebJob that runs the integration between The Things Network and Azure IoT Hub.
 
 1. `Log into` the [Azure portal](https://portal.azure.com/). You will be asked to provide Azure credentials if needed
 2. On the left, select `Resource groups`. A list of resource groups is shown
 
     ![alt tag](img/azure-resource-groups.png)
 
-3. Select the ResourceGroup `TechDays42rg`. It will open a new blade with all resources in this group
+3. Select the ResourceGroup `IoTWorkshop-rg`. It will open a new blade with all resources in this group
 
 4. Select `Add`. A list of available services appears
 
@@ -46,46 +47,60 @@ Follow these steps to deploy an Azure WebJob using Node.js that runs the integra
 
 6. An introduction will be shown. Select `Create`
 7. A dialog for the new Web App is shown
-8. Enter a unique Web App name eg. `TechDays42wa`. A green sign will be shown if the name is unique
-9. The Resource Group eg. TechDays42rg is already filled in
-10. The App Service plan blade eg. TechDays42asp is already filled in 
+8. Enter a unique Web App name eg. `IoTWorkshop-wa`. A green sign will be shown if the name is unique
+9. The Resource Group eg. 'IoTWorkshop-rg' is already filled in
+10. The App Service plan eg. is filled with a non-specfic one
 
-    ![alt tag](img/azure-web-app-create.png)
+    ![alt tag](img/webjob/webapp-creation.png)
+
+11. Open the App Service plan blade and select Create New
+
+    ![alt tag](img/azure-asp-create.png)
+
+12. Enter a unique App name eg. `IoTWorkshop-asp`. A green sign will be shown if the name is unique
+13. Select `West Europe` for the location
+14. The Pricing tier will be left unaltered
+15. Select `Ok`
+16. Our new App Service plan is now added to the Azure Function App
+
+    ![alt tag](img/webjob/webapp-created.png)
 
 11. Select `Create`
-
 12. Creating a Web App will take some time, but we want to complete this step
-13. So navigate back to the resource group (repeat step 1 and 2) and check the Web app creation in the resource group
-14. If the Web App becomes listed, select `TechDays42wa`. Otherwise, 'refresh' the list a few times
+13. So navigate back to the resource group (repeat step 1, 2 and 3) and meanwhile check the Web app creation in the resource group
+14. If the Web App becomes listed, select `IoTWorkshop-wa`. Otherwise, 'refresh' the list a few times
 
     ![alt tag](img/azure-portal-refresh.png)
 
 15. You are now in the Web App blade. It should be shown like this, with all information available (otherwise, refresh a few times):
 
-    ![alt tag](img/azure-web-app-blade.png)
+    ![alt tag](img/webjob/webapp-pane.png)
 
 16. A Web App has dozens of settings. Filter the settings for `webjobs`
 
-    ![alt tag](img/azure-web-app-filter-webjobs.png)
+    ![alt tag](img/webjob/webapp-pane-filter.png)
 
 17. Select `WebJobs`. An empty list is presented
 18. Select `Add`
 
     ![alt tag](img/azure-portal-add.png)
 
-19. Enter a unique Web App name eg. `TtnBridgeWebJob`. A green sign will be shown if the name is unique
-20. Select 'your ZIP file` as file to upload
+19. Enter a unique Web App name eg. `TTNAzureBridge`. A green sign will be shown if the name is unique
+20. Select your bridge ZIP file (eg. 'TTNAzureBridge.zip') as file to upload
 21. Ensure that the type is set to `Continuous`
 22. Set the scale to `Single Instance`
 
-    ![alt tag](img/azure-web-job-add.png)
+    ![alt tag](img/webjob/azure-web-job-add.png)
 
 23. Select `Ok`
 24. The Web Job will be created. And it is listed on the page of the Web App
 
-    ![alt tag](img/bridge-list-web-job.png)
+    ![alt tag](img/webjob/azure-web-job-starting.png)
 
-24. Let's check the state of the Web Job. Select `Logs`
+24. But actually, this job is not ready to run yet. We need to add settings
+32. `Clear` the settings filter. 
+33. Select `Application settings`
+32. Let's check the state of the Web Job. Select `Logs`
 
     ![alt tag](img/bridge-list-web-job-logs.png)
 
