@@ -35,9 +35,8 @@ The other parts are optional/extra if you have time left.
 2. [Receivig and handling telemetry in Azure](Azure.md)
 3. [Passing commands back to a device](Commands.md)
 4. Bonus
-   1. [Pushing telemetry messages to Microsoft Flow and beyond](Flow.md)
-   2. [Runnning the TTN C# bridge which supports downlink](Webjob.md)
-   3. [Add basic monitoring to the platform](IoTPatformMonitoring.md)
+   1. [Runnning the TTN C# bridge which supports downlink](Webjob.md)
+   2. [Add basic monitoring to the platform](IoTPatformMonitoring.md)
 
 ![alt tag](img/logos/dotned-saturday.png)
 

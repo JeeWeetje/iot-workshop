@@ -161,7 +161,7 @@ In [TTN Node](TheThingsNetwork.md), we assembled a TTN node and we put a sketch 
 2. Alter the sketch, Add the 'ttn.onMessage(handleCommand);' in the setup function:
 
     ```c
-    // Initializing TTN communcation...
+    // Initializing TTN communication...
     ttn.onMessage(handleCommand);
     ttn.personalize(devAddr, nwkSKey, appSKey);
     ```
@@ -291,8 +291,8 @@ In [UWP app](UwpToIotHub.md) we wrote and executed a UWP which send some telemet
 
     ![alt tag](img/commands/UWP-app-sending-duty-cycles.png)
 
-12. The cycles are normal behavior. And these will not be picked up by the Stream Analytics job
-13. To receive commands, we have to wait for them to be received from the IoT Hub. Press `Wait for commands` *note: the communcation with the IoT Hub is based on a communcation protocol named AMQP by default. This makes communcation very efficient, we are not polling every few seconds and thus saving band width*
+12. The cycles are normal behavior. And these will not be picked up by the Stream Analytics job (which is listening for the error status)
+13. To receive commands, we have to wait for them to be received from the IoT Hub. Press `Wait for commands` *note: the communication with the IoT Hub is based on a communication protocol named AMQP by default. This makes communcation very efficient, we are not polling every few seconds and thus saving band width*
 
     ![alt tag](img/commands/UWP-app-command-waiting.png)
 
@@ -323,6 +323,13 @@ In [UWP app](UwpToIotHub.md) we wrote and executed a UWP which send some telemet
  
 We have now succesfully send som telemetry which is picked up and handled. In the end, commands were received and acted on.
 
-Receiving commands form Azure completes this part of the workshop. You are now ready to do something else, also exciting, with this telemetry. One example is available at [Pushing telemetry messages to Microsoft Flow and beyond](Flow.md)
+Receiving commands form Azure completes the main part of the workshop.
+
+We hope you did enjoy working with the Azure IoT Platform, as much as we did. Thanks for getting this far!
+
+But wait, there is still more. We added two bonus chapters to the workshop
+
+1. [Runnning the TTN C# bridge which supports downlink](Webjob.md)
+2. [Add basic monitoring to the platform](IoTPatformMonitoring.md)
 
 ![alt tag](img/logos/dotned-saturday.png)
