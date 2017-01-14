@@ -14,7 +14,7 @@ This part of the workshop supports both to the [TTN Node](TheThingsNetwork.md) a
 1. Azure account [create here](https://azure.microsoft.com/en-us/free/) _(Azure passes will be present for those who have no Azure account)_
 2. A running TTN node connected to the TTN network and a running TTN bridge on your PC and connected to an IoT Hub
 3. or... a UWP app which simulates a machine running duty cycles
-4. A combination of Azure IoT Hub, Stream Analytics job, Event Hub and Azure Function which are waiting for analysed telemetry coming from the devices
+4. A combination of Azure IoT Hub, Stream Analytics job, Event Hub and Azure Function which are waiting for analyzed telemetry coming from the devices
 5. A running Device Explorer or IoT Hub Explorer, connected to the IoT Hub, showing the telemetry coming in
 
 ### Steps to perform in this part of the workshop
@@ -24,19 +24,19 @@ At the end of this part of the workshop, the following steps are performed
 1. Creating commands to send back
 2. Handle commands in the devices
    1. Handle commands in the TTN Node
-   2. Handle commands in an UWP app
+   2. Handle commands in a UWP app
 
 ## Creating commands for devices which are in a faulty state
 
-In the [previous workshop](Azure.md) we passed the telemetry from the device to an Stream Analytics job. This job collected devices which are sending error states. Every two minutes, information about devices that are in a faulty state are passed to an Azure Function.
+In the [previous workshop](Azure.md), we passed the telemetry from the device to a Stream Analytics job. This job collected devices which are sending error states. Every two minutes, information about devices that are in a faulty state are passed to an Azure Function.
 
-In this workshop we will react on these devices by sending them a command to 'repair themself'. 
+In this workshop, we will react on these devices by sending them a command to 'repair themselves'. 
 
 ### Updating the Azure Function with sending command logic
 
-First we update the Azure Function. For each devices which is passed on, we send a command back.
+First, we update the Azure Function. For each device which is passed on, we send a command back.
 
-Sending commands back to devices is a specific feature of the IoT Hub. The IoT Hub registers devices and thier security policies. And the Iot Hub has build-in logic to send commands back.
+Sending commands back to devices is a specific feature of the IoT Hub. The IoT Hub registers devices and their security policies. And the IoT Hub has built-in logic to send commands back.
 
 1. On the left, select `Resource groups`. A list of resource groups is shown
 
@@ -214,14 +214,14 @@ In [TTN Node](TheThingsNetwork.md), we assembled a TTN node and we put a sketch 
 
 We have reached full circle, the machine, simulated by the TTN Node, is runnning again an updating the machine cycles again. And it's running without an error state.
 
-### Handle commands in an UWP app
+### Handle commands in a UWP app
 
 In [UWP app](UwpToIotHub.md) we wrote and executed a UWP which send some telemetry. Here we will add more logic to the node so we can receive commands.
 
 1. Go to the UWP project
 2. `Open` the file named 'AzureIoTHub.cs'
 3. The class in this file also contains a method 'ReceiveCloudToDeviceMessageAsync' which is not that smart. It can only receive text. We want to receive a number (bytes) from the Azure IoT Platform
-4. `Add` a Receivde method with the following code
+4. `Add` a Receive method with the following code
 
     ```csharp
     public static async Task<byte[]> ReceiveCloudToDeviceBytes()
