@@ -220,8 +220,8 @@ In [UWP app](UwpToIotHub.md) we wrote and executed a UWP which send some telemet
 
 1. Go to the UWP project
 2. `Open` the file named 'AzureIoTHub.cs'
-3. The class in this file also contains a method 'ReceiveCloudToDeviceMessageAsync' which is not that smart. I can only receive text. We want to receive a number (bytes).
-4. `Replace the method with the following code`
+3. The class in this file also contains a method 'ReceiveCloudToDeviceMessageAsync' which is not that smart. It can only receive text. We want to receive a number (bytes) from the Azure IoT Platform
+4. `Add` a Receivde method with the following code
 
     ```csharp
     public static async Task<byte[]> ReceiveCloudToDeviceBytes()
@@ -247,7 +247,7 @@ In [UWP app](UwpToIotHub.md) we wrote and executed a UWP which send some telemet
     }
     ```
 
-5. Now the method to receive messages from the cloud to this devices is waiting for bytes
+5. Now, the method to receive messages from the cloud to this devices is waiting for bytes
 6. Next, `Open` the XAML of form 'MainPage.xaml'
 7. `Add` the following line of code. It add a button to the screen
 
