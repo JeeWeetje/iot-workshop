@@ -15,8 +15,8 @@ Technologies covered are: `LoRaWAN`, `TTN Technology`, `Arduino`, `Azure IoT Hub
 
 During the workshop the following experts will be present to guide you through the workshop:
 
-- Sander van de Velde; Microsoft Consultant at Atos [ ![Twitter](img/social/twitter.png) ](https://twitter.com/svelde)
-- Jan Willem Groenenberg; Microsoft Consultant at Atos [ ![Twitter](img/social/twitter.png) ](https://twitter.com/jeeweetje)
+- Jan Willem Groenenberg; Microsoft Consultant [ ![Twitter](img/social/twitter.png) ](https://twitter.com/jeeweetje)
+- Sander van de Velde; MVP, Microsoft Consultant [ ![Twitter](img/social/twitter.png) ](https://twitter.com/svelde)
 - Valery Jacobs, Technical Evangelist at Microsoft [ ![Twitter](img/social/twitter.png) ](https://twitter.com/valeryjacobs)
 
 ## Workshop schedule at DotNed Saturday 2017
