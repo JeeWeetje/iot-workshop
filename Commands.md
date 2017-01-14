@@ -216,28 +216,97 @@ We have reached full circle, the machine, simulated by the TTN Node, is runnning
 
 ### Handle commands in an UWP app
 
-At this moment your [UWP app](UwpToIotHub.md) should already been build. Let's send some telemetry
+In [UWP app](UwpToIotHub.md) we wrote and executed a UWP which send some telemetry. Here we will add more logic to the node so we can receive commands.
 
-1. Restart the UWP app, press `Send cycle updates` a couple of times
+1. Go to the UWP project
+2. `Open` the file named 'AzureIoTHub.cs'
+3. The class in this file also contains a method 'ReceiveCloudToDeviceMessageAsync' which is not that smart. I can only receive text. We want to receive a number (bytes).
+4. `Replace the method with the following code`
+
+    ```csharp
+    public static async Task<byte[]> ReceiveCloudToDeviceBytes()
+    {
+        var deviceClient = DeviceClient.
+              CreateFromConnectionString(deviceConnectionString, TransportType.Amqp);
+
+        while (true)
+        {
+            var receivedMessage = await deviceClient.ReceiveAsync();
+
+            if (receivedMessage != null)
+            {
+                var bytes = receivedMessage.GetBytes();
+
+                await deviceClient.CompleteAsync(receivedMessage);
+
+                return bytes;
+            }
+
+            await Task.Delay(TimeSpan.FromSeconds(1));
+        }
+    }
+    ```
+
+5. Now the method to receive messages from the cloud to this devices is waiting for bytes
+6. Next, `Open` the XAML of form 'MainPage.xaml'
+7. `Add` the following line of code. It add a button to the screen
+
+    ```xml
+    <Button Name="BtnReceive" Content="Wait for commands" Margin="5" FontSize="60" Click="btnReceive_Click" />
+    ```
+
+8. Finally, `add` the following code-behind on 'MainPage.xaml.cs'. This is the logic which will be executed after pushing the new button
+
+    ```csharp
+    private async void btnReceive_Click(object sender, RoutedEventArgs e)
+    {
+        BtnReceive.IsEnabled = false;
+        while (true)
+        {
+            try
+            {
+                var bytes = await AzureIoTHub.ReceiveCloudToDeviceBytes();
+
+                if (bytes != null && bytes.Length > 0 && bytes[0] >= 42)
+                {
+                    await ShowMessage($"Command {Convert.ToInt32(bytes[0])} (Started running again at {DateTime.Now:hh:mm:ss})");
+                    _errorCode = 0;
+                    BtnBreak.IsEnabled = true;
+
+                    txbTitle.Foreground = new SolidColorBrush(Colors.DarkOliveGreen);
+                }
+            }
+            catch (Exception ex)
+            {
+                BtnReceive.IsEnabled = true;
+                await ShowMessage(ex.Message);
+            }
+        }
+    }
+    ```
+
+9. We only have to push the button once. After that, when a command is received. We 'start' the machine again
+10. The changes in the code are done. `recompile` to check the code will build succesfully
+11. Restart the UWP app, press `Send cycle updates` a couple of times
 
     ![alt tag](img/commands/UWP-app-sending-duty-cycles.png)
 
-2. The cycles are normal behavior. And these will not be picked up by the Stream Analytics job
-3. To receive commands, we have to wait for them to be received from the IoT Hub. Press `Wait for commands` *note: the communcation with the IoT Hub is based on a communcation protocol named AMQP by default. This makes communcation very efficient, we are not polling every few seconds and thus saving band width*
+12. The cycles are normal behavior. And these will not be picked up by the Stream Analytics job
+13. To receive commands, we have to wait for them to be received from the IoT Hub. Press `Wait for commands` *note: the communcation with the IoT Hub is based on a communcation protocol named AMQP by default. This makes communcation very efficient, we are not polling every few seconds and thus saving band width*
 
     ![alt tag](img/commands/UWP-app-command-waiting.png)
 
-4. Now we 'break' the machine by pressing `Break down`. *Note: the title will be shown in a red color*
+14. Now we 'break' the machine by pressing `Break down`. *Note: the title will be shown in a red color*
 
     ![alt tag](img/commands/UWP-app-break-down.png)
 
-5. finally, we send telemetry, a few times to notify the Azure IoT platform (using the IoT Hub) that the machine in in a faulty state
-6. In the UWP app, again press `Send cycle updates` a couple of times. Error code 99 is shown
+15. finally, we send telemetry, a few times to notify the Azure IoT platform (using the IoT Hub) that the machine in in a faulty state
+16. In the UWP app, again press `Send cycle updates` a couple of times. Error code 99 is shown
 
     ![alt tag](img/commands/UWP-app-send-faulty-state.png)
  
-7. The telemetry is sent to the IoTHub which passes the data to the StreamAnalytics job. If the error codes arrive multiple times within the same time frame (the hopping window is two minutes), an event is constructed and passed to the Azure Function.
-8. The Azure function will show the execution of the method
+17. The telemetry is sent to the IoTHub which passes the data to the StreamAnalytics job. If the error codes arrive multiple times within the same time frame (the hopping window is two minutes), an event is constructed and passed to the Azure Function.
+18. The Azure function will show the execution of the method
 
     ```
     2017-01-08T15:45:07.169 Function started (Id=91558474-1e83-4ce5-b9ca-81b87f22dff4)
@@ -247,8 +316,8 @@ At this moment your [UWP app](UwpToIotHub.md) should already been build. Let's s
     2017-01-08T15:45:07.169 Function completed (Success, Id=91558474-1e83-4ce5-b9ca-81b87f22dff4)
     ```
 
-9. Notice that the event is actually a JSON array of messages (containing one message). And correct machine is restarted
-10. Now look at the UWP app, the machine is restart, just a second or so after the command was send by the Azure Function *Note: the title is no longer red*
+19. Notice that the event is actually a JSON array of messages (containing one message). And correct machine is restarted
+20. Now look at the UWP app, the machine is restart, just a second or so after the command was send by the Azure Function *Note: the title is no longer red*
 
     ![alt tag](img/commands/UWP-app-restart.png)
  

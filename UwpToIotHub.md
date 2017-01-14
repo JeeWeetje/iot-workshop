@@ -145,7 +145,7 @@ We will use the connection later on. But first let's check out the 'AzureIoTHub.
 
 1. `Open` the file named 'AzureIoTHub.cs'
 2. The file contains a class named which has two methods: 'SendDeviceToCloudMessageAsync' and 'ReceiveCloudToDeviceMessageAsync'. *Note: receiving Cloud to Device messages will be discussed later on*
-3. The method to send data is not that intelligent. It only sends a text message. Add the following code just below it
+3. The method to send data is not that intelligent. It only sends a text message. `Add the following code` just below it
 
     ```csharp
     public static async Task SendDeviceToCloudMessageAsync(Telemetry telemetry)
