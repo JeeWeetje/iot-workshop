@@ -44,7 +44,7 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
 
 2. Select the ResourceGroup `IoTWorkshop-rg`. It will open a new blade with all resources in this group
 3. Select the Azure Function App `IoTWorkshop-fa`
-4. To the left, the currenct functions are shown. Select `IoTWorkshopEventHubFunction`
+4. To the left, the current functions are shown. Select `IoTWorkshopEventHubFunction`
 
     ![alt tag](img/commands/azure-functions-functions.png)
 
@@ -112,7 +112,7 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
     ![alt tag](img/commands/azure-function-app-view-files-pane-add-file.png)
 
 14. Press `Enter` to confirm the name of the file and an empty code editor will be shown for this file.
-15. The Project.json file describes which nuget packages have to be references. Fill the editor with the following code 
+15. The Project.json file describes which Nuget packages have to be referenced. Fill the editor with the following code 
 
     ```json
     {
@@ -130,7 +130,7 @@ Sending commands back to devices is a specific feature of the IoT Hub. The IoT H
     }
     ```
 
-16. Select `Save`. The changed C# code will be recompiled immediately *Note: you can press 'save and run', this will actually run the function, but an empty test will passed (check out the 'Test' option to the right for more info)*
+16. Select `Save`. The changed C# code will be recompiled immediately *Note: you can press 'save and run', this will actually run the function, but an empty test will be passed (check out the 'Test' option to the right for more info)*
 17. In the 'Logs' panel, just below 'Code', `verify the outcome` of the compilation
 
     ```
@@ -166,8 +166,8 @@ In [TTN Node](TheThingsNetwork.md), we assembled a TTN node and we put a sketch 
     ttn.personalize(devAddr, nwkSKey, appSKey);
     ```
 
-3. Every time a message is send to the TTN backend, the node checks for commands. When a command is received, the handleCommand functoin will be called
-4. Add the extra fuction 'handleCommand' at the end of the sketch
+3. Every time a message is sent to the TTN backend, the node checks for commands. When a command is received, the handleCommand function will be called
+4. Add the extra function 'handleCommand' at the end of the sketch
 
     ```c
     void handleCommand(const byte* payload, size_t length, port_t port) {
@@ -183,7 +183,7 @@ In [TTN Node](TheThingsNetwork.md), we assembled a TTN node and we put a sketch 
     ```
 
 5. In the **Sketch** menu, click **Upload**. *Note: The sketch is uploaded and again telemetry will arrive at the TTN Portal, the TTN Azure bridge and the IoTHub*
-6. **Push** the button attach to the port and `hold` it until the LED is unlit. The machine is now in an 'error' state
+6. **Push** the button attached to the node and `hold` it until the LED is unlit. The 'machine' is now in an 'error' state
 7. **Check out** the bridge. The node is not updating the cycles anymore and error 99 is passed
 
     ![alt tag](img/commands/TTN-Errors-arrive.png)
@@ -212,7 +212,7 @@ In [TTN Node](TheThingsNetwork.md), we assembled a TTN node and we put a sketch 
 
 12. And in the end, the device will lit the light of the LED again. The 'machine' is now running again
 
-We have reached full circle, the machine, simulated by the TTN Node, is runnning again an updating the machine cycles again. And it's running without an error state.
+We have now gone full circle: the machine on hold, simulated by the TTN Node, is running again and it's updating the machine cycles number again. And again, it's running without an error state.
 
 ### Handle commands in a UWP app
 
@@ -246,7 +246,7 @@ In [UWP app](UwpToIotHub.md) we wrote and executed a UWP which send some telemet
         }
     }
     ```
-
+    
 5. Now, the method to receive messages from the cloud to this devices is waiting for bytes
 6. Next, `Open` the XAML of form 'MainPage.xaml'
 7. `Add` the following line of code. It add a button to the screen
@@ -286,13 +286,13 @@ In [UWP app](UwpToIotHub.md) we wrote and executed a UWP which send some telemet
     ```
 
 9. We only have to push the button once. After that, when a command is received. We 'start' the machine again
-10. The changes in the code are done. `recompile` to check the code will build succesfully
+10. The changes in the code are done. `recompile` to check the code will build successfully
 11. Restart the UWP app, press `Send cycle updates` a couple of times
 
     ![alt tag](img/commands/UWP-app-sending-duty-cycles.png)
 
 12. The cycles are normal behavior. And these will not be picked up by the Stream Analytics job (which is listening for the error status)
-13. To receive commands, we have to wait for them to be received from the IoT Hub. Press `Wait for commands` *note: the communication with the IoT Hub is based on a communication protocol named AMQP by default. This makes communcation very efficient, we are not polling every few seconds and thus saving band width*
+13. To receive commands, we have to wait for them to be received from the IoT Hub. Press `Wait for commands` *note: the communication with the IoT Hub is based on a communication protocol named AMQP by default. This makes communication very efficient, we are not polling every few seconds and thus saving bandwidth*
 
     ![alt tag](img/commands/UWP-app-command-waiting.png)
 
@@ -317,13 +317,13 @@ In [UWP app](UwpToIotHub.md) we wrote and executed a UWP which send some telemet
     ```
 
 19. Notice that the event is actually a JSON array of messages (containing one message). And correct machine is restarted
-20. Now look at the UWP app, the machine is restart, just a second or so after the command was send by the Azure Function *Note: the title is no longer red*
+20. Now look at the UWP app, the machine is restart, just a second or so after the command was sent by the Azure Function *Note: the title is no longer red*
 
     ![alt tag](img/commands/UWP-app-restart.png)
  
-We have now succesfully send som telemetry which is picked up and handled. In the end, commands were received and acted on.
+We have now successfully sent some telemetry which is picked up and handled. In the end, commands were received and acted on.
 
-Receiving commands form Azure completes the main part of the workshop.
+Receiving commands from Azure completes the main part of the workshop.
 
 We hope you did enjoy working with the Azure IoT Platform, as much as we did. Thanks for getting this far!
 
@@ -332,4 +332,4 @@ But wait, there is still more. We added two bonus chapters to the workshop
 1. [Runnning the TTN C# bridge which supports downlink](Webjob.md)
 2. [Add basic monitoring to the platform](IoTPatformMonitoring.md)
 
-![alt tag](img/logos/dotned-saturday.png)
+![alt tag](img/logos/dotned-saturday.png) 
