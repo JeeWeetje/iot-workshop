@@ -1,5 +1,5 @@
 # The Things Network & Azure IoT: a perfect combination
-## Receivig and handling telemetry in Azure
+## Receiving and handling telemetry in Azure
 
 This is an example of how uplink messages from The Things Network can be handled in Azure. In this workshop, we will pass telemetry from your device to Azure Functions. *Note: passing back commands to your device will be added after this workshop* 
 
@@ -16,7 +16,7 @@ The Azure Function will execute custom code in the Cloud, bases on certain telem
 1. A running TTN node connected to the TTN network
 2. Azure account [create here](https://azure.microsoft.com/en-us/free/) _([Azure passes](https://www.microsoftazurepass.com/howto) will be present for those who have no Azure account)_
 3. An Azure IoT Hub (created in the previous workshop)
-4. A running TTN bridge on your PC and connected to an IoT Hub (or an UWP app which represents the same devices, but connected to the IoT Hub directly)
+4. A running TTN bridge on your PC and connected to an IoT Hub (or a UWP app which represents the same devices, but connected to the IoT Hub directly)
 5. A running Device Explorer or IoT Hub Explorer, connected to the IoT Hub, showing the telemetry coming in (created in the previous workshop)
 
 ## Create Azure Stream Analytics job
@@ -191,16 +191,16 @@ Follow these steps to write the query of Azure Stream Analytics job.
     HAVING Count(errorCode) > 1 
     ```
 
-4. This rather simple query will collect every 2 minutes, all devices and the number of their messages when their telemetry shows more than one error *Note: See [Introduction to Stream Analytics Window functions](https://docs.microsoft.com/en-us/azure/stream-analytics/stream-analytics-window-functions) for more information about the query language*
+4. This rather simple query will collect every two minutes all devices and the number of their messages when their telemetry shows more than one error *Note: See [Introduction to Stream Analytics Window functions](https://docs.microsoft.com/en-us/azure/stream-analytics/stream-analytics-window-functions) for more information about the query language*
 5. Press `Save`. Confirm if needed
 
     ![alt tag](img/azure-portal-save.png)
 
-6. Close the Query blade with the `close icon` or select `IoTWorkshop-sa` in the bread crumbs in the top of the page
+6. Close the Query blade with the `close icon` or select `IoTWorkshop-sa` in the bread-crumbs in the top of the page
 
     ![alt tag](img/azure-portal-close.png)
 
-7. Now the Azure Stream Analytics job has both an inputs and an output. And we just created the query
+7. Now the Azure Stream Analytics job has both an input and an output. And we just created the query
 
     ![alt tag](img/azure-stream-analytics-job-topology.png)
 
@@ -214,7 +214,7 @@ Follow these steps to write the query of Azure Stream Analytics job.
 
 10. Select `Start`, this will actually start the job
 
-Starting an Azure Stream Analytics job will take some time. After starting, all data which is collected by the Stream Analytics job query, will be passed on to the Event Hub sink. This is the Event hub we created first. And now we are creating an Azure Function, which will be triggered by the Event Hub.
+Starting an Azure Stream Analytics job will take some time. After starting, all data, which is collected by the Stream Analytics job query, will be passed on to the Event Hub sink. This is the Event hub we created first. And now we are creating an Azure Function, which will be triggered by the Event Hub.
 
 *Note: Again, this is a fairly simple example of Stream Analytics usage. The job is actually a very powerful, easy and common way to handle data and make simple choices. More in-depth usage is described [here](https://azure.microsoft.com/en-us/documentation/articles/stream-analytics-real-time-event-processing-reference-architecture/).*
 
@@ -247,7 +247,7 @@ Follow these steps to create an Azure Function App. An Azure function is actuall
 
 7. Enter a unique App name eg. `IoTWorkshop-fa`. A green sign will be shown if the name is unique
 8. The Resource Group eg. `IoTWorkshop-rg` is already filled in
-9. The hosting plan is set to 'Consumption plan' by default. This means that you will only be charged for the number of times a function is executed and the resources needed for that execution. *Note: Every month, the first one million requests and and 400.000 GBs are [free of charge](https://azure.microsoft.com/en-us/pricing/details/functions/)*
+9. The hosting plan is set to 'Consumption plan' by default. This means that you will only be charged for the number of times a function is executed and the resources needed for that execution. *Note: Every month, the first one million requests and 400.000 GBs are [free of charge](https://azure.microsoft.com/en-us/pricing/details/functions/)*
 10. Select `West Europe` for the location
 11. We also want to give the Storage Account a more meaningful name. In this storage account, the function source code etc. will be stored
 12. Open de Storage Account blade and select `Create New`
@@ -341,7 +341,7 @@ Follow these steps to create an Azure Function, triggered by the Event Hub, insi
     }
     ```
 
-25. Select `Save`. The changed C# code will be recompiled immediately *Note: you can press 'save and run', this will actually run the function, but an empty test will passed (check out the 'Test' option to the right for more info)*
+25. Select `Save`. The changed C# code will be recompiled immediately *Note: you can press 'save and run', this will actually run the function, but an empty test message will be passed (check out the 'Test' option to the right for more details)*
 26. In the 'Logs' panel, just below 'Code', `verify the outcome` of the compilation
 
     ```
@@ -359,7 +359,7 @@ So, if your TTN node or your UWP is put into a faulty state, telemetry will star
 
 ### Sending TTN Node faults 
 
-The TTN node sends a message every 5 seconds. For now it's passing work cycles.
+The TTN node sends a message every 5 seconds. For now, it's passing work cycles.
 
 1. `Push` the button attach to the port and `hold` it until the LED is unlit. The machine is now in an 'error' state
 2. `Check out` the bridge. The node is not updating the cycles anymore and error 99 is passed
@@ -384,7 +384,7 @@ The UWP app now simulates a machine which has stopped working. If this error is 
 
 ## Receiving broken machines information in the Azure Function
 
-Machine telemetry with an error state are arriving at the Azure IoTHub. The Azure Function should pick thes up
+Machine telemetry with an error state is arriving at the Azure IoTHub. The Azure Function should pick these up
 
 1. Telemetry will not arrive until Stream Analytics 'hops' to the next time frame. After that, you can see `telemetry arriving`
 
