@@ -24,11 +24,11 @@ This is an example integration between The Things Network and Azure IoT Hub. Thi
 
 Follow the workshop facilitator connecting the sensors. A few important things:
 
-- The Button VCC pin (red cable) is connected to the `5v` pin on the The Things Uno
-- The Button SIG/OUT (brown cable) pin is connected to the digital pin `4` (fifth pin in the pin header) on the The Things Uno
-- The Button GND pin (white cable) is connected to one of the `GND` pins on the The Things Uno
-- The LED SIG/IN pin (blue cable) is connected to the digital pin `10` on the The Things Network Uno
-- The LED GND pin (brown cable) is connected to one of the `GND` pins on the The Things Uno
+- The Button VCC pin (red cable) is connected to the `5v` pin on the 'The Things Uno'
+- The Button SIG/OUT (brown cable) pin is connected to the digital pin `4` (fifth pin in the pin header) on the 'The Things Uno'
+- The Button GND pin (white cable) is connected to one of the `GND` pins on the 'The Things Uno'
+- The LED SIG/IN pin (blue cable) is connected to the digital pin `10` on the 'The Things Uno'
+- The LED GND pin (brown cable) is connected to one of the `GND` pins on the 'The Things Uno'
 
 Your device and sensors should be connected as follows:
 
@@ -47,7 +47,6 @@ Your device and sensors should be connected as follows:
 * LED pin layout 
 
    ![alt tag](img/TheThingsNetwork/node-led.jpg)
-
 
 ## Read sensors
 
@@ -112,7 +111,7 @@ We start with running a simple sketch on the Arduino. This is a program which si
     Repair of machine needed...
     ```
 
-Now we have a running Arduino with some basic logic. Let's send some messages using the The Things Network.
+Now we have a running Arduino with some basic logic. Let's send some messages using The Things Network.
 
 ## Create The Things Network application
 
@@ -121,7 +120,7 @@ Now we have a running Arduino with some basic logic. Let's send some messages us
 Follow the steps to create an application and register your device.
 
 1. Log into the [The Things Network dashboard](https://console.thethingsnetwork.org). You will be asked to provide TTN credentials if needed
-2. A TTN application is a logical container of several devices, providing the same telemetry. There are no TTN applications yet
+2. A The Things Network application is a logical container of several devices, providing the same telemetry. There are no TTN applications yet
 
     ![alt tag](img/TheThingsNetwork/ttn-applications.png)
 
@@ -138,7 +137,7 @@ Follow the steps to create an application and register your device.
 
     ![alt tag](img/TheThingsNetwork/ttn-applications-devices-name-only.png)
 
-7. Notice that the Register button is still disabled. A device needs a unique unique identifier
+7. Notice that the Register button is still disabled. A device needs a unique identifier
 8.  Click the **Generate** icon for 'Device EUI' so a unique EUI can be generated on register
 
     ![alt tag](img/TheThingsNetwork/ttn-applications-devices-before-register.png)
@@ -207,7 +206,6 @@ The sensor data is read, now it is time to send the sensor data to The Things Ne
       debugSerial.print("Initializing");
 
       // Initializing TTN communication...
-
       ttn.personalize(devAddr, nwkSKey, appSKey);
   
       digitalWrite(commLed, HIGH);
@@ -348,7 +346,7 @@ Creating an IoT Hub takes some time. Meanwhile, we will connect the device and c
 
 The integration requires an Azure IoT Hub Shared access policy key name with `Registry read, write and Device connect` permissions. In this example, we use the **iothubowner** policy which has these permissions enabled by default.
 
-1. Check the Azure portal. The resource group and the IoT Hub should be created by now (otherwise we were unable to send duty cycles information to it)
+1. Check the Azure portal. The resource group and the IoT Hub should be created by now (otherwise, we were unable to send duty cycles information to it)
 
     ![alt tag](img/UwpToIotHub/azure-notifications-iothub.png)
 
@@ -400,7 +398,7 @@ The bridge is now ready for execution.
 
 You are about to retrieve the telemetry from TTN.
 
-2. In a dos-box (press Windows button-R, type CMD and enter), navigate to the new folder `c:\iotworkshop`
+1. In a dos-box (press Windows button-R, type CMD and enter), navigate to the new folder `c:\iotworkshop`
 2. In the same folder, **run** `TtnAzureBridge.exe` to verify the bridge is working
    
    ![alt tag](img/TheThingsNetwork/bridge-running.png)
@@ -418,7 +416,7 @@ You are about to retrieve the telemetry from TTN.
     ...
     ```
 
-4. The telemetry is passed to the connect Azure IoTHub. We also see some basic information about the framecount, the node, the name and location of the gateway, the Lora channel used and the quality of the reception (RSSI)
+4. The telemetry is passed to the connect Azure IoTHub. We also see some basic information about the frame count, the node, the name and location of the gateway, the Lora channel used and the quality of the reception (RSSI)
 
 *Note: the message consists of valid JSON telemetry.*
 
@@ -462,7 +460,7 @@ To run the Device Explorer tool, double-click the DeviceExplorer.exe file in Win
 
 We can check the arrival of the messages in the Azure IoT Hub using the IoT Hub Explorer. This tool is Command-Line based, please check the installation requirements. 
 
-*Note : See the [full example](https://www.npmjs.com/package/iothub-explorer) for more options of this tool.*
+*Note: See the [full example](https://www.npmjs.com/package/iothub-explorer) for more options of this tool.*
 
 1. Create a new folder eg. `c:\iothubexplorer`
 2. In a dos-box (press Windows button-R, type CMD and enter), navigate to the new folder `c:\iothubexplorer`
