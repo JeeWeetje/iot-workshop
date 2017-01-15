@@ -6,7 +6,7 @@ This is an example integration between a UWP app and Azure IoT Hub. This integra
 
 *Note: In this workshop, we will create uniquely named Azure resources. The suggested names could be reserved already. Just try another unique name.*
 
-*Note: The IoT Hub also offers the ability of sending commands back to devices. This is not part of this workshop.*
+*Note: The IoT Hub also offers the ability to send commands back to devices. This is not part of this workshop.*
 
 ### Prerequisites
 
@@ -20,7 +20,7 @@ This is an example integration between a UWP app and Azure IoT Hub. This integra
 
 ### Objectives
 
-In this work shop, you will learn:
+In this workshop, you will learn:
 
 1. Creating an IoT Hub in the Azure Portal
 2. Creating a new UWP App
@@ -91,7 +91,6 @@ We will create a UWP app in Visual Studio. These apps are called Universal Windo
 
 The app is created. You are now ready to add a connection to the IoT Hub.
 
-
 ## Connect to the IoT Hub and register the app like a device
 
 ![alt tag](img/arch/Picture03-UWP-overview.png)
@@ -126,16 +125,16 @@ Let's add a connection to IoT hub and register the app like a real device.
     ![alt tag](img/UwpToIotHub/vs-device-two.png)
 
 10. The device is registered, you are allowed to create more devices. Unique credentials are created for each device in the background
-11. But afterwards, be sure to pick the 'MachineCyclesUwp'; this one will be used by our app. Select `OK` to start the generation of the connection
+11. But afterward, be sure to pick the 'MachineCyclesUwp'; this one will be used by our app. Select `OK` to start the generation of the connection
 
     ![alt tag](img/UwpToIotHub/vs-device-three.png)
 
-12. The necessary Nuget libraries are added and eventually you will be directed to a [Get Started page](https://github.com/Azure/azure-iot-hub-vs-cs/wiki/C%23-Usage) for more information
+12. The necessary NuGet libraries are added and eventually you will be directed to a [Get Started page](https://github.com/Azure/azure-iot-hub-vs-cs/wiki/C%23-Usage) for more information
 13. In the Solution Explorer of Visual Studio, a new file named 'AzureIoTHub.cs' is added. This provides all logic for the connection to the IoT Hub
 
     ![alt tag](img/UwpToIotHub/vs-iot-hub-singleton.png)
 
-The AzureIoTHub can be integrated in the logic of our App. Let's do that.
+The AzureIoTHub can be integrated into the logic of our App. Let's do that.
 
 ## Generate and send dummy telemetry
 
@@ -241,11 +240,10 @@ We will use the connection later on. But first let's check out the 'AzureIoTHub.
             await ShowMessage(ex.Message);
         }
     }
-
     ```
 
-12. The method 'btnSend_Click' now increases the number of duty cycles and sends it to the Iot Hub using the unique access token of the device 'MachineCyclesUwp'
-13. New libraries references are introduced in this code. `Add` two using's at the top of the editor
+12. The method 'btnSend_Click' now increases the number of duty cycles and sends it to the IoT Hub using the unique access token of the device 'MachineCyclesUwp'
+13. New libraries references are introduced in this code. `Add` two times a 'using' at the top of the editor
 
     ```csharp
     using System;
@@ -271,7 +269,7 @@ We can monitor the arrival of telemetry only if we have enough rights to look in
 
 The integration requires an Azure IoT Hub Shared access policy key name with `Registry read, write and Device connect` permissions. In this example, we use the **iothubowner** policy which has these permissions enabled by default.
 
-1. Check the Azure portal. The resource group and the IoT Hub should be created by now (otherwise we were unable to send duty cycles information to it)
+1. Check the Azure portal. The resource group and the IoT Hub should be created by now (otherwise, we were unable to send duty cycles information to it)
 
     ![alt tag](img/UwpToIotHub/azure-notifications-iothub.png)
 
