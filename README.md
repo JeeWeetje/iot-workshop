@@ -39,4 +39,3 @@ The other parts are optional/extra if you have time left.
    2. [Add basic monitoring to the platform](IoTPatformMonitoring.md)
 
 ![alt tag](img/logos/dotned-saturday.png)
-
