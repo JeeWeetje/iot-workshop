@@ -221,7 +221,7 @@ The sensor data is read, now it is time to send the sensor data to the The Thing
       }
  
       // In the button is pushed, the machine enters an error state
-      if (digitalRead(commButton) == LOW) {  
+      if (digitalRead(commButton) == HIGH) {  
         errorCode = 99;
         digitalWrite(commLed, LOW);
         debugSerial.print("Error occured");
