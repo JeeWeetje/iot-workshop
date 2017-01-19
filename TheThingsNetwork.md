@@ -258,10 +258,10 @@ We are now receiving raw telemetry. We can decode and transform this in the TTN 
 
 ![alt tag](img/msft/Picture06-decode-data-on-ttn.png)
 
-Now, the binary payload is not really useful in upstream. We want JSON. Therefore, we have payload functions.
+Now, the hexidecimal payload is an efficient format for LoRa communication but it is not really useful upstream. We want human readable JSON. To decode and convert the hexidecimal payload to JSON messages, we have payload functions.
 
 1. In the application overview, click **Payload Functions**
-2. Add the following **decoder** function to decode the two bytes back to the number of cycles completed and the current state:
+2. Add the following **decoder** function to decode the two bytes back to the decimal number of cycles completed and the current state:
 
     ```c
     function Decoder(bytes, port) {
@@ -275,7 +275,7 @@ Now, the binary payload is not really useful in upstream. We want JSON. Therefor
     }
     ```
 
-3. Test before you can save the decode function. Enter eg '2A00' in the payload and click **Test**. A decoded JSON message should become visible
+3. You have to test this decoder function before you can save the function. Enter eg. '2A00' in the payload and click **Test**. The hexidecimal payload entered is shown in JSON format as test result  
 
     ![alt tag](img/TheThingsNetwork/ttn-portal-decoder.png)
 
