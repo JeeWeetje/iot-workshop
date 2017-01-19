@@ -1,9 +1,9 @@
 # The Things Network & Azure IoT: a perfect combination
-## The Things Network Azure IoT Hub Integration Bridge
+## Getting started with the The Things Uno and The Things Network
 
 ![alt tag](img/msft/Picture01-overview.png)
 
-This is an example integration between The Things Network and Azure IoT Hub. This integration will be offered as a bridge, which features creating devices in the Azure IoT Hub device registry as well as sending events from uplink messages.
+In this chapter you will configure the The Things Uno, connect it to The Things Network platform. On the The Things platform you will provision the The Things Uno, receive its messages and decode the telemetry. As final step in this chapter you will deploy a bridge between the The Things Network platform and Microsoft Azure IoT platform.
 
 *Note: In this workshop, we will create uniquely named Azure resources. The suggested names could be reserved already. Just try another unique name.*
 
