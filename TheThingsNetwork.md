@@ -1,9 +1,9 @@
 # The Things Network & Azure IoT: a perfect combination
-## The Things Network Azure IoT Hub Integration Bridge
+## Getting started with the The Things Uno and The Things Network
 
 ![alt tag](img/msft/Picture01-overview.png)
 
-This is an example integration between The Things Network and Azure IoT Hub. This integration will be offered as a bridge, which features creating devices in the Azure IoT Hub device registry as well as sending events from uplink messages.
+In this chapter you will configure the The Things Uno, connect it to The Things Network platform. On the The Things platform you will provision the The Things Uno, receive its messages and decode the telemetry. As final step in this chapter you will deploy a bridge between the The Things Network platform and Microsoft Azure IoT platform.
 
 *Note: In this workshop, we will create uniquely named Azure resources. The suggested names could be reserved already. Just try another unique name.*
 
@@ -24,11 +24,11 @@ This is an example integration between The Things Network and Azure IoT Hub. Thi
 
 Follow the workshop facilitator connecting the sensors. A few important things:
 
-- The Button VCC pin (red cable) is connected to the `5v` pin on the The Things Uno
-- The Button SIG/OUT (brown cable) pin is connected to the digital pin `4` (fifth pin in the pin header) on the The Things Uno
-- The Button GND pin (white cable) is connected to one of the `GND` pins on the The Things Uno
-- The LED SIG/IN pin (blue cable) is connected to the digital pin `10` on the The Things Network Uno
-- The LED GND pin (brown cable) is connected to one of the `GND` pins on the The Things Uno
+- The Button VCC pin (red cable) is connected to the `5v` pin on the 'The Things Uno'
+- The Button SIG/OUT (brown cable) pin is connected to the digital pin `4` (fifth pin in the pin header) on the 'The Things Uno'
+- The Button GND pin (white cable) is connected to one of the `GND` pins on the 'The Things Uno'
+- The LED SIG/IN pin (blue cable) is connected to the digital pin `10` on the 'The Things Uno'
+- The LED GND pin (brown cable) is connected to one of the `GND` pins on the 'The Things Uno'
 
 Your device and sensors should be connected as follows:
 
@@ -47,7 +47,6 @@ Your device and sensors should be connected as follows:
 * LED pin layout 
 
    ![alt tag](img/TheThingsNetwork/node-led.jpg)
-
 
 ## Read sensors
 
@@ -86,7 +85,7 @@ We start with running a simple sketch on the Arduino. This is a program which si
       }
 
       // In the button is pushed, the machine enters an error state
-      if (digitalRead(commButton) == LOW) {
+      if (digitalRead(commButton) == HIGH) {
         errorCode = 99;
         digitalWrite(commLed, LOW);
         Serial.print("Error occured: ");
@@ -112,7 +111,7 @@ We start with running a simple sketch on the Arduino. This is a program which si
     Repair of machine needed...
     ```
 
-Now we have a running Arduino with some basic logic. Let's send some messages using the The Things Network.
+Now we have a running Arduino with some basic logic. Let's send some messages using The Things Network.
 
 ## Create The Things Network application
 
@@ -121,7 +120,7 @@ Now we have a running Arduino with some basic logic. Let's send some messages us
 Follow the steps to create an application and register your device.
 
 1. Log into the [The Things Network dashboard](https://console.thethingsnetwork.org). You will be asked to provide TTN credentials if needed
-2. A TTN application is a logical container of several devices, providing the same telemetry. There are no TTN applications yet
+2. A The Things Network application is a logical container of several devices, providing the same telemetry. There are no TTN applications yet
 
     ![alt tag](img/TheThingsNetwork/ttn-applications.png)
 
@@ -138,7 +137,7 @@ Follow the steps to create an application and register your device.
 
     ![alt tag](img/TheThingsNetwork/ttn-applications-devices-name-only.png)
 
-7. Notice that the Register button is still disabled. A device needs a unique unique identifier
+7. Notice that the Register button is still disabled. A device needs a unique identifier
 8.  Click the **Generate** icon for 'Device EUI' so a unique EUI can be generated on register
 
     ![alt tag](img/TheThingsNetwork/ttn-applications-devices-before-register.png)
@@ -157,19 +156,19 @@ Follow the steps to create an application and register your device.
     ![alt tag](img/TheThingsNetwork/ttn-applications-devices-settings.png)
 
 16. Click **Save**
-17.  The following device settings are shown
+17. The following device settings are shown
 
     ![alt tag](img/TheThingsNetwork/ttn-applications-devices-ready.png)
 
 18. Keep this page open, you need the device address, network session key and application session key in a minute
 
-The TTN application is now created.
+The TTN application is created. Your device has been registered and provisioned.
 
-## Send data from your device
+## Send telemetry from your device to the The Things Network platform
 
 ![alt tag](img/msft/Picture05-submit-data-to-ttn.png)
 
-The sensor data is read, now it is time to send the sensor data to The Things Network. 
+The sensor data is read, now it is time to send the sensor data to the The Things Network platform. 
 
 1. In the Arduino IDE, from the **File** menu, choose **New** to create a new sketch and paste the following code:
 
@@ -207,7 +206,6 @@ The sensor data is read, now it is time to send the sensor data to The Things Ne
       debugSerial.print("Initializing");
 
       // Initializing TTN communication...
-
       ttn.personalize(devAddr, nwkSKey, appSKey);
   
       digitalWrite(commLed, HIGH);
@@ -223,7 +221,7 @@ The sensor data is read, now it is time to send the sensor data to The Things Ne
       }
  
       // In the button is pushed, the machine enters an error state
-      if (digitalRead(commButton) == LOW) {  
+      if (digitalRead(commButton) == HIGH) {  
         errorCode = 99;
         digitalWrite(commLed, LOW);
         debugSerial.print("Error occured");
@@ -241,29 +239,29 @@ The sensor data is read, now it is time to send the sensor data to The Things Ne
     } 
     ```
 
-2. Insert your device address in `devAddr`, network session key in `nwkSkey` and application session key in `appSKey`. You can use the handy `<>` button in the dashboard to copy it quickly as a C-style byte array; exactly what Arduino wants
+2. Insert your device address in `devAddr`, network session key in `nwkSkey` and application session key in `appSKey`. You can use the handy `clipboard` button in the dashboard to copy it quickly as a HEX value
 
     ![alt tag](img/TheThingsNetwork/ttn-applications-devices-credentials.png)
 
 3. In the **Sketch** menu, click **Upload**
-4. Open the **Serial Monitor** again from the **Tools** menu once upload has completed. Your device should now be sending data to The Things Network
+4. Open the **Serial Monitor** again from the **Tools** menu once upload has completed. Your device should now be sending telemetry to The Things Network
 
     ![alt tag](img/TheThingsNetwork/ttn-arduino-debug.png)
 
-5. In The Things Network dashboard, go to **Data**. You see packets coming in:
+5. In The Things Network dashboard, go to **Data**. You see uplink packets arriving:
 
     ![alt tag](img/TheThingsNetwork/ttn-portal-raw-messages.png)
 
-We are now receiving row data. We can decode and transform this in the TTN portal towards JSON messages.
+We are now receiving raw telemetry. We can decode and transform this in the TTN portal towards JSON messages.
 
 ## Decode data on TTN
 
 ![alt tag](img/msft/Picture06-decode-data-on-ttn.png)
 
-Now, the binary payload is not really useful in upstream. We want JSON. Therefore, we have payload functions.
+Now, the hexidecimal payload is an efficient format for LoRa communication but it is not really useful upstream. We want human readable JSON. To decode and convert the hexidecimal payload to JSON messages, we have payload functions.
 
 1. In the application overview, click **Payload Functions**
-2. Add the following **decoder** function to decode the two bytes back to the number of cycles completed and the current state:
+2. Add the following **decoder** function to decode the two bytes back to the decimal number of cycles completed and the current state:
 
     ```c
     function Decoder(bytes, port) {
@@ -277,11 +275,11 @@ Now, the binary payload is not really useful in upstream. We want JSON. Therefor
     }
     ```
 
-3. Test before you can save the decode function. Enter eg '2A00' in the payload and click **Test**. A decoded JSON message should become visible
+3. You have to test this decoder function before you can save the function. Enter eg. '2A00' in the payload and click **Test**. The hexidecimal payload entered is shown in JSON format as test result  
 
     ![alt tag](img/TheThingsNetwork/ttn-portal-decoder.png)
 
-4. We want to rearrange the order of the JSON element. So use the following function as the **converter**:
+4. We want to rearrange the order of the JSON elements. To rearrange the order we use the following function as the **converter**:
 
     ```c
     function Converter(decoded, port) {
@@ -292,13 +290,19 @@ Now, the binary payload is not really useful in upstream. We want JSON. Therefor
     }
     ```
 
-5. Test before you can save the converter function. Again, enter eg '2A00' in the payload and click **Test**. The converted JSON message should become visible
+5. Again, you have to test this converter function before you can save the function. Again, enter eg. '2A00' in the payload and click **Test**. The hexidecimal payload entered is shown in JSON format with rearranged elements as test result
 6. Finally, scroll to the bottom of the page and click **Save**
 7. Go back to your data overview. Now you should see something like this:
 
     ![alt tag](img/TheThingsNetwork/ttn-device-payload-fields.png)
 
 Now we have clean JSON data ready to be processed in Azure IoT Hub and upstream.
+
+## Configuring the Azure IoT platform to receive telemetry
+
+Futher processing of the telemetry on the The Things Network platform is not possible. Processing telemetry has to be done on your own IoT plaform of your choice. In this case we choose the Azure IoT platform.
+
+But first we need the secrets from the The Things Network platform to be able to create a secure connection between the two platforms.
 
 ### Collect TTN Application secrets
 
@@ -313,7 +317,7 @@ We have to collect unique keys of the TTN app.
 
 The `Application ID` and `Access Key` are required to get data from The Things Network.
 
-## Create an Azure IoT Hub
+### Create an Azure IoT Hub
 
 ![alt tag](img/msft/Picture07-prepare-azure-integration.png)
 
@@ -348,7 +352,7 @@ Creating an IoT Hub takes some time. Meanwhile, we will connect the device and c
 
 The integration requires an Azure IoT Hub Shared access policy key name with `Registry read, write and Device connect` permissions. In this example, we use the **iothubowner** policy which has these permissions enabled by default.
 
-1. Check the Azure portal. The resource group and the IoT Hub should be created by now (otherwise we were unable to send duty cycles information to it)
+1. Check the Azure portal. The resource group and the IoT Hub should be created by now (otherwise, we were unable to send duty cycles information to it)
 
     ![alt tag](img/UwpToIotHub/azure-notifications-iothub.png)
 
@@ -400,7 +404,7 @@ The bridge is now ready for execution.
 
 You are about to retrieve the telemetry from TTN.
 
-2. In a dos-box (press Windows button-R, type CMD and enter), navigate to the new folder `c:\iotworkshop`
+1. In a dos-box (press Windows button-R, type CMD and enter), navigate to the new folder `c:\iotworkshop`
 2. In the same folder, **run** `TtnAzureBridge.exe` to verify the bridge is working
    
    ![alt tag](img/TheThingsNetwork/bridge-running.png)
@@ -418,7 +422,7 @@ You are about to retrieve the telemetry from TTN.
     ...
     ```
 
-4. The telemetry is passed to the connect Azure IoTHub. We also see some basic information about the framecount, the node, the name and location of the gateway, the Lora channel used and the quality of the reception (RSSI)
+4. The telemetry is passed to the connect Azure IoTHub. We also see some basic information about the frame count, the node, the name and location of the gateway, the Lora channel used and the quality of the reception (RSSI)
 
 *Note: the message consists of valid JSON telemetry.*
 
@@ -462,7 +466,7 @@ To run the Device Explorer tool, double-click the DeviceExplorer.exe file in Win
 
 We can check the arrival of the messages in the Azure IoT Hub using the IoT Hub Explorer. This tool is Command-Line based, please check the installation requirements. 
 
-*Note : See the [full example](https://www.npmjs.com/package/iothub-explorer) for more options of this tool.*
+*Note: See the [full example](https://www.npmjs.com/package/iothub-explorer) for more options of this tool.*
 
 1. Create a new folder eg. `c:\iothubexplorer`
 2. In a dos-box (press Windows button-R, type CMD and enter), navigate to the new folder `c:\iothubexplorer`

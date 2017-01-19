@@ -134,7 +134,7 @@ The input and output are now defined. Let's add the Azure Stream Analytics job q
 
     ![alt tag](img/Monitoring/mon03.png)
 
-5. Close the Query blade with the `close icon` or select `IoTWorkshop-sa` in the bread crumbs in the top of the page
+5. Close the Query blade with the `close icon` or select `IoTWorkshop-sa` in the bread-crumbs in the top of the page
 
     ![alt tag](img/Monitoring/azure-portal-close.png)
 

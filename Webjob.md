@@ -1,7 +1,7 @@
 # The Things Network & Azure IoT: a perfect combination
 ## Deploying The Things Network Bridge to Azure
 
-Remember creating the TTN bridge locally on your computer? Will your PC be always on? Most likely not, therefore it seems reasonable to deploy the TTNAzureBridge somewhere else. What place is better then the Azure cloud?
+Remember creating the TTN bridge locally on your computer? Will your PC be always on? Most likely not, therefore it seems reasonable to deploy the TTNAzureBridge somewhere else. What place is better than the Azure cloud?
 
 ![Build a bridge from TTN to Azure](img/msft/Picture08-build-a-bridge-frm-ttn-to-azure.png)
 
@@ -28,7 +28,7 @@ We need both the zip file and the secrets. *Note: the config file inside the zip
 
 ### Deploy Azure WebJob
 
-Follow these steps to deploy an console app as Azure WebJob that runs the integration between The Things Network and Azure IoT Hub.
+Follow these steps to deploy a console app as Azure WebJob that runs the integration between The Things Network and Azure IoT Hub.
 
 1. `Log into` the [Azure portal](https://portal.azure.com/). You will be asked to provide Azure credentials if needed
 2. On the left, select `Resource groups`. A list of resource groups is shown
@@ -49,7 +49,7 @@ Follow these steps to deploy an console app as Azure WebJob that runs the integr
 7. A dialog for the new Web App is shown
 8. Enter a unique Web App name eg. `IoTWorkshop-wa`. A green sign will be shown if the name is unique
 9. The Resource Group eg. 'IoTWorkshop-rg' is already filled in
-10. The App Service plan eg. is filled with a non-specfic one
+10. The App Service plan eg. is filled with a non-specific one
 
     ![alt tag](img/webjob/webapp-creation.png)
 
@@ -100,17 +100,17 @@ Follow these steps to deploy an console app as Azure WebJob that runs the integr
 24. But actually, this job is not ready to run yet. We need to add settings
 32. `Clear` the settings filter. 
 33. Select `Application settings`
-34. The Application settings pane is shown. `Scroll down` until both the App Settings and Conneciton Strings are shown
+34. The Application settings pane is shown. `Scroll down` until both the App Settings and Connection Strings are shown
 
     ![alt tag](img/webjob/azure-web-job-app-settings.png)
 
-11. We will enter the actual settings here. These will override the settings in the config file of the brige *Note: this is a great feature for administrators*
+11. We will enter the actual settings here. These will override the settings in the config file of the bridge *Note: this is a great feature for administrators*
 11. Add for each app setting the name and value
     37. "BrokerHostName" (value 'eu.thethings.network')
     37. ApplicationEui
     37. ApplicationAccessKey
     37. IotHubName
-11. If in an unforseen event that the connenction to the TTN is lost, we let the Web App restart the web job. Add this extra setting and give it the value `True` 
+11. If in an unforeseen event that the connection to the TTN is lost, we let the Web App restart the web job. Add this extra setting and give it the value `True` 
     38. ExitOnConnectionClosed (value 'True')  
 11. We also have to add the connection string. Fill in both the name, connection string. Finally, set the kind to `Custom`
     39. IoTHub (value kind 'Custom')
@@ -118,13 +118,13 @@ Follow these steps to deploy an console app as Azure WebJob that runs the integr
 
     ![alt tag](img/webjob/azure-web-job-app-settings-ready.png)
 
-39. Press `Save`. A notification will be shown that the web app settings are updated succesfully
+39. Press `Save`. A notification will be shown that the web app settings are updated successfully
 
     ![alt tag](img/azure-portal-save.png)
 
 32. Let's check the state of the Web Job. 
 38. Filter the settings for `webjobs`. the bridge should have the state 'Running' by now.
-39. Select the bridge and `Logs` of your webjob
+39. Select the bridge and `Logs` of your Webjob
 
     ![alt tag](img/bridge-list-web-job-logs.png)
 
@@ -132,7 +132,7 @@ Follow these steps to deploy an console app as Azure WebJob that runs the integr
 
     ![alt tag](img/webjob/webapp-job-running.png)
 
-26. Go to the detail logging, by selecting `the link` of the Web Job details. The TTN messages are handled 
+26. Go to the Detail logging, by selecting `the link` of the Web Job details. The TTN messages are handled 
 
     ![alt tag](img/webjob/webapp-job-logging.png)
 
