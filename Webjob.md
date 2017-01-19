@@ -65,74 +65,73 @@ Follow these steps to deploy a console app as Azure WebJob that runs the integra
 
     ![alt tag](img/webjob/webapp-created.png)
 
-11. Select `Create`
-12. Creating a Web App will take some time, but we want to complete this step
-13. So navigate back to the resource group (repeat step 1, 2 and 3) and meanwhile check the Web app creation in the resource group
-14. If the Web App becomes listed, select `IoTWorkshop-wa`. Otherwise, 'refresh' the list a few times
+17. Select `Create`
+18. Creating a Web App will take some time, but we want to complete this step
+19. So navigate back to the resource group (repeat step 1, 2 and 3) and meanwhile check the Web app creation in the resource group
+20. If the Web App becomes listed, select `IoTWorkshop-wa`. Otherwise, 'refresh' the list a few times
 
     ![alt tag](img/azure-portal-refresh.png)
 
-15. You are now in the Web App blade. It should be shown like this, with all information available (otherwise, refresh a few times):
+21. You are now in the Web App blade. It should be shown like this, with all information available (otherwise, refresh a few times):
 
     ![alt tag](img/webjob/webapp-pane.png)
 
-16. A Web App has dozens of settings. Filter the settings for `webjobs`
+22. A Web App has dozens of settings. Filter the settings for `webjobs`
 
     ![alt tag](img/webjob/webapp-pane-filter.png)
 
-17. Select `WebJobs`. An empty list is presented
-18. Select `Add`
+23. Select `WebJobs`. An empty list is presented
+24. Select `Add`
 
     ![alt tag](img/azure-portal-add.png)
 
-19. Enter a unique Web App name eg. `TTNAzureBridge`. A green sign will be shown if the name is unique
-20. Select your bridge ZIP file (eg. 'TTNAzureBridge.zip') as file to upload
-21. Ensure that the type is set to `Continuous`
-22. Set the scale to `Single Instance`
+25. Enter a unique Web App name eg. `TTNAzureBridge`. A green sign will be shown if the name is unique
+26. Select your bridge ZIP file (eg. 'TTNAzureBridge.zip') as file to upload
+27. Ensure that the type is set to `Continuous`
+28. Set the scale to `Single Instance`
 
     ![alt tag](img/webjob/azure-web-job-add.png)
 
-23. Select `Ok`
-24. The Web Job will be created. And it is listed on the page of the Web App
+29. Select `Ok`
+30. The Web Job will be created. And it is listed on the page of the Web App
 
     ![alt tag](img/webjob/azure-web-job-starting.png)
 
-24. But actually, this job is not ready to run yet. We need to add settings
+31. But actually, this job is not ready to run yet. We need to add settings
 32. `Clear` the settings filter. 
 33. Select `Application settings`
 34. The Application settings pane is shown. `Scroll down` until both the App Settings and Connection Strings are shown
 
     ![alt tag](img/webjob/azure-web-job-app-settings.png)
 
-11. We will enter the actual settings here. These will override the settings in the config file of the bridge *Note: this is a great feature for administrators*
-11. Add for each app setting the name and value
-    37. "BrokerHostName" (value 'eu.thethings.network')
-    37. ApplicationEui
-    37. ApplicationAccessKey
-    37. IotHubName
-11. If in an unforeseen event that the connection to the TTN is lost, we let the Web App restart the web job. Add this extra setting and give it the value `True` 
-    38. ExitOnConnectionClosed (value 'True')  
-11. We also have to add the connection string. Fill in both the name, connection string. Finally, set the kind to `Custom`
-    39. IoTHub (value kind 'Custom')
+35. We will enter the actual settings here. These will override the settings in the config file of the bridge *Note: this is a great feature for administrators*
+36. Add for each app setting the name and value
+    1. ApplicationId
+    2. ApplicationAccessKey
+    2. IotHubName
+37. If in an unforeseen event that the connection to the TTN is lost, we let the Web App restart the web job. Add this extra setting and give it the value `True` 
+    1. ExitOnConnectionClosed (value 'True')  
+38. We also have to add the connection string. Fill in both the name, connection string. Finally, set the kind to `Custom`
+    1. IoTHub (value kind 'Custom')
 39. The settings are now ready and should look like this
 
     ![alt tag](img/webjob/azure-web-job-app-settings-ready.png)
 
-39. Press `Save`. A notification will be shown that the web app settings are updated successfully
+40. Press `Save`. A notification will be shown that the web app settings are updated successfully
 
     ![alt tag](img/azure-portal-save.png)
 
-32. Let's check the state of the Web Job. 
-38. Filter the settings for `webjobs`. the bridge should have the state 'Running' by now.
-39. Select the bridge and `Logs` of your Webjob
+41. Let's check the state of the Web Job. 
+42. Filter the settings for `webjobs`. the bridge should have the state 'Running' by now.
+43. Select the bridge and `Logs` of your Webjob
 
     ![alt tag](img/bridge-list-web-job-logs.png)
 
-25. A new page is shown, here the status of the Web Job is shown. The status is 'Running'
+44. A new page is shown, here the status of the Web Job is shown. The status is 'Running'
 
     ![alt tag](img/webjob/webapp-job-running.png)
 
-26. Go to the Detail logging, by selecting `the link` of the Web Job details. The TTN messages are handled 
+45. Go to the Detail logging, by selecting `the link` of the Web Job details. The TTN messages are handled 
 
     ![alt tag](img/webjob/webapp-job-logging.png)
 
