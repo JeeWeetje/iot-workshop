@@ -26,6 +26,8 @@ At the end of this part of the workshop, the following steps are performed
    1. Handle commands in the TTN Node
    2. Handle commands in a UWP app
 
+![alt tag](img/msft/Picture12-connect-anything-using-flow.png)
+
 ## Creating commands for devices which are in a faulty state
 
 In the [previous workshop](Azure.md), we passed the telemetry from the device to a Stream Analytics job. This job collected devices which are sending error states. Every two minutes, information about devices that are in a faulty state are passed to an Azure Function.
@@ -326,6 +328,8 @@ We have now successfully sent some telemetry which is picked up and handled. In 
 Receiving commands from Azure completes the main part of the workshop.
 
 We hope you did enjoy working with the Azure IoT Platform, as much as we did. Thanks for getting this far!
+
+![alt tag](img/msft/Picture13-make-the-world-a-better-place.png)
 
 But wait, there is still more. We added two bonus chapters to the workshop
 
