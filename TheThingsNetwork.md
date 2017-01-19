@@ -388,7 +388,7 @@ Follow these steps to create the integration bridge between The Things Network a
 
 3. **Navigate** to the folder with the executable and identify the config file name 'TtnAzureBridge.exe.config'
 2. **Open** this config file in notepad or another text file editor
-3. **Replace** [TTN App EUI] with the `TTN Application ID`
+3. **Replace** [TTN App Id] with the `TTN Application ID`
 6. **Replace** [TTN App Access Key] with the `TTN Access Key`
 7. **Replace twice** [iothub name] with the `name` of the IoT Hub, both in the app settings as in the connection string 'IoTHub'
 8. In the connectionstring of 'IoTHub', **replace** [shared access key] with the remembered `Connection String-Primary Key` 
