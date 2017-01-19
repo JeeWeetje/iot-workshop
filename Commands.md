@@ -149,7 +149,7 @@ Now, the Azure Function is ready to receive data about devices which simulate 'f
 
 ## Handle commands in the devices
 
-![alt tag](img/msft/Picture10-stream-data-to-an-event-hub.png)
+![alt tag](img/msft/Picture05-submit-data-to-ttn.png)
 
 Let's bring your device in a faulty state and see how the Azure IoT Platforms sends back a command to repair it.
 
@@ -217,6 +217,8 @@ In [TTN Node](TheThingsNetwork.md), we assembled a TTN node and we put a sketch 
 We have now gone full circle: the machine on hold, simulated by the TTN Node, is running again and it's updating the machine cycles number again. And again, it's running without an error state.
 
 ### Handle commands in a UWP app
+
+![alt tag](img/arch/Picture04-UWP-overview.png)
 
 In [UWP app](UwpToIotHub.md) we wrote and executed a UWP which send some telemetry. Here we will add more logic to the node so we can receive commands.
 
