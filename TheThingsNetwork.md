@@ -85,7 +85,7 @@ We start with running a simple sketch on the Arduino. This is a program which si
       }
 
       // In the button is pushed, the machine enters an error state
-      if (digitalRead(commButton) == LOW) {
+      if (digitalRead(commButton) == HIGH) {
         errorCode = 99;
         digitalWrite(commLed, LOW);
         Serial.print("Error occured: ");
