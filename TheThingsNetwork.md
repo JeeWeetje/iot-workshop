@@ -244,15 +244,15 @@ The sensor data is read, now it is time to send the sensor data to the The Thing
     ![alt tag](img/TheThingsNetwork/ttn-applications-devices-credentials.png)
 
 3. In the **Sketch** menu, click **Upload**
-4. Open the **Serial Monitor** again from the **Tools** menu once upload has completed. Your device should now be sending data to The Things Network
+4. Open the **Serial Monitor** again from the **Tools** menu once upload has completed. Your device should now be sending telemetry to The Things Network
 
     ![alt tag](img/TheThingsNetwork/ttn-arduino-debug.png)
 
-5. In The Things Network dashboard, go to **Data**. You see packets coming in:
+5. In The Things Network dashboard, go to **Data**. You see uplink packets arriving:
 
     ![alt tag](img/TheThingsNetwork/ttn-portal-raw-messages.png)
 
-We are now receiving row data. We can decode and transform this in the TTN portal towards JSON messages.
+We are now receiving raw telemetry. We can decode and transform this in the TTN portal towards JSON messages.
 
 ## Decode data on TTN
 
