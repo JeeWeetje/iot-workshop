@@ -23,7 +23,9 @@ During the workshop the following experts will be present to guide you through t
 
 | Start Time | End Time |  Room  |
 | --------- | ------- | ------ |
-| 01/28/2017 10:15 | 01/28/2017 12:15 | Seminar4 |
+| 01/28/2017 10:15 | 01/28/2017 12:15*\** | Seminar4 |
+
+*\* The second session will be available when there is enough interest*
 
 ## Let's dive into the workshop
 
