@@ -298,6 +298,12 @@ Now, the hexidecimal payload is an efficient format for LoRa communication but i
 
 Now we have clean JSON data ready to be processed in Azure IoT Hub and upstream.
 
+## Configuring the Azure IoT platform to receive telemetry
+
+Futher processing of the telemetry on the The Things Network platform is not possible. Processing telemetry has to be done on your own IoT plaform of your choice. In this case we choose the Azure IoT platform.
+
+But first we need the secrets from the The Things Network platform to be able to create a secure connection between the two platforms.
+
 ### Collect TTN Application secrets
 
 We now have our telemetry in the TTN back-end. Our goal is to pass the telemetry through the Azure IoT Platform. Now, we will create a bridge between the two platforms. But again we need some secrets so only we can access our telemetry.
@@ -311,7 +317,7 @@ We have to collect unique keys of the TTN app.
 
 The `Application ID` and `Access Key` are required to get data from The Things Network.
 
-## Create an Azure IoT Hub
+### Create an Azure IoT Hub
 
 ![alt tag](img/msft/Picture07-prepare-azure-integration.png)
 
