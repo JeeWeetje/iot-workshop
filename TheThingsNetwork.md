@@ -401,9 +401,9 @@ The bridge is now ready for execution.
 
 ### Start the bridge
 
-You are about to retrieve the telemetry from TTN.
+You are about to retrieve the telemetry from the The Things Network platform.
 
-1. In a dos-box (press Windows button-R, type CMD and enter), navigate to the new folder `c:\iotworkshop`
+1. At the command line (press Windows button-R, type CMD and enter), navigate to the new folder `c:\iotworkshop`
 2. In the same folder, **run** `TtnAzureBridge.exe` to verify the bridge is working
    
    ![alt tag](img/TheThingsNetwork/bridge-running.png)
