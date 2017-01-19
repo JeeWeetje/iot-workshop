@@ -430,7 +430,7 @@ You are about to retrieve the telemetry from TTN.
 
 ## Select your favorite tool for monitoring
 
-![alt tag](img/arch/Picture05-UWP-overview.png)
+![alt tag](img/msft/Picture09-monitor-incoming-data.png)
 
 We can check the arrival of messages in the Azure IoT Hub. This can be done using a UI app named Device Explorer or using a Command-Line tool named IoT Hub Explorer. `Choose one below` 
 
