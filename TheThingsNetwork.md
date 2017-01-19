@@ -403,7 +403,7 @@ The bridge is now ready for execution.
 
 You are about to retrieve the telemetry from the The Things Network platform.
 
-1. At the command line (press Windows button-R, type CMD and enter), navigate to the new folder `c:\iotworkshop`
+1. At the command prompt (press Windows button-R, type CMD and enter), navigate to the new folder `c:\iotworkshop`
 2. In the same folder, **run** `TtnAzureBridge.exe` to verify the bridge is working
    
    ![alt tag](img/TheThingsNetwork/bridge-running.png)
@@ -468,7 +468,7 @@ We can check the arrival of the messages in the Azure IoT Hub using the IoT Hub 
 *Note: See the [full example](https://www.npmjs.com/package/iothub-explorer) for more options of this tool.*
 
 1. Create a new folder eg. `c:\iothubexplorer`
-2. In a dos-box (press Windows button-R, type CMD and enter), navigate to the new folder `c:\iothubexplorer`
+2. At the command prompt (press Windows button-R, type CMD and enter), navigate to the new folder `c:\iothubexplorer`
 3. In this folder, run the following command `npm install -g iothub-explorer@latest` in your command-line environment, to install the latest (pre-release) version of the iothub-explorer tool
 4. Login to the IoT Hub Explorer by supplying your *remembered* IoT Hub `Connection String-primary key` using the command `iothub-explorer login "[your connection string]"`
 5. A session with the IoT Hub will start and it will last for approx. one hour:
