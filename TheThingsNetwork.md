@@ -156,13 +156,13 @@ Follow the steps to create an application and register your device.
     ![alt tag](img/TheThingsNetwork/ttn-applications-devices-settings.png)
 
 16. Click **Save**
-17.  The following device settings are shown
+17. The following device settings are shown
 
     ![alt tag](img/TheThingsNetwork/ttn-applications-devices-ready.png)
 
 18. Keep this page open, you need the device address, network session key and application session key in a minute
 
-The TTN application is now created.
+The TTN application is created. Your device has been registered and provisioned.
 
 ## Send data from your device
 
