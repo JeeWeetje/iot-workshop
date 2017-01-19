@@ -302,14 +302,13 @@ Now we have clean JSON data ready to be processed in Azure IoT Hub and upstream.
 
 Futher processing of the telemetry on the The Things Network platform is not possible. Processing telemetry has to be done on your own IoT plaform of your choice. In this case we choose the Azure IoT platform.
 
-But first we need the secrets from the The Things Network platform to be able to create a secure connection between the two platforms.
+But first we need the secrets from the The Things Network platform to be able to create a secure connection between the two platforms. A secure connection between platforms is called a bridge. We will configure and deploy one.
 
 ### Collect TTN Application secrets
 
-We now have our telemetry in the TTN back-end. Our goal is to pass the telemetry through the Azure IoT Platform. Now, we will create a bridge between the two platforms. But again we need some secrets so only we can access our telemetry.
-We have to collect unique keys of the TTN app.
+We have to collect unique keys of the The Things Network application.
 
-1. Go to your TTN application **Overview** in the navigation bar
+1. Go to your The Things Network application **Overview** in the navigation bar
 2. **Write down** the 'Application ID'
 3. Scroll down to **Access Keys**. **Write down** the 'Access Key'
 
@@ -391,7 +390,7 @@ Follow these steps to create the integration bridge between The Things Network a
 2. **Open** this config file in notepad or another text file editor
 3. **Replace** [TTN App EUI] with the `TTN Application ID`
 6. **Replace** [TTN App Access Key] with the `TTN Access Key`
-7. **Replace** twice [iothub name] with the `name` of the IoT Hub, both in the app settings as in the connection string 'IoTHub'
+7. **Replace twice** [iothub name] with the `name` of the IoT Hub, both in the app settings as in the connection string 'IoTHub'
 8. In the connectionstring of 'IoTHub', **replace** [shared access key] with the remembered `Connection String-Primary Key` 
    
    ![alt tag](img/TheThingsNetwork/bridge-config.png)
@@ -402,9 +401,9 @@ The bridge is now ready for execution.
 
 ### Start the bridge
 
-You are about to retrieve the telemetry from TTN.
+You are about to retrieve the telemetry from the The Things Network platform.
 
-1. In a dos-box (press Windows button-R, type CMD and enter), navigate to the new folder `c:\iotworkshop`
+1. At the command prompt (press Windows button-R, type CMD and enter), navigate to the new folder `c:\iotworkshop`
 2. In the same folder, **run** `TtnAzureBridge.exe` to verify the bridge is working
    
    ![alt tag](img/TheThingsNetwork/bridge-running.png)
@@ -430,7 +429,7 @@ You are about to retrieve the telemetry from TTN.
 
 ## Select your favorite tool for monitoring
 
-![alt tag](img/msft/Picture09-monitor-incoming-data.png)
+![alt tag](img/arch/Picture05-UWP-overview.png)
 
 We can check the arrival of messages in the Azure IoT Hub. This can be done using a UI app named Device Explorer or using a Command-Line tool named IoT Hub Explorer. `Choose one below` 
 
@@ -469,7 +468,7 @@ We can check the arrival of the messages in the Azure IoT Hub using the IoT Hub 
 *Note: See the [full example](https://www.npmjs.com/package/iothub-explorer) for more options of this tool.*
 
 1. Create a new folder eg. `c:\iothubexplorer`
-2. In a dos-box (press Windows button-R, type CMD and enter), navigate to the new folder `c:\iothubexplorer`
+2. At the command prompt (press Windows button-R, type CMD and enter), navigate to the new folder `c:\iothubexplorer`
 3. In this folder, run the following command `npm install -g iothub-explorer@latest` in your command-line environment, to install the latest (pre-release) version of the iothub-explorer tool
 4. Login to the IoT Hub Explorer by supplying your *remembered* IoT Hub `Connection String-primary key` using the command `iothub-explorer login "[your connection string]"`
 5. A session with the IoT Hub will start and it will last for approx. one hour:
