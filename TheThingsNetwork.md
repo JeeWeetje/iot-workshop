@@ -279,7 +279,7 @@ Now, the hexidecimal payload is an efficient format for LoRa communication but i
 
     ![alt tag](img/TheThingsNetwork/ttn-portal-decoder.png)
 
-4. We want to rearrange the order of the JSON element. So use the following function as the **converter**:
+4. We want to rearrange the order of the JSON elements. To rearrange the order we use the following function as the **converter**:
 
     ```c
     function Converter(decoded, port) {
@@ -290,7 +290,7 @@ Now, the hexidecimal payload is an efficient format for LoRa communication but i
     }
     ```
 
-5. Test before you can save the converter function. Again, enter eg '2A00' in the payload and click **Test**. The converted JSON message should become visible
+5. Again, you have to test this converter function before you can save the function. Again, enter eg. '2A00' in the payload and click **Test**. The hexidecimal payload entered is shown in JSON format with rearranged elements as test result
 6. Finally, scroll to the bottom of the page and click **Save**
 7. Go back to your data overview. Now you should see something like this:
 
