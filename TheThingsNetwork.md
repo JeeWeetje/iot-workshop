@@ -164,11 +164,11 @@ Follow the steps to create an application and register your device.
 
 The TTN application is created. Your device has been registered and provisioned.
 
-## Send data from your device
+## Send telemetry from your device to the The Things Network platform
 
 ![alt tag](img/msft/Picture05-submit-data-to-ttn.png)
 
-The sensor data is read, now it is time to send the sensor data to The Things Network. 
+The sensor data is read, now it is time to send the sensor data to the The Things Network platform. 
 
 1. In the Arduino IDE, from the **File** menu, choose **New** to create a new sketch and paste the following code:
 
