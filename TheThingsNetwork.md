@@ -239,7 +239,7 @@ The sensor data is read, now it is time to send the sensor data to the The Thing
     } 
     ```
 
-2. Insert your device address in `devAddr`, network session key in `nwkSkey` and application session key in `appSKey`. You can use the handy `<>` button in the dashboard to copy it quickly as a C-style byte array; exactly what Arduino wants
+2. Insert your device address in `devAddr`, network session key in `nwkSkey` and application session key in `appSKey`. You can use the handy `clipboard` button in the dashboard to copy it quickly as a HEX value
 
     ![alt tag](img/TheThingsNetwork/ttn-applications-devices-credentials.png)
 
