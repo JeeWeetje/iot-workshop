@@ -20,17 +20,17 @@ During the workshop the following experts will be present to guide you through t
 - Valery Jacobs, Technical Evangelist at Microsoft [ ![Twitter](img/social/twitter.png) ](https://twitter.com/valeryjacobs)
 
 ## Workshop schedule at DotNed Saturday 2017
-| StartTime | EndTime |  Room  |
+
+| Start Time | End Time |  Room  |
 | --------- | ------- | ------ |
 | 01/28/2017 10:15 | 01/28/2017 12:15 | Seminar4 |
 
 ## Let's dive into the workshop
 
-The workshop consists of multiple parts. The first two parts will guide you through the essentials we want you to get your hands on. 
-The other parts are optional/extra if you have time left.
+The workshop consists of several chapters. The first two chapters will guide you through the essentials we want you to get your hands on. The other chapters are optional/extra if you have time left.
 
 1. Connecting a device to the Azure IoT Platform
-    1. [Getting started with the hardware and The Things Network](TheThingsNetwork.md)
+    1. [Getting started with the The Things Uno and The Things Network](TheThingsNetwork.md)
     2. [Connecting to an IoT Hub using a UWP app device simulation](UwpToIotHub.md)
 2. [Receivig and handling telemetry in Azure](Azure.md)
 3. [Passing commands back to a device](Commands.md)
