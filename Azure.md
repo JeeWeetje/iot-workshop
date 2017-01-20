@@ -19,7 +19,7 @@ The Azure Function will execute custom code in the Cloud, bases on certain telem
 4. A running TTN bridge on your PC and connected to an IoT Hub (or a UWP app which represents the same devices, but connected to the IoT Hub directly)
 5. A running Device Explorer or IoT Hub Explorer, connected to the IoT Hub, showing the telemetry coming in (created in the previous workshop)
 
-## Create Azure Stream Analytics job
+## Filter data in Stream Analytics and stream to event hub
 
 ![alt tag](img/msft/Picture10-stream-data-to-an-event-hub.png)
 
@@ -218,7 +218,7 @@ Starting an Azure Stream Analytics job will take some time. After starting, all 
 
 *Note: Again, this is a fairly simple example of Stream Analytics usage. The job is actually a very powerful, easy and common way to handle data and make simple choices. More in-depth usage is described [here](https://azure.microsoft.com/en-us/documentation/articles/stream-analytics-real-time-event-processing-reference-architecture/).*
 
-## Create an Azure Function App 
+## Create an Azure Function App to handle events 
 
 ![alt tag](img/msft/Picture11handle-event-using-azure-functions.png)
 

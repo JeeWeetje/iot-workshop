@@ -26,9 +26,9 @@ At the end of this part of the workshop, the following steps are performed
    1. Handle commands in the TTN Node
    2. Handle commands in a UWP app
 
-![alt tag](img/msft/Picture12-connect-anything-using-flow.png)
+## Sending back commands for devices which are in a faulty state
 
-## Creating commands for devices which are in a faulty state
+![alt tag](img/msft/Picture12-connect-anything-using-flow.png)
 
 In the [previous workshop](Azure.md), we passed the telemetry from the device to a Stream Analytics job. This job collected devices which are sending error states. Every two minutes, information about devices that are in a faulty state are passed to an Azure Function.
 
