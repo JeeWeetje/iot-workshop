@@ -157,7 +157,7 @@ The input and output are now defined. Let's add the Azure Stream Analytics job q
 
     ![alt tag](img/Monitoring/mon13.png)
 
-The streamAnalytics job
+The streamAnalytics job is now listening for messages about connecting and disconnecting devices. Let's check this out.
 
 ## Connecting and disconnecting using your device
 
@@ -252,6 +252,8 @@ Follow these steps to add metrics monitoring to your StreamAnalytics job.
 
     ![alt tag](img/Monitoring/mon21.png)
 
-This concludes this part of the workshop. Thank you for checking out IoT Hub operations monitoring.
+This concludes this chapter of the workshop. You have both experienced how to monitor the IoT Hub and StreamAnalytics.
+
+Thank you for checking out IoT Hub operations monitoring.
 
 ![alt tag](img/logos/dotned-saturday.png)
