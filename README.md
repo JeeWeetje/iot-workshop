@@ -1,5 +1,5 @@
 # The Things Network & Azure IoT: a perfect combination
-## DotNed Saturday 2017 - IoT Workshop
+## dotNed Saturday 2017 - IoT Workshop
 
 This workshop is all about you, getting your hands on some amazing pieces of technology. 
 
@@ -37,7 +37,7 @@ The workshop consists of several chapters. The first two chapters will guide you
 2. [Receivig and handling telemetry in Azure](Azure.md)
 3. [Passing commands back to a device](Commands.md)
 4. Bonus
-   1. [Runnning the TTN C# bridge which supports downlink](Webjob.md)
-   2. [Add basic monitoring to the platform](IoTPatformMonitoring.md)
+   1. [Deploying The Things Network Bridge to Azure as a WebJob](Webjob.md)
+   2. [Add basic monitoring to the IoT platform](IoTPatformMonitoring.md)
 
 ![alt tag](img/logos/dotned-saturday.png)

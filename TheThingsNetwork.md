@@ -387,7 +387,7 @@ This is the secret needed from the Azure IoT Hub.
 Follow these steps to create the integration bridge between The Things Network and Azure IoT Hub. 
 
 1. **Create** a new folder eg. `c:\IoTWorkshop`
-2. **Copy** the zip file 'TTNAzureBridge.zip' from [this OneDrive location](https://1drv.ms/f/s!At-2dMPHYH4-kP0ENT3ieMCvJPxeKA) to this folder and **unzip** it
+2. **Copy** the zip file 'TTNAzureBridge.zip' from [this OneDrive location](https://aka.ms/workshopiot) to this folder and **unzip** it
 
     ![alt tag](img/TheThingsNetwork/bridge-download.png)
 
