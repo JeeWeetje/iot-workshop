@@ -335,7 +335,7 @@ We hope you did enjoy working with the Azure IoT Platform, as much as we did. Th
 
 But wait, there is still more. We added two bonus chapters to the workshop
 
-1. [Runnning the TTN C# bridge which supports downlink](Webjob.md)
+1. [Deploying the TTN C# bridge as Azure Web Job](Webjob.md)
 2. [Add basic monitoring to the platform](IoTPatformMonitoring.md)
 
 ![alt tag](img/logos/dotned-saturday.png) 
