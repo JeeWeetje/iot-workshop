@@ -113,7 +113,7 @@ We start with running a simple sketch on the Arduino. This is a program which si
 
 Now we have a running Arduino with some basic logic. Let's send some messages using The Things Network.
 
-## Create The Things Network application
+## Create The Things Network application in the The Things Network portal
 
 ![alt tag](img/msft/Picture04-create-a-ttn-device.png)
 
@@ -170,7 +170,12 @@ The TTN application is created. Your device has been registered and provisioned.
 
 The sensor data is read, now it is time to send the sensor data to the The Things Network platform. 
 
-1. In the Arduino IDE, from the **File** menu, choose **New** to create a new sketch and paste the following code:
+1. First we have to reference the The Thinks Network library for Arduino. **Open** the Arduino IDE
+2. **Select** menu Sketch, Include library, Manage Libraries. A form named 'Library Manager' is shown
+3. **Search** for The Things Network library using the keyword 'TheThingsNetwork'
+4. A single library is shown. **Select** the library and **Install** the library
+5. Close the Library manager
+6. In the Arduino IDE, from the **File** menu, choose **New** to create a new sketch and paste the following code:
 
     ```c
     #include <TheThingsNetwork.h>
@@ -239,16 +244,16 @@ The sensor data is read, now it is time to send the sensor data to the The Thing
     } 
     ```
 
-2. Insert your device address in `devAddr`, network session key in `nwkSkey` and application session key in `appSKey`. You can use the handy `clipboard` button in the dashboard to copy it quickly as a HEX value
+7. Insert your device address in `devAddr`, network session key in `nwkSkey` and application session key in `appSKey`. You can use the handy `clipboard` button in the dashboard to copy it quickly as a HEX value
 
     ![alt tag](img/TheThingsNetwork/ttn-applications-devices-credentials.png)
 
-3. In the **Sketch** menu, click **Upload**
-4. Open the **Serial Monitor** again from the **Tools** menu once upload has completed. Your device should now be sending telemetry to The Things Network
+8. In the **Sketch** menu, click **Upload**
+9. Open the **Serial Monitor** again from the **Tools** menu once upload has completed. Your device should now be sending telemetry to The Things Network
 
     ![alt tag](img/TheThingsNetwork/ttn-arduino-debug.png)
 
-5. In The Things Network dashboard, go to **Data**. You see uplink packets arriving:
+10. In The Things Network dashboard, go to **Data**. You see uplink packets arriving:
 
     ![alt tag](img/TheThingsNetwork/ttn-portal-raw-messages.png)
 
