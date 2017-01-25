@@ -183,8 +183,9 @@ The sensor data is read, now it is time to send the sensor data to the The Thing
 6. In the Arduino IDE, from the **File** menu, choose **New** to create a new sketch and paste the following code:
 
     ```c
+    #include <Grove_LED_Bar.h>
     #include <TheThingsNetwork.h>
-
+                       
     const char *devAddr = "00000000";
     const char *nwkSKey = "00000000000000000000000000000000";
     const char *appSKey = "00000000000000000000000000000000";
@@ -197,43 +198,78 @@ The sensor data is read, now it is time to send the sensor data to the The Thing
     TheThingsNetwork ttn(loraSerial, debugSerial, freqPlan);
 
     int commButton = 4;
-    int commLed = 10;
     int cycleCompleted = 0;
     int errorCode = 0;
 
     #define debugSerial Serial
     #define loraSerial Serial1
 
-    void setup() {
+    Grove_LED_Bar bar(9, 8, 0);  // Clock pin, Data pin, Orientation
+
+    void setup()
+    {
       loraSerial.begin(57600);
       debugSerial.begin(9600);
 
-      pinMode(commLed, OUTPUT);
       pinMode(commButton, INPUT);
-  
+
       delay(1000);
-  
+
       debugSerial.print("Initializing");
 
       // Initializing TTN communication...
       ttn.personalize(devAddr, nwkSKey, appSKey);
-  
-      digitalWrite(commLed, HIGH);
-  
+
       debugSerial.print("The Things Network connected");
+      // nothing to initialize
+      bar.begin();
+
+      bar.setLed(1,1);
+      delay(250);
+      bar.setLed(1,0);
+      bar.setLed(2, 1);
+      delay(250);
+      bar.setLed(2,0);
+  
+      for (int i = 3; i < 11; i++) {
+        bar.setLed(i, 1);
+        delay(250);
+      };
+
+      for (int i = 11; i > 2; i--) {
+        bar.setLed(i, 0);
+        delay(250);
+      };
+
+      bar.setLed(2,1);
+  
+      debugSerial.print("Led bar initialized");
     }
 
-    void loop() {
+    void loop()
+    {
+      // Simulate police LED lights using setLed method
+      for (float i = 0; i < 1.1; i += .100f) {
+        bar.setLed(2, 1 - i);
+        delay(150);
+      };
+  
+      for (float i = 0; i < 1.1; i += .100f) {
+        bar.setLed(2, i);
+        delay(150);
+      };
 
       // If not in error state, update the number of cycles
       if (errorCode == 0) {
+        clearProgress(cycleCompleted);
+        showProgress(cycleCompleted);
         cycleCompleted++;  
       }
- 
+
       // In the button is pushed, the machine enters an error state
       if (digitalRead(commButton) == HIGH) {  
         errorCode = 99;
-        digitalWrite(commLed, LOW);
+        bar.setLed(1,1);
         debugSerial.print("Error occured");
       }
 
@@ -246,7 +282,37 @@ The sensor data is read, now it is time to send the sensor data to the The Thing
       ttn.sendBytes(buffer, sizeof(buffer));
 
       delay(15000);
-    } 
+    }
+
+    void showProgress(int i){
+      switch(i % 5){
+        case 0:
+          bar.setLed(3,1);
+          break;
+        case 1:
+          bar.setLed(4,1);
+          break;
+        case 2:
+          bar.setLed(5,1);
+          break;
+        case 3:
+          bar.setLed(6,1);
+          break;
+        case 4:
+          bar.setLed(7,1);
+          break;
+      }
+    }
+
+    void clearProgress(int i){
+      if ((i % 5) == 0) {
+          bar.setLed(3,0);
+          bar.setLed(4,0);
+          bar.setLed(5,0);
+          bar.setLed(6,0);
+          bar.setLed(7,0);
+      }
+    }
     ```
 
 7. Insert your device address in `devAddr`, network session key in `nwkSkey` and application session key in `appSKey`. You can use the handy `clipboard` button in the dashboard to copy it quickly as a HEX value
