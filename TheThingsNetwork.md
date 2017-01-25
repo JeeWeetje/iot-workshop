@@ -23,13 +23,16 @@ In this chapter you will configure the The Things Uno, connect it to The Things 
 
 ![alt tag](img/msft/Picture02-build-the-hardware.png)
 
-Follow the workshop facilitator connecting the sensors. A few important things:
+Follow the workshop facilitator connecting the two sensors. A few important things:
 
-- The Button VCC pin (red cable) is connected to the `5v` pin on the 'The Things Uno'
-- The Button SIG/OUT (brown cable) pin is connected to the digital pin `4` (fifth pin in the pin header) on the 'The Things Uno'
-- The Button GND pin (white cable) is connected to one of the `GND` pins on the 'The Things Uno'
-- The LED SIG/IN pin (blue cable) is connected to the digital pin `10` on the 'The Things Uno'
-- The LED GND pin (brown cable) is connected to one of the `GND` pins on the 'The Things Uno'
+- The Button red cable is connected to the `3.3v` pin on the 'The Things Uno'
+- The Button yellow cable is connected to the digital pin `4` (fifth pin in the pin header) on the 'The Things Uno'
+- The Button black cable is connected to one of the `GND` pins on the 'The Things Uno'
+- Note: The white cable of the button is not used
+- The LED BAR red cable is connected to the `5v` pin on the 'The Things Uno'
+- The LED BAR black cable is connected to one of the `GND` pins on the 'The Things Uno'
+- The LED BAR yellow cable is connected to the digital pin `8` on the 'The Things Uno'
+- The LED BAR white cable is connected to the digital pin `9` on the 'The Things Uno'
 
 Your device and sensors should be connected as follows:
 
@@ -281,7 +284,7 @@ The sensor data is read, now it is time to send the sensor data to the The Thing
       // send message to TTN
       ttn.sendBytes(buffer, sizeof(buffer));
 
-      delay(15000);
+      delay(12000);
     }
 
     void showProgress(int i){
