@@ -26,9 +26,9 @@ At the end of this part of the workshop, the following steps are performed
    1. Handle commands in the TTN Node
    2. Handle commands in a UWP app
 
-![alt tag](img/msft/Picture12-connect-anything-using-flow.png)
+## Sending back commands for devices which are in a faulty state
 
-## Creating commands for devices which are in a faulty state
+![alt tag](img/msft/Picture12-connect-anything-using-flow.png)
 
 In the [previous workshop](Azure.md), we passed the telemetry from the device to a Stream Analytics job. This job collected devices which are sending error states. Every two minutes, information about devices that are in a faulty state are passed to an Azure Function.
 
@@ -164,7 +164,7 @@ In [TTN Node](TheThingsNetwork.md), we assembled a TTN node and we put a sketch 
 
     ```c
     // Initializing TTN communication...
-    ttn.onMessage(handleCommand);
+    ttn.onMessage(handleCommand); // new: Handle downlink
     ttn.personalize(devAddr, nwkSKey, appSKey);
     ```
 
@@ -175,13 +175,13 @@ In [TTN Node](TheThingsNetwork.md), we assembled a TTN node and we put a sketch 
     void handleCommand(const byte* payload, size_t length, port_t port) {
       if (length > 0) {
         int command = payload[0];
-    
+
         if (command >= 42) {
           errorCode = 0;
-          digitalWrite(commLed, HIGH);
+          bar.setLed(1,0);
         }
       }
-    }
+    } 
     ```
 
 5. In the **Sketch** menu, click **Upload**. *Note: The sketch is uploaded and again telemetry will arrive at the TTN Portal, the TTN Azure bridge and the IoTHub*
@@ -335,7 +335,7 @@ We hope you did enjoy working with the Azure IoT Platform, as much as we did. Th
 
 But wait, there is still more. We added two bonus chapters to the workshop
 
-1. [Runnning the TTN C# bridge which supports downlink](Webjob.md)
+1. [Deploying the TTN C# bridge as Azure Web Job](Webjob.md)
 2. [Add basic monitoring to the platform](IoTPatformMonitoring.md)
 
 ![alt tag](img/logos/dotned-saturday.png) 

@@ -15,20 +15,24 @@ In this chapter you will configure the The Things Uno, connect it to The Things 
 4. Node.js [https://nodejs.org/en/](https://nodejs.org/en/). _(We prefer Version 6)_
 5. Azure account [create here](https://azure.microsoft.com/en-us/free/) _([Azure passes](https://www.microsoftazurepass.com/howto) will be present for those who have no Azure account)_
 6. TTN account [https://account.thethingsnetwork.org/](https://account.thethingsnetwork.org/)
-7. Bridge software between TTN and Azure [TtnAzureBridge](https://github.com/sandervandevelde/TtnAzureBridge) (or [as zip](https://1drv.ms/f/s!At-2dMPHYH4-kP0ENT3ieMCvJPxeKA))
+7. Bridge software between TTN and Azure [TtnAzureBridge](https://github.com/sandervandevelde/TtnAzureBridge) (or [as zip](https://aka.ms/workshopiot))
 8. [IoT Hub Explorer](https://www.npmjs.com/package/iothub-explorer) _(for Command-Line interface based usage; see below for installation steps)_ or [Device Explorer](https://github.com/fsautomata/azure-iot-sdks/blob/master/tools/DeviceExplorer/doc/how_to_use_device_explorer.md) _(for GUI based usage; see below for installation steps)_  
+9. Seeed Grove Led Bar [software library](https://github.com/Seeed-Studio/Grove_LED_Bar) (or [as zip](https://aka.ms/workshopiot)
 
 ## Connect your device
 
 ![alt tag](img/msft/Picture02-build-the-hardware.png)
 
-Follow the workshop facilitator connecting the sensors. A few important things:
+Follow the workshop facilitator connecting the two sensors. A few important things:
 
-- The Button VCC pin (red cable) is connected to the `5v` pin on the 'The Things Uno'
-- The Button SIG/OUT (brown cable) pin is connected to the digital pin `4` (fifth pin in the pin header) on the 'The Things Uno'
-- The Button GND pin (white cable) is connected to one of the `GND` pins on the 'The Things Uno'
-- The LED SIG/IN pin (blue cable) is connected to the digital pin `10` on the 'The Things Uno'
-- The LED GND pin (brown cable) is connected to one of the `GND` pins on the 'The Things Uno'
+- The Button red cable is connected to the `3.3v` pin on the 'The Things Uno'
+- The Button yellow cable is connected to the digital pin `4` (fifth pin in the pin header) on the 'The Things Uno'
+- The Button black cable is connected to one of the `GND` pins on the 'The Things Uno'
+- Note: The white cable of the button is not used
+- The LED BAR red cable is connected to the `5v` pin on the 'The Things Uno'
+- The LED BAR black cable is connected to one of the `GND` pins on the 'The Things Uno'
+- The LED BAR yellow cable is connected to the digital pin `8` on the 'The Things Uno'
+- The LED BAR white cable is connected to the digital pin `9` on the 'The Things Uno'
 
 Your device and sensors should be connected as follows:
 
@@ -54,11 +58,15 @@ Your device and sensors should be connected as follows:
 
 We start with running a simple sketch on the Arduino. This is a program which simulates a machine and when you press a button it 'breaks down'.
 
-1. Open the Arduino IDE
-2. Connect The Things Uno via the micro USB cable to your computer
-3. In the **Tools** menu, click **Board** and select **Arduino Leonardo**
-4. In the **Tools** menu, click **Port** and select the serial port of your **COMx (Arduino Leonardo)**
-5. Paste the following code in a new sketch:
+1. **Copy** the zip file 'Grove_LED_Bar-master.zip' from [this OneDrive location](https://aka.ms/workshopiot) to a folder (you do _not_ have to **unzip** it)
+2. Open the Arduino IDE
+3. **Select** menu _Sketch, Include library, Add .ZIP Library_. A dialog to add a library is shown
+4. Select the 'Grove_LED_Bar-master.zip' and select **Open**
+5. **Check** if the library is imported correctly. A collection (of sketches) named 'Grove_LED_Bar-master' should appear in menu _File, Examples__
+6. Connect The Things Uno via the micro USB cable to your computer
+7. In the **Tools** menu, click **Board** and select **Arduino Leonardo**
+8. In the **Tools** menu, click **Port** and select the serial port of your **COMx (Arduino Leonardo)**
+9. Paste the following code in a new sketch:
 
     ```c
     int commButton = 4;
@@ -97,10 +105,10 @@ We start with running a simple sketch on the Arduino. This is a program which si
     } 
     ```
 
-7. In the **Sketch** menu, click **Verify/Compile**
-8. In the **Sketch** menu, click **Upload**
-9. Once the sketch has been uploaded, go to the **Tools** menu and open the **Serial Monitor**
-10. You should see output like this, just wait a few seconds before pushing the button:
+10. In the **Sketch** menu, click **Verify/Compile**
+11. In the **Sketch** menu, click **Upload**
+12. Once the sketch has been uploaded, go to the **Tools** menu and open the **Serial Monitor**
+13. You should see output like this, just wait a few seconds before pushing the button:
 
     ```
     ...
@@ -113,7 +121,7 @@ We start with running a simple sketch on the Arduino. This is a program which si
 
 Now we have a running Arduino with some basic logic. Let's send some messages using The Things Network.
 
-## Create The Things Network application
+## Create The Things Network application in the The Things Network portal
 
 ![alt tag](img/msft/Picture04-create-a-ttn-device.png)
 
@@ -170,11 +178,17 @@ The TTN application is created. Your device has been registered and provisioned.
 
 The sensor data is read, now it is time to send the sensor data to the The Things Network platform. 
 
-1. In the Arduino IDE, from the **File** menu, choose **New** to create a new sketch and paste the following code:
+1. First we have to reference the The Thinks Network library for Arduino. **Open** the Arduino IDE
+2. **Select** menu _Sketch, Include library, Manage Libraries_. A form named 'Library Manager' is shown
+3. **Search** for The Things Network library using the keyword 'TheThingsNetwork'
+4. A single library is shown. **Select** the library and **Install** the library
+5. Close the Library manager
+6. In the Arduino IDE, from the **File** menu, choose **New** to create a new sketch and paste the following code:
 
     ```c
+    #include <Grove_LED_Bar.h>
     #include <TheThingsNetwork.h>
-
+                       
     const char *devAddr = "00000000";
     const char *nwkSKey = "00000000000000000000000000000000";
     const char *appSKey = "00000000000000000000000000000000";
@@ -187,43 +201,78 @@ The sensor data is read, now it is time to send the sensor data to the The Thing
     TheThingsNetwork ttn(loraSerial, debugSerial, freqPlan);
 
     int commButton = 4;
-    int commLed = 10;
     int cycleCompleted = 0;
     int errorCode = 0;
 
     #define debugSerial Serial
     #define loraSerial Serial1
 
-    void setup() {
+    Grove_LED_Bar bar(9, 8, 0);  // Clock pin, Data pin, Orientation
+
+    void setup()
+    {
       loraSerial.begin(57600);
       debugSerial.begin(9600);
 
-      pinMode(commLed, OUTPUT);
       pinMode(commButton, INPUT);
-  
+
       delay(1000);
-  
+
       debugSerial.print("Initializing");
 
       // Initializing TTN communication...
       ttn.personalize(devAddr, nwkSKey, appSKey);
-  
-      digitalWrite(commLed, HIGH);
-  
+
       debugSerial.print("The Things Network connected");
+      // nothing to initialize
+      bar.begin();
+
+      bar.setLed(1,1);
+      delay(250);
+      bar.setLed(1,0);
+      bar.setLed(2, 1);
+      delay(250);
+      bar.setLed(2,0);
+  
+      for (int i = 3; i < 11; i++) {
+        bar.setLed(i, 1);
+        delay(250);
+      };
+
+      for (int i = 11; i > 2; i--) {
+        bar.setLed(i, 0);
+        delay(250);
+      };
+
+      bar.setLed(2,1);
+  
+      debugSerial.print("Led bar initialized");
     }
 
-    void loop() {
+    void loop()
+    {
+      // Simulate police LED lights using setLed method
+      for (float i = 0; i < 1.1; i += .100f) {
+        bar.setLed(2, 1 - i);
+        delay(150);
+      };
+  
+      for (float i = 0; i < 1.1; i += .100f) {
+        bar.setLed(2, i);
+        delay(150);
+      };
 
       // If not in error state, update the number of cycles
       if (errorCode == 0) {
+        clearProgress(cycleCompleted);
+        showProgress(cycleCompleted);
         cycleCompleted++;  
       }
- 
+
       // In the button is pushed, the machine enters an error state
       if (digitalRead(commButton) == HIGH) {  
         errorCode = 99;
-        digitalWrite(commLed, LOW);
+        bar.setLed(1,1);
         debugSerial.print("Error occured");
       }
 
@@ -235,20 +284,50 @@ The sensor data is read, now it is time to send the sensor data to the The Thing
       // send message to TTN
       ttn.sendBytes(buffer, sizeof(buffer));
 
-      delay(15000);
-    } 
+      delay(12000);
+    }
+
+    void showProgress(int i){
+      switch(i % 5){
+        case 0:
+          bar.setLed(3,1);
+          break;
+        case 1:
+          bar.setLed(4,1);
+          break;
+        case 2:
+          bar.setLed(5,1);
+          break;
+        case 3:
+          bar.setLed(6,1);
+          break;
+        case 4:
+          bar.setLed(7,1);
+          break;
+      }
+    }
+
+    void clearProgress(int i){
+      if ((i % 5) == 0) {
+          bar.setLed(3,0);
+          bar.setLed(4,0);
+          bar.setLed(5,0);
+          bar.setLed(6,0);
+          bar.setLed(7,0);
+      }
+    }
     ```
 
-2. Insert your device address in `devAddr`, network session key in `nwkSkey` and application session key in `appSKey`. You can use the handy `clipboard` button in the dashboard to copy it quickly as a HEX value
+7. Insert your device address in `devAddr`, network session key in `nwkSkey` and application session key in `appSKey`. You can use the handy `clipboard` button in the dashboard to copy it quickly as a HEX value
 
     ![alt tag](img/TheThingsNetwork/ttn-applications-devices-credentials.png)
 
-3. In the **Sketch** menu, click **Upload**
-4. Open the **Serial Monitor** again from the **Tools** menu once upload has completed. Your device should now be sending telemetry to The Things Network
+8. In the **Sketch** menu, click **Upload**
+9. Open the **Serial Monitor** again from the **Tools** menu once upload has completed. Your device should now be sending telemetry to The Things Network
 
     ![alt tag](img/TheThingsNetwork/ttn-arduino-debug.png)
 
-5. In The Things Network dashboard, go to **Data**. You see uplink packets arriving:
+10. In The Things Network dashboard, go to **Data**. You see uplink packets arriving:
 
     ![alt tag](img/TheThingsNetwork/ttn-portal-raw-messages.png)
 
@@ -382,7 +461,7 @@ This is the secret needed from the Azure IoT Hub.
 Follow these steps to create the integration bridge between The Things Network and Azure IoT Hub. 
 
 1. **Create** a new folder eg. `c:\IoTWorkshop`
-2. **Copy** the zip file 'TTNAzureBridge.zip' from [this OneDrive location](https://1drv.ms/f/s!At-2dMPHYH4-kP0ENT3ieMCvJPxeKA) to this folder and **unzip** it
+2. **Copy** the zip file 'TTNAzureBridge.zip' from [this OneDrive location](https://aka.ms/workshopiot) to this folder and **unzip** it
 
     ![alt tag](img/TheThingsNetwork/bridge-download.png)
 
