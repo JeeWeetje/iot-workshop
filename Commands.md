@@ -179,6 +179,7 @@ In [TTN Node](TheThingsNetwork.md), we assembled a TTN node and we put a sketch 
         if (command >= 42) {
           errorCode = 0;
           bar.setLed(1,0);
+          debugSerial.println("Machine repaired...");
         }
       }
     } 
