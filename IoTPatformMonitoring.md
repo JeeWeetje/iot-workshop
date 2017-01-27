@@ -1,4 +1,5 @@
-# Operations monitoring for your IoT Platform
+# The Things Network & Azure IoT: a perfect combination
+## Operations monitoring for your IoT Platform
 
 ![alt tag](img/arch/Picture00-Monitoring-overview.png)
 
