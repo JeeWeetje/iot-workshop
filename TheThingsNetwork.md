@@ -300,12 +300,12 @@ The sensor data is read, now it is time to send the sensor data to the The Thing
 
       delay(1000);
 
-      debugSerial.print("Initializing");
+      debugSerial.println("Initializing");
 
       // Initializing TTN communication...
       ttn.personalize(devAddr, nwkSKey, appSKey);
 
-      debugSerial.print("The Things Network connected");
+      debugSerial.println("The Things Network connected");
       // nothing to initialize
       bar.begin();
 
@@ -328,7 +328,7 @@ The sensor data is read, now it is time to send the sensor data to the The Thing
 
       bar.setLed(2,1);
   
-      debugSerial.print("Led bar initialized");
+      debugSerial.println("Led bar initialized");
     }
 
     void loop()
@@ -348,14 +348,18 @@ The sensor data is read, now it is time to send the sensor data to the The Thing
       if (errorCode == 0) {
         clearProgress(cycleCompleted);
         showProgress(cycleCompleted);
-        cycleCompleted++;  
+        cycleCompleted++;
+        debugSerial.print("Cycle completed: ");
+        debugSerial.println(cycleCompleted );  
       }
 
       // In the button is pushed, the machine enters an error state
       if (digitalRead(commButton) == HIGH) {  
         errorCode = 99;
         bar.setLed(1,1);
-        debugSerial.print("Error occured");
+        debugSerial.print("Error occured: ");
+        debugSerial.println( errorCode);
+        debugSerial.println("Repair of machine needed...");
       }
 
       // Communicate with TTN about number of cycles and current state (error code)
