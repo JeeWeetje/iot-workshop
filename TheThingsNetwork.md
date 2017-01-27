@@ -62,7 +62,7 @@ We start with running a simple sketch on the Arduino. This is a program which si
 2. Open the Arduino IDE
 3. **Select** menu _Sketch, Include library, Add .ZIP Library_. A dialog to add a library is shown
 4. Select the 'Grove_LED_Bar-master.zip' and select **Open**
-5. **Check** if the library is imported correctly. A collection (of sketches) named 'Grove_LED_Bar-master' should appear in menu _File, Examples_
+5. **Check** if the library is imported correctly. A collection (of sketches) named 'Grove_LED_Bar-master' should appear in menu _File, Examples, Examples from Custom Libraries_
 6. Connect The Things Uno via the micro USB cable to your computer
 7. In the **Tools** menu, click **Board** and select **Arduino Leonardo**
 8. In the **Tools** menu, click **Port** and select the serial port of your **COMx (Arduino Leonardo)**
