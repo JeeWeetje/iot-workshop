@@ -69,40 +69,120 @@ We start with running a simple sketch on the Arduino. This is a program which si
 9. Paste the following code in a new sketch:
 
     ```c
+    #include <Grove_LED_Bar.h>
+
+    #define debugSerial Serial
+
     int commButton = 4;
-    int commLed = 10;
     int cycleCompleted = 0;
     int errorCode = 0;
 
-    void setup() {
-      Serial.begin(9600);
-  
-      pinMode(commLed, OUTPUT);
-      pinMode(commButton, INPUT);
-  
-      digitalWrite(commLed, HIGH);
-     }
+    #define debugSerial Serial
 
-    void loop() {
- 
+    Grove_LED_Bar bar(9, 8, 0);  // Clock pin, Data pin, Orientation
+
+    void setup()
+    {
+      debugSerial.begin(9600);
+
+      pinMode(commButton, INPUT);
+
+      delay(1000);
+
+      debugSerial.println("Initializing");
+
+      bar.begin();
+
+      bar.setLed(1,1);
+      delay(250);
+      bar.setLed(1,0);
+      bar.setLed(2, 1);
+      delay(250);
+      bar.setLed(2,0);
+  
+      for (int i = 3; i < 11; i++) {
+        bar.setLed(i, 1);
+        delay(250);
+      };
+
+      for (int i = 11; i > 2; i--) {
+        bar.setLed(i, 0);
+        delay(250);
+      };
+
+      bar.setLed(2,1);
+  
+      debugSerial.println("Led bar initialized");
+    }
+
+    void loop()
+    {
+      // Simulate police LED lights using setLed method
+      for (float i = 0; i < 1.1; i += .100f) {
+        bar.setLed(2, 1 - i);
+        delay(150);
+      };
+  
+      for (float i = 0; i < 1.1; i += .100f) {
+        bar.setLed(2, i);
+        delay(150);
+      };
+
       // If not in error state, update the number of cycles
       if (errorCode == 0) {
+        clearProgress(cycleCompleted);
+        showProgress(cycleCompleted);
         cycleCompleted++;  
-         Serial.print("Cycle completed: ");
-         Serial.println(cycleCompleted );
+        debugSerial.print("Cycle completed: ");
+        debugSerial.println(cycleCompleted );
       }
 
       // In the button is pushed, the machine enters an error state
-      if (digitalRead(commButton) == HIGH) {
+      if (digitalRead(commButton) == HIGH) {  
         errorCode = 99;
-        digitalWrite(commLed, LOW);
-        Serial.print("Error occured: ");
-        Serial.println( errorCode);
-        Serial.println("Repair of machine needed...");
+        bar.setLed(1,1);
+        debugSerial.print("Error occured: ");
+        debugSerial.println( errorCode);
+        debugSerial.println("Repair of machine needed...");
       }
 
-      delay(1000);
-    } 
+      // Communicate with TTN about number of cycles and current state (error code)
+      byte buffer[2];
+      buffer[0] = (byte) cycleCompleted;
+      buffer[1] = (byte) errorCode;
+
+      delay(12000);
+    }
+
+    void showProgress(int i){
+      switch(i % 5){
+        case 0:
+          bar.setLed(3,1);
+          break;
+        case 1:
+          bar.setLed(4,1);
+          break;
+        case 2:
+          bar.setLed(5,1);
+          break;
+        case 3:
+          bar.setLed(6,1);
+          break;
+        case 4:
+          bar.setLed(7,1);
+          break;
+      }
+    }
+
+    void clearProgress(int i){
+      if ((i % 5) == 0) {
+          bar.setLed(3,0);
+          bar.setLed(4,0);
+          bar.setLed(5,0);
+          bar.setLed(6,0);
+          bar.setLed(7,0);
+      }
+    }
     ```
 
 10. In the **Sketch** menu, click **Verify/Compile**
@@ -111,10 +191,12 @@ We start with running a simple sketch on the Arduino. This is a program which si
 13. You should see output like this, just wait a few seconds before pushing the button:
 
     ```
+    Initializing
+    Led bar initialized
+    Cycle completed: 1
+    Cycle completed: 2
+    Cycle completed: 3
     ...
-    Cycle completed: 4
-    Cycle completed: 5
-    Cycle completed: 6
     Error occured: 99
     Repair of machine needed...
     ```
